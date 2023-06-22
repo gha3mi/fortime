@@ -1,0 +1,22 @@
+name = "fortimer"
+version = "0.1.0"
+license = "license"
+author = "Seyed Ali Ghasemi"
+maintainer = "info@gha3mi.com"
+copyright = "Copyright 2023, Seyed Ali Ghasemi"
+[build]
+auto-executables = false
+auto-tests = false
+auto-examples = false
+module-naming = false
+[install]
+library = false
+[fortran]
+implicit-typing = false
+implicit-external = false
+source-form = "free"
+
+[[test]]
+name="test1"
+source-dir="test"
+main="test1.f90"

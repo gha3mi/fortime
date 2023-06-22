@@ -1,0 +1,2 @@
+@ifort
+options test --compiler ifort --flag "-Ofast -xHost -mtune=native -qopenmp -parallel -qmkl=parallel"

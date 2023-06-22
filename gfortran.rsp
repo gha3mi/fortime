@@ -1,0 +1,2 @@
+@gfortran
+options test --compiler gfortran --flag "-Wno-line-truncation -Ofast -march=native -llapack -lblas"
