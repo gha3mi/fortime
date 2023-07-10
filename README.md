@@ -1,10 +1,12 @@
-# ForTime
-This module provides a timer object for measuring elapsed time. It includes procedures for starting and stopping the timer, as well as calculating and printing the elapsed time in seconds.
+![ForTime](media/logo.png)
+============
+
+**ForTime**: This module provides a timer object for measuring elapsed time. It includes procedures for starting and stopping the timer, as well as calculating and printing the elapsed time in seconds.
 
 -----
 ## Table of Contents
 
-- [ForTime](#fortime)
+- [](#)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
     - [fpm](#fpm)
