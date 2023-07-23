@@ -1,2 +1,0 @@
-@nvfortran
-options test --compiler nvfortran --flag "-O4 -mtune=native"

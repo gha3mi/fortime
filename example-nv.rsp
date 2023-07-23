@@ -1,0 +1,1 @@
+options run --example --all --compiler nvfortran --flag "-O4 -mtune=native"

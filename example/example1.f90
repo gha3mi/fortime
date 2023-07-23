@@ -1,4 +1,4 @@
-program test1
+program example1
 
     use :: fortime
     implicit none
@@ -10,10 +10,10 @@ program test1
     call t%timer_start()
 
         do i = 1,n
-            call sleep(2)
+            call sleep(1)
         end do
         
     call t%timer_stop(nloops = n, message = 'elapsed time:')
-    call t%timer_write('elapsed_times_test1')
+    call t%timer_write('example/example1_elapsed_times')
     
-end program test1
+end program example1

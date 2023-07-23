@@ -1,11 +1,12 @@
 project:             fortime
-version:             v0.1.0
+version:             {!VERSION!}
 year:                2023
 project_github:      https://github.com/gha3mi/fortime
 author:              Seyed Ali Ghasemi
 email:               info@gha3mi.com
 github:              https://github.com/gha3mi
 src_dir:             ./src
+                     ./test
 output_dir:          ./doc
 source:              true
 graph:               true
@@ -15,4 +16,7 @@ display:             public
                      private
                      protected
 print_creation_date: true
+media_dir:           ./media
+
+{!README.md!}
 

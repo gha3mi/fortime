@@ -3,42 +3,60 @@
 
 **ForTime**: This module provides a timer object for measuring elapsed time. It includes procedures for starting and stopping the timer, as well as calculating and printing the elapsed time in seconds.
 
------
-## Table of Contents
+## How to Use ForTime
 
-- [](#)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-    - [fpm](#fpm)
-  - [Type: `timer`](#type-timer)
-  - [Procedures:](#procedures)
-  - [Usage:](#usage)
-  - [Tests](#tests)
-  - [Example:](#example)
-  - [Documentation](#documentation)
-  - [Contributing](#contributing)
------
+### Adding ForTime as an fpm Dependency
 
-
-## Installation
-
-### fpm
-ForTime can be cloned and then built using [fpm](https://github.com/fortran-lang/fpm), following the instructions provided in the documentation available on Fortran Package Manager.
-
-```bash
-git clone https://github.com/gha3mi/fortime.git
-cd fortime
-fpm install --prefix .
-```
-
-Or you can easily include this package as a dependency in your `fpm.toml` file.
+If you want to use ForTime as a dependency in your own fpm project,
+you can easily include it by adding the following line to your `fpm.toml` file:
 
 ```toml
 [dependencies]
 fortime = {git="https://github.com/gha3mi/fortime.git"}
 ```
 
------
+### Installation of ForTime Library
+
+To use ForTime, follow the steps below:
+
+- **Reuirements:**
+
+  Fortran Compiler
+
+- **Clone the repository:**
+
+   You can clone the ForTime repository from GitHub using the following command:
+
+   ```shell
+   git clone https://github.com/gha3mi/fortime.git
+   ```
+
+   ```shell
+   cd fortime
+   ```
+
+- **Build using the Fortran Package Manager (fpm):**
+
+   ForTime can be built using [fpm](https://github.com/fortran-lang/fpm).
+   Make sure you have fpm installed, and then execute the following command:
+
+  **GNU Fortran Compiler (gfortran)**
+
+   ```shell
+   fpm install --prefix . --compiler gfortran
+   ```
+
+  **Intel Fortran Compiler (ifort)**
+
+   ```shell
+   fpm install --prefix . --compiler ifort
+   ```
+
+  **Intel Fortran Compiler (ifx)**
+
+    ```shell
+   fpm install --prefix . --compiler ifx
+   ```
 
 ## Type: `timer`
 A type representing a timer object with the following components:
@@ -53,7 +71,6 @@ A type representing a timer object with the following components:
 - `timer_start(this)`: Starts the timer by recording the current processor clock value. This value is used to calculate the elapsed time later.
 - `timer_stop(this, nloops, message)`: Stops the timer and calculates the elapsed time. Optionally, it can print a message along with the elapsed time.
 - `timer_write(this, file_name)`: Writes the elapsed time to a file.
------
 
 ## Usage:
 1. Include the `fortime` module in your program.
@@ -62,34 +79,36 @@ A type representing a timer object with the following components:
 4. Perform the desired operations.
 5. Call the `timer_stop` procedure to stop the timer and calculate the elapsed time.
 6. Optionally, call the `timer_write` procedure to write the elapsed time to a file.
------
 
-## Tests
+## Running Examples Using fpm
 
-The `tests` directory contains test programs to verify the functionality of the `fortime` module. To run the tests using `fpm`, you can use response files for specific compilers:
+To run the examples using `fpm`, you can use response files for specific compilers:
 
-- For Intel Fortran Compiler (ifort):
-```bash
-fpm @ifort
-```
+  **Intel Fortran Compiler (ifort)**
 
-- For Intel Fortran Compiler (ifx):
-```bash
-fpm @ifx
-```
+  ```bash
+  fpm @example-ift
+  ```
 
-- For NVIDIA Compiler (nvfortran):
-```bash
-fpm @nvidia
-```
+  **Intel Fortran Compiler (ifx)**
 
-- For GNU Fortran Compiler (gfortran):
-```bash
-fpm @gfortran
-```
------
+  ```bash
+  fpm @example-ifx
+  ```
 
-## Example:
+  **NVIDIA Compiler (nvfortran)**
+
+  ```bash
+  fpm @example-nv
+  ```
+
+  **GNU Fortran Compiler (gfortran)**
+
+  ```bash
+  fpm @example-gf
+  ```
+
+## Example
 ```fortran
 program example
    implicit none
@@ -109,17 +128,16 @@ program example
 
 end program example
 ```
------
 
+## API Documentation
 
-## Documentation
-To generate the documentation for the `fortime` module using [ford](https://github.com/Fortran-FOSS-Programmers/ford) run the following command:
-```bash
-ford project.yml
+To generate the API documentation for the `ForTime` module using
+[ford](https://github.com/Fortran-FOSS-Programmers/ford) run the following
+command:
+
+```shell
+ford ford.yml
 ```
 
------
-
 ## Contributing
-
-Contributions to fortime are welcome! If you find any issues or would like to suggest improvements, please open an issue or submit a pull request.
+Contributions to `ForTime` are welcome! If you find any issues or would like to suggest improvements, please open an issue or submit a pull request.
