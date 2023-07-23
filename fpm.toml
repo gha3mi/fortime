@@ -5,6 +5,9 @@ maintainer = "info@gha3mi.com"
 copyright  = "Copyright 2023, Seyed Ali Ghasemi"
 license    = "LICENSE"
 
+[dependencies]
+kinds = {git="https://github.com/gha3mi/kinds.git"}
+
 [build]
 auto-executables = false
 auto-tests       = false
@@ -23,3 +26,18 @@ source-form       = "free"
 name       = "example1"
 source-dir = "example"
 main       = "example1.f90"
+
+[[example]]
+name       = "example2"
+source-dir = "example"
+main       = "example2.f90"
+
+[[example]]
+name       = "example3"
+source-dir = "example"
+main       = "example3.f90"
+
+[[example]]
+name       = "example4"
+source-dir = "example"
+main       = "example4.f90"

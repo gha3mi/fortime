@@ -1,7 +1,11 @@
-![ForTime](media/logo.png)
-============
+# ForTime
 
-**ForTime**: This module provides a timer object for measuring elapsed time. It includes procedures for starting and stopping the timer, as well as calculating and printing the elapsed time in seconds.
+A Fortran library for measuring elapsed time and CPU time.
+
+It includes procedures for starting and stopping the timer,
+as well as calculating, printing and writing the elapsed times in seconds.
+
+![ForTime](media/logo.png)
 
 ## How to Use ForTime
 
@@ -58,76 +62,33 @@ To use ForTime, follow the steps below:
    fpm install --prefix . --compiler ifx
    ```
 
-## Type: `timer`
-A type representing a timer object with the following components:
-- `clock_rate`: Processor clock rate
-- `clock_start`: Start time in processor ticks
-- `clock_end`: End time in processor ticks
-- `clock_elapsed`: Elapsed time in processor ticks
-- `elapsed_time`: Elapsed time in seconds
-
-
-## Procedures:
-- `timer_start(this)`: Starts the timer by recording the current processor clock value. This value is used to calculate the elapsed time later.
-- `timer_stop(this, nloops, message)`: Stops the timer and calculates the elapsed time. Optionally, it can print a message along with the elapsed time.
-- `timer_write(this, file_name)`: Writes the elapsed time to a file.
-
-## Usage:
-1. Include the `fortime` module in your program.
-2. Declare a variable of type `timer` to use as a timer object.
-3. Call the `timer_start` procedure to start the timer.
-4. Perform the desired operations.
-5. Call the `timer_stop` procedure to stop the timer and calculate the elapsed time.
-6. Optionally, call the `timer_write` procedure to write the elapsed time to a file.
-
 ## Running Examples Using fpm
 
 To run the examples using `fpm`, you can use response files for specific compilers:
 
-  **Intel Fortran Compiler (ifort)**
+- Intel Fortran Compiler (ifort)
 
   ```bash
   fpm @example-ift
   ```
 
-  **Intel Fortran Compiler (ifx)**
+- Intel Fortran Compiler (ifx)
 
   ```bash
   fpm @example-ifx
   ```
 
-  **NVIDIA Compiler (nvfortran)**
+- NVIDIA Compiler (nvfortran)
 
   ```bash
   fpm @example-nv
   ```
 
-  **GNU Fortran Compiler (gfortran)**
+- GNU Fortran Compiler (gfortran)
 
   ```bash
   fpm @example-gf
   ```
-
-## Example
-```fortran
-program example
-   implicit none
-   
-   use :: fortime
-
-   type(timer) :: t
-
-   call timer_start(t)   ! Start the timer
-
-   ! Perform operations here
-
-   call timer_stop(t)    ! Stop the timer and print the elapsed time
-
-   ! Optionally, write the elapsed time to a file
-   call timer_write(t,"output.txt")
-
-end program example
-```
 
 ## API Documentation
 
@@ -140,4 +101,7 @@ ford ford.yml
 ```
 
 ## Contributing
-Contributions to `ForTime` are welcome! If you find any issues or would like to suggest improvements, please open an issue or submit a pull request.
+
+Contributions to `ForTime` are welcome!
+If you find any issues or would like to suggest improvements,
+please open an issue or submit a pull request.

@@ -1,4 +1,4 @@
-program example1
+program example3
 
    use fortime
 
@@ -6,8 +6,8 @@ program example1
 
    type(timer) :: t
 
-   call t%timer_start()
+   call t%ctimer_start()
     call sleep(1) ! Perform operations here
-   call t%timer_stop()
+   call t%ctimer_stop()
 
-end program example1
+end program example3
