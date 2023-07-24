@@ -58,8 +58,8 @@ jobs:
       run: |
         sudo apt-get install -y libblas-dev liblapack-dev
 
-    # - name: Run tests
-    #   run: fpm @gfortran
+    - name: Run Examples
+      run: fpm @example-gf
 
     - name: Build documentation
       run: ford ./ford.yml
