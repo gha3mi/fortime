@@ -5,6 +5,11 @@ maintainer = "info@gha3mi.com"
 copyright  = "Copyright 2023, Seyed Ali Ghasemi"
 license    = "LICENSE"
 
+[preprocess]
+[preprocess.cpp]
+macros = []
+# macros = ["OMP","MPI"]
+
 [dependencies]
 kinds = {git="https://github.com/gha3mi/kinds.git"}
 
