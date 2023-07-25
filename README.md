@@ -1,6 +1,6 @@
 # ForTime
 
-A Fortran library for measuring elapsed time and CPU time.
+A Fortran library for measuring elapsed time, CPU time, OMP time and MPI time.
 
 It includes procedures for starting and stopping the timer,
 as well as calculating, printing and writing the elapsed times in seconds.
