@@ -62,6 +62,69 @@ To use ForTime, follow the steps below:
    fpm install --prefix . --compiler ifx
    ```
 
+## Usage
+
+To utilize ForTime, you have two options: you can either add it as an fpm dependency or install it manually. Once you have set it up, follow these steps to integrate the `fortime` module into your Fortran code.
+
+First, include the `fortime` module:
+
+```fortran
+use fortime
+```
+
+Next, define the timer type:
+
+```fortran
+type(timer) :: t
+```
+
+### Measuring elapsed time:
+
+To measure the elapsed wall-clock time, use the following:
+
+```fortran
+call t%timer_start()
+! Your code or section to be timed
+call t%timer_stop()
+```
+
+### Measuring CPU time:
+
+To measure the CPU time consumed by your code, use these functions:
+
+```fortran
+call t%ctimer_start()
+! Your code or section to be timed
+call t%ctimer_stop()
+```
+
+### Measuring OpenMP (OMP) time:
+
+If your code includes OpenMP parallelization, you can measure the time taken by the parallel regions using:
+
+```fortran
+call t%otimer_start()
+! Your code or section to be timed
+call t%otimer_stop()
+```
+
+**Note:** Ensure you compile with the `-DOMP` option when using the OpenMP timer.
+
+### Measuring MPI time:
+
+When using MPI (Message Passing Interface), you can measure the time taken by your MPI processes using:
+
+```fortran
+call t%mtimer_start()
+! Your code or section to be timed
+call t%mtimer_stop()
+```
+
+**Note:** Don't forget to compile with the `-DMPI` option when using the MPI timer.
+
+
+
+
 ## Running Examples Using fpm
 
 To run the examples using `fpm`, you can use response files for specific compilers:
