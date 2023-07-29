@@ -155,6 +155,8 @@ To run the examples using `fpm`, you can use response files for specific compile
 
 ## API Documentation
 
+The most up-to-date API documentation for the master branch is available
+[here](https://gha3mi.github.io/fortime/).
 To generate the API documentation for the `ForTime` module using
 [ford](https://github.com/Fortran-FOSS-Programmers/ford) run the following
 command:
