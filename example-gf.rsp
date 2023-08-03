@@ -1,1 +1,0 @@
-options run --example --all --compiler gfortran --flag "-Wno-line-truncation -Ofast -march=native"

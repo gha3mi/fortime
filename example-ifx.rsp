@@ -1,1 +1,0 @@
-options run --example --all --compiler ifx --flag "-Ofast -xHost -mtune=native"
