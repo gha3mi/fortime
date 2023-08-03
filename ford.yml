@@ -1,4 +1,4 @@
-project:             fortime
+project:             ForTime
 version:             {!VERSION!}
 year:                2023
 project_github:      https://github.com/gha3mi/fortime
@@ -16,7 +16,7 @@ display:             public
                      private
                      protected
 print_creation_date: true
+favicon:             ./media/logo.png
 media_dir:           ./media
 
 {!README.md!}
-
