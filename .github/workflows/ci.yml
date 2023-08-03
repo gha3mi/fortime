@@ -54,7 +54,12 @@ jobs:
            --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${{ matrix.gcc_v }}
 
     - name: Run Examples
-      run: fpm @example-gf
+      run: fpm @gfortran-example
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Build documentation
       run: ford ./ford.yml
