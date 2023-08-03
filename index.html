@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Documentation for fortime">
+      <meta name="description" content="Documentation for ForTime">
     <meta name="author" content="Seyed Ali Ghasemi" >
     <link rel="icon" href="./favicon.png">
 
-    <title> fortime </title>
+    <title> ForTime </title>
 
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/pygments.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="./index.html">fortime <small>0.3.1</small></a>
+          <a class="navbar-brand" href="./index.html">ForTime <small>0.3.1</small></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -98,126 +98,96 @@
 
       <div class="row" id='text'>
         <div class="col-md-8">
-          <h1>fortime</h1>
           <h1>ForTime</h1>
-<p>A Fortran library for measuring elapsed time, CPU time, OMP time and MPI time.</p>
-<p>It includes procedures for starting and stopping the timer,
-as well as calculating, printing and writing the elapsed times in seconds.</p>
-<p><img alt="ForTime" src="media/logo.png"></p>
-<h2>How to Use ForTime</h2>
-<h3>Adding ForTime as an fpm Dependency</h3>
-<p>If you want to use ForTime as a dependency in your own fpm project,
+          <p><a href="https://github.com/gha3mi/fortime"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-ForTime-blue.svg?style=social&amp;logo=github"></a>
+<a href="https://github.com/gha3mi/fortime/releases"><img alt="Version" src="https://img.shields.io/github/v/tag/gha3mi/fortime?color=blue&amp;logo=github&amp;style=flat"></a>
+<a href="https://gha3mi.github.io/fortime/"><img alt="Documentation" src="https://img.shields.io/badge/ford-Documentation%20-blueviolet.svg"></a>
+<a href="https://github.com/gha3mi/fortime/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/gha3mi/fortime?color=green"></a>
+<a href="https://github.com/gha3mi/fortime/actions/workflows/ci.yml"><img alt="Build" src="https://github.com/gha3mi/fortime/actions/workflows/ci.yml/badge.svg"></a></p>
+<p><img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750"></p>
+<p><strong>ForTime</strong>: A Fortran library for measuring elapsed time, CPU time, OMP time and MPI time.</p>
+<h2>fpm dependency</h2>
+<p>If you want to use <code>ForTime</code> as a dependency in your own fpm project,
 you can easily include it by adding the following line to your <code>fpm.toml</code> file:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">[dependencies]</span><span class="w"></span>
 <span class="n">fortime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">git</span><span class="o">=</span><span class="s">&quot;https://github.com/gha3mi/fortime.git&quot;</span><span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
-<h3>Installation of ForTime Library</h3>
-<p>To use ForTime, follow the steps below:</p>
-<ul>
-<li><strong>Reuirements:</strong></li>
-</ul>
-<p>Fortran Compiler</p>
-<ul>
-<li><strong>Clone the repository:</strong></li>
-</ul>
-<p>You can clone the ForTime repository from GitHub using the following command:</p>
-<p><code>shell
-   git clone https://github.com/gha3mi/fortime.git</code></p>
-<p><code>shell
-   cd fortime</code></p>
-<ul>
-<li><strong>Build using the Fortran Package Manager (fpm):</strong></li>
-</ul>
-<p>ForTime can be built using <a href="https://github.com/fortran-lang/fpm">fpm</a>.
-   Make sure you have fpm installed, and then execute the following command:</p>
-<p><strong>GNU Fortran Compiler (gfortran)</strong></p>
-<p><code>shell
-   fpm install --prefix . --compiler gfortran</code></p>
-<p><strong>Intel Fortran Compiler (ifort)</strong></p>
-<p><code>shell
-   fpm install --prefix . --compiler ifort</code></p>
-<p><strong>Intel Fortran Compiler (ifx)</strong></p>
-<div class="codehilite"><pre><span></span><code>```shell
-</code></pre></div>
-
-<p>fpm install --prefix . --compiler ifx
-   ```</p>
 <h2>Usage</h2>
-<p>To utilize ForTime, you have two options: you can either add it as an fpm dependency or install it manually. Once you have set it up, follow these steps to integrate the <code>fortime</code> module into your Fortran code.</p>
-<p>First, include the <code>fortime</code> module:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="w"></span>
-</code></pre></div>
-
-<p>Next, define the timer type:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
-</code></pre></div>
-
-<h3>Measuring elapsed time:</h3>
+<h3>Measuring elapsed time</h3>
 <p>To measure the elapsed wall-clock time, use the following:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span><span class="w"></span>
 <span class="c">! Your code or section to be timed</span>
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">()</span><span class="w"></span>
 </code></pre></div>
 
-<h3>Measuring CPU time:</h3>
+<h3>Measuring CPU time</h3>
 <p>To measure the CPU time consumed by your code, use these functions:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_start</span><span class="p">()</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_start</span><span class="p">()</span><span class="w"></span>
 <span class="c">! Your code or section to be timed</span>
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_stop</span><span class="p">()</span><span class="w"></span>
 </code></pre></div>
 
-<h3>Measuring OpenMP (OMP) time:</h3>
+<h3>Measuring OpenMP (OMP) time</h3>
 <p>If your code includes OpenMP parallelization, you can measure the time taken by the parallel regions using:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_start</span><span class="p">()</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_start</span><span class="p">()</span><span class="w"></span>
 <span class="c">! Your code or section to be timed</span>
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_stop</span><span class="p">()</span><span class="w"></span>
 </code></pre></div>
 
 <p><strong>Note:</strong> Ensure you compile with the <code>-DOMP</code> option when using the OpenMP timer.</p>
-<h3>Measuring MPI time:</h3>
+<h3>Measuring MPI time</h3>
 <p>When using MPI (Message Passing Interface), you can measure the time taken by your MPI processes using:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_start</span><span class="p">()</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_start</span><span class="p">()</span><span class="w"></span>
 <span class="c">! Your code or section to be timed</span>
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">()</span><span class="w"></span>
 </code></pre></div>
 
 <p><strong>Note:</strong> Don't forget to compile with the <code>-DMPI</code> option when using the MPI timer.</p>
-<h2>Running Examples Using fpm</h2>
-<p>To run the examples using <code>fpm</code>, you can use response files for specific compilers:</p>
-<ul>
-<li>Intel Fortran Compiler (ifort)</li>
-</ul>
-<p><code>bash
-  fpm @example-ift</code></p>
-<ul>
-<li>Intel Fortran Compiler (ifx)</li>
-</ul>
-<p><code>bash
-  fpm @example-ifx</code></p>
-<ul>
-<li>NVIDIA Compiler (nvfortran)</li>
-</ul>
-<p><code>bash
-  fpm @example-nv</code></p>
-<ul>
-<li>GNU Fortran Compiler (gfortran)</li>
-</ul>
-<p><code>bash
-  fpm @example-gf</code></p>
-<h2>API Documentation</h2>
+<h2>How to run examples</h2>
+<p><strong>Clone the repository:</strong></p>
+<p>You can clone the <code>ForTime</code> repository from GitHub using the following command:</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/gha3mi/fortime.git
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> fortime
+</code></pre></div>
+
+<p><strong>For Intel Fortran Compiler (ifort):</strong></p>
+<p><code>shell
+  fpm @ifort-example</code></p>
+<p><strong>For Intel Fortran Compiler (ifx):</strong></p>
+<p><code>shell
+  fpm @ifx-example</code></p>
+<p><strong>For NVIDIA Compiler (nvfortran):</strong></p>
+<p><code>shell
+  fpm @nvfortran-example</code></p>
+<p><strong>For GNU Fortran Compiler (gfortran):</strong></p>
+<p><code>shell
+  fpm @gfortran-example</code></p>
+<h2>API documentation</h2>
 <p>The most up-to-date API documentation for the master branch is available
 <a href="https://gha3mi.github.io/fortime/">here</a>.
-To generate the API documentation for the <code>ForTime</code> module using
+To generate the API documentation for <code>ForTime</code> using
 <a href="https://github.com/Fortran-FOSS-Programmers/ford">ford</a> run the following
 command:</p>
 <div class="codehilite"><pre><span></span><code>ford ford.yml
 </code></pre></div>
 
 <h2>Contributing</h2>
-<p>Contributions to <code>ForTime</code> are welcome!
-If you find any issues or would like to suggest improvements,
-please open an issue or submit a pull request.</p>
+<p>Contributions to <code>ForTime</code> are welcome! If you find any issues or would like to suggest improvements, please open an issue.</p>
         </div>
         <div class="col-md-4">
 	  <div class="well">
@@ -283,14 +253,14 @@ please open an issue or submit a pull request.</p>
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6 col-md-6"><p>fortime was developed by Seyed Ali Ghasemi<br>&copy; 2023 
+          <div class="col-xs-6 col-md-6"><p>ForTime was developed by Seyed Ali Ghasemi<br>&copy; 2023 
 </p>
           </div>
           <div class="col-xs-6 col-md-6">
             <p class="text-right">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2023-07-29T05:42:12.196673             </p>
+ on 2023-08-03T05:53:55.330463             </p>
           </div>
         </div>
         <br>
