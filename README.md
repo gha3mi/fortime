@@ -1,17 +1,16 @@
-# ForTime
+[![GitHub](https://img.shields.io/badge/GitHub-ForTime-blue.svg?style=social&logo=github)](https://github.com/gha3mi/fortime)
+[![Version](https://img.shields.io/github/v/tag/gha3mi/fortime?color=blue&logo=github&style=flat)](https://github.com/gha3mi/fortime/releases)
+[![Documentation](https://img.shields.io/badge/ford-Documentation%20-blueviolet.svg)](https://gha3mi.github.io/fortime/)
+[![License](https://img.shields.io/github/license/gha3mi/fortime?color=green)](https://github.com/gha3mi/fortime/blob/main/LICENSE)
+[![Build](https://github.com/gha3mi/fortime/actions/workflows/ci.yml/badge.svg)](https://github.com/gha3mi/fortime/actions/workflows/ci.yml)
 
-A Fortran library for measuring elapsed time, CPU time, OMP time and MPI time.
+<img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750">
 
-It includes procedures for starting and stopping the timer,
-as well as calculating, printing and writing the elapsed times in seconds.
+**ForTime**: A Fortran library for measuring elapsed time, CPU time, OMP time and MPI time.
 
-![ForTime](media/logo.png)
+## fpm dependency
 
-## How to Use ForTime
-
-### Adding ForTime as an fpm Dependency
-
-If you want to use ForTime as a dependency in your own fpm project,
+If you want to use `ForTime` as a dependency in your own fpm project,
 you can easily include it by adding the following line to your `fpm.toml` file:
 
 ```toml
@@ -19,90 +18,42 @@ you can easily include it by adding the following line to your `fpm.toml` file:
 fortime = {git="https://github.com/gha3mi/fortime.git"}
 ```
 
-### Installation of ForTime Library
-
-To use ForTime, follow the steps below:
-
-- **Reuirements:**
-
-  Fortran Compiler
-
-- **Clone the repository:**
-
-   You can clone the ForTime repository from GitHub using the following command:
-
-   ```shell
-   git clone https://github.com/gha3mi/fortime.git
-   ```
-
-   ```shell
-   cd fortime
-   ```
-
-- **Build using the Fortran Package Manager (fpm):**
-
-   ForTime can be built using [fpm](https://github.com/fortran-lang/fpm).
-   Make sure you have fpm installed, and then execute the following command:
-
-  **GNU Fortran Compiler (gfortran)**
-
-   ```shell
-   fpm install --prefix . --compiler gfortran
-   ```
-
-  **Intel Fortran Compiler (ifort)**
-
-   ```shell
-   fpm install --prefix . --compiler ifort
-   ```
-
-  **Intel Fortran Compiler (ifx)**
-
-    ```shell
-   fpm install --prefix . --compiler ifx
-   ```
-
 ## Usage
 
-To utilize ForTime, you have two options: you can either add it as an fpm dependency or install it manually. Once you have set it up, follow these steps to integrate the `fortime` module into your Fortran code.
-
-First, include the `fortime` module:
-
-```fortran
-use fortime
-```
-
-Next, define the timer type:
-
-```fortran
-type(timer) :: t
-```
-
-### Measuring elapsed time:
+### Measuring elapsed time
 
 To measure the elapsed wall-clock time, use the following:
 
 ```fortran
+use fortime
+type(timer) :: t
+
 call t%timer_start()
 ! Your code or section to be timed
 call t%timer_stop()
 ```
 
-### Measuring CPU time:
+### Measuring CPU time
 
 To measure the CPU time consumed by your code, use these functions:
 
 ```fortran
+use fortime
+type(timer) :: t
+
 call t%ctimer_start()
 ! Your code or section to be timed
 call t%ctimer_stop()
 ```
 
-### Measuring OpenMP (OMP) time:
+### Measuring OpenMP (OMP) time
 
 If your code includes OpenMP parallelization, you can measure the time taken by the parallel regions using:
 
 ```fortran
+use fortime
+type(timer) :: t
+
 call t%otimer_start()
 ! Your code or section to be timed
 call t%otimer_stop()
@@ -110,11 +61,14 @@ call t%otimer_stop()
 
 **Note:** Ensure you compile with the `-DOMP` option when using the OpenMP timer.
 
-### Measuring MPI time:
+### Measuring MPI time
 
 When using MPI (Message Passing Interface), you can measure the time taken by your MPI processes using:
 
 ```fortran
+use fortime
+type(timer) :: t
+
 call t%mtimer_start()
 ! Your code or section to be timed
 call t%mtimer_stop()
@@ -122,42 +76,49 @@ call t%mtimer_stop()
 
 **Note:** Don't forget to compile with the `-DMPI` option when using the MPI timer.
 
+## How to run examples
 
+**Clone the repository:**
 
+You can clone the `ForTime` repository from GitHub using the following command:
 
-## Running Examples Using fpm
+```shell
+git clone https://github.com/gha3mi/fortime.git
+```
 
-To run the examples using `fpm`, you can use response files for specific compilers:
+```shell
+cd fortime
+```
 
-- Intel Fortran Compiler (ifort)
+**For Intel Fortran Compiler (ifort):**
 
-  ```bash
-  fpm @example-ift
+  ```shell
+  fpm @ifort-example
   ```
 
-- Intel Fortran Compiler (ifx)
+**For Intel Fortran Compiler (ifx):**
 
-  ```bash
-  fpm @example-ifx
+  ```shell
+  fpm @ifx-example
   ```
 
-- NVIDIA Compiler (nvfortran)
+**For NVIDIA Compiler (nvfortran):**
 
-  ```bash
-  fpm @example-nv
+  ```shell
+  fpm @nvfortran-example
   ```
 
-- GNU Fortran Compiler (gfortran)
+**For GNU Fortran Compiler (gfortran):**
 
-  ```bash
-  fpm @example-gf
+  ```shell
+  fpm @gfortran-example
   ```
 
-## API Documentation
+## API documentation
 
 The most up-to-date API documentation for the master branch is available
 [here](https://gha3mi.github.io/fortime/).
-To generate the API documentation for the `ForTime` module using
+To generate the API documentation for `ForTime` using
 [ford](https://github.com/Fortran-FOSS-Programmers/ford) run the following
 command:
 
@@ -167,6 +128,4 @@ ford ford.yml
 
 ## Contributing
 
-Contributions to `ForTime` are welcome!
-If you find any issues or would like to suggest improvements,
-please open an issue or submit a pull request.
+Contributions to `ForTime` are welcome! If you find any issues or would like to suggest improvements, please open an issue.
