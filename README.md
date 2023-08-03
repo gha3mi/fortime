@@ -1,5 +1,5 @@
 [![GitHub](https://img.shields.io/badge/GitHub-ForTime-blue.svg?style=social&logo=github)](https://github.com/gha3mi/fortime)
-[![Version](https://img.shields.io/github/v/tag/gha3mi/fortime?color=blue&logo=github&style=flat)](https://github.com/gha3mi/fortime/releases)
+[![Version](https://img.shields.io/github/release/gha3mi/fortime.svg)](https://github.com/gha3mi/fortime/releases/latest)
 [![Documentation](https://img.shields.io/badge/ford-Documentation%20-blueviolet.svg)](https://gha3mi.github.io/fortime/)
 [![License](https://img.shields.io/github/license/gha3mi/fortime?color=green)](https://github.com/gha3mi/fortime/blob/main/LICENSE)
 [![Build](https://github.com/gha3mi/fortime/actions/workflows/ci.yml/badge.svg)](https://github.com/gha3mi/fortime/actions/workflows/ci.yml)
