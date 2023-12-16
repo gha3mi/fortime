@@ -27,6 +27,11 @@ implicit-typing   = false
 implicit-external = false
 source-form       = "free"
 
+[[test]]
+name       = "test1"
+source-dir = "test"
+main       = "test1.f90"
+
 [[example]]
 name       = "example1"
 source-dir = "example"
