@@ -5,11 +5,6 @@ maintainer = "info@gha3mi.com"
 copyright  = "Copyright 2023, Seyed Ali Ghasemi"
 license    = "LICENSE"
 
-[preprocess]
-[preprocess.cpp]
-[preprocess.fypp]
-macros = []
-# macros = ["OMP","MPI"]
 
 [dependencies]
 kinds = {git="https://github.com/gha3mi/kinds.git"}
@@ -27,6 +22,9 @@ library = true
 implicit-typing   = false
 implicit-external = false
 source-form       = "free"
+
+[preprocess]
+[preprocess.cpp]
 
 [[test]]
 name       = "test1"
