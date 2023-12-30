@@ -1,0 +1,47 @@
+name: test
+on: [push]
+jobs:
+
+  Build:
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        toolchain:
+          - {compiler: gcc}
+          - {compiler: intel-classic}
+        #   - {compiler: intel}
+        exclude:
+          - os: windows-latest
+            toolchain: {compiler: intel-classic}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Setup Fortran Package Manager (fpm)
+      uses: fortran-lang/setup-fpm@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Fortran Compiler
+      uses: fortran-lang/setup-fortran@v1
+      id: setup-fortran
+      with:
+        compiler: ${{ matrix.toolchain.compiler }}
+        version: ${{ matrix.toolchain.version }}
+
+    - name: Run test (Debug)
+      run: fpm test --profile debug --flag '-fopenmp -DUSE_OMP' --compiler ${{ env.FC}}
+      env:
+        FC: ${{ steps.setup-fortran.outputs.fc }}
+
+    - name: Run test (Release)
+      run: fpm test --profile release --flag '-fopenmp -DUSE_OMP' --compiler ${{ env.FC}}
+      env:
+        FC: ${{ steps.setup-fortran.outputs.fc }}
