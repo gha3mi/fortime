@@ -8,6 +8,7 @@ license    = "LICENSE"
 
 [dependencies]
 kinds = {git="https://github.com/gha3mi/kinds.git"}
+forunittest = {git="https://github.com/gha3mi/forunittest.git"}
 
 [build]
 auto-executables = false
@@ -30,6 +31,61 @@ source-form       = "free"
 name       = "test1"
 source-dir = "test"
 main       = "test1.f90"
+
+[[test]]
+name       = "test2"
+source-dir = "test"
+main       = "test2.f90"
+
+[[test]]
+name       = "test3"
+source-dir = "test"
+main       = "test3.f90"
+
+[[test]]
+name       = "test4"
+source-dir = "test"
+main       = "test4.f90"
+
+[[test]]
+name       = "test5"
+source-dir = "test"
+main       = "test5.f90"
+
+[[test]]
+name       = "test6"
+source-dir = "test"
+main       = "test6.f90"
+
+[[test]]
+name       = "test7"
+source-dir = "test"
+main       = "test7.f90"
+
+[[test]]
+name       = "test8"
+source-dir = "test"
+main       = "test8.f90"
+
+[[test]]
+name       = "test9"
+source-dir = "test"
+main       = "test9.f90"
+
+[[test]]
+name       = "test10"
+source-dir = "test"
+main       = "test10.f90"
+
+[[test]]
+name       = "test11"
+source-dir = "test"
+main       = "test11.f90"
+
+[[test]]
+name       = "test12"
+source-dir = "test"
+main       = "test12.f90"
 
 [[example]]
 name       = "example1"
