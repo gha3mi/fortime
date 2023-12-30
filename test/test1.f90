@@ -38,14 +38,14 @@ program test1
 
 
 
-#if defined(OMP)
+#if defined(USE_OMP)
    call t%otimer_start()
    call sleep(1) ! Perform operations here
    call t%otimer_stop()
 #endif
 
 
-#if defined(OMP)
+#if defined(USE_OMP)
    call t%otimer_start()
    do i = 1,n
       call sleep(1) ! Perform operations ntimes
@@ -57,14 +57,14 @@ program test1
 
 
 
-#if defined(MPI)
+#if defined(USE_OMP)
    call t%mtimer_start()
    call sleep(1) ! Perform operations here
    call t%mtimer_stop()
 #endif
 
 
-#if defined(MPI)
+#if defined(USE_OMP)
    call t%mtimer_start()
    do i = 1,n
       call sleep(1) ! Perform operations ntimes
