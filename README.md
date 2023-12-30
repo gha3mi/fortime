@@ -59,7 +59,7 @@ call t%otimer_start()
 call t%otimer_stop()
 ```
 
-**Note:** Ensure you compile with the `-DOMP` option when using the OpenMP timer.
+**Note:** Ensure you compile with the `-DUSE_OMP` option when using the OpenMP timer.
 
 ### Measuring MPI time
 
@@ -74,7 +74,7 @@ call t%mtimer_start()
 call t%mtimer_stop()
 ```
 
-**Note:** Don't forget to compile with the `-DMPI` option when using the MPI timer.
+**Note:** Don't forget to compile with the `-DUSE_MPI` option when using the MPI timer.
 
 ## How to run examples
 
@@ -84,34 +84,58 @@ You can clone the `ForTime` repository from GitHub using the following command:
 
 ```shell
 git clone https://github.com/gha3mi/fortime.git
-```
-
-```shell
 cd fortime
 ```
 
 **For Intel Fortran Compiler (ifort):**
 
   ```shell
-  fpm @ifort-example
+  fpm run --example --all --compiler ifort
   ```
 
 **For Intel Fortran Compiler (ifx):**
 
   ```shell
-  fpm @ifx-example
+  fpm run --example --all --compiler ifx
   ```
 
 **For NVIDIA Compiler (nvfortran):**
 
   ```shell
-  fpm @nvfortran-example
+  fpm run --example --all --compiler nvfortran
   ```
 
 **For GNU Fortran Compiler (gfortran):**
 
   ```shell
-  fpm @gfortran-example
+  fpm run --example --all --compiler gfortran
+  ```
+
+## How to run tests
+
+
+**For Intel Fortran Compiler (ifort):**
+
+  ```shell
+  fpm test --compiler ifort
+  ```
+
+**For Intel Fortran Compiler (ifx):**
+
+  ```shell
+  fpm test --compiler ifx
+  ```
+
+**For NVIDIA Compiler (nvfortran):**
+
+  ```shell
+  fpm test --compiler nvfortran
+  ```
+
+**For GNU Fortran Compiler (gfortran):**
+
+  ```shell
+  fpm test --compiler gfortran
   ```
 
 ## API documentation
