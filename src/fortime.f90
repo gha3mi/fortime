@@ -24,14 +24,14 @@ module fortime
       real(rk) :: cpu_elapsed      ! Elapsed CPU time
       real(rk) :: cpu_time         ! Elapsed time in seconds
 
-#if defined(OMP)
+#if defined(USE_OMP)
       real(rk) :: omp_start        ! Start OMP time
       real(rk) :: omp_end          ! End OMP time
       real(rk) :: omp_elapsed      ! Elapsed OMP time
       real(rk) :: omp_time         ! Elapsed time in seconds
 #endif
 
-#if defined(MPI)
+#if defined(USE_MPI)
       real(rk) :: mpi_start        ! Start MPI time
       real(rk) :: mpi_end          ! End MPI time
       real(rk) :: mpi_elapsed      ! Elapsed MPI time
@@ -46,13 +46,13 @@ module fortime
       procedure :: ctimer_stop     ! Procedure for stopping the CPU timer
       procedure :: ctimer_write    ! Procedure for writing elapsed CPU time to a file
 
-#if defined(OMP)
+#if defined(USE_OMP)
       procedure :: otimer_start    ! Procedure for starting the OMP timer
       procedure :: otimer_stop     ! Procedure for stopping the OMP timer
       procedure :: otimer_write    ! Procedure for writing elapsed OMP time to a file
 #endif
 
-#if defined(MPI)
+#if defined(USE_MPI)
       procedure :: mtimer_start    ! Procedure for starting the MPI timer
       procedure :: mtimer_stop     ! Procedure for stopping the MPI timer
       procedure :: mtimer_write    ! Procedure for writing elapsed MPI time to a file
@@ -227,7 +227,7 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Starts the timer by recording the current OMP time value.
    !> This value is used to calculate the OMP time later.
-#if defined(OMP)
+#if defined(USE_OMP)
    impure subroutine otimer_start(this)
       use omp_lib
       class(timer), intent(inout) :: this
@@ -240,7 +240,7 @@ contains
 #endif
 
 
-#if defined(OMP)
+#if defined(USE_OMP)
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the OMP time.
@@ -278,7 +278,7 @@ contains
 #endif
 
 
-#if defined(OMP)
+#if defined(USE_OMP)
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    !> Writes the OMP time to a file.
@@ -310,7 +310,7 @@ contains
 #endif
 
 
-#if defined(MPI)
+#if defined(USE_MPI)
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    !> Starts the timer by recording the current MPI time value.
@@ -334,7 +334,7 @@ contains
 #endif
 
 
-#if defined(MPI)
+#if defined(USE_MPI)
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the MPI time.
@@ -379,7 +379,7 @@ contains
 #endif
 
 
-#if defined(MPI)
+#if defined(USE_MPI)
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    !> Writes the MPI time to a file.
