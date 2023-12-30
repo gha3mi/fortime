@@ -13,29 +13,29 @@ module fortime
 
    !===============================================================================
    type :: timer
-      integer  :: clock_rate       ! Processor clock rate
-      integer  :: clock_start      ! Start time in processor ticks
-      integer  :: clock_end        ! End time in processor ticks
-      integer  :: clock_elapsed    ! Elapsed time in processor ticks
-      real(rk) :: elapsed_time     ! Elapsed time in seconds
+      integer, private :: clock_rate       ! Processor clock rate
+      integer, private :: clock_start      ! Start time in processor ticks
+      integer, private :: clock_end        ! End time in processor ticks
+      integer, private :: clock_elapsed    ! Elapsed time in processor ticks
+      real(rk)         :: elapsed_time     ! Elapsed time in seconds
 
-      real(rk) :: cpu_start        ! Start CPU time
-      real(rk) :: cpu_end          ! End CPU time
-      real(rk) :: cpu_elapsed      ! Elapsed CPU time
-      real(rk) :: cpu_time         ! Elapsed time in seconds
+      real(rk), private :: cpu_start       ! Start CPU time
+      real(rk), private :: cpu_end         ! End CPU time
+      real(rk), private :: cpu_elapsed     ! Elapsed CPU time
+      real(rk)          :: cpu_time        ! Elapsed time in seconds
 
 #if defined(USE_OMP)
-      real(rk) :: omp_start        ! Start OMP time
-      real(rk) :: omp_end          ! End OMP time
-      real(rk) :: omp_elapsed      ! Elapsed OMP time
-      real(rk) :: omp_time         ! Elapsed time in seconds
+      real(rk), private :: omp_start       ! Start OMP time
+      real(rk), private :: omp_end         ! End OMP time
+      real(rk), private :: omp_elapsed     ! Elapsed OMP time
+      real(rk)          :: omp_time        ! Elapsed time in seconds
 #endif
 
 #if defined(USE_MPI)
-      real(rk) :: mpi_start        ! Start MPI time
-      real(rk) :: mpi_end          ! End MPI time
-      real(rk) :: mpi_elapsed      ! Elapsed MPI time
-      real(rk) :: mpi_time         ! Elapsed time in seconds
+      real(rk), private :: mpi_start       ! Start MPI time
+      real(rk), private :: mpi_end         ! End MPI time
+      real(rk), private :: mpi_elapsed     ! Elapsed MPI time
+      real(rk)          :: mpi_time        ! Elapsed time in seconds
 #endif
    contains
       procedure :: timer_start     ! Procedure for starting the timer
