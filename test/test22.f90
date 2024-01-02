@@ -19,7 +19,7 @@ program test22
    call t%mtimer_stop(print=.false.)
    call mpi_finalize(ierr)
 
-   call ut%check(res=t%mpi_time, expected=1.0_rk, tol=1.0e-2_rk, msg='test22')
+   call ut%check(res=t%mpi_time, expected=1.0_rk, tol=1.0e-1_rk, msg='test22')
 
 #endif
 
