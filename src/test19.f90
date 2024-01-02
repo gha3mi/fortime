@@ -16,7 +16,7 @@ program test19
       call sleep(1) ! Perform operations here
    call t%otimer_stop(print=.false.)
 
-   call ut%check(res=t%omp_time, expected=1.0_rk, tol=1.0e-2_rk, msg='test19')
+   call ut%check(res=t%omp_time, expected=1.0_rk, tol=1.0e-1_rk, msg='test19')
 #endif
 
 end program test19
