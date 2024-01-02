@@ -6,7 +6,7 @@
 
 <img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750">
 
-**ForTime**: A Fortran library for measuring elapsed time, CPU time, OMP time and MPI time.
+**ForTime**: A Fortran library for measuring elapsed time, DATE_AND_TIME time, CPU time, OMP time and MPI time.
 
 ## fpm dependency
 
