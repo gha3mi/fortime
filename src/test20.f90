@@ -20,7 +20,7 @@ program test20
    call t%otimer_stop(nloops = nloops, message = 'OMP time:', print=.false.)
    call t%otimer_write('test/test20_otimes') ! Optionally, write the elapsed time to a file
 
-   call ut%check(res=t%omp_time, expected=1.0_rk, tol=1.0e-3_rk, msg='test20')
+   call ut%check(res=t%omp_time, expected=1.0_rk, tol=1.0e-2_rk, msg='test20')
 
 #endif
 

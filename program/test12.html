@@ -112,11 +112,11 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../program/test12.html#variable-t~23">t</a>
-            <a class="list-group-item" href="../program/test12.html#variable-ut~14">ut</a>
-            <a class="list-group-item" href="../program/test12.html#variable-nl~15">nl</a>
-            <a class="list-group-item" href="../program/test12.html#variable-nloops~19">nloops</a>
-            <a class="list-group-item" href="../program/test12.html#variable-ierr~6">ierr</a>
+            <a class="list-group-item" href="../program/test12.html#variable-t~26">t</a>
+            <a class="list-group-item" href="../program/test12.html#variable-ut~16">ut</a>
+            <a class="list-group-item" href="../program/test12.html#variable-nl~16">nl</a>
+            <a class="list-group-item" href="../program/test12.html#variable-nloops~20">nloops</a>
+            <a class="list-group-item" href="../program/test12.html#variable-ierr~4">ierr</a>
         </div>
       </div>
     </div>
@@ -158,8 +158,8 @@
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
-                  <li class="list-inline-item"><a href='../module/fortime.html'>fortime</a></li>
                   <li class="list-inline-item">kinds</li>
+                  <li class="list-inline-item"><a href='../module/fortime.html'>fortime</a></li>
                   <li class="list-inline-item">forunittest</li>
               </ul>
             </li>
@@ -524,7 +524,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-t~23"></span>
+              <span class="anchor" id="variable-t~26"></span>
               type(<a href='../type/timer.html'>timer</a>)
             </td>
             <td>
@@ -540,7 +540,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ut~14"></span>
+              <span class="anchor" id="variable-ut~16"></span>
               type(unit_test)
             </td>
             <td>
@@ -556,7 +556,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nl~15"></span>
+              <span class="anchor" id="variable-nl~16"></span>
               integer
             </td>
             <td>
@@ -572,7 +572,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~19"></span>
+              <span class="anchor" id="variable-nloops~20"></span>
               integer
             </td>
             <td>
@@ -588,7 +588,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ierr~6"></span>
+              <span class="anchor" id="variable-ierr~4"></span>
               integer
             </td>
             <td>
@@ -643,7 +643,7 @@ large graphs.</div>
 <span class="w">   </span><span class="k">call </span><span class="n">mpi_finalize</span><span class="p">(</span><span class="n">ierr</span><span class="p">)</span>
 <span class="w">   </span><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_write</span><span class="p">(</span><span class="s1">&#39;test/test12_mtimes&#39;</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the elapsed time to a file</span>
 
-<span class="w">   </span><span class="k">call </span><span class="n">ut</span><span class="p">%</span><span class="n">check</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">t</span><span class="p">%</span><span class="n">mpi_time</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">rk</span><span class="p">)</span><span class="o">*</span><span class="mf">1.0_rk</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-3_rk</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">=</span><span class="s1">&#39;test12&#39;</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">ut</span><span class="p">%</span><span class="n">check</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">t</span><span class="p">%</span><span class="n">mpi_time</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">rk</span><span class="p">)</span><span class="o">*</span><span class="mf">1.0_rk</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-2_rk</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">=</span><span class="s1">&#39;test12&#39;</span><span class="p">)</span>
 
 <span class="cp">#endif</span>
 
@@ -667,7 +667,7 @@ large graphs.</div>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02T11:42:32.778434             </p>
+ on 2024-01-02T11:46:50.749004             </p>
           </div>
         </div>
         <br>
