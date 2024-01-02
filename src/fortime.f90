@@ -539,7 +539,8 @@ contains
       seconds = real(values(3), rk) * 24.0_rk * 60.0_rk * 60.0_rk + &
                 real(values(5), rk) * 60.0_rk * 60.0_rk + &
                 real(values(6), rk) * 60.0_rk + &
-                real(values(7), rk)
+                real(values(7), rk) + & 
+                real(values(8), rk) / 1000.0_rk
 
    end function to_seconds
    !===============================================================================
