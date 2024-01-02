@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for ForTime">
+    <meta name="author" content="Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>print_time &ndash; ForTime</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+      <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForTime <small>0.3.3</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>print_time
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Seyed Ali Ghasemi</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip"
+                 data-bs-placement="bottom" data-html="true"
+                 title=" 2.8% of total for procedures.">5 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/fortime.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/fortime.html'>fortime</a></li>
+            <li class="breadcrumb-item active" aria-current="page">print_time</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+    $('[data-bs-toggle="tooltip"]').tooltip()
+    })
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/print_time.html#src">print_time</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private impure subroutine print_time(time, message)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-time"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~5"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~print_time~~CalledByGraph Pages: 1 -->
+<svg id="procprint_timeCalledByGraph" width="422pt" height="1166pt"
+ viewBox="0.00 0.00 422.00 1166.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~print_time~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1162)">
+<title>proc~~print_time~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1162 418,-1162 418,4 -4,4"/>
+<!-- proc~print_time -->
+<g id="proc~~print_time~~CalledByGraph_node1" class="node">
+<title>proc~print_time</title>
+<polygon fill="none" stroke="black" points="414,-591 301,-591 301,-567 414,-567 414,-591"/>
+<text text-anchor="middle" x="357.5" y="-576.6" font-family="Helvetica,sans-Serif" font-size="10.50">fortime::print_time</text>
+</g>
+<!-- proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_node2" class="node">
+<title>proc~ctimer_stop</title>
+<g id="a_proc~~print_time~~CalledByGraph_node2"><a xlink:href=".././proc/ctimer_stop.html" xlink:title="fortime::timer%ctimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="263,-990 103,-990 103,-966 263,-966 263,-990"/>
+<text text-anchor="middle" x="183" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%ctimer_stop</text>
+</a>
+</g>
+</g>
+<!-- proc~ctimer_stop&#45;&gt;proc~print_time -->
+<g id="proc~~print_time~~CalledByGraph_edge1" class="edge">
+<title>proc~ctimer_stop&#45;&gt;proc~print_time</title>
+<path fill="none" stroke="#255000" d="M189.35,-965.62C213.85,-908.95 315.46,-673.92 347.07,-600.81"/>
+<polygon fill="#255000" stroke="#255000" points="350.45,-601.8 351.21,-591.23 344.03,-599.02 350.45,-601.8"/>
+</g>
+<!-- proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_node3" class="node">
+<title>proc~mtimer_stop</title>
+<g id="a_proc~~print_time~~CalledByGraph_node3"><a xlink:href=".././proc/mtimer_stop.html" xlink:title="fortime::timer%mtimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="265,-696 101,-696 101,-672 265,-672 265,-696"/>
+<text text-anchor="middle" x="183" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%mtimer_stop</text>
+</a>
+</g>
+</g>
+<!-- proc~mtimer_stop&#45;&gt;proc~print_time -->
+<g id="proc~~print_time~~CalledByGraph_edge2" class="edge">
+<title>proc~mtimer_stop&#45;&gt;proc~print_time</title>
+<path fill="none" stroke="#255000" d="M203.79,-671.96C234.25,-653.41 292.78,-617.78 327.87,-596.43"/>
+<polygon fill="#255000" stroke="#255000" points="329.96,-599.25 336.68,-591.07 326.32,-593.28 329.96,-599.25"/>
+</g>
+<!-- proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_node4" class="node">
+<title>proc~otimer_stop</title>
+<g id="a_proc~~print_time~~CalledByGraph_node4"><a xlink:href=".././proc/otimer_stop.html" xlink:title="fortime::timer%otimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="263,-486 103,-486 103,-462 263,-462 263,-486"/>
+<text text-anchor="middle" x="183" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_stop</text>
+</a>
+</g>
+</g>
+<!-- proc~otimer_stop&#45;&gt;proc~print_time -->
+<g id="proc~~print_time~~CalledByGraph_edge3" class="edge">
+<title>proc~otimer_stop&#45;&gt;proc~print_time</title>
+<path fill="none" stroke="#255000" d="M203.79,-486.04C234.25,-504.59 292.78,-540.22 327.87,-561.57"/>
+<polygon fill="#255000" stroke="#255000" points="326.32,-564.72 336.68,-566.93 329.96,-558.75 326.32,-564.72"/>
+</g>
+<!-- proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_node5" class="node">
+<title>proc~timer_stop</title>
+<g id="a_proc~~print_time~~CalledByGraph_node5"><a xlink:href=".././proc/timer_stop.html" xlink:title="fortime::timer%timer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="260,-192 106,-192 106,-168 260,-168 260,-192"/>
+<text text-anchor="middle" x="183" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%timer_stop</text>
+</a>
+</g>
+</g>
+<!-- proc~timer_stop&#45;&gt;proc~print_time -->
+<g id="proc~~print_time~~CalledByGraph_edge4" class="edge">
+<title>proc~timer_stop&#45;&gt;proc~print_time</title>
+<path fill="none" stroke="#255000" d="M189.35,-192.38C213.85,-249.05 315.46,-484.08 347.07,-557.19"/>
+<polygon fill="#255000" stroke="#255000" points="344.03,-558.98 351.21,-566.77 350.45,-556.2 344.03,-558.98"/>
+</g>
+<!-- program~example1 -->
+<g id="proc~~print_time~~CalledByGraph_node6" class="node">
+<title>program~example1</title>
+<g id="a_proc~~print_time~~CalledByGraph_node6"><a xlink:href=".././program/example1.html" xlink:title="example1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-318 0,-318 0,-294 65,-294 65,-318"/>
+<text text-anchor="middle" x="32.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
+</a>
+</g>
+</g>
+<!-- program~example1&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge25" class="edge">
+<title>program~example1&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M52.47,-293.99C56.67,-291.16 61.05,-288.06 65,-285 100.88,-257.17 139.54,-221.16 162.22,-199.36"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="164.78,-201.75 169.54,-192.28 159.92,-196.72 164.78,-201.75"/>
+</g>
+<!-- program~example2 -->
+<g id="proc~~print_time~~CalledByGraph_node7" class="node">
+<title>program~example2</title>
+<g id="a_proc~~print_time~~CalledByGraph_node7"><a xlink:href=".././program/example2.html" xlink:title="example2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-276 0,-276 0,-252 65,-252 65,-276"/>
+<text text-anchor="middle" x="32.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example2</text>
+</a>
+</g>
+</g>
+<!-- program~example2&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge26" class="edge">
+<title>program~example2&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M54.78,-251.96C80.25,-237.56 123.08,-213.33 151.93,-197.01"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="153.78,-199.98 160.76,-192.01 150.34,-193.89 153.78,-199.98"/>
+</g>
+<!-- program~example3 -->
+<g id="proc~~print_time~~CalledByGraph_node8" class="node">
+<title>program~example3</title>
+<g id="a_proc~~print_time~~CalledByGraph_node8"><a xlink:href=".././program/example3.html" xlink:title="example3">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-1158 0,-1158 0,-1134 65,-1134 65,-1158"/>
+<text text-anchor="middle" x="32.5" y="-1143.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example3</text>
+</a>
+</g>
+</g>
+<!-- program~example3&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge5" class="edge">
+<title>program~example3&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M53.86,-1133.78C57.72,-1131.09 61.61,-1128.11 65,-1125 108.31,-1085.19 148.66,-1028.52 168.73,-998.5"/>
+<polygon fill="#255000" stroke="#255000" points="171.7,-1000.36 174.29,-990.08 165.86,-996.5 171.7,-1000.36"/>
+</g>
+<!-- program~example4 -->
+<g id="proc~~print_time~~CalledByGraph_node9" class="node">
+<title>program~example4</title>
+<g id="a_proc~~print_time~~CalledByGraph_node9"><a xlink:href=".././program/example4.html" xlink:title="example4">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-1116 0,-1116 0,-1092 65,-1092 65,-1116"/>
+<text text-anchor="middle" x="32.5" y="-1101.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example4</text>
+</a>
+</g>
+</g>
+<!-- program~example4&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge6" class="edge">
+<title>program~example4&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M52.47,-1091.99C56.67,-1089.16 61.05,-1086.06 65,-1083 100.88,-1055.17 139.54,-1019.16 162.22,-997.36"/>
+<polygon fill="#255000" stroke="#255000" points="164.78,-999.75 169.54,-990.28 159.92,-994.72 164.78,-999.75"/>
+</g>
+<!-- program~test1 -->
+<g id="proc~~print_time~~CalledByGraph_node10" class="node">
+<title>program~test1</title>
+<g id="a_proc~~print_time~~CalledByGraph_node10"><a xlink:href=".././program/test1.html" xlink:title="test1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-234 5.5,-234 5.5,-210 59.5,-210 59.5,-234"/>
+<text text-anchor="middle" x="32.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test1</text>
+</a>
+</g>
+</g>
+<!-- program~test1&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge27" class="edge">
+<title>program~test1&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M59.71,-214.59C79.01,-209.13 105.92,-201.52 129.57,-194.83"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="130.81,-198.11 139.48,-192.03 128.91,-191.38 130.81,-198.11"/>
+</g>
+<!-- program~test10 -->
+<g id="proc~~print_time~~CalledByGraph_node11" class="node">
+<title>program~test10</title>
+<g id="a_proc~~print_time~~CalledByGraph_node11"><a xlink:href=".././program/test10.html" xlink:title="test10">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-822 5.5,-822 5.5,-798 59.5,-798 59.5,-822"/>
+<text text-anchor="middle" x="32.5" y="-807.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test10</text>
+</a>
+</g>
+</g>
+<!-- program~test10&#45;&gt;proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge13" class="edge">
+<title>program~test10&#45;&gt;proc~mtimer_stop</title>
+<path fill="none" stroke="transparent" d="M52.47,-797.99C56.67,-795.16 61.05,-792.06 65,-789 100.88,-761.17 139.54,-725.16 162.22,-703.36"/>
+<polygon fill="transparent" stroke="transparent" points="164.78,-705.75 169.54,-696.28 159.92,-700.72 164.78,-705.75"/>
+</g>
+<!-- program~test11 -->
+<g id="proc~~print_time~~CalledByGraph_node12" class="node">
+<title>program~test11</title>
+<g id="a_proc~~print_time~~CalledByGraph_node12"><a xlink:href=".././program/test11.html" xlink:title="test11">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-780 5.5,-780 5.5,-756 59.5,-756 59.5,-780"/>
+<text text-anchor="middle" x="32.5" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test11</text>
+</a>
+</g>
+</g>
+<!-- program~test11&#45;&gt;proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge14" class="edge">
+<title>program~test11&#45;&gt;proc~mtimer_stop</title>
+<path fill="none" stroke="transparent" d="M54.78,-755.96C80.25,-741.56 123.08,-717.33 151.93,-701.01"/>
+<polygon fill="transparent" stroke="transparent" points="153.78,-703.98 160.76,-696.01 150.34,-697.89 153.78,-703.98"/>
+</g>
+<!-- program~test12 -->
+<g id="proc~~print_time~~CalledByGraph_node13" class="node">
+<title>program~test12</title>
+<g id="a_proc~~print_time~~CalledByGraph_node13"><a xlink:href=".././program/test12.html" xlink:title="test12">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-738 5.5,-738 5.5,-714 59.5,-714 59.5,-738"/>
+<text text-anchor="middle" x="32.5" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test12</text>
+</a>
+</g>
+</g>
+<!-- program~test12&#45;&gt;proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge15" class="edge">
+<title>program~test12&#45;&gt;proc~mtimer_stop</title>
+<path fill="none" stroke="transparent" d="M59.71,-718.59C79.01,-713.13 105.92,-705.52 129.57,-698.83"/>
+<polygon fill="transparent" stroke="transparent" points="130.81,-702.11 139.48,-696.03 128.91,-695.38 130.81,-702.11"/>
+</g>
+<!-- program~test13 -->
+<g id="proc~~print_time~~CalledByGraph_node14" class="node">
+<title>program~test13</title>
+<g id="a_proc~~print_time~~CalledByGraph_node14"><a xlink:href=".././program/test13.html" xlink:title="test13">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-192 5.5,-192 5.5,-168 59.5,-168 59.5,-192"/>
+<text text-anchor="middle" x="32.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test13</text>
+</a>
+</g>
+</g>
+<!-- program~test13&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge28" class="edge">
+<title>program~test13&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M59.71,-180C70.06,-180 82.59,-180 95.64,-180"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="95.69,-183.5 105.69,-180 95.69,-176.5 95.69,-183.5"/>
+</g>
+<!-- program~test14 -->
+<g id="proc~~print_time~~CalledByGraph_node15" class="node">
+<title>program~test14</title>
+<g id="a_proc~~print_time~~CalledByGraph_node15"><a xlink:href=".././program/test14.html" xlink:title="test14">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-150 5.5,-150 5.5,-126 59.5,-126 59.5,-150"/>
+<text text-anchor="middle" x="32.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test14</text>
+</a>
+</g>
+</g>
+<!-- program~test14&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge29" class="edge">
+<title>program~test14&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M59.71,-145.41C79.01,-150.87 105.92,-158.48 129.57,-165.17"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="128.91,-168.62 139.48,-167.97 130.81,-161.89 128.91,-168.62"/>
+</g>
+<!-- program~test15 -->
+<g id="proc~~print_time~~CalledByGraph_node16" class="node">
+<title>program~test15</title>
+<g id="a_proc~~print_time~~CalledByGraph_node16"><a xlink:href=".././program/test15.html" xlink:title="test15">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-108 5.5,-108 5.5,-84 59.5,-84 59.5,-108"/>
+<text text-anchor="middle" x="32.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test15</text>
+</a>
+</g>
+</g>
+<!-- program~test15&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge30" class="edge">
+<title>program~test15&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M54.78,-108.04C80.25,-122.44 123.08,-146.67 151.93,-162.99"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="150.34,-166.11 160.76,-167.99 153.78,-160.02 150.34,-166.11"/>
+</g>
+<!-- program~test16 -->
+<g id="proc~~print_time~~CalledByGraph_node17" class="node">
+<title>program~test16</title>
+<g id="a_proc~~print_time~~CalledByGraph_node17"><a xlink:href=".././program/test16.html" xlink:title="test16">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1074 5.5,-1074 5.5,-1050 59.5,-1050 59.5,-1074"/>
+<text text-anchor="middle" x="32.5" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test16</text>
+</a>
+</g>
+</g>
+<!-- program~test16&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge7" class="edge">
+<title>program~test16&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M54.78,-1049.96C80.25,-1035.56 123.08,-1011.33 151.93,-995.01"/>
+<polygon fill="#255000" stroke="#255000" points="153.78,-997.98 160.76,-990.01 150.34,-991.89 153.78,-997.98"/>
+</g>
+<!-- program~test17 -->
+<g id="proc~~print_time~~CalledByGraph_node18" class="node">
+<title>program~test17</title>
+<g id="a_proc~~print_time~~CalledByGraph_node18"><a xlink:href=".././program/test17.html" xlink:title="test17">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1032 5.5,-1032 5.5,-1008 59.5,-1008 59.5,-1032"/>
+<text text-anchor="middle" x="32.5" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test17</text>
+</a>
+</g>
+</g>
+<!-- program~test17&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge8" class="edge">
+<title>program~test17&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M59.71,-1012.59C79.01,-1007.13 105.92,-999.52 129.57,-992.83"/>
+<polygon fill="#255000" stroke="#255000" points="130.81,-996.11 139.48,-990.03 128.91,-989.38 130.81,-996.11"/>
+</g>
+<!-- program~test18 -->
+<g id="proc~~print_time~~CalledByGraph_node19" class="node">
+<title>program~test18</title>
+<g id="a_proc~~print_time~~CalledByGraph_node19"><a xlink:href=".././program/test18.html" xlink:title="test18">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-990 5.5,-990 5.5,-966 59.5,-966 59.5,-990"/>
+<text text-anchor="middle" x="32.5" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test18</text>
+</a>
+</g>
+</g>
+<!-- program~test18&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge9" class="edge">
+<title>program~test18&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M59.71,-978C69.27,-978 80.69,-978 92.67,-978"/>
+<polygon fill="#255000" stroke="#255000" points="92.82,-981.5 102.82,-978 92.82,-974.5 92.82,-981.5"/>
+</g>
+<!-- program~test19 -->
+<g id="proc~~print_time~~CalledByGraph_node20" class="node">
+<title>program~test19</title>
+<g id="a_proc~~print_time~~CalledByGraph_node20"><a xlink:href=".././program/test19.html" xlink:title="test19">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-570 5.5,-570 5.5,-546 59.5,-546 59.5,-570"/>
+<text text-anchor="middle" x="32.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test19</text>
+</a>
+</g>
+</g>
+<!-- program~test19&#45;&gt;proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge19" class="edge">
+<title>program~test19&#45;&gt;proc~otimer_stop</title>
+<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M54.78,-545.96C80.25,-531.56 123.08,-507.33 151.93,-491.01"/>
+<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="153.78,-493.98 160.76,-486.01 150.34,-487.89 153.78,-493.98"/>
+</g>
+<!-- program~test2 -->
+<g id="proc~~print_time~~CalledByGraph_node21" class="node">
+<title>program~test2</title>
+<g id="a_proc~~print_time~~CalledByGraph_node21"><a xlink:href=".././program/test2.html" xlink:title="test2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-66 5.5,-66 5.5,-42 59.5,-42 59.5,-66"/>
+<text text-anchor="middle" x="32.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test2</text>
+</a>
+</g>
+</g>
+<!-- program~test2&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge31" class="edge">
+<title>program~test2&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M52.47,-66.01C56.67,-68.84 61.05,-71.94 65,-75 100.88,-102.83 139.54,-138.84 162.22,-160.64"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="159.92,-163.28 169.54,-167.72 164.78,-158.25 159.92,-163.28"/>
+</g>
+<!-- program~test20 -->
+<g id="proc~~print_time~~CalledByGraph_node22" class="node">
+<title>program~test20</title>
+<g id="a_proc~~print_time~~CalledByGraph_node22"><a xlink:href=".././program/test20.html" xlink:title="test20">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-528 5.5,-528 5.5,-504 59.5,-504 59.5,-528"/>
+<text text-anchor="middle" x="32.5" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test20</text>
+</a>
+</g>
+</g>
+<!-- program~test20&#45;&gt;proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge20" class="edge">
+<title>program~test20&#45;&gt;proc~otimer_stop</title>
+<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M59.71,-508.59C79.01,-503.13 105.92,-495.52 129.57,-488.83"/>
+<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="130.81,-492.11 139.48,-486.03 128.91,-485.38 130.81,-492.11"/>
+</g>
+<!-- program~test21 -->
+<g id="proc~~print_time~~CalledByGraph_node23" class="node">
+<title>program~test21</title>
+<g id="a_proc~~print_time~~CalledByGraph_node23"><a xlink:href=".././program/test21.html" xlink:title="test21">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-486 5.5,-486 5.5,-462 59.5,-462 59.5,-486"/>
+<text text-anchor="middle" x="32.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test21</text>
+</a>
+</g>
+</g>
+<!-- program~test21&#45;&gt;proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge21" class="edge">
+<title>program~test21&#45;&gt;proc~otimer_stop</title>
+<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M59.71,-474C69.27,-474 80.69,-474 92.67,-474"/>
+<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="92.82,-477.5 102.82,-474 92.82,-470.5 92.82,-477.5"/>
+</g>
+<!-- program~test22 -->
+<g id="proc~~print_time~~CalledByGraph_node24" class="node">
+<title>program~test22</title>
+<g id="a_proc~~print_time~~CalledByGraph_node24"><a xlink:href=".././program/test22.html" xlink:title="test22">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-696 5.5,-696 5.5,-672 59.5,-672 59.5,-696"/>
+<text text-anchor="middle" x="32.5" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test22</text>
+</a>
+</g>
+</g>
+<!-- program~test22&#45;&gt;proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge16" class="edge">
+<title>program~test22&#45;&gt;proc~mtimer_stop</title>
+<path fill="none" stroke="transparent" d="M59.71,-684C68.79,-684 79.55,-684 90.86,-684"/>
+<polygon fill="transparent" stroke="transparent" points="90.92,-687.5 100.92,-684 90.92,-680.5 90.92,-687.5"/>
+</g>
+<!-- program~test23 -->
+<g id="proc~~print_time~~CalledByGraph_node25" class="node">
+<title>program~test23</title>
+<g id="a_proc~~print_time~~CalledByGraph_node25"><a xlink:href=".././program/test23.html" xlink:title="test23">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-654 5.5,-654 5.5,-630 59.5,-630 59.5,-654"/>
+<text text-anchor="middle" x="32.5" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test23</text>
+</a>
+</g>
+</g>
+<!-- program~test23&#45;&gt;proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge17" class="edge">
+<title>program~test23&#45;&gt;proc~mtimer_stop</title>
+<path fill="none" stroke="transparent" d="M59.71,-649.41C79.01,-654.87 105.92,-662.48 129.57,-669.17"/>
+<polygon fill="transparent" stroke="transparent" points="128.91,-672.62 139.48,-671.97 130.81,-665.89 128.91,-672.62"/>
+</g>
+<!-- program~test24 -->
+<g id="proc~~print_time~~CalledByGraph_node26" class="node">
+<title>program~test24</title>
+<g id="a_proc~~print_time~~CalledByGraph_node26"><a xlink:href=".././program/test24.html" xlink:title="test24">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-612 5.5,-612 5.5,-588 59.5,-588 59.5,-612"/>
+<text text-anchor="middle" x="32.5" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test24</text>
+</a>
+</g>
+</g>
+<!-- program~test24&#45;&gt;proc~mtimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge18" class="edge">
+<title>program~test24&#45;&gt;proc~mtimer_stop</title>
+<path fill="none" stroke="transparent" d="M54.78,-612.04C80.25,-626.44 123.08,-650.67 151.93,-666.99"/>
+<polygon fill="transparent" stroke="transparent" points="150.34,-670.11 160.76,-671.99 153.78,-664.02 150.34,-670.11"/>
+</g>
+<!-- program~test3 -->
+<g id="proc~~print_time~~CalledByGraph_node27" class="node">
+<title>program~test3</title>
+<g id="a_proc~~print_time~~CalledByGraph_node27"><a xlink:href=".././program/test3.html" xlink:title="test3">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-24 5.5,-24 5.5,0 59.5,0 59.5,-24"/>
+<text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test3</text>
+</a>
+</g>
+</g>
+<!-- program~test3&#45;&gt;proc~timer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge32" class="edge">
+<title>program~test3&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#127025" stroke-opacity="0.019608" d="M53.86,-24.22C57.72,-26.91 61.61,-29.89 65,-33 108.31,-72.81 148.66,-129.48 168.73,-159.5"/>
+<polygon fill="#127025" fill-opacity="0.019608" stroke="#127025" stroke-opacity="0.019608" points="165.86,-161.5 174.29,-167.92 171.7,-157.64 165.86,-161.5"/>
+</g>
+<!-- program~test4 -->
+<g id="proc~~print_time~~CalledByGraph_node28" class="node">
+<title>program~test4</title>
+<g id="a_proc~~print_time~~CalledByGraph_node28"><a xlink:href=".././program/test4.html" xlink:title="test4">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-948 5.5,-948 5.5,-924 59.5,-924 59.5,-948"/>
+<text text-anchor="middle" x="32.5" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test4</text>
+</a>
+</g>
+</g>
+<!-- program~test4&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge10" class="edge">
+<title>program~test4&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M59.71,-943.41C79.01,-948.87 105.92,-956.48 129.57,-963.17"/>
+<polygon fill="#255000" stroke="#255000" points="128.91,-966.62 139.48,-965.97 130.81,-959.89 128.91,-966.62"/>
+</g>
+<!-- program~test5 -->
+<g id="proc~~print_time~~CalledByGraph_node29" class="node">
+<title>program~test5</title>
+<g id="a_proc~~print_time~~CalledByGraph_node29"><a xlink:href=".././program/test5.html" xlink:title="test5">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-906 5.5,-906 5.5,-882 59.5,-882 59.5,-906"/>
+<text text-anchor="middle" x="32.5" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test5</text>
+</a>
+</g>
+</g>
+<!-- program~test5&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge11" class="edge">
+<title>program~test5&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M54.78,-906.04C80.25,-920.44 123.08,-944.67 151.93,-960.99"/>
+<polygon fill="#255000" stroke="#255000" points="150.34,-964.11 160.76,-965.99 153.78,-958.02 150.34,-964.11"/>
+</g>
+<!-- program~test6 -->
+<g id="proc~~print_time~~CalledByGraph_node30" class="node">
+<title>program~test6</title>
+<g id="a_proc~~print_time~~CalledByGraph_node30"><a xlink:href=".././program/test6.html" xlink:title="test6">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-864 5.5,-864 5.5,-840 59.5,-840 59.5,-864"/>
+<text text-anchor="middle" x="32.5" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test6</text>
+</a>
+</g>
+</g>
+<!-- program~test6&#45;&gt;proc~ctimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge12" class="edge">
+<title>program~test6&#45;&gt;proc~ctimer_stop</title>
+<path fill="none" stroke="#255000" d="M52.47,-864.01C56.67,-866.84 61.05,-869.94 65,-873 100.88,-900.83 139.54,-936.84 162.22,-958.64"/>
+<polygon fill="#255000" stroke="#255000" points="159.92,-961.28 169.54,-965.72 164.78,-956.25 159.92,-961.28"/>
+</g>
+<!-- program~test7 -->
+<g id="proc~~print_time~~CalledByGraph_node31" class="node">
+<title>program~test7</title>
+<g id="a_proc~~print_time~~CalledByGraph_node31"><a xlink:href=".././program/test7.html" xlink:title="test7">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-444 5.5,-444 5.5,-420 59.5,-420 59.5,-444"/>
+<text text-anchor="middle" x="32.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test7</text>
+</a>
+</g>
+</g>
+<!-- program~test7&#45;&gt;proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge22" class="edge">
+<title>program~test7&#45;&gt;proc~otimer_stop</title>
+<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M59.71,-439.41C79.01,-444.87 105.92,-452.48 129.57,-459.17"/>
+<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="128.91,-462.62 139.48,-461.97 130.81,-455.89 128.91,-462.62"/>
+</g>
+<!-- program~test8 -->
+<g id="proc~~print_time~~CalledByGraph_node32" class="node">
+<title>program~test8</title>
+<g id="a_proc~~print_time~~CalledByGraph_node32"><a xlink:href=".././program/test8.html" xlink:title="test8">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-402 5.5,-402 5.5,-378 59.5,-378 59.5,-402"/>
+<text text-anchor="middle" x="32.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test8</text>
+</a>
+</g>
+</g>
+<!-- program~test8&#45;&gt;proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge23" class="edge">
+<title>program~test8&#45;&gt;proc~otimer_stop</title>
+<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M54.78,-402.04C80.25,-416.44 123.08,-440.67 151.93,-456.99"/>
+<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="150.34,-460.11 160.76,-461.99 153.78,-454.02 150.34,-460.11"/>
+</g>
+<!-- program~test9 -->
+<g id="proc~~print_time~~CalledByGraph_node33" class="node">
+<title>program~test9</title>
+<g id="a_proc~~print_time~~CalledByGraph_node33"><a xlink:href=".././program/test9.html" xlink:title="test9">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-360 5.5,-360 5.5,-336 59.5,-336 59.5,-360"/>
+<text text-anchor="middle" x="32.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test9</text>
+</a>
+</g>
+</g>
+<!-- program~test9&#45;&gt;proc~otimer_stop -->
+<g id="proc~~print_time~~CalledByGraph_edge24" class="edge">
+<title>program~test9&#45;&gt;proc~otimer_stop</title>
+<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M52.47,-360.01C56.67,-362.84 61.05,-365.94 65,-369 100.88,-396.83 139.54,-432.84 162.22,-454.64"/>
+<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="159.92,-457.28 169.54,-461.72 164.78,-452.25 159.92,-457.28"/>
+</g>
+</g>
+</svg>
+</div>        <div><a type="button" class="graph-help" data-toggle="modal" href="#CalledByGraph-help-text">Help</a></div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                </div>
+              <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.16 1.16) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">impure subroutine </span><span class="n">print_time</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w">     </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="nb">      </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">message</span>
+
+<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(A, F16.9, &quot; [s]&quot;)&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">message</span><span class="p">),</span><span class="w"> </span><span class="nb">time</span>
+<span class="nb">   </span><span class="k">end subroutine </span><span class="n">print_time</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col"><p>ForTime was developed by Seyed Ali Ghasemi<br>&copy; 2023 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2024-01-02T11:42:32.778434             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="../tipuesearch/tipuesearch_content.js"></script>
+          <script src="../tipuesearch/tipuesearch_set.js"></script>
+          <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>
