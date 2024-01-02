@@ -37,6 +37,11 @@ module fortime
       real(rk), private :: mpi_elapsed     ! Elapsed MPI time
       real(rk)          :: mpi_time        ! Elapsed time in seconds
 #endif
+
+      integer, dimension(8), private :: values_start     ! Start date and time values
+      integer, dimension(8), private :: values_end       ! End date and time values
+      integer, dimension(8), private :: values_elapsed   ! Elapsed date and time values
+      real(rk)                       :: elapsed_dtime    ! Elapsed time in seconds
    contains
       procedure :: timer_start     ! Procedure for starting the timer
       procedure :: timer_stop      ! Procedure for stopping the timer
@@ -57,6 +62,10 @@ module fortime
       procedure :: mtimer_stop     ! Procedure for stopping the MPI timer
       procedure :: mtimer_write    ! Procedure for writing elapsed MPI time to a file
 #endif
+
+      procedure :: dtimer_start     ! Procedure for starting the date_and_time timer
+      procedure :: dtimer_stop      ! Procedure for stopping the date_and_time timer
+      procedure :: dtimer_write     ! Procedure for writing elapsed date_and_time time to a file
    end type
    !===============================================================================
 
@@ -432,6 +441,108 @@ contains
    end subroutine mtimer_write
    !===============================================================================
 #endif
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   !> Starts the timer by recording the current processor clock value.
+   !> This value is used to calculate the elapsed time later.
+   impure subroutine dtimer_start(this)
+      class(timer), intent(inout) :: this
+
+      ! Start the timer
+      call date_and_time(values=this%values_start)
+
+   end subroutine dtimer_start
+   !===============================================================================
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   !> Stops the timer and calculates the elapsed time.
+   !> Optionally, it can print a message along with the elapsed time.
+   impure subroutine dtimer_stop(this, nloops, message, print)
+      class(timer), intent(inout)        :: this
+      integer,      intent(in), optional :: nloops
+      character(*), intent(in), optional :: message
+      character(:), allocatable          :: msg
+      logical,      intent(in), optional :: print
+      real(rk)                           :: values_elapsed_sec
+
+      ! Stop the timer
+      call date_and_time(values=this%values_end)
+
+      ! Calculate the elapsed processor ticks
+      this%values_elapsed = this%values_end - this%values_start
+
+      ! Convert processor ticks to seconds
+      if (.not.present(nloops)) &
+         this%elapsed_dtime = to_seconds(this%values_elapsed)
+      if (     present(nloops)) &
+         this%elapsed_dtime = to_seconds(this%values_elapsed) / real(nloops, kind=rk)
+
+      ! Print the elapsed time
+      if (.not. present(message)) then
+         msg = "Elapsed time:"
+      else
+         msg = message
+      end if
+
+      if (present(print)) then
+         if (print) call print_time(this%elapsed_dtime, msg)
+      else
+         call print_time(this%elapsed_dtime, msg)
+      end if
+
+      ! Deallocate the message
+      if (allocated(msg)) deallocate(msg)
+
+   end subroutine dtimer_stop
+   !===============================================================================
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   !> Writes the elapsed time to a file.
+   impure subroutine dtimer_write(this, file_name)
+      class(timer), intent(in) :: this
+      character(*), intent(in) :: file_name
+      logical                  :: file_exists
+      integer                  :: nunit
+
+      ! Check if the file exists
+      inquire(file=file_name, exist=file_exists)
+
+      ! Open the file in appropriate mode
+      if (file_exists) then
+         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
+      else
+         open(newunit=nunit, file=file_name, status='new', action='write')
+      end if
+
+      ! Write the elapsed time to the file
+      write(nunit, '(g0)') this%elapsed_dtime
+
+      ! Close the file
+      close(nunit)
+
+   end subroutine dtimer_write
+   !===============================================================================
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   pure function to_seconds(values) result(seconds)
+      integer, dimension(8), intent(in) :: values
+      real(rk)                          :: seconds
+
+      seconds = real(values(3), rk) * 24.0_rk * 60.0_rk * 60.0_rk + &
+                real(values(5), rk) * 60.0_rk * 60.0_rk + &
+                real(values(6), rk) * 60.0_rk + &
+                real(values(7), rk)
+
+   end function to_seconds
+   !===============================================================================
 
 
    !===============================================================================

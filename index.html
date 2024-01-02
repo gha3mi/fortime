@@ -100,6 +100,18 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
 </code></pre></div>
 
+<h3>Measuring elapsed time (date_and_time)</h3>
+<p>To measure the elapsed wall-clock time, use the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_start</span><span class="p">()</span>
+<span class="c">! Your code or section to be timed</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message and print are optional</span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
+</code></pre></div>
+
 <h3>Measuring CPU time</h3>
 <p>To measure the CPU time consumed by your code, use these functions:</p>
 <div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
@@ -199,7 +211,7 @@ command:</p>
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Source Files</h3>
-              <ul><li><a href='./sourcefile/example1.f90.html'>example1.f90</a></li><li><a href='./sourcefile/example2.f90.html'>example2.f90</a></li><li><a href='./sourcefile/example3.f90.html'>example3.f90</a></li><li><a href='./sourcefile/example4.f90.html'>example4.f90</a></li><li><a href='./sourcefile/fortime.f90.html'>fortime.f90</a></li><li><a href='./sourcefile/test1.f90.html'>test1.f90</a></li><li><a href='./sourcefile/test10.f90.html'>test10.f90</a></li><li><a href='./sourcefile/test11.f90.html'>test11.f90</a></li><li><a href='./sourcefile/test12.f90.html'>test12.f90</a></li><li><a href='./sourcefile/test13.f90.html'>test13.f90</a></li></ul>
+              <ul><li><a href='./sourcefile/example1.f90.html'>example1.f90</a></li><li><a href='./sourcefile/example2.f90.html'>example2.f90</a></li><li><a href='./sourcefile/example3.f90.html'>example3.f90</a></li><li><a href='./sourcefile/example4.f90.html'>example4.f90</a></li><li><a href='./sourcefile/example5.f90.html'>example5.f90</a></li><li><a href='./sourcefile/example6.f90.html'>example6.f90</a></li><li><a href='./sourcefile/fortime.f90.html'>fortime.f90</a></li><li><a href='./sourcefile/test1.f90.html'>test1.f90</a></li><li><a href='./sourcefile/test10.f90.html'>test10.f90</a></li><li><a href='./sourcefile/test11.f90.html'>test11.f90</a></li></ul>
             </div>
             <div>
               <ul>
@@ -221,7 +233,7 @@ command:</p>
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Procedures</h3>
-              <ul><li><a href='./proc/ctimer_start.html'>ctimer_start</a></li><li><a href='./proc/ctimer_stop.html'>ctimer_stop</a></li><li><a href='./proc/ctimer_write.html'>ctimer_write</a></li><li><a href='./proc/mtimer_start.html'>mtimer_start</a></li><li><a href='./proc/mtimer_stop.html'>mtimer_stop</a></li><li><a href='./proc/mtimer_write.html'>mtimer_write</a></li><li><a href='./proc/otimer_start.html'>otimer_start</a></li><li><a href='./proc/otimer_stop.html'>otimer_stop</a></li><li><a href='./proc/otimer_write.html'>otimer_write</a></li><li><a href='./proc/print_time.html'>print_time</a></li></ul>
+              <ul><li><a href='./proc/ctimer_start.html'>ctimer_start</a></li><li><a href='./proc/ctimer_stop.html'>ctimer_stop</a></li><li><a href='./proc/ctimer_write.html'>ctimer_write</a></li><li><a href='./proc/dtimer_start.html'>dtimer_start</a></li><li><a href='./proc/dtimer_stop.html'>dtimer_stop</a></li><li><a href='./proc/dtimer_write.html'>dtimer_write</a></li><li><a href='./proc/mtimer_start.html'>mtimer_start</a></li><li><a href='./proc/mtimer_stop.html'>mtimer_stop</a></li><li><a href='./proc/mtimer_write.html'>mtimer_write</a></li><li><a href='./proc/otimer_start.html'>otimer_start</a></li></ul>
             </div>
             <div>
               <ul>
@@ -253,7 +265,7 @@ command:</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02T11:51:58.367409             </p>
+ on 2024-01-02T13:32:33.566936             </p>
           </div>
         </div>
         <br>

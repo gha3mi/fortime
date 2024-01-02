@@ -1,0 +1,13 @@
+program example5
+
+   use fortime
+
+   implicit none
+
+   type(timer) :: t
+
+   call t%dtimer_start()
+    call sleep(1) ! Perform operations here
+   call t%dtimer_stop()
+
+end program example5
