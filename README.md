@@ -30,7 +30,9 @@ type(timer) :: t
 
 call t%timer_start()
 ! Your code or section to be timed
-call t%timer_stop()
+call t%timer_stop(nloops, message, print) ! nloops, message and print are optional
+
+call t%timer_write(file_name) ! Optionally, write the result to a file
 ```
 
 ### Measuring CPU time
@@ -43,7 +45,9 @@ type(timer) :: t
 
 call t%ctimer_start()
 ! Your code or section to be timed
-call t%ctimer_stop()
+call t%ctimer_stop(nloops, message, print) ! nloops, message and print are optional
+
+call t%ctimer_write(file_name) ! Optionally, write the result to a file
 ```
 
 ### Measuring OpenMP (OMP) time
@@ -56,7 +60,9 @@ type(timer) :: t
 
 call t%otimer_start()
 ! Your code or section to be timed
-call t%otimer_stop()
+call t%otimer_stop(nloops, message, print) ! nloops, message and print are optional
+
+call t%otimer_write(file_name) ! Optionally, write the result to a file
 ```
 
 **Note:** Ensure you compile with the `-DUSE_OMP` option when using the OpenMP timer.
@@ -71,7 +77,9 @@ type(timer) :: t
 
 call t%mtimer_start()
 ! Your code or section to be timed
-call t%mtimer_stop()
+call t%mtimer_stop(nloops, message, print) ! nloops, message and print are optional
+
+call t%mtimer_write(file_name) ! Optionally, write the result to a file
 ```
 
 **Note:** Don't forget to compile with the `-DUSE_MPI` option when using the MPI timer.

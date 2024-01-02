@@ -87,6 +87,66 @@ name       = "test12"
 source-dir = "test"
 main       = "test12.f90"
 
+[[test]]
+name       = "test13"
+source-dir = "test"
+main       = "test13.f90"
+
+[[test]]
+name       = "test14"
+source-dir = "test"
+main       = "test14.f90"
+
+[[test]]
+name       = "test15"
+source-dir = "test"
+main       = "test15.f90"
+
+[[test]]
+name       = "test16"
+source-dir = "test"
+main       = "test16.f90"
+
+[[test]]
+name       = "test17"
+source-dir = "test"
+main       = "test17.f90"
+
+[[test]]
+name       = "test18"
+source-dir = "test"
+main       = "test18.f90"
+
+[[test]]
+name       = "test19"
+source-dir = "test"
+main       = "test19.f90"
+
+[[test]]
+name       = "test20"
+source-dir = "test"
+main       = "test20.f90"
+
+[[test]]
+name       = "test21"
+source-dir = "test"
+main       = "test21.f90"
+
+[[test]]
+name       = "test22"
+source-dir = "test"
+main       = "test22.f90"
+
+[[test]]
+name       = "test23"
+source-dir = "test"
+main       = "test23.f90"
+
+[[test]]
+name       = "test24"
+source-dir = "test"
+main       = "test24.f90"
+
 [[example]]
 name       = "example1"
 source-dir = "example"

@@ -83,11 +83,12 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the elapsed time.
    !> Optionally, it can print a message along with the elapsed time.
-   impure subroutine timer_stop(this, nloops, message)
+   impure subroutine timer_stop(this, nloops, message, print)
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
+      logical,      intent(in), optional :: print
 
       ! Stop the timer
       call system_clock(count=this%clock_end)
@@ -107,7 +108,12 @@ contains
       else
          msg = message
       end if
-      print '(A, F7.3, " [s]")', trim(msg), this%elapsed_time
+
+      if (present(print)) then
+         if (print) call print_time(this%elapsed_time, msg)
+      else
+         call print_time(this%elapsed_time, msg)
+      end if
 
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
@@ -163,11 +169,12 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the CPU time.
    !> Optionally, it can print a message along with the CPU time.
-   impure subroutine ctimer_stop(this, nloops, message)
+   impure subroutine ctimer_stop(this, nloops, message, print)
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
+      logical,      intent(in), optional :: print
 
       ! Stop the timer
       call cpu_time(this%cpu_end)
@@ -185,7 +192,12 @@ contains
       else
          msg = message
       end if
-      print '(A, F16.9, " [s]")', trim(msg), this%cpu_time
+
+      if (present(print)) then
+         if (print) call print_time(this%cpu_time, msg)
+      else
+         call print_time(this%cpu_time, msg)
+      end if
 
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
@@ -245,12 +257,13 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the OMP time.
    !> Optionally, it can print a message along with the OMP time.
-   impure subroutine otimer_stop(this, nloops, message)
+   impure subroutine otimer_stop(this, nloops, message, print)
       use omp_lib
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
+      logical,      intent(in), optional :: print
 
       ! Stop the timer
       this%omp_end = omp_get_wtime()
@@ -268,7 +281,12 @@ contains
       else
          msg = message
       end if
-      print '(A, F16.9, " [s]")', trim(msg), this%omp_time
+
+      if (present(print)) then
+         if (print) call print_time(this%omp_time, msg)
+      else
+         call print_time(this%omp_time, msg)
+      end if
 
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
@@ -339,12 +357,13 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the MPI time.
    !> Optionally, it can print a message along with the MPI time.
-   impure subroutine mtimer_stop(this, nloops, message)
+   impure subroutine mtimer_stop(this, nloops, message, print)
       ! include 'mpif.h'
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
+      logical,      intent(in), optional :: print
 
       interface
          function mpi_wtime()
@@ -369,7 +388,12 @@ contains
       else
          msg = message
       end if
-      print '(A, F16.9, " [s]")', trim(msg), this%mpi_time
+
+      if (present(print)) then
+         if (print) call print_time(this%mpi_time, msg)
+      else
+         call print_time(this%mpi_time, msg)
+      end if
 
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
@@ -408,5 +432,16 @@ contains
    end subroutine mtimer_write
    !===============================================================================
 #endif
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   impure subroutine print_time(time, message)
+      real(rk),     intent(in) :: time
+      character(*), intent(in) :: message
+
+      print '(A, F16.9, " [s]")', trim(message), time
+   end subroutine print_time
+   !===============================================================================
 
 end module fortime
