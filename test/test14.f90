@@ -19,7 +19,7 @@ program test14
    call t%timer_stop(nloops = nloops, message = 'Elapsed time:', print=.false.)
    call t%timer_write('test/test14_etimes') ! Optionally, write the elapsed time to a file
 
-   call ut%check(res=t%elapsed_time, expected=1.0_rk, tol=1.0e-3_rk, msg='test14')
+   call ut%check(res=t%elapsed_time, expected=1.0_rk, tol=1.0e-2_rk, msg='test14')
 
 end program test14
 

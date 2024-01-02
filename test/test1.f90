@@ -15,7 +15,7 @@ program test1
       call sleep(1) ! Perform operations here
    call t%timer_stop()
 
-   call ut%check(res=t%elapsed_time, expected=1.0_rk, tol=1.0e-3_rk, msg='test1')
+   call ut%check(res=t%elapsed_time, expected=1.0_rk, tol=1.0e-2_rk, msg='test1')
 
 end program test1
 

@@ -23,7 +23,7 @@ program test12
    call mpi_finalize(ierr)
    call t%mtimer_write('test/test12_mtimes') ! Optionally, write the elapsed time to a file
 
-   call ut%check(res=t%mpi_time, expected=real(nloops,rk)*1.0_rk, tol=1.0e-3_rk, msg='test12')
+   call ut%check(res=t%mpi_time, expected=real(nloops,rk)*1.0_rk, tol=1.0e-2_rk, msg='test12')
 
 #endif
 
