@@ -35,6 +35,21 @@ call t%timer_stop(nloops, message, print) ! nloops, message and print are option
 call t%timer_write(file_name) ! Optionally, write the result to a file
 ```
 
+### Measuring elapsed time (date_and_time)
+
+To measure the elapsed wall-clock time, use the following:
+
+```fortran
+use fortime
+type(timer) :: t
+
+call t%dtimer_start()
+! Your code or section to be timed
+call t%dtimer_stop(nloops, message, print) ! nloops, message and print are optional
+
+call t%dtimer_write(file_name) ! Optionally, write the result to a file
+```
+
 ### Measuring CPU time
 
 To measure the CPU time consumed by your code, use these functions:
