@@ -1,3 +1,5 @@
+<!-- -*- mode: jinja2 -*- -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,7 +20,8 @@
     <link href="../css/local.css" rel="stylesheet">
       <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
   <body>
@@ -68,33 +71,118 @@
 			 <table class="table table-striped">
 			 <thead><tr><th>Procedure</th><th>Location</th><th>Procedure Type</th><th>Description</th></tr></thead>
 			 <tbody>
-			   <tr><td><a href='../proc/ctimer_start.html'>ctimer_start</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Starts the timer by recording the current CPU time value.
-This value is used to calculate the CPU time later.</p></td></tr>
-			   <tr><td><a href='../proc/ctimer_stop.html'>ctimer_stop</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Stops the timer and calculates the CPU time.
-Optionally, it can print a message along with the CPU time.</p></td></tr>
-			   <tr><td><a href='../proc/ctimer_write.html'>ctimer_write</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Writes the CPU time to a file.</p></td></tr>
-			   <tr><td><a href='../proc/dtimer_start.html'>dtimer_start</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Starts the timer by recording the current processor clock value.
-This value is used to calculate the elapsed time later.</p></td></tr>
-			   <tr><td><a href='../proc/dtimer_stop.html'>dtimer_stop</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Stops the timer and calculates the elapsed time.
-Optionally, it can print a message along with the elapsed time.</p></td></tr>
-			   <tr><td><a href='../proc/dtimer_write.html'>dtimer_write</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Writes the elapsed time to a file.</p></td></tr>
-			   <tr><td><a href='../proc/mtimer_start.html'>mtimer_start</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Starts the timer by recording the current MPI time value.
-This value is used to calculate the MPI time later.</p></td></tr>
-			   <tr><td><a href='../proc/mtimer_stop.html'>mtimer_stop</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Stops the timer and calculates the MPI time.
-Optionally, it can print a message along with the MPI time.</p></td></tr>
-			   <tr><td><a href='../proc/mtimer_write.html'>mtimer_write</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Writes the MPI time to a file.</p></td></tr>
-			   <tr><td><a href='../proc/otimer_start.html'>otimer_start</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Starts the timer by recording the current OMP time value.
-This value is used to calculate the OMP time later.</p></td></tr>
-			   <tr><td><a href='../proc/otimer_stop.html'>otimer_stop</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Stops the timer and calculates the OMP time.
-Optionally, it can print a message along with the OMP time.</p></td></tr>
-			   <tr><td><a href='../proc/otimer_write.html'>otimer_write</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Writes the OMP time to a file.</p></td></tr>
-			   <tr><td><a href='../proc/print_time.html'>print_time</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td></td></tr>
-			   <tr><td><a href='../proc/timer_start.html'>timer_start</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Starts the timer by recording the current processor clock value.
-This value is used to calculate the elapsed time later.</p></td></tr>
-			   <tr><td><a href='../proc/timer_stop.html'>timer_stop</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Stops the timer and calculates the elapsed time.
-Optionally, it can print a message along with the elapsed time.</p></td></tr>
-			   <tr><td><a href='../proc/timer_write.html'>timer_write</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Subroutine</td><td><p>Writes the elapsed time to a file.</p></td></tr>
-			   <tr><td><a href='../proc/to_seconds.html'>to_seconds</a></td><td><a href='../module/fortime.html'>fortime</a></td><td>Function</td><td></td></tr>
+			   <tr>
+                 <td><a href='../proc/ctimer_start.html'>ctimer_start</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Starts the timer by recording the current CPU time value.
+This value is used to calculate the CPU time later.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ctimer_stop.html'>ctimer_stop</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Stops the timer and calculates the CPU time.
+Optionally, it can print a message along with the CPU time.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/ctimer_write.html'>ctimer_write</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Writes the CPU time to a file.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dtimer_start.html'>dtimer_start</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Starts the timer by recording the current processor clock value.
+This value is used to calculate the elapsed time later.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dtimer_stop.html'>dtimer_stop</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Stops the timer and calculates the elapsed time.
+Optionally, it can print a message along with the elapsed time.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/dtimer_write.html'>dtimer_write</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Writes the elapsed time to a file.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mtimer_start.html'>mtimer_start</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Starts the timer by recording the current MPI time value.
+This value is used to calculate the MPI time later.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mtimer_stop.html'>mtimer_stop</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Stops the timer and calculates the MPI time.
+Optionally, it can print a message along with the MPI time.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/mtimer_write.html'>mtimer_write</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Writes the MPI time to a file.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/otimer_start.html'>otimer_start</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Starts the timer by recording the current OMP time value.
+This value is used to calculate the OMP time later.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/otimer_stop.html'>otimer_stop</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Stops the timer and calculates the OMP time.
+Optionally, it can print a message along with the OMP time.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/otimer_write.html'>otimer_write</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Writes the OMP time to a file.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/print_time.html'>print_time</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/timer_start.html'>timer_start</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Starts the timer by recording the current processor clock value.
+This value is used to calculate the elapsed time later.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/timer_stop.html'>timer_stop</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Stops the timer and calculates the elapsed time.
+Optionally, it can print a message along with the elapsed time.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/timer_write.html'>timer_write</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Subroutine</td>
+                 <td><p>Writes the elapsed time to a file.</p></td>
+               </tr>
+			   <tr>
+                 <td><a href='../proc/to_seconds.html'>to_seconds</a></td>
+                 <td><a href='../module/fortime.html'>fortime</a></td>
+                 <td>Function</td>
+                 <td></td>
+               </tr>
 			 </tbody></table>
              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -102,222 +190,222 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: call~~graph~~CallGraph Pages: 1 -->
-<svg id="callgraphCallGraph" width="431pt" height="1502pt"
- viewBox="0.00 0.00 431.00 1502.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="callgraphCallGraph" width="363pt" height="1502pt"
+ viewBox="0.00 0.00 363.00 1502.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1498)">
 <title>call~~graph~~CallGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-1498 427,-1498 427,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-1498 359,-1498 359,4 -4,4"/>
 <!-- proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_node1" class="node">
 <title>proc~ctimer_start</title>
-<g id="a_call~~graph~~CallGraph_node1"><a xlink:href=".././proc/ctimer_start.html" xlink:title="fortime::timer%ctimer_start">
-<polygon fill="#d9534f" stroke="#d9534f" points="265.5,-1326 104.5,-1326 104.5,-1302 265.5,-1302 265.5,-1326"/>
-<text text-anchor="middle" x="185" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%ctimer_start</text>
+<g id="a_call~~graph~~CallGraph_node1"><a xlink:href="../proc/ctimer_start.html" xlink:title="timer%ctimer_start">
+<polygon fill="#d9534f" stroke="#d9534f" points="219,-1326 104,-1326 104,-1302 219,-1302 219,-1326"/>
+<text text-anchor="middle" x="161.5" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%ctimer_start</text>
 </a>
 </g>
 </g>
 <!-- proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_node2" class="node">
 <title>proc~ctimer_stop</title>
-<g id="a_call~~graph~~CallGraph_node2"><a xlink:href=".././proc/ctimer_stop.html" xlink:title="fortime::timer%ctimer_stop">
-<polygon fill="#d9534f" stroke="#d9534f" points="265,-1368 105,-1368 105,-1344 265,-1344 265,-1368"/>
-<text text-anchor="middle" x="185" y="-1353.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%ctimer_stop</text>
+<g id="a_call~~graph~~CallGraph_node2"><a xlink:href="../proc/ctimer_stop.html" xlink:title="timer%ctimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="218,-1368 105,-1368 105,-1344 218,-1344 218,-1368"/>
+<text text-anchor="middle" x="161.5" y="-1353.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%ctimer_stop</text>
 </a>
 </g>
 </g>
 <!-- proc~print_time -->
 <g id="call~~graph~~CallGraph_node13" class="node">
 <title>proc~print_time</title>
-<g id="a_call~~graph~~CallGraph_node13"><a xlink:href=".././proc/print_time.html" xlink:title="fortime::print_time">
-<polygon fill="#d9534f" stroke="#d9534f" points="420.5,-738 307.5,-738 307.5,-714 420.5,-714 420.5,-738"/>
-<text text-anchor="middle" x="364" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::print_time</text>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href="../proc/print_time.html" xlink:title="print_time">
+<polygon fill="#d9534f" stroke="#d9534f" points="340,-738 273,-738 273,-714 340,-714 340,-738"/>
+<text text-anchor="middle" x="306.5" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_time</text>
 </a>
 </g>
 </g>
 <!-- proc~ctimer_stop&#45;&gt;proc~print_time -->
 <g id="call~~graph~~CallGraph_edge1" class="edge">
 <title>proc~ctimer_stop&#45;&gt;proc~print_time</title>
-<path fill="none" stroke="#255280" d="M258.69,-1343.95C262.51,-1341.46 266,-1338.5 269,-1335 323.94,-1270.95 290.68,-1040.16 305,-957 318.39,-879.19 344.07,-788.95 356.26,-748.1"/>
-<polygon fill="#255280" stroke="#255280" points="359.66,-748.96 359.19,-738.38 352.95,-746.95 359.66,-748.96"/>
+<path fill="none" stroke="#ff1c00" d="M212.06,-1343.93C215.83,-1341.48 219.23,-1338.54 222,-1335 273.95,-1268.51 245.48,-1040.45 258,-957 269.6,-879.69 290.32,-789.2 300.1,-748.2"/>
+<polygon fill="#ff1c00" stroke="#ff1c00" points="303.51,-748.98 302.45,-738.44 296.71,-747.34 303.51,-748.98"/>
 </g>
 <!-- proc~ctimer_write -->
 <g id="call~~graph~~CallGraph_node3" class="node">
 <title>proc~ctimer_write</title>
-<g id="a_call~~graph~~CallGraph_node3"><a xlink:href=".././proc/ctimer_write.html" xlink:title="fortime::timer%ctimer_write">
-<polygon fill="#d9534f" stroke="#d9534f" points="266.5,-1410 103.5,-1410 103.5,-1386 266.5,-1386 266.5,-1410"/>
-<text text-anchor="middle" x="185" y="-1395.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%ctimer_write</text>
+<g id="a_call~~graph~~CallGraph_node3"><a xlink:href="../proc/ctimer_write.html" xlink:title="timer%ctimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="220,-1410 103,-1410 103,-1386 220,-1386 220,-1410"/>
+<text text-anchor="middle" x="161.5" y="-1395.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%ctimer_write</text>
 </a>
 </g>
 </g>
 <!-- proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_node4" class="node">
 <title>proc~dtimer_start</title>
-<g id="a_call~~graph~~CallGraph_node4"><a xlink:href=".././proc/dtimer_start.html" xlink:title="fortime::timer%dtimer_start">
-<polygon fill="#d9534f" stroke="#d9534f" points="266,-1032 104,-1032 104,-1008 266,-1008 266,-1032"/>
-<text text-anchor="middle" x="185" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%dtimer_start</text>
+<g id="a_call~~graph~~CallGraph_node4"><a xlink:href="../proc/dtimer_start.html" xlink:title="timer%dtimer_start">
+<polygon fill="#d9534f" stroke="#d9534f" points="219,-1032 104,-1032 104,-1008 219,-1008 219,-1032"/>
+<text text-anchor="middle" x="161.5" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%dtimer_start</text>
 </a>
 </g>
 </g>
 <!-- proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_node5" class="node">
 <title>proc~dtimer_stop</title>
-<g id="a_call~~graph~~CallGraph_node5"><a xlink:href=".././proc/dtimer_stop.html" xlink:title="fortime::timer%dtimer_stop">
-<polygon fill="#d9534f" stroke="#d9534f" points="265,-990 105,-990 105,-966 265,-966 265,-990"/>
-<text text-anchor="middle" x="185" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%dtimer_stop</text>
+<g id="a_call~~graph~~CallGraph_node5"><a xlink:href="../proc/dtimer_stop.html" xlink:title="timer%dtimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="218.5,-990 104.5,-990 104.5,-966 218.5,-966 218.5,-990"/>
+<text text-anchor="middle" x="161.5" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%dtimer_stop</text>
 </a>
 </g>
 </g>
 <!-- proc~dtimer_stop&#45;&gt;proc~print_time -->
 <g id="call~~graph~~CallGraph_edge2" class="edge">
 <title>proc~dtimer_stop&#45;&gt;proc~print_time</title>
-<path fill="none" stroke="transparent" d="M255.59,-965.91C260.42,-963.45 264.96,-960.51 269,-957 333.27,-901.07 354.28,-794.64 360.55,-748.39"/>
-<polygon fill="transparent" stroke="transparent" points="364.06,-748.6 361.82,-738.24 357.11,-747.73 364.06,-748.6"/>
+<path fill="none" stroke="#ff7300" d="M209.71,-965.96C214.21,-963.5 218.42,-960.55 222,-957 281.42,-898.03 298.81,-793.66 303.69,-748.2"/>
+<polygon fill="#ff7300" stroke="#ff7300" points="307.18,-748.5 304.66,-738.21 300.21,-747.83 307.18,-748.5"/>
 </g>
 <!-- proc~to_seconds -->
 <g id="call~~graph~~CallGraph_node17" class="node">
 <title>proc~to_seconds</title>
-<g id="a_call~~graph~~CallGraph_node17"><a xlink:href=".././proc/to_seconds.html" xlink:title="fortime::to_seconds">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="423,-990 305,-990 305,-966 423,-966 423,-990"/>
-<text text-anchor="middle" x="364" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::to_seconds</text>
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href="../proc/to_seconds.html" xlink:title="to_seconds">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="342.5,-990 270.5,-990 270.5,-966 342.5,-966 342.5,-990"/>
+<text text-anchor="middle" x="306.5" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">to_seconds</text>
 </a>
 </g>
 </g>
 <!-- proc~dtimer_stop&#45;&gt;proc~to_seconds -->
 <g id="call~~graph~~CallGraph_edge3" class="edge">
 <title>proc~dtimer_stop&#45;&gt;proc~to_seconds</title>
-<path fill="none" stroke="transparent" d="M265.18,-978C274.98,-978 284.94,-978 294.56,-978"/>
-<polygon fill="transparent" stroke="transparent" points="294.85,-981.5 304.85,-978 294.85,-974.5 294.85,-981.5"/>
+<path fill="none" stroke="#ff7300" d="M218.61,-978C232.31,-978 246.81,-978 259.96,-978"/>
+<polygon fill="#ff7300" stroke="#ff7300" points="260.17,-981.5 270.17,-978 260.17,-974.5 260.17,-981.5"/>
 </g>
 <!-- proc~dtimer_write -->
 <g id="call~~graph~~CallGraph_node6" class="node">
 <title>proc~dtimer_write</title>
-<g id="a_call~~graph~~CallGraph_node6"><a xlink:href=".././proc/dtimer_write.html" xlink:title="fortime::timer%dtimer_write">
-<polygon fill="#d9534f" stroke="#d9534f" points="267,-948 103,-948 103,-924 267,-924 267,-948"/>
-<text text-anchor="middle" x="185" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%dtimer_write</text>
+<g id="a_call~~graph~~CallGraph_node6"><a xlink:href="../proc/dtimer_write.html" xlink:title="timer%dtimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="220.5,-948 102.5,-948 102.5,-924 220.5,-924 220.5,-948"/>
+<text text-anchor="middle" x="161.5" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%dtimer_write</text>
 </a>
 </g>
 </g>
 <!-- proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_node7" class="node">
 <title>proc~mtimer_start</title>
-<g id="a_call~~graph~~CallGraph_node7"><a xlink:href=".././proc/mtimer_start.html" xlink:title="fortime::timer%mtimer_start">
-<polygon fill="#d9534f" stroke="#d9534f" points="268,-696 102,-696 102,-672 268,-672 268,-696"/>
-<text text-anchor="middle" x="185" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%mtimer_start</text>
+<g id="a_call~~graph~~CallGraph_node7"><a xlink:href="../proc/mtimer_start.html" xlink:title="timer%mtimer_start">
+<polygon fill="#d9534f" stroke="#d9534f" points="221,-696 102,-696 102,-672 221,-672 221,-696"/>
+<text text-anchor="middle" x="161.5" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%mtimer_start</text>
 </a>
 </g>
 </g>
 <!-- proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_node8" class="node">
 <title>proc~mtimer_stop</title>
-<g id="a_call~~graph~~CallGraph_node8"><a xlink:href=".././proc/mtimer_stop.html" xlink:title="fortime::timer%mtimer_stop">
-<polygon fill="#d9534f" stroke="#d9534f" points="267,-738 103,-738 103,-714 267,-714 267,-738"/>
-<text text-anchor="middle" x="185" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%mtimer_stop</text>
+<g id="a_call~~graph~~CallGraph_node8"><a xlink:href="../proc/mtimer_stop.html" xlink:title="timer%mtimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="220.5,-738 102.5,-738 102.5,-714 220.5,-714 220.5,-738"/>
+<text text-anchor="middle" x="161.5" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%mtimer_stop</text>
 </a>
 </g>
 </g>
 <!-- proc~mtimer_stop&#45;&gt;proc~print_time -->
 <g id="call~~graph~~CallGraph_edge4" class="edge">
 <title>proc~mtimer_stop&#45;&gt;proc~print_time</title>
-<path fill="none" stroke="transparent" d="M267.25,-726C277.3,-726 287.47,-726 297.25,-726"/>
-<polygon fill="transparent" stroke="transparent" points="297.28,-729.5 307.28,-726 297.28,-722.5 297.28,-729.5"/>
+<path fill="none" stroke="#ffca00" d="M220.66,-726C234.7,-726 249.44,-726 262.63,-726"/>
+<polygon fill="#ffca00" stroke="#ffca00" points="262.83,-729.5 272.83,-726 262.83,-722.5 262.83,-729.5"/>
 </g>
 <!-- proc~mtimer_write -->
 <g id="call~~graph~~CallGraph_node9" class="node">
 <title>proc~mtimer_write</title>
-<g id="a_call~~graph~~CallGraph_node9"><a xlink:href=".././proc/mtimer_write.html" xlink:title="fortime::timer%mtimer_write">
-<polygon fill="#d9534f" stroke="#d9534f" points="269,-612 101,-612 101,-588 269,-588 269,-612"/>
-<text text-anchor="middle" x="185" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%mtimer_write</text>
+<g id="a_call~~graph~~CallGraph_node9"><a xlink:href="../proc/mtimer_write.html" xlink:title="timer%mtimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="222,-612 101,-612 101,-588 222,-588 222,-612"/>
+<text text-anchor="middle" x="161.5" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%mtimer_write</text>
 </a>
 </g>
 </g>
 <!-- proc~otimer_start -->
 <g id="call~~graph~~CallGraph_node10" class="node">
 <title>proc~otimer_start</title>
-<g id="a_call~~graph~~CallGraph_node10"><a xlink:href=".././proc/otimer_start.html" xlink:title="fortime::timer%otimer_start">
-<polygon fill="#d9534f" stroke="#d9534f" points="266,-444 104,-444 104,-420 266,-420 266,-444"/>
-<text text-anchor="middle" x="185" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_start</text>
+<g id="a_call~~graph~~CallGraph_node10"><a xlink:href="../proc/otimer_start.html" xlink:title="timer%otimer_start">
+<polygon fill="#d9534f" stroke="#d9534f" points="219,-444 104,-444 104,-420 219,-420 219,-444"/>
+<text text-anchor="middle" x="161.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_start</text>
 </a>
 </g>
 </g>
 <!-- omp_get_wtime -->
 <g id="call~~graph~~CallGraph_node57" class="node">
 <title>omp_get_wtime</title>
-<polygon fill="#777777" stroke="#777777" points="412.5,-465 315.5,-465 315.5,-441 412.5,-441 412.5,-465"/>
-<text text-anchor="middle" x="364" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">omp_get_wtime</text>
+<polygon fill="#777777" stroke="#777777" points="355,-465 258,-465 258,-441 355,-441 355,-465"/>
+<text text-anchor="middle" x="306.5" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">omp_get_wtime</text>
 </g>
 <!-- proc~otimer_start&#45;&gt;omp_get_wtime -->
 <g id="call~~graph~~CallGraph_edge5" class="edge">
 <title>proc~otimer_start&#45;&gt;omp_get_wtime</title>
-<path fill="none" stroke="transparent" d="M266.21,-441.52C279.36,-443.08 292.76,-444.67 305.22,-446.15"/>
-<polygon fill="transparent" stroke="transparent" points="305.11,-449.66 315.45,-447.36 305.93,-442.7 305.11,-449.66"/>
+<path fill="none" stroke="#faff00" d="M219.02,-440.3C228.42,-441.68 238.18,-443.11 247.62,-444.5"/>
+<polygon fill="#faff00" stroke="#faff00" points="247.29,-447.99 257.7,-445.98 248.31,-441.06 247.29,-447.99"/>
 </g>
 <!-- proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_node11" class="node">
 <title>proc~otimer_stop</title>
-<g id="a_call~~graph~~CallGraph_node11"><a xlink:href=".././proc/otimer_stop.html" xlink:title="fortime::timer%otimer_stop">
-<polygon fill="#d9534f" stroke="#d9534f" points="265,-486 105,-486 105,-462 265,-462 265,-486"/>
-<text text-anchor="middle" x="185" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_stop</text>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href="../proc/otimer_stop.html" xlink:title="timer%otimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="218.5,-486 104.5,-486 104.5,-462 218.5,-462 218.5,-486"/>
+<text text-anchor="middle" x="161.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_stop</text>
 </a>
 </g>
 </g>
 <!-- proc~otimer_stop&#45;&gt;proc~print_time -->
 <g id="call~~graph~~CallGraph_edge7" class="edge">
 <title>proc~otimer_stop&#45;&gt;proc~print_time</title>
-<path fill="none" stroke="transparent" d="M206.92,-486.03C225.15,-497.34 251.35,-515.68 269,-537 312.82,-589.93 342.87,-666.71 355.82,-704.01"/>
-<polygon fill="transparent" stroke="transparent" points="352.63,-705.49 359.15,-713.84 359.26,-703.25 352.63,-705.49"/>
+<path fill="none" stroke="#ddff00" d="M176.7,-486.38C189.76,-498.33 209.01,-517.45 222,-537 259.04,-592.75 286.44,-667.63 298.58,-704.14"/>
+<polygon fill="#ddff00" stroke="#ddff00" points="295.3,-705.36 301.72,-713.78 301.95,-703.19 295.3,-705.36"/>
 </g>
 <!-- proc~otimer_stop&#45;&gt;omp_get_wtime -->
 <g id="call~~graph~~CallGraph_edge6" class="edge">
 <title>proc~otimer_stop&#45;&gt;omp_get_wtime</title>
-<path fill="none" stroke="transparent" d="M265.18,-464.61C278.69,-463 292.49,-461.37 305.31,-459.84"/>
-<polygon fill="transparent" stroke="transparent" points="305.83,-463.31 315.35,-458.65 305.01,-456.36 305.83,-463.31"/>
+<path fill="none" stroke="#ddff00" d="M218.61,-465.76C228.25,-464.34 238.28,-462.87 247.96,-461.45"/>
+<polygon fill="#ddff00" stroke="#ddff00" points="248.5,-464.91 257.88,-459.99 247.48,-457.98 248.5,-464.91"/>
 </g>
 <!-- proc~otimer_write -->
 <g id="call~~graph~~CallGraph_node12" class="node">
 <title>proc~otimer_write</title>
-<g id="a_call~~graph~~CallGraph_node12"><a xlink:href=".././proc/otimer_write.html" xlink:title="fortime::timer%otimer_write">
-<polygon fill="#d9534f" stroke="#d9534f" points="267,-402 103,-402 103,-378 267,-378 267,-402"/>
-<text text-anchor="middle" x="185" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_write</text>
+<g id="a_call~~graph~~CallGraph_node12"><a xlink:href="../proc/otimer_write.html" xlink:title="timer%otimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="220.5,-402 102.5,-402 102.5,-378 220.5,-378 220.5,-402"/>
+<text text-anchor="middle" x="161.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_write</text>
 </a>
 </g>
 </g>
 <!-- proc~timer_start -->
 <g id="call~~graph~~CallGraph_node14" class="node">
 <title>proc~timer_start</title>
-<g id="a_call~~graph~~CallGraph_node14"><a xlink:href=".././proc/timer_start.html" xlink:title="fortime::timer%timer_start">
-<polygon fill="#d9534f" stroke="#d9534f" points="262.5,-192 107.5,-192 107.5,-168 262.5,-168 262.5,-192"/>
-<text text-anchor="middle" x="185" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%timer_start</text>
+<g id="a_call~~graph~~CallGraph_node14"><a xlink:href="../proc/timer_start.html" xlink:title="timer%timer_start">
+<polygon fill="#d9534f" stroke="#d9534f" points="216,-192 107,-192 107,-168 216,-168 216,-192"/>
+<text text-anchor="middle" x="161.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%timer_start</text>
 </a>
 </g>
 </g>
 <!-- proc~timer_stop -->
 <g id="call~~graph~~CallGraph_node15" class="node">
 <title>proc~timer_stop</title>
-<g id="a_call~~graph~~CallGraph_node15"><a xlink:href=".././proc/timer_stop.html" xlink:title="fortime::timer%timer_stop">
-<polygon fill="#d9534f" stroke="#d9534f" points="262,-150 108,-150 108,-126 262,-126 262,-150"/>
-<text text-anchor="middle" x="185" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%timer_stop</text>
+<g id="a_call~~graph~~CallGraph_node15"><a xlink:href="../proc/timer_stop.html" xlink:title="timer%timer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="215,-150 108,-150 108,-126 215,-126 215,-150"/>
+<text text-anchor="middle" x="161.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%timer_stop</text>
 </a>
 </g>
 </g>
 <!-- proc~timer_stop&#45;&gt;proc~print_time -->
 <g id="call~~graph~~CallGraph_edge8" class="edge">
 <title>proc~timer_stop&#45;&gt;proc~print_time</title>
-<path fill="none" stroke="transparent" d="M258.62,-150.11C262.45,-152.59 265.97,-155.53 269,-159 315.37,-212.04 293.08,-404.56 305,-474 319.74,-559.86 345.46,-660.35 357.04,-703.96"/>
-<polygon fill="transparent" stroke="transparent" points="353.71,-705.02 359.67,-713.77 360.47,-703.21 353.71,-705.02"/>
+<path fill="none" stroke="#69ff00" d="M211.99,-150.12C215.77,-152.56 219.2,-155.49 222,-159 265.9,-214.11 247.47,-404.34 258,-474 270.95,-559.63 291.64,-660.62 300.84,-704.19"/>
+<polygon fill="#69ff00" stroke="#69ff00" points="297.42,-704.93 302.91,-713.99 304.26,-703.48 297.42,-704.93"/>
 </g>
 <!-- proc~timer_write -->
 <g id="call~~graph~~CallGraph_node16" class="node">
 <title>proc~timer_write</title>
-<g id="a_call~~graph~~CallGraph_node16"><a xlink:href=".././proc/timer_write.html" xlink:title="fortime::timer%timer_write">
-<polygon fill="#d9534f" stroke="#d9534f" points="263.5,-108 106.5,-108 106.5,-84 263.5,-84 263.5,-108"/>
-<text text-anchor="middle" x="185" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%timer_write</text>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href="../proc/timer_write.html" xlink:title="timer%timer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="217,-108 106,-108 106,-84 217,-84 217,-108"/>
+<text text-anchor="middle" x="161.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%timer_write</text>
 </a>
 </g>
 </g>
 <!-- program~example1 -->
 <g id="call~~graph~~CallGraph_node18" class="node">
 <title>program~example1</title>
-<g id="a_call~~graph~~CallGraph_node18"><a xlink:href=".././program/example1.html" xlink:title="example1">
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href="../program/example1.html" xlink:title="example1">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-192 0,-192 0,-168 65,-168 65,-192"/>
 <text text-anchor="middle" x="32.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
 </a>
@@ -326,19 +414,19 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~example1&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge9" class="edge">
 <title>program~example1&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#192550" d="M65.05,-180C74.65,-180 85.7,-180 97.12,-180"/>
-<polygon fill="#192550" stroke="#192550" points="97.22,-183.5 107.22,-180 97.22,-176.5 97.22,-183.5"/>
+<path fill="none" stroke="#13ff00" d="M65.22,-180C74.89,-180 85.9,-180 96.9,-180"/>
+<polygon fill="#13ff00" stroke="#13ff00" points="96.97,-183.5 106.97,-180 96.97,-176.5 96.97,-183.5"/>
 </g>
 <!-- program~example1&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge10" class="edge">
 <title>program~example1&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#192550" d="M65.33,-169.71C76.56,-166.18 89.31,-162.3 101,-159 108.73,-156.82 116.89,-154.63 124.97,-152.52"/>
-<polygon fill="#192550" stroke="#192550" points="125.92,-155.89 134.73,-150 124.17,-149.11 125.92,-155.89"/>
+<path fill="none" stroke="#13ff00" d="M65.22,-169.51C79.94,-164.64 97.74,-158.76 113.95,-153.4"/>
+<polygon fill="#13ff00" stroke="#13ff00" points="115.39,-156.6 123.79,-150.14 113.2,-149.96 115.39,-156.6"/>
 </g>
 <!-- program~example2 -->
 <g id="call~~graph~~CallGraph_node19" class="node">
 <title>program~example2</title>
-<g id="a_call~~graph~~CallGraph_node19"><a xlink:href=".././program/example2.html" xlink:title="example2">
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href="../program/example2.html" xlink:title="example2">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-24 0,-24 0,0 65,0 65,-24"/>
 <text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example2</text>
 </a>
@@ -347,25 +435,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~example2&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge11" class="edge">
 <title>program~example2&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#025509" d="M56.21,-24.23C59.51,-26.78 62.6,-29.71 65,-33 99.34,-80.04 59.19,-118.45 101,-159 102.13,-160.1 103.32,-161.14 104.54,-162.14"/>
-<polygon fill="#025509" stroke="#025509" points="102.94,-165.27 113.19,-167.95 106.84,-159.47 102.94,-165.27"/>
+<path fill="none" stroke="#00ff09" d="M56.21,-24.23C59.51,-26.78 62.6,-29.71 65,-33 99.34,-80.04 61.09,-116.58 101,-159 102.03,-160.1 103.12,-161.14 104.27,-162.12"/>
+<polygon fill="#00ff09" stroke="#00ff09" points="102.27,-164.99 112.46,-167.87 106.29,-159.26 102.27,-164.99"/>
 </g>
 <!-- program~example2&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge12" class="edge">
 <title>program~example2&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#025509" d="M55.21,-24.02C58.79,-26.65 62.23,-29.67 65,-33 90.97,-64.23 70.11,-90.62 101,-117 102.53,-118.3 104.12,-119.53 105.78,-120.68"/>
-<polygon fill="#025509" stroke="#025509" points="104.09,-123.75 114.48,-125.83 107.66,-117.72 104.09,-123.75"/>
+<path fill="none" stroke="#00ff09" d="M55.21,-24.02C58.79,-26.65 62.23,-29.67 65,-33 90.97,-64.23 71.35,-89.24 101,-117 102.29,-118.21 103.66,-119.35 105.08,-120.43"/>
+<polygon fill="#00ff09" stroke="#00ff09" points="103.47,-123.54 113.79,-125.9 107.19,-117.62 103.47,-123.54"/>
 </g>
 <!-- program~example2&#45;&gt;proc~timer_write -->
 <g id="call~~graph~~CallGraph_edge13" class="edge">
 <title>program~example2&#45;&gt;proc~timer_write</title>
-<path fill="none" stroke="#025509" d="M55.06,-24.04C80.88,-38.44 124.29,-62.67 153.52,-78.99"/>
-<polygon fill="#025509" stroke="#025509" points="152.04,-82.17 162.48,-83.99 155.45,-76.06 152.04,-82.17"/>
+<path fill="none" stroke="#00ff09" d="M51.7,-24.04C73.2,-38.26 109.16,-62.04 133.81,-78.35"/>
+<polygon fill="#00ff09" stroke="#00ff09" points="132.07,-81.39 142.34,-83.99 135.93,-75.55 132.07,-81.39"/>
 </g>
 <!-- program~example3 -->
 <g id="call~~graph~~CallGraph_node20" class="node">
 <title>program~example3</title>
-<g id="a_call~~graph~~CallGraph_node20"><a xlink:href=".././program/example3.html" xlink:title="example3">
+<g id="a_call~~graph~~CallGraph_node20"><a xlink:href="../program/example3.html" xlink:title="example3">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-1284 0,-1284 0,-1260 65,-1260 65,-1284"/>
 <text text-anchor="middle" x="32.5" y="-1269.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example3</text>
 </a>
@@ -374,19 +462,19 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~example3&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge14" class="edge">
 <title>program~example3&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#025538" d="M65.05,-1280.8C84.11,-1286.12 108.89,-1293.04 130.9,-1299.18"/>
-<polygon fill="#025538" stroke="#025538" points="130.22,-1302.62 140.79,-1301.94 132.1,-1295.88 130.22,-1302.62"/>
+<path fill="none" stroke="#00ff26" d="M65.22,-1282.49C79.94,-1287.36 97.74,-1293.24 113.95,-1298.6"/>
+<polygon fill="#00ff26" stroke="#00ff26" points="113.2,-1302.04 123.79,-1301.86 115.39,-1295.4 113.2,-1302.04"/>
 </g>
 <!-- program~example3&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge15" class="edge">
 <title>program~example3&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#025538" d="M53.44,-1284.09C57.42,-1286.83 61.46,-1289.86 65,-1293 83.4,-1309.31 80.1,-1322.05 101,-1335 103.84,-1336.76 106.83,-1338.38 109.9,-1339.86"/>
-<polygon fill="#025538" stroke="#025538" points="108.81,-1343.19 119.38,-1343.9 111.56,-1336.76 108.81,-1343.19"/>
+<path fill="none" stroke="#00ff26" d="M53.44,-1284.09C57.42,-1286.83 61.46,-1289.86 65,-1293 83.4,-1309.31 80.72,-1321.1 101,-1335 103.37,-1336.63 105.88,-1338.14 108.48,-1339.54"/>
+<polygon fill="#00ff26" stroke="#00ff26" points="107.03,-1342.73 117.56,-1343.92 110.07,-1336.43 107.03,-1342.73"/>
 </g>
 <!-- program~example4 -->
 <g id="call~~graph~~CallGraph_node21" class="node">
 <title>program~example4</title>
-<g id="a_call~~graph~~CallGraph_node21"><a xlink:href=".././program/example4.html" xlink:title="example4">
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href="../program/example4.html" xlink:title="example4">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-1410 0,-1410 0,-1386 65,-1386 65,-1410"/>
 <text text-anchor="middle" x="32.5" y="-1395.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example4</text>
 </a>
@@ -395,25 +483,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~example4&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge16" class="edge">
 <title>program~example4&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#025567" d="M53.44,-1385.91C57.42,-1383.17 61.46,-1380.14 65,-1377 83.4,-1360.69 80.1,-1347.95 101,-1335 103.84,-1333.24 106.83,-1331.62 109.9,-1330.14"/>
-<polygon fill="#025567" stroke="#025567" points="111.56,-1333.24 119.38,-1326.1 108.81,-1326.81 111.56,-1333.24"/>
+<path fill="none" stroke="#00ff43" d="M53.44,-1385.91C57.42,-1383.17 61.46,-1380.14 65,-1377 83.4,-1360.69 80.72,-1348.9 101,-1335 103.37,-1333.37 105.88,-1331.86 108.48,-1330.46"/>
+<polygon fill="#00ff43" stroke="#00ff43" points="110.07,-1333.57 117.56,-1326.08 107.03,-1327.27 110.07,-1333.57"/>
 </g>
 <!-- program~example4&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge17" class="edge">
 <title>program~example4&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#025567" d="M65.33,-1387.71C76.56,-1384.18 89.31,-1380.3 101,-1377 108.73,-1374.82 116.89,-1372.63 124.97,-1370.52"/>
-<polygon fill="#025567" stroke="#025567" points="125.92,-1373.89 134.73,-1368 124.17,-1367.11 125.92,-1373.89"/>
+<path fill="none" stroke="#00ff43" d="M65.22,-1387.51C79.94,-1382.64 97.74,-1376.76 113.95,-1371.4"/>
+<polygon fill="#00ff43" stroke="#00ff43" points="115.39,-1374.6 123.79,-1368.14 113.2,-1367.96 115.39,-1374.6"/>
 </g>
 <!-- program~example4&#45;&gt;proc~ctimer_write -->
 <g id="call~~graph~~CallGraph_edge18" class="edge">
 <title>program~example4&#45;&gt;proc~ctimer_write</title>
-<path fill="none" stroke="#025567" d="M65.05,-1398C73.58,-1398 83.26,-1398 93.33,-1398"/>
-<polygon fill="#025567" stroke="#025567" points="93.49,-1401.5 103.49,-1398 93.49,-1394.5 93.49,-1401.5"/>
+<path fill="none" stroke="#00ff43" d="M65.22,-1398C73.73,-1398 83.26,-1398 92.92,-1398"/>
+<polygon fill="#00ff43" stroke="#00ff43" points="92.99,-1401.5 102.99,-1398 92.99,-1394.5 92.99,-1401.5"/>
 </g>
 <!-- program~example5 -->
 <g id="call~~graph~~CallGraph_node22" class="node">
 <title>program~example5</title>
-<g id="a_call~~graph~~CallGraph_node22"><a xlink:href=".././program/example5.html" xlink:title="example5">
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href="../program/example5.html" xlink:title="example5">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-1158 0,-1158 0,-1134 65,-1134 65,-1158"/>
 <text text-anchor="middle" x="32.5" y="-1143.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example5</text>
 </a>
@@ -422,19 +510,19 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~example5&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge19" class="edge">
 <title>program~example5&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#025596" d="M52.45,-1133.97C56.66,-1131.13 61.04,-1128.04 65,-1125 101.34,-1097.06 140.71,-1061.08 163.82,-1039.32"/>
-<polygon fill="#025596" stroke="#025596" points="166.43,-1041.67 171.29,-1032.25 161.62,-1036.59 166.43,-1041.67"/>
+<path fill="none" stroke="#00ff60" d="M53.37,-1133.83C57.35,-1131.1 61.41,-1128.09 65,-1125 95.84,-1098.47 126.62,-1062.49 144.59,-1040.28"/>
+<polygon fill="#00ff60" stroke="#00ff60" points="147.53,-1042.22 151.04,-1032.22 142.06,-1037.84 147.53,-1042.22"/>
 </g>
 <!-- program~example5&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge20" class="edge">
 <title>program~example5&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#025596" d="M56.21,-1133.77C59.51,-1131.22 62.6,-1128.29 65,-1125 99.34,-1077.96 59.19,-1039.55 101,-999 102.13,-997.9 103.32,-996.86 104.54,-995.86"/>
-<polygon fill="#025596" stroke="#025596" points="106.84,-998.53 113.19,-990.05 102.94,-992.73 106.84,-998.53"/>
+<path fill="none" stroke="#00ff60" d="M56.21,-1133.77C59.51,-1131.22 62.6,-1128.29 65,-1125 99.34,-1077.96 61.09,-1041.42 101,-999 102.03,-997.9 103.12,-996.86 104.27,-995.88"/>
+<polygon fill="#00ff60" stroke="#00ff60" points="106.29,-998.74 112.46,-990.13 102.27,-993.01 106.29,-998.74"/>
 </g>
 <!-- program~example6 -->
 <g id="call~~graph~~CallGraph_node23" class="node">
 <title>program~example6</title>
-<g id="a_call~~graph~~CallGraph_node23"><a xlink:href=".././program/example6.html" xlink:title="example6">
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href="../program/example6.html" xlink:title="example6">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-1116 0,-1116 0,-1092 65,-1092 65,-1116"/>
 <text text-anchor="middle" x="32.5" y="-1101.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example6</text>
 </a>
@@ -443,25 +531,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~example6&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge21" class="edge">
 <title>program~example6&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#025512" stroke-opacity="0.019608" d="M55.06,-1091.96C80.88,-1077.56 124.29,-1053.33 153.52,-1037.01"/>
-<polygon fill="#025512" fill-opacity="0.019608" stroke="#025512" stroke-opacity="0.019608" points="155.45,-1039.94 162.48,-1032.01 152.04,-1033.83 155.45,-1039.94"/>
+<path fill="none" stroke="#00ff7d" d="M51.7,-1091.96C73.2,-1077.74 109.16,-1053.96 133.81,-1037.65"/>
+<polygon fill="#00ff7d" stroke="#00ff7d" points="135.93,-1040.45 142.34,-1032.01 132.07,-1034.61 135.93,-1040.45"/>
 </g>
 <!-- program~example6&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge22" class="edge">
 <title>program~example6&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#025512" stroke-opacity="0.019608" d="M55.21,-1091.98C58.79,-1089.35 62.23,-1086.33 65,-1083 90.97,-1051.77 70.11,-1025.38 101,-999 102.53,-997.7 104.12,-996.47 105.78,-995.32"/>
-<polygon fill="#025512" fill-opacity="0.019608" stroke="#025512" stroke-opacity="0.019608" points="107.66,-998.28 114.48,-990.17 104.09,-992.25 107.66,-998.28"/>
+<path fill="none" stroke="#00ff7d" d="M55.21,-1091.98C58.79,-1089.35 62.23,-1086.33 65,-1083 90.97,-1051.77 71.35,-1026.76 101,-999 102.29,-997.79 103.66,-996.65 105.08,-995.57"/>
+<polygon fill="#00ff7d" stroke="#00ff7d" points="107.19,-998.38 113.79,-990.1 103.47,-992.46 107.19,-998.38"/>
 </g>
 <!-- program~example6&#45;&gt;proc~dtimer_write -->
 <g id="call~~graph~~CallGraph_edge23" class="edge">
 <title>program~example6&#45;&gt;proc~dtimer_write</title>
-<path fill="none" stroke="#025512" stroke-opacity="0.019608" d="M56.21,-1091.77C59.51,-1089.22 62.6,-1086.29 65,-1083 99.34,-1035.96 59.19,-997.55 101,-957 102.13,-955.9 103.32,-954.86 104.54,-953.86"/>
-<polygon fill="#025512" fill-opacity="0.019608" stroke="#025512" stroke-opacity="0.019608" points="106.84,-956.53 113.19,-948.05 102.94,-950.73 106.84,-956.53"/>
+<path fill="none" stroke="#00ff7d" d="M56.21,-1091.77C59.51,-1089.22 62.6,-1086.29 65,-1083 99.34,-1035.96 61.09,-999.42 101,-957 102.03,-955.9 103.12,-954.86 104.27,-953.88"/>
+<polygon fill="#00ff7d" stroke="#00ff7d" points="106.29,-956.74 112.46,-948.13 102.27,-951.01 106.29,-956.74"/>
 </g>
 <!-- program~test1 -->
 <g id="call~~graph~~CallGraph_node24" class="node">
 <title>program~test1</title>
-<g id="a_call~~graph~~CallGraph_node24"><a xlink:href=".././program/test1.html" xlink:title="test1">
+<g id="a_call~~graph~~CallGraph_node24"><a xlink:href="../program/test1.html" xlink:title="test1">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-318 5.5,-318 5.5,-294 59.5,-294 59.5,-318"/>
 <text text-anchor="middle" x="32.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test1</text>
 </a>
@@ -470,31 +558,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test1&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge25" class="edge">
 <title>program~test1&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#025515" stroke-opacity="0.011765" d="M52.45,-293.97C56.66,-291.13 61.04,-288.04 65,-285 101.34,-257.06 140.71,-221.08 163.82,-199.32"/>
-<polygon fill="#025515" fill-opacity="0.011765" stroke="#025515" stroke-opacity="0.011765" points="166.43,-201.67 171.29,-192.25 161.62,-196.59 166.43,-201.67"/>
+<path fill="none" stroke="#00ff99" d="M53.37,-293.83C57.35,-291.1 61.41,-288.09 65,-285 95.84,-258.47 126.62,-222.49 144.59,-200.28"/>
+<polygon fill="#00ff99" stroke="#00ff99" points="147.53,-202.22 151.04,-192.22 142.06,-197.84 147.53,-202.22"/>
 </g>
 <!-- program~test1&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge26" class="edge">
 <title>program~test1&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#025515" stroke-opacity="0.011765" d="M56.21,-293.77C59.51,-291.22 62.6,-288.29 65,-285 99.34,-237.96 59.19,-199.55 101,-159 102.13,-157.9 103.32,-156.86 104.54,-155.86"/>
-<polygon fill="#025515" fill-opacity="0.011765" stroke="#025515" stroke-opacity="0.011765" points="106.84,-158.53 113.19,-150.05 102.94,-152.73 106.84,-158.53"/>
+<path fill="none" stroke="#00ff99" d="M56.21,-293.77C59.51,-291.22 62.6,-288.29 65,-285 99.34,-237.96 61.09,-201.42 101,-159 102.03,-157.9 103.12,-156.86 104.27,-155.88"/>
+<polygon fill="#00ff99" stroke="#00ff99" points="106.29,-158.74 112.46,-150.13 102.27,-153.01 106.29,-158.74"/>
 </g>
 <!-- check -->
 <g id="call~~graph~~CallGraph_node54" class="node">
 <title>check</title>
-<polygon fill="#777777" stroke="#777777" points="212,-570 158,-570 158,-546 212,-546 212,-570"/>
-<text text-anchor="middle" x="185" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
+<polygon fill="#777777" stroke="#777777" points="188.5,-570 134.5,-570 134.5,-546 188.5,-546 188.5,-570"/>
+<text text-anchor="middle" x="161.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
 </g>
 <!-- program~test1&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge24" class="edge">
 <title>program~test1&#45;&gt;check</title>
-<path fill="none" stroke="#025515" stroke-opacity="0.011765" d="M56.41,-318.09C59.68,-320.66 62.71,-323.63 65,-327 107.92,-390.16 60.03,-430.56 101,-495 113.23,-514.24 133.54,-529.81 151,-540.65"/>
-<polygon fill="#025515" fill-opacity="0.011765" stroke="#025515" stroke-opacity="0.011765" points="149.43,-543.79 159.82,-545.89 153.01,-537.77 149.43,-543.79"/>
+<path fill="none" stroke="#00ff99" d="M56.41,-318.09C59.68,-320.66 62.71,-323.63 65,-327 107.92,-390.16 65.47,-427.41 101,-495 109.9,-511.93 124.64,-527.59 137.22,-539.05"/>
+<polygon fill="#00ff99" stroke="#00ff99" points="135.26,-542 145.09,-545.96 139.88,-536.73 135.26,-542"/>
 </g>
 <!-- program~test10 -->
 <g id="call~~graph~~CallGraph_node25" class="node">
 <title>program~test10</title>
-<g id="a_call~~graph~~CallGraph_node25"><a xlink:href=".././program/test10.html" xlink:title="test10">
+<g id="a_call~~graph~~CallGraph_node25"><a xlink:href="../program/test10.html" xlink:title="test10">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-780 5.5,-780 5.5,-756 59.5,-756 59.5,-780"/>
 <text text-anchor="middle" x="32.5" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test10</text>
 </a>
@@ -503,49 +591,49 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test10&#45;&gt;proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_edge30" class="edge">
 <title>program~test10&#45;&gt;proc~mtimer_start</title>
-<path fill="none" stroke="#025518" stroke-opacity="0.007843" d="M53.44,-755.91C57.42,-753.17 61.46,-750.14 65,-747 83.4,-730.69 80.1,-717.95 101,-705 103.84,-703.24 106.83,-701.62 109.9,-700.14"/>
-<polygon fill="#025518" fill-opacity="0.007843" stroke="#025518" stroke-opacity="0.007843" points="111.56,-703.24 119.38,-696.1 108.81,-696.81 111.56,-703.24"/>
+<path fill="none" stroke="#00ffb6" d="M53.44,-755.91C57.42,-753.17 61.46,-750.14 65,-747 83.4,-730.69 80.72,-718.9 101,-705 103.37,-703.37 105.88,-701.86 108.48,-700.46"/>
+<polygon fill="#00ffb6" stroke="#00ffb6" points="110.07,-703.57 117.56,-696.08 107.03,-697.27 110.07,-703.57"/>
 </g>
 <!-- program~test10&#45;&gt;proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_edge31" class="edge">
 <title>program~test10&#45;&gt;proc~mtimer_stop</title>
-<path fill="none" stroke="#025518" stroke-opacity="0.007843" d="M59.69,-759.49C72.15,-755.54 87.3,-750.86 101,-747 108.73,-744.82 116.89,-742.63 124.97,-740.52"/>
-<polygon fill="#025518" fill-opacity="0.007843" stroke="#025518" stroke-opacity="0.007843" points="125.92,-743.89 134.73,-738 124.17,-737.11 125.92,-743.89"/>
+<path fill="none" stroke="#00ffb6" d="M59.51,-759.4C75.25,-754.19 95.79,-747.4 114.24,-741.3"/>
+<polygon fill="#00ffb6" stroke="#00ffb6" points="115.54,-744.55 123.94,-738.09 113.34,-737.91 115.54,-744.55"/>
 </g>
 <!-- program~test10&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge27" class="edge">
 <title>program~test10&#45;&gt;check</title>
-<path fill="none" stroke="#025518" stroke-opacity="0.007843" d="M56.41,-755.91C59.68,-753.34 62.71,-750.37 65,-747 107.92,-683.84 48,-633.98 101,-579 113.02,-566.53 131.28,-561.07 147.62,-558.81"/>
-<polygon fill="#025518" fill-opacity="0.007843" stroke="#025518" stroke-opacity="0.007843" points="148.4,-562.24 158,-557.74 147.69,-555.28 148.4,-562.24"/>
+<path fill="none" stroke="#00ffb6" d="M56.41,-755.91C59.68,-753.34 62.71,-750.37 65,-747 107.92,-683.84 50.57,-636.34 101,-579 107.15,-572.01 115.78,-567.34 124.56,-564.23"/>
+<polygon fill="#00ffb6" stroke="#00ffb6" points="125.8,-567.51 134.41,-561.34 123.83,-560.8 125.8,-567.51"/>
 </g>
 <!-- mpi_finalize -->
 <g id="call~~graph~~CallGraph_node55" class="node">
 <title>mpi_finalize</title>
-<polygon fill="#777777" stroke="#777777" points="223,-654 147,-654 147,-630 223,-630 223,-654"/>
-<text text-anchor="middle" x="185" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi_finalize</text>
+<polygon fill="#777777" stroke="#777777" points="199.5,-654 123.5,-654 123.5,-630 199.5,-630 199.5,-654"/>
+<text text-anchor="middle" x="161.5" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi_finalize</text>
 </g>
 <!-- program~test10&#45;&gt;mpi_finalize -->
 <g id="call~~graph~~CallGraph_edge28" class="edge">
 <title>program~test10&#45;&gt;mpi_finalize</title>
-<path fill="none" stroke="#025518" stroke-opacity="0.007843" d="M55.21,-755.98C58.79,-753.35 62.23,-750.33 65,-747 90.97,-715.77 70.11,-689.38 101,-663 110.99,-654.47 123.97,-649.33 136.69,-646.25"/>
-<polygon fill="#025518" fill-opacity="0.007843" stroke="#025518" stroke-opacity="0.007843" points="137.67,-649.62 146.78,-644.2 136.28,-642.76 137.67,-649.62"/>
+<path fill="none" stroke="#00ffb6" d="M55.21,-755.98C58.79,-753.35 62.23,-750.33 65,-747 90.97,-715.77 71.35,-690.76 101,-663 104.8,-659.44 109.24,-656.48 113.95,-654.02"/>
+<polygon fill="#00ffb6" stroke="#00ffb6" points="115.54,-657.14 123.25,-649.87 112.69,-650.75 115.54,-657.14"/>
 </g>
 <!-- mpi_init -->
 <g id="call~~graph~~CallGraph_node56" class="node">
 <title>mpi_init</title>
-<polygon fill="#777777" stroke="#777777" points="212.5,-780 157.5,-780 157.5,-756 212.5,-756 212.5,-780"/>
-<text text-anchor="middle" x="185" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi_init</text>
+<polygon fill="#777777" stroke="#777777" points="189,-780 134,-780 134,-756 189,-756 189,-780"/>
+<text text-anchor="middle" x="161.5" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">mpi_init</text>
 </g>
 <!-- program~test10&#45;&gt;mpi_init -->
 <g id="call~~graph~~CallGraph_edge29" class="edge">
 <title>program~test10&#45;&gt;mpi_init</title>
-<path fill="none" stroke="#025518" stroke-opacity="0.007843" d="M59.72,-768C83.88,-768 119.99,-768 147.07,-768"/>
-<polygon fill="#025518" fill-opacity="0.007843" stroke="#025518" stroke-opacity="0.007843" points="147.33,-771.5 157.33,-768 147.33,-764.5 147.33,-771.5"/>
+<path fill="none" stroke="#00ffb6" d="M59.51,-768C77.92,-768 102.89,-768 123.4,-768"/>
+<polygon fill="#00ffb6" stroke="#00ffb6" points="123.65,-771.5 133.65,-768 123.65,-764.5 123.65,-771.5"/>
 </g>
 <!-- program~test11 -->
 <g id="call~~graph~~CallGraph_node26" class="node">
 <title>program~test11</title>
-<g id="a_call~~graph~~CallGraph_node26"><a xlink:href=".././program/test11.html" xlink:title="test11">
+<g id="a_call~~graph~~CallGraph_node26"><a xlink:href="../program/test11.html" xlink:title="test11">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-696 5.5,-696 5.5,-672 59.5,-672 59.5,-696"/>
 <text text-anchor="middle" x="32.5" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test11</text>
 </a>
@@ -554,43 +642,43 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test11&#45;&gt;proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_edge35" class="edge">
 <title>program~test11&#45;&gt;proc~mtimer_start</title>
-<path fill="none" stroke="#025521" stroke-opacity="0.003922" d="M59.72,-684C68.96,-684 79.96,-684 91.54,-684"/>
-<polygon fill="#025521" fill-opacity="0.003922" stroke="#025521" stroke-opacity="0.003922" points="91.83,-687.5 101.83,-684 91.83,-680.5 91.83,-687.5"/>
+<path fill="none" stroke="#00ffd3" d="M59.51,-684C68.99,-684 80.22,-684 91.67,-684"/>
+<polygon fill="#00ffd3" stroke="#00ffd3" points="91.77,-687.5 101.77,-684 91.77,-680.5 91.77,-687.5"/>
 </g>
 <!-- program~test11&#45;&gt;proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_edge36" class="edge">
 <title>program~test11&#45;&gt;proc~mtimer_stop</title>
-<path fill="none" stroke="#025521" stroke-opacity="0.003922" d="M59.69,-692.51C72.15,-696.46 87.3,-701.14 101,-705 108.73,-707.18 116.89,-709.37 124.97,-711.48"/>
-<polygon fill="#025521" fill-opacity="0.003922" stroke="#025521" stroke-opacity="0.003922" points="124.17,-714.89 134.73,-714 125.92,-708.11 124.17,-714.89"/>
+<path fill="none" stroke="#00ffd3" d="M59.51,-692.6C75.25,-697.81 95.79,-704.6 114.24,-710.7"/>
+<polygon fill="#00ffd3" stroke="#00ffd3" points="113.34,-714.09 123.94,-713.91 115.54,-707.45 113.34,-714.09"/>
 </g>
 <!-- program~test11&#45;&gt;proc~mtimer_write -->
 <g id="call~~graph~~CallGraph_edge37" class="edge">
 <title>program~test11&#45;&gt;proc~mtimer_write</title>
-<path fill="none" stroke="#025521" stroke-opacity="0.003922" d="M53.44,-671.91C57.42,-669.17 61.46,-666.14 65,-663 83.4,-646.69 80.1,-633.95 101,-621 103.84,-619.24 106.83,-617.62 109.9,-616.14"/>
-<polygon fill="#025521" fill-opacity="0.003922" stroke="#025521" stroke-opacity="0.003922" points="111.56,-619.24 119.38,-612.1 108.81,-612.81 111.56,-619.24"/>
+<path fill="none" stroke="#00ffd3" d="M53.44,-671.91C57.42,-669.17 61.46,-666.14 65,-663 83.4,-646.69 80.72,-634.9 101,-621 103.37,-619.37 105.88,-617.86 108.48,-616.46"/>
+<polygon fill="#00ffd3" stroke="#00ffd3" points="110.07,-619.57 117.56,-612.08 107.03,-613.27 110.07,-619.57"/>
 </g>
 <!-- program~test11&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge32" class="edge">
 <title>program~test11&#45;&gt;check</title>
-<path fill="none" stroke="#025521" stroke-opacity="0.003922" d="M55.21,-671.98C58.79,-669.35 62.23,-666.33 65,-663 90.97,-631.77 70.11,-605.38 101,-579 113.89,-567.99 131.76,-562.63 147.62,-560.06"/>
-<polygon fill="#025521" fill-opacity="0.003922" stroke="#025521" stroke-opacity="0.003922" points="148.22,-563.51 157.68,-558.74 147.31,-556.57 148.22,-563.51"/>
+<path fill="none" stroke="#00ffd3" d="M55.21,-671.98C58.79,-669.35 62.23,-666.33 65,-663 90.97,-631.77 71.35,-606.76 101,-579 107.62,-572.8 116.19,-568.41 124.75,-565.31"/>
+<polygon fill="#00ffd3" stroke="#00ffd3" points="125.8,-568.65 134.3,-562.34 123.71,-561.97 125.8,-568.65"/>
 </g>
 <!-- program~test11&#45;&gt;mpi_finalize -->
 <g id="call~~graph~~CallGraph_edge33" class="edge">
 <title>program~test11&#45;&gt;mpi_finalize</title>
-<path fill="none" stroke="#025521" stroke-opacity="0.003922" d="M59.69,-675.49C72.15,-671.54 87.3,-666.86 101,-663 112.51,-659.76 124.98,-656.48 136.67,-653.51"/>
-<polygon fill="#025521" fill-opacity="0.003922" stroke="#025521" stroke-opacity="0.003922" points="137.86,-656.82 146.7,-650.98 136.15,-650.03 137.86,-656.82"/>
+<path fill="none" stroke="#00ffd3" d="M59.51,-675.4C75.25,-670.19 95.79,-663.4 114.24,-657.3"/>
+<polygon fill="#00ffd3" stroke="#00ffd3" points="115.54,-660.55 123.94,-654.09 113.34,-653.91 115.54,-660.55"/>
 </g>
 <!-- program~test11&#45;&gt;mpi_init -->
 <g id="call~~graph~~CallGraph_edge34" class="edge">
 <title>program~test11&#45;&gt;mpi_init</title>
-<path fill="none" stroke="#025521" stroke-opacity="0.003922" d="M53.44,-696.09C57.42,-698.83 61.46,-701.86 65,-705 83.4,-721.31 80.1,-734.05 101,-747 114.86,-755.59 132.08,-760.68 147.23,-763.68"/>
-<polygon fill="#025521" fill-opacity="0.003922" stroke="#025521" stroke-opacity="0.003922" points="146.88,-767.17 157.33,-765.45 148.08,-760.28 146.88,-767.17"/>
+<path fill="none" stroke="#00ffd3" d="M53.44,-696.09C57.42,-698.83 61.46,-701.86 65,-705 83.4,-721.31 80.72,-733.1 101,-747 108,-751.8 116.22,-755.62 124.27,-758.61"/>
+<polygon fill="#00ffd3" stroke="#00ffd3" points="123.32,-761.98 133.92,-761.86 125.56,-755.35 123.32,-761.98"/>
 </g>
 <!-- program~test12 -->
 <g id="call~~graph~~CallGraph_node27" class="node">
 <title>program~test12</title>
-<g id="a_call~~graph~~CallGraph_node27"><a xlink:href=".././program/test12.html" xlink:title="test12">
+<g id="a_call~~graph~~CallGraph_node27"><a xlink:href="../program/test12.html" xlink:title="test12">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-654 5.5,-654 5.5,-630 59.5,-630 59.5,-654"/>
 <text text-anchor="middle" x="32.5" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test12</text>
 </a>
@@ -599,43 +687,43 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test12&#45;&gt;proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_edge41" class="edge">
 <title>program~test12&#45;&gt;proc~mtimer_start</title>
-<path fill="none" stroke="transparent" d="M59.69,-650.51C72.15,-654.46 87.3,-659.14 101,-663 108.73,-665.18 116.89,-667.37 124.97,-669.48"/>
-<polygon fill="transparent" stroke="transparent" points="124.17,-672.89 134.73,-672 125.92,-666.11 124.17,-672.89"/>
+<path fill="none" stroke="#00fff0" d="M59.51,-650.6C75.25,-655.81 95.79,-662.6 114.24,-668.7"/>
+<polygon fill="#00fff0" stroke="#00fff0" points="113.34,-672.09 123.94,-671.91 115.54,-665.45 113.34,-672.09"/>
 </g>
 <!-- program~test12&#45;&gt;proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_edge42" class="edge">
 <title>program~test12&#45;&gt;proc~mtimer_stop</title>
-<path fill="none" stroke="transparent" d="M53.44,-654.09C57.42,-656.83 61.46,-659.86 65,-663 83.4,-679.31 80.1,-692.05 101,-705 103.84,-706.76 106.83,-708.38 109.9,-709.86"/>
-<polygon fill="transparent" stroke="transparent" points="108.81,-713.19 119.38,-713.9 111.56,-706.76 108.81,-713.19"/>
+<path fill="none" stroke="#00fff0" d="M53.44,-654.09C57.42,-656.83 61.46,-659.86 65,-663 83.4,-679.31 80.72,-691.1 101,-705 103.37,-706.63 105.88,-708.14 108.48,-709.54"/>
+<polygon fill="#00fff0" stroke="#00fff0" points="107.03,-712.73 117.56,-713.92 110.07,-706.43 107.03,-712.73"/>
 </g>
 <!-- program~test12&#45;&gt;proc~mtimer_write -->
 <g id="call~~graph~~CallGraph_edge43" class="edge">
 <title>program~test12&#45;&gt;proc~mtimer_write</title>
-<path fill="none" stroke="transparent" d="M59.69,-633.49C72.15,-629.54 87.3,-624.86 101,-621 108.73,-618.82 116.89,-616.63 124.97,-614.52"/>
-<polygon fill="transparent" stroke="transparent" points="125.92,-617.89 134.73,-612 124.17,-611.11 125.92,-617.89"/>
+<path fill="none" stroke="#00fff0" d="M59.51,-633.4C75.25,-628.19 95.79,-621.4 114.24,-615.3"/>
+<polygon fill="#00fff0" stroke="#00fff0" points="115.54,-618.55 123.94,-612.09 113.34,-611.91 115.54,-618.55"/>
 </g>
 <!-- program~test12&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge38" class="edge">
 <title>program~test12&#45;&gt;check</title>
-<path fill="none" stroke="transparent" d="M53.44,-629.91C57.42,-627.17 61.46,-624.14 65,-621 83.4,-604.69 80.1,-591.95 101,-579 114.96,-570.35 132.33,-565.25 147.57,-562.25"/>
-<polygon fill="transparent" stroke="transparent" points="148.46,-565.65 157.71,-560.5 147.26,-558.75 148.46,-565.65"/>
+<path fill="none" stroke="#00fff0" d="M53.44,-629.91C57.42,-627.17 61.46,-624.14 65,-621 83.4,-604.69 80.72,-592.9 101,-579 108.07,-574.16 116.37,-570.31 124.49,-567.31"/>
+<polygon fill="#00fff0" stroke="#00fff0" points="125.84,-570.55 134.22,-564.05 123.62,-563.91 125.84,-570.55"/>
 </g>
 <!-- program~test12&#45;&gt;mpi_finalize -->
 <g id="call~~graph~~CallGraph_edge39" class="edge">
 <title>program~test12&#45;&gt;mpi_finalize</title>
-<path fill="none" stroke="transparent" d="M59.72,-642C80.88,-642 111.22,-642 136.63,-642"/>
-<polygon fill="transparent" stroke="transparent" points="136.81,-645.5 146.81,-642 136.81,-638.5 136.81,-645.5"/>
+<path fill="none" stroke="#00fff0" d="M59.51,-642C74.99,-642 95.1,-642 113.3,-642"/>
+<polygon fill="#00fff0" stroke="#00fff0" points="113.45,-645.5 123.45,-642 113.45,-638.5 113.45,-645.5"/>
 </g>
 <!-- program~test12&#45;&gt;mpi_init -->
 <g id="call~~graph~~CallGraph_edge40" class="edge">
 <title>program~test12&#45;&gt;mpi_init</title>
-<path fill="none" stroke="transparent" d="M55.21,-654.02C58.79,-656.65 62.23,-659.67 65,-663 90.97,-694.23 70.11,-720.62 101,-747 113.79,-757.93 131.5,-763.3 147.28,-765.89"/>
-<polygon fill="transparent" stroke="transparent" points="146.92,-769.37 157.3,-767.22 147.84,-762.43 146.92,-769.37"/>
+<path fill="none" stroke="#00fff0" d="M55.21,-654.02C58.79,-656.65 62.23,-659.67 65,-663 90.97,-694.23 71.35,-719.24 101,-747 107.44,-753.03 115.71,-757.34 124.03,-760.42"/>
+<polygon fill="#00fff0" stroke="#00fff0" points="123.11,-763.8 133.7,-763.5 125.23,-757.13 123.11,-763.8"/>
 </g>
 <!-- program~test13 -->
 <g id="call~~graph~~CallGraph_node28" class="node">
 <title>program~test13</title>
-<g id="a_call~~graph~~CallGraph_node28"><a xlink:href=".././program/test13.html" xlink:title="test13">
+<g id="a_call~~graph~~CallGraph_node28"><a xlink:href="../program/test13.html" xlink:title="test13">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-276 5.5,-276 5.5,-252 59.5,-252 59.5,-276"/>
 <text text-anchor="middle" x="32.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test13</text>
 </a>
@@ -644,25 +732,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test13&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge45" class="edge">
 <title>program~test13&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#024025" stroke-opacity="0.019608" d="M55.06,-251.96C80.88,-237.56 124.29,-213.33 153.52,-197.01"/>
-<polygon fill="#024025" fill-opacity="0.019608" stroke="#024025" stroke-opacity="0.019608" points="155.45,-199.94 162.48,-192.01 152.04,-193.83 155.45,-199.94"/>
+<path fill="none" stroke="#00f0ff" d="M51.7,-251.96C73.2,-237.74 109.16,-213.96 133.81,-197.65"/>
+<polygon fill="#00f0ff" stroke="#00f0ff" points="135.93,-200.45 142.34,-192.01 132.07,-194.61 135.93,-200.45"/>
 </g>
 <!-- program~test13&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge46" class="edge">
 <title>program~test13&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#024025" stroke-opacity="0.019608" d="M55.21,-251.98C58.79,-249.35 62.23,-246.33 65,-243 90.97,-211.77 70.11,-185.38 101,-159 102.53,-157.7 104.12,-156.47 105.78,-155.32"/>
-<polygon fill="#024025" fill-opacity="0.019608" stroke="#024025" stroke-opacity="0.019608" points="107.66,-158.28 114.48,-150.17 104.09,-152.25 107.66,-158.28"/>
+<path fill="none" stroke="#00f0ff" d="M55.21,-251.98C58.79,-249.35 62.23,-246.33 65,-243 90.97,-211.77 71.35,-186.76 101,-159 102.29,-157.79 103.66,-156.65 105.08,-155.57"/>
+<polygon fill="#00f0ff" stroke="#00f0ff" points="107.19,-158.38 113.79,-150.1 103.47,-152.46 107.19,-158.38"/>
 </g>
 <!-- program~test13&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge44" class="edge">
 <title>program~test13&#45;&gt;check</title>
-<path fill="none" stroke="#024025" stroke-opacity="0.019608" d="M56.53,-276.01C59.79,-278.59 62.78,-281.58 65,-285 116.6,-364.4 51.86,-414.06 101,-495 112.75,-514.36 132.86,-529.85 150.34,-540.62"/>
-<polygon fill="#024025" fill-opacity="0.019608" stroke="#024025" stroke-opacity="0.019608" points="148.78,-543.77 159.18,-545.83 152.33,-537.74 148.78,-543.77"/>
+<path fill="none" stroke="#00f0ff" d="M56.53,-276.01C59.79,-278.59 62.78,-281.58 65,-285 116.6,-364.4 58.68,-410.29 101,-495 109.49,-512 124.09,-527.57 136.7,-538.97"/>
+<polygon fill="#00f0ff" stroke="#00f0ff" points="134.77,-541.93 144.62,-545.84 139.36,-536.64 134.77,-541.93"/>
 </g>
 <!-- program~test14 -->
 <g id="call~~graph~~CallGraph_node29" class="node">
 <title>program~test14</title>
-<g id="a_call~~graph~~CallGraph_node29"><a xlink:href=".././program/test14.html" xlink:title="test14">
+<g id="a_call~~graph~~CallGraph_node29"><a xlink:href="../program/test14.html" xlink:title="test14">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-150 5.5,-150 5.5,-126 59.5,-126 59.5,-150"/>
 <text text-anchor="middle" x="32.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test14</text>
 </a>
@@ -671,31 +759,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test14&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge48" class="edge">
 <title>program~test14&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#021125" stroke-opacity="0.019608" d="M59.69,-146.51C72.15,-150.46 87.3,-155.14 101,-159 108.73,-161.18 116.89,-163.37 124.97,-165.48"/>
-<polygon fill="#021125" fill-opacity="0.019608" stroke="#021125" stroke-opacity="0.019608" points="124.17,-168.89 134.73,-168 125.92,-162.11 124.17,-168.89"/>
+<path fill="none" stroke="#00d3ff" d="M59.51,-146.6C75.25,-151.81 95.79,-158.6 114.24,-164.7"/>
+<polygon fill="#00d3ff" stroke="#00d3ff" points="113.34,-168.09 123.94,-167.91 115.54,-161.45 113.34,-168.09"/>
 </g>
 <!-- program~test14&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge49" class="edge">
 <title>program~test14&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#021125" stroke-opacity="0.019608" d="M59.72,-138C70.63,-138 83.97,-138 97.82,-138"/>
-<polygon fill="#021125" fill-opacity="0.019608" stroke="#021125" stroke-opacity="0.019608" points="97.97,-141.5 107.97,-138 97.97,-134.5 97.97,-141.5"/>
+<path fill="none" stroke="#00d3ff" d="M59.51,-138C70.61,-138 84.1,-138 97.55,-138"/>
+<polygon fill="#00d3ff" stroke="#00d3ff" points="97.79,-141.5 107.79,-138 97.79,-134.5 97.79,-141.5"/>
 </g>
 <!-- program~test14&#45;&gt;proc~timer_write -->
 <g id="call~~graph~~CallGraph_edge50" class="edge">
 <title>program~test14&#45;&gt;proc~timer_write</title>
-<path fill="none" stroke="#021125" stroke-opacity="0.019608" d="M59.69,-129.49C72.15,-125.54 87.3,-120.86 101,-117 108.73,-114.82 116.89,-112.63 124.97,-110.52"/>
-<polygon fill="#021125" fill-opacity="0.019608" stroke="#021125" stroke-opacity="0.019608" points="125.92,-113.89 134.73,-108 124.17,-107.11 125.92,-113.89"/>
+<path fill="none" stroke="#00d3ff" d="M59.51,-129.4C75.25,-124.19 95.79,-117.4 114.24,-111.3"/>
+<polygon fill="#00d3ff" stroke="#00d3ff" points="115.54,-114.55 123.94,-108.09 113.34,-107.91 115.54,-114.55"/>
 </g>
 <!-- program~test14&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge47" class="edge">
 <title>program~test14&#45;&gt;check</title>
-<path fill="none" stroke="#021125" stroke-opacity="0.019608" d="M57.03,-150.15C60.14,-152.68 62.96,-155.63 65,-159 142.83,-287.45 27.14,-364.23 101,-495 112.06,-514.58 131.95,-530.01 149.49,-540.69"/>
-<polygon fill="#021125" fill-opacity="0.019608" stroke="#021125" stroke-opacity="0.019608" points="147.98,-543.86 158.39,-545.84 151.49,-537.8 147.98,-543.86"/>
+<path fill="none" stroke="#00d3ff" d="M57.03,-150.15C60.14,-152.68 62.96,-155.63 65,-159 142.83,-287.45 38.15,-358.6 101,-495 109.03,-512.43 123.83,-528.12 136.65,-539.49"/>
+<polygon fill="#00d3ff" stroke="#00d3ff" points="134.42,-542.19 144.31,-545.99 138.95,-536.85 134.42,-542.19"/>
 </g>
 <!-- program~test15 -->
 <g id="call~~graph~~CallGraph_node30" class="node">
 <title>program~test15</title>
-<g id="a_call~~graph~~CallGraph_node30"><a xlink:href=".././program/test15.html" xlink:title="test15">
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href="../program/test15.html" xlink:title="test15">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-108 5.5,-108 5.5,-84 59.5,-84 59.5,-108"/>
 <text text-anchor="middle" x="32.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test15</text>
 </a>
@@ -704,31 +792,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test15&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge52" class="edge">
 <title>program~test15&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#018225" stroke-opacity="0.019608" d="M53.44,-108.09C57.42,-110.83 61.46,-113.86 65,-117 83.4,-133.31 80.1,-146.05 101,-159 103.84,-160.76 106.83,-162.38 109.9,-163.86"/>
-<polygon fill="#018225" fill-opacity="0.019608" stroke="#018225" stroke-opacity="0.019608" points="108.81,-167.19 119.38,-167.9 111.56,-160.76 108.81,-167.19"/>
+<path fill="none" stroke="#00b6ff" d="M53.44,-108.09C57.42,-110.83 61.46,-113.86 65,-117 83.4,-133.31 80.72,-145.1 101,-159 103.37,-160.63 105.88,-162.14 108.48,-163.54"/>
+<polygon fill="#00b6ff" stroke="#00b6ff" points="107.03,-166.73 117.56,-167.92 110.07,-160.43 107.03,-166.73"/>
 </g>
 <!-- program~test15&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge53" class="edge">
 <title>program~test15&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#018225" stroke-opacity="0.019608" d="M59.69,-104.51C72.15,-108.46 87.3,-113.14 101,-117 108.73,-119.18 116.89,-121.37 124.97,-123.48"/>
-<polygon fill="#018225" fill-opacity="0.019608" stroke="#018225" stroke-opacity="0.019608" points="124.17,-126.89 134.73,-126 125.92,-120.11 124.17,-126.89"/>
+<path fill="none" stroke="#00b6ff" d="M59.51,-104.6C75.25,-109.81 95.79,-116.6 114.24,-122.7"/>
+<polygon fill="#00b6ff" stroke="#00b6ff" points="113.34,-126.09 123.94,-125.91 115.54,-119.45 113.34,-126.09"/>
 </g>
 <!-- program~test15&#45;&gt;proc~timer_write -->
 <g id="call~~graph~~CallGraph_edge54" class="edge">
 <title>program~test15&#45;&gt;proc~timer_write</title>
-<path fill="none" stroke="#018225" stroke-opacity="0.019608" d="M59.72,-96C70.18,-96 82.9,-96 96.15,-96"/>
-<polygon fill="#018225" fill-opacity="0.019608" stroke="#018225" stroke-opacity="0.019608" points="96.35,-99.5 106.35,-96 96.35,-92.5 96.35,-99.5"/>
+<path fill="none" stroke="#00b6ff" d="M59.51,-96C70.1,-96 82.86,-96 95.7,-96"/>
+<polygon fill="#00b6ff" stroke="#00b6ff" points="95.96,-99.5 105.96,-96 95.96,-92.5 95.96,-99.5"/>
 </g>
 <!-- program~test15&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge51" class="edge">
 <title>program~test15&#45;&gt;check</title>
-<path fill="none" stroke="#018225" stroke-opacity="0.019608" d="M57.06,-108.13C60.17,-110.66 62.98,-113.62 65,-117 151.6,-261.84 18.87,-347.57 101,-495 111.95,-514.65 131.84,-530.07 149.4,-540.74"/>
-<polygon fill="#018225" fill-opacity="0.019608" stroke="#018225" stroke-opacity="0.019608" points="147.9,-543.92 158.32,-545.88 151.4,-537.85 147.9,-543.92"/>
+<path fill="none" stroke="#00b6ff" d="M57.06,-108.13C60.17,-110.66 62.98,-113.62 65,-117 151.6,-261.84 31.28,-341.32 101,-495 108.88,-512.36 123.53,-527.97 136.32,-539.31"/>
+<polygon fill="#00b6ff" stroke="#00b6ff" points="134.08,-541.99 143.97,-545.79 138.61,-536.65 134.08,-541.99"/>
 </g>
 <!-- program~test16 -->
 <g id="call~~graph~~CallGraph_node31" class="node">
 <title>program~test16</title>
-<g id="a_call~~graph~~CallGraph_node31"><a xlink:href=".././program/test16.html" xlink:title="test16">
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href="../program/test16.html" xlink:title="test16">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1242 5.5,-1242 5.5,-1218 59.5,-1218 59.5,-1242"/>
 <text text-anchor="middle" x="32.5" y="-1227.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test16</text>
 </a>
@@ -737,19 +825,19 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test16&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge55" class="edge">
 <title>program~test16&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#015325" stroke-opacity="0.019608" d="M55.06,-1242.04C80.88,-1256.44 124.29,-1280.67 153.52,-1296.99"/>
-<polygon fill="#015325" fill-opacity="0.019608" stroke="#015325" stroke-opacity="0.019608" points="152.04,-1300.17 162.48,-1301.99 155.45,-1294.06 152.04,-1300.17"/>
+<path fill="none" stroke="#0099ff" d="M51.7,-1242.04C73.2,-1256.26 109.16,-1280.04 133.81,-1296.35"/>
+<polygon fill="#0099ff" stroke="#0099ff" points="132.07,-1299.39 142.34,-1301.99 135.93,-1293.55 132.07,-1299.39"/>
 </g>
 <!-- program~test16&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge56" class="edge">
 <title>program~test16&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#015325" stroke-opacity="0.019608" d="M55.21,-1242.02C58.79,-1244.65 62.23,-1247.67 65,-1251 90.97,-1282.23 70.11,-1308.62 101,-1335 102.53,-1336.3 104.12,-1337.53 105.78,-1338.68"/>
-<polygon fill="#015325" fill-opacity="0.019608" stroke="#015325" stroke-opacity="0.019608" points="104.09,-1341.75 114.48,-1343.83 107.66,-1335.72 104.09,-1341.75"/>
+<path fill="none" stroke="#0099ff" d="M55.21,-1242.02C58.79,-1244.65 62.23,-1247.67 65,-1251 90.97,-1282.23 71.35,-1307.24 101,-1335 102.29,-1336.21 103.66,-1337.35 105.08,-1338.43"/>
+<polygon fill="#0099ff" stroke="#0099ff" points="103.47,-1341.54 113.79,-1343.9 107.19,-1335.62 103.47,-1341.54"/>
 </g>
 <!-- program~test17 -->
 <g id="call~~graph~~CallGraph_node32" class="node">
 <title>program~test17</title>
-<g id="a_call~~graph~~CallGraph_node32"><a xlink:href=".././program/test17.html" xlink:title="test17">
+<g id="a_call~~graph~~CallGraph_node32"><a xlink:href="../program/test17.html" xlink:title="test17">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1368 5.5,-1368 5.5,-1344 59.5,-1344 59.5,-1368"/>
 <text text-anchor="middle" x="32.5" y="-1353.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test17</text>
 </a>
@@ -758,25 +846,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test17&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge57" class="edge">
 <title>program~test17&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#012525" stroke-opacity="0.019608" d="M59.69,-1347.49C72.15,-1343.54 87.3,-1338.86 101,-1335 108.73,-1332.82 116.89,-1330.63 124.97,-1328.52"/>
-<polygon fill="#012525" fill-opacity="0.019608" stroke="#012525" stroke-opacity="0.019608" points="125.92,-1331.89 134.73,-1326 124.17,-1325.11 125.92,-1331.89"/>
+<path fill="none" stroke="#007dff" d="M59.51,-1347.4C75.25,-1342.19 95.79,-1335.4 114.24,-1329.3"/>
+<polygon fill="#007dff" stroke="#007dff" points="115.54,-1332.55 123.94,-1326.09 113.34,-1325.91 115.54,-1332.55"/>
 </g>
 <!-- program~test17&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge58" class="edge">
 <title>program~test17&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#012525" stroke-opacity="0.019608" d="M59.72,-1356C69.75,-1356 81.84,-1356 94.5,-1356"/>
-<polygon fill="#012525" fill-opacity="0.019608" stroke="#012525" stroke-opacity="0.019608" points="94.74,-1359.5 104.74,-1356 94.74,-1352.5 94.74,-1359.5"/>
+<path fill="none" stroke="#007dff" d="M59.51,-1356C69.87,-1356 82.31,-1356 94.86,-1356"/>
+<polygon fill="#007dff" stroke="#007dff" points="94.92,-1359.5 104.92,-1356 94.92,-1352.5 94.92,-1359.5"/>
 </g>
 <!-- program~test17&#45;&gt;proc~ctimer_write -->
 <g id="call~~graph~~CallGraph_edge59" class="edge">
 <title>program~test17&#45;&gt;proc~ctimer_write</title>
-<path fill="none" stroke="#012525" stroke-opacity="0.019608" d="M59.69,-1364.51C72.15,-1368.46 87.3,-1373.14 101,-1377 108.73,-1379.18 116.89,-1381.37 124.97,-1383.48"/>
-<polygon fill="#012525" fill-opacity="0.019608" stroke="#012525" stroke-opacity="0.019608" points="124.17,-1386.89 134.73,-1386 125.92,-1380.11 124.17,-1386.89"/>
+<path fill="none" stroke="#007dff" d="M59.51,-1364.6C75.25,-1369.81 95.79,-1376.6 114.24,-1382.7"/>
+<polygon fill="#007dff" stroke="#007dff" points="113.34,-1386.09 123.94,-1385.91 115.54,-1379.45 113.34,-1386.09"/>
 </g>
 <!-- program~test18 -->
 <g id="call~~graph~~CallGraph_node33" class="node">
 <title>program~test18</title>
-<g id="a_call~~graph~~CallGraph_node33"><a xlink:href=".././program/test18.html" xlink:title="test18">
+<g id="a_call~~graph~~CallGraph_node33"><a xlink:href="../program/test18.html" xlink:title="test18">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1326 5.5,-1326 5.5,-1302 59.5,-1302 59.5,-1326"/>
 <text text-anchor="middle" x="32.5" y="-1311.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test18</text>
 </a>
@@ -785,25 +873,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test18&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge60" class="edge">
 <title>program~test18&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#096255" d="M59.72,-1314C69.68,-1314 81.68,-1314 94.25,-1314"/>
-<polygon fill="#096255" stroke="#096255" points="94.41,-1317.5 104.41,-1314 94.41,-1310.5 94.41,-1317.5"/>
+<path fill="none" stroke="#0060ff" d="M59.51,-1314C69.54,-1314 81.52,-1314 93.67,-1314"/>
+<polygon fill="#0060ff" stroke="#0060ff" points="93.87,-1317.5 103.87,-1314 93.87,-1310.5 93.87,-1317.5"/>
 </g>
 <!-- program~test18&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge61" class="edge">
 <title>program~test18&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#096255" d="M59.69,-1322.51C72.15,-1326.46 87.3,-1331.14 101,-1335 108.73,-1337.18 116.89,-1339.37 124.97,-1341.48"/>
-<polygon fill="#096255" stroke="#096255" points="124.17,-1344.89 134.73,-1344 125.92,-1338.11 124.17,-1344.89"/>
+<path fill="none" stroke="#0060ff" d="M59.51,-1322.6C75.25,-1327.81 95.79,-1334.6 114.24,-1340.7"/>
+<polygon fill="#0060ff" stroke="#0060ff" points="113.34,-1344.09 123.94,-1343.91 115.54,-1337.45 113.34,-1344.09"/>
 </g>
 <!-- program~test18&#45;&gt;proc~ctimer_write -->
 <g id="call~~graph~~CallGraph_edge62" class="edge">
 <title>program~test18&#45;&gt;proc~ctimer_write</title>
-<path fill="none" stroke="#096255" d="M53.44,-1326.09C57.42,-1328.83 61.46,-1331.86 65,-1335 83.4,-1351.31 80.1,-1364.05 101,-1377 103.84,-1378.76 106.83,-1380.38 109.9,-1381.86"/>
-<polygon fill="#096255" stroke="#096255" points="108.81,-1385.19 119.38,-1385.9 111.56,-1378.76 108.81,-1385.19"/>
+<path fill="none" stroke="#0060ff" d="M53.44,-1326.09C57.42,-1328.83 61.46,-1331.86 65,-1335 83.4,-1351.31 80.72,-1363.1 101,-1377 103.37,-1378.63 105.88,-1380.14 108.48,-1381.54"/>
+<polygon fill="#0060ff" stroke="#0060ff" points="107.03,-1384.73 117.56,-1385.92 110.07,-1378.43 107.03,-1384.73"/>
 </g>
 <!-- program~test19 -->
 <g id="call~~graph~~CallGraph_node34" class="node">
 <title>program~test19</title>
-<g id="a_call~~graph~~CallGraph_node34"><a xlink:href=".././program/test19.html" xlink:title="test19">
+<g id="a_call~~graph~~CallGraph_node34"><a xlink:href="../program/test19.html" xlink:title="test19">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-570 5.5,-570 5.5,-546 59.5,-546 59.5,-570"/>
 <text text-anchor="middle" x="32.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test19</text>
 </a>
@@ -812,25 +900,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test19&#45;&gt;proc~otimer_start -->
 <g id="call~~graph~~CallGraph_edge64" class="edge">
 <title>program~test19&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#067255" d="M55.21,-545.98C58.79,-543.35 62.23,-540.33 65,-537 90.97,-505.77 70.11,-479.38 101,-453 102.53,-451.7 104.12,-450.47 105.78,-449.32"/>
-<polygon fill="#067255" stroke="#067255" points="107.66,-452.28 114.48,-444.17 104.09,-446.25 107.66,-452.28"/>
+<path fill="none" stroke="#0043ff" d="M55.21,-545.98C58.79,-543.35 62.23,-540.33 65,-537 90.97,-505.77 71.35,-480.76 101,-453 102.29,-451.79 103.66,-450.65 105.08,-449.57"/>
+<polygon fill="#0043ff" stroke="#0043ff" points="107.19,-452.38 113.79,-444.1 103.47,-446.46 107.19,-452.38"/>
 </g>
 <!-- program~test19&#45;&gt;proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_edge65" class="edge">
 <title>program~test19&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#067255" d="M55.06,-545.96C80.88,-531.56 124.29,-507.33 153.52,-491.01"/>
-<polygon fill="#067255" stroke="#067255" points="155.45,-493.94 162.48,-486.01 152.04,-487.83 155.45,-493.94"/>
+<path fill="none" stroke="#0043ff" d="M51.7,-545.96C73.2,-531.74 109.16,-507.96 133.81,-491.65"/>
+<polygon fill="#0043ff" stroke="#0043ff" points="135.93,-494.45 142.34,-486.01 132.07,-488.61 135.93,-494.45"/>
 </g>
 <!-- program~test19&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge63" class="edge">
 <title>program~test19&#45;&gt;check</title>
-<path fill="none" stroke="#067255" d="M59.72,-558C84.03,-558 120.43,-558 147.57,-558"/>
-<polygon fill="#067255" stroke="#067255" points="147.83,-561.5 157.83,-558 147.83,-554.5 147.83,-561.5"/>
+<path fill="none" stroke="#0043ff" d="M59.51,-558C78.13,-558 103.46,-558 124.09,-558"/>
+<polygon fill="#0043ff" stroke="#0043ff" points="124.09,-561.5 134.09,-558 124.09,-554.5 124.09,-561.5"/>
 </g>
 <!-- program~test2 -->
 <g id="call~~graph~~CallGraph_node35" class="node">
 <title>program~test2</title>
-<g id="a_call~~graph~~CallGraph_node35"><a xlink:href=".././program/test2.html" xlink:title="test2">
+<g id="a_call~~graph~~CallGraph_node35"><a xlink:href="../program/test2.html" xlink:title="test2">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-66 5.5,-66 5.5,-42 59.5,-42 59.5,-66"/>
 <text text-anchor="middle" x="32.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test2</text>
 </a>
@@ -839,31 +927,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test2&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge67" class="edge">
 <title>program~test2&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="#038255" d="M55.21,-66.02C58.79,-68.65 62.23,-71.67 65,-75 90.97,-106.23 70.11,-132.62 101,-159 102.53,-160.3 104.12,-161.53 105.78,-162.68"/>
-<polygon fill="#038255" stroke="#038255" points="104.09,-165.75 114.48,-167.83 107.66,-159.72 104.09,-165.75"/>
+<path fill="none" stroke="#0026ff" d="M55.21,-66.02C58.79,-68.65 62.23,-71.67 65,-75 90.97,-106.23 71.35,-131.24 101,-159 102.29,-160.21 103.66,-161.35 105.08,-162.43"/>
+<polygon fill="#0026ff" stroke="#0026ff" points="103.47,-165.54 113.79,-167.9 107.19,-159.62 103.47,-165.54"/>
 </g>
 <!-- program~test2&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge68" class="edge">
 <title>program~test2&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="#038255" d="M53.44,-66.09C57.42,-68.83 61.46,-71.86 65,-75 83.4,-91.31 80.1,-104.05 101,-117 103.84,-118.76 106.83,-120.38 109.9,-121.86"/>
-<polygon fill="#038255" stroke="#038255" points="108.81,-125.19 119.38,-125.9 111.56,-118.76 108.81,-125.19"/>
+<path fill="none" stroke="#0026ff" d="M53.44,-66.09C57.42,-68.83 61.46,-71.86 65,-75 83.4,-91.31 80.72,-103.1 101,-117 103.37,-118.63 105.88,-120.14 108.48,-121.54"/>
+<polygon fill="#0026ff" stroke="#0026ff" points="107.03,-124.73 117.56,-125.92 110.07,-118.43 107.03,-124.73"/>
 </g>
 <!-- program~test2&#45;&gt;proc~timer_write -->
 <g id="call~~graph~~CallGraph_edge69" class="edge">
 <title>program~test2&#45;&gt;proc~timer_write</title>
-<path fill="none" stroke="#038255" d="M59.72,-61.32C79.33,-66.79 106.82,-74.46 130.96,-81.2"/>
-<polygon fill="#038255" stroke="#038255" points="130.14,-84.6 140.72,-83.92 132.02,-77.86 130.14,-84.6"/>
+<path fill="none" stroke="#0026ff" d="M59.51,-62.6C75.25,-67.81 95.79,-74.6 114.24,-80.7"/>
+<polygon fill="#0026ff" stroke="#0026ff" points="113.34,-84.09 123.94,-83.91 115.54,-77.45 113.34,-84.09"/>
 </g>
 <!-- program~test2&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge66" class="edge">
 <title>program~test2&#45;&gt;check</title>
-<path fill="none" stroke="#038255" d="M57.09,-66.11C60.2,-68.65 62.99,-71.61 65,-75 160.38,-236.25 10.6,-330.9 101,-495 111.85,-514.7 131.74,-530.12 149.33,-540.78"/>
-<polygon fill="#038255" stroke="#038255" points="147.84,-543.96 158.26,-545.91 151.33,-537.89 147.84,-543.96"/>
+<path fill="none" stroke="#0026ff" d="M57.09,-66.11C60.2,-68.65 62.99,-71.61 65,-75 160.38,-236.25 24.41,-324.02 101,-495 108.79,-512.4 123.45,-528 136.26,-539.33"/>
+<polygon fill="#0026ff" stroke="#0026ff" points="134.03,-542.03 143.93,-545.81 138.55,-536.68 134.03,-542.03"/>
 </g>
 <!-- program~test20 -->
 <g id="call~~graph~~CallGraph_node36" class="node">
 <title>program~test20</title>
-<g id="a_call~~graph~~CallGraph_node36"><a xlink:href=".././program/test20.html" xlink:title="test20">
+<g id="a_call~~graph~~CallGraph_node36"><a xlink:href="../program/test20.html" xlink:title="test20">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-402 5.5,-402 5.5,-378 59.5,-378 59.5,-402"/>
 <text text-anchor="middle" x="32.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test20</text>
 </a>
@@ -872,31 +960,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test20&#45;&gt;proc~otimer_start -->
 <g id="call~~graph~~CallGraph_edge71" class="edge">
 <title>program~test20&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#092505" d="M59.69,-398.51C72.15,-402.46 87.3,-407.14 101,-411 108.73,-413.18 116.89,-415.37 124.97,-417.48"/>
-<polygon fill="#092505" stroke="#092505" points="124.17,-420.89 134.73,-420 125.92,-414.11 124.17,-420.89"/>
+<path fill="none" stroke="#0009ff" d="M59.51,-398.6C75.25,-403.81 95.79,-410.6 114.24,-416.7"/>
+<polygon fill="#0009ff" stroke="#0009ff" points="113.34,-420.09 123.94,-419.91 115.54,-413.45 113.34,-420.09"/>
 </g>
 <!-- program~test20&#45;&gt;proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_edge72" class="edge">
 <title>program~test20&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#092505" d="M53.44,-402.09C57.42,-404.83 61.46,-407.86 65,-411 83.4,-427.31 80.1,-440.05 101,-453 103.84,-454.76 106.83,-456.38 109.9,-457.86"/>
-<polygon fill="#092505" stroke="#092505" points="108.81,-461.19 119.38,-461.9 111.56,-454.76 108.81,-461.19"/>
+<path fill="none" stroke="#0009ff" d="M53.44,-402.09C57.42,-404.83 61.46,-407.86 65,-411 83.4,-427.31 80.72,-439.1 101,-453 103.37,-454.63 105.88,-456.14 108.48,-457.54"/>
+<polygon fill="#0009ff" stroke="#0009ff" points="107.03,-460.73 117.56,-461.92 110.07,-454.43 107.03,-460.73"/>
 </g>
 <!-- program~test20&#45;&gt;proc~otimer_write -->
 <g id="call~~graph~~CallGraph_edge73" class="edge">
 <title>program~test20&#45;&gt;proc~otimer_write</title>
-<path fill="none" stroke="#092505" d="M59.72,-390C69.26,-390 80.66,-390 92.63,-390"/>
-<polygon fill="#092505" stroke="#092505" points="92.8,-393.5 102.8,-390 92.8,-386.5 92.8,-393.5"/>
+<path fill="none" stroke="#0009ff" d="M59.51,-390C69.1,-390 80.48,-390 92.08,-390"/>
+<polygon fill="#0009ff" stroke="#0009ff" points="92.29,-393.5 102.29,-390 92.29,-386.5 92.29,-393.5"/>
 </g>
 <!-- program~test20&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge70" class="edge">
 <title>program~test20&#45;&gt;check</title>
-<path fill="none" stroke="#092505" d="M55.21,-402.02C58.79,-404.65 62.23,-407.67 65,-411 90.97,-442.23 75.99,-462.99 101,-495 115.42,-513.45 136.47,-529.35 153.77,-540.56"/>
-<polygon fill="#092505" stroke="#092505" points="152.09,-543.64 162.42,-545.98 155.8,-537.71 152.09,-543.64"/>
+<path fill="none" stroke="#0009ff" d="M55.21,-402.02C58.79,-404.65 62.23,-407.67 65,-411 90.97,-442.23 78.71,-461.04 101,-495 111.63,-511.2 126.63,-527.04 138.9,-538.79"/>
+<polygon fill="#0009ff" stroke="#0009ff" points="136.8,-541.62 146.5,-545.88 141.58,-536.5 136.8,-541.62"/>
 </g>
 <!-- program~test21 -->
 <g id="call~~graph~~CallGraph_node37" class="node">
 <title>program~test21</title>
-<g id="a_call~~graph~~CallGraph_node37"><a xlink:href=".././program/test21.html" xlink:title="test21">
+<g id="a_call~~graph~~CallGraph_node37"><a xlink:href="../program/test21.html" xlink:title="test21">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-360 5.5,-360 5.5,-336 59.5,-336 59.5,-360"/>
 <text text-anchor="middle" x="32.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test21</text>
 </a>
@@ -905,31 +993,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test21&#45;&gt;proc~otimer_start -->
 <g id="call~~graph~~CallGraph_edge75" class="edge">
 <title>program~test21&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#190255" d="M53.44,-360.09C57.42,-362.83 61.46,-365.86 65,-369 83.4,-385.31 80.1,-398.05 101,-411 103.84,-412.76 106.83,-414.38 109.9,-415.86"/>
-<polygon fill="#190255" stroke="#190255" points="108.81,-419.19 119.38,-419.9 111.56,-412.76 108.81,-419.19"/>
+<path fill="none" stroke="#1300ff" d="M53.44,-360.09C57.42,-362.83 61.46,-365.86 65,-369 83.4,-385.31 80.72,-397.1 101,-411 103.37,-412.63 105.88,-414.14 108.48,-415.54"/>
+<polygon fill="#1300ff" stroke="#1300ff" points="107.03,-418.73 117.56,-419.92 110.07,-412.43 107.03,-418.73"/>
 </g>
 <!-- program~test21&#45;&gt;proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_edge76" class="edge">
 <title>program~test21&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#190255" d="M55.21,-360.02C58.79,-362.65 62.23,-365.67 65,-369 90.97,-400.23 70.11,-426.62 101,-453 102.53,-454.3 104.12,-455.53 105.78,-456.68"/>
-<polygon fill="#190255" stroke="#190255" points="104.09,-459.75 114.48,-461.83 107.66,-453.72 104.09,-459.75"/>
+<path fill="none" stroke="#1300ff" d="M55.21,-360.02C58.79,-362.65 62.23,-365.67 65,-369 90.97,-400.23 71.35,-425.24 101,-453 102.29,-454.21 103.66,-455.35 105.08,-456.43"/>
+<polygon fill="#1300ff" stroke="#1300ff" points="103.47,-459.54 113.79,-461.9 107.19,-453.62 103.47,-459.54"/>
 </g>
 <!-- program~test21&#45;&gt;proc~otimer_write -->
 <g id="call~~graph~~CallGraph_edge77" class="edge">
 <title>program~test21&#45;&gt;proc~otimer_write</title>
-<path fill="none" stroke="#190255" d="M59.72,-355.32C79.33,-360.79 106.82,-368.46 130.96,-375.2"/>
-<polygon fill="#190255" stroke="#190255" points="130.14,-378.6 140.72,-377.92 132.02,-371.86 130.14,-378.6"/>
+<path fill="none" stroke="#1300ff" d="M59.51,-356.6C75.25,-361.81 95.79,-368.6 114.24,-374.7"/>
+<polygon fill="#1300ff" stroke="#1300ff" points="113.34,-378.09 123.94,-377.91 115.54,-371.45 113.34,-378.09"/>
 </g>
 <!-- program~test21&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge74" class="edge">
 <title>program~test21&#45;&gt;check</title>
-<path fill="none" stroke="#190255" d="M56.21,-360.23C59.51,-362.78 62.6,-365.71 65,-369 99.34,-416.04 68.12,-446.93 101,-495 113.96,-513.95 134.46,-529.59 151.85,-540.55"/>
-<polygon fill="#190255" stroke="#190255" points="150.23,-543.66 160.6,-545.84 153.85,-537.67 150.23,-543.66"/>
+<path fill="none" stroke="#1300ff" d="M56.21,-360.23C59.51,-362.78 62.6,-365.71 65,-369 99.34,-416.04 72.18,-444.39 101,-495 110.46,-511.62 125.2,-527.28 137.65,-538.82"/>
+<polygon fill="#1300ff" stroke="#1300ff" points="135.63,-541.71 145.41,-545.78 140.3,-536.5 135.63,-541.71"/>
 </g>
 <!-- program~test22 -->
 <g id="call~~graph~~CallGraph_node38" class="node">
 <title>program~test22</title>
-<g id="a_call~~graph~~CallGraph_node38"><a xlink:href=".././program/test22.html" xlink:title="test22">
+<g id="a_call~~graph~~CallGraph_node38"><a xlink:href="../program/test22.html" xlink:title="test22">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-822 5.5,-822 5.5,-798 59.5,-798 59.5,-822"/>
 <text text-anchor="middle" x="32.5" y="-807.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test22</text>
 </a>
@@ -938,37 +1026,37 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test22&#45;&gt;proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_edge81" class="edge">
 <title>program~test22&#45;&gt;proc~mtimer_start</title>
-<path fill="none" stroke="#480255" d="M55.21,-797.98C58.79,-795.35 62.23,-792.33 65,-789 90.97,-757.77 70.11,-731.38 101,-705 102.53,-703.7 104.12,-702.47 105.78,-701.32"/>
-<polygon fill="#480255" stroke="#480255" points="107.66,-704.28 114.48,-696.17 104.09,-698.25 107.66,-704.28"/>
+<path fill="none" stroke="#3000ff" d="M55.21,-797.98C58.79,-795.35 62.23,-792.33 65,-789 90.97,-757.77 71.35,-732.76 101,-705 102.29,-703.79 103.66,-702.65 105.08,-701.57"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="107.19,-704.38 113.79,-696.1 103.47,-698.46 107.19,-704.38"/>
 </g>
 <!-- program~test22&#45;&gt;proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_edge82" class="edge">
 <title>program~test22&#45;&gt;proc~mtimer_stop</title>
-<path fill="none" stroke="#480255" d="M53.44,-797.91C57.42,-795.17 61.46,-792.14 65,-789 83.4,-772.69 80.1,-759.95 101,-747 103.84,-745.24 106.83,-743.62 109.9,-742.14"/>
-<polygon fill="#480255" stroke="#480255" points="111.56,-745.24 119.38,-738.1 108.81,-738.81 111.56,-745.24"/>
+<path fill="none" stroke="#3000ff" d="M53.44,-797.91C57.42,-795.17 61.46,-792.14 65,-789 83.4,-772.69 80.72,-760.9 101,-747 103.37,-745.37 105.88,-743.86 108.48,-742.46"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="110.07,-745.57 117.56,-738.08 107.03,-739.27 110.07,-745.57"/>
 </g>
 <!-- program~test22&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge78" class="edge">
 <title>program~test22&#45;&gt;check</title>
-<path fill="none" stroke="#480255" d="M56.53,-797.99C59.79,-795.41 62.78,-792.42 65,-789 116.6,-709.6 36.7,-648.52 101,-579 112.76,-566.29 131,-560.8 147.39,-558.59"/>
-<polygon fill="#480255" stroke="#480255" points="148.2,-562.03 157.81,-557.57 147.51,-555.06 148.2,-562.03"/>
+<path fill="none" stroke="#3000ff" d="M56.53,-797.99C59.79,-795.41 62.78,-792.42 65,-789 116.6,-709.6 39.95,-651.39 101,-579 107,-571.88 115.58,-567.18 124.36,-564.06"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="125.61,-567.34 134.23,-561.18 123.65,-560.62 125.61,-567.34"/>
 </g>
 <!-- program~test22&#45;&gt;mpi_finalize -->
 <g id="call~~graph~~CallGraph_edge79" class="edge">
 <title>program~test22&#45;&gt;mpi_finalize</title>
-<path fill="none" stroke="#480255" d="M56.21,-797.77C59.51,-795.22 62.6,-792.29 65,-789 99.34,-741.96 59.19,-703.55 101,-663 110.69,-653.6 123.96,-648.23 137.04,-645.2"/>
-<polygon fill="#480255" stroke="#480255" points="137.77,-648.63 146.95,-643.33 136.47,-641.75 137.77,-648.63"/>
+<path fill="none" stroke="#3000ff" d="M56.21,-797.77C59.51,-795.22 62.6,-792.29 65,-789 99.34,-741.96 61.09,-705.42 101,-663 104.66,-659.11 109.08,-655.94 113.85,-653.36"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="115.64,-656.39 123.31,-649.08 112.76,-650.01 115.64,-656.39"/>
 </g>
 <!-- program~test22&#45;&gt;mpi_init -->
 <g id="call~~graph~~CallGraph_edge80" class="edge">
 <title>program~test22&#45;&gt;mpi_init</title>
-<path fill="none" stroke="#480255" d="M59.72,-802.68C83.99,-795.91 120.31,-785.77 147.43,-778.21"/>
-<polygon fill="#480255" stroke="#480255" points="148.64,-781.5 157.33,-775.44 146.75,-774.76 148.64,-781.5"/>
+<path fill="none" stroke="#3000ff" d="M59.51,-801.4C78.09,-795.25 103.35,-786.9 123.96,-780.08"/>
+<polygon fill="#3000ff" stroke="#3000ff" points="125.26,-783.34 133.65,-776.88 123.06,-776.7 125.26,-783.34"/>
 </g>
 <!-- program~test23 -->
 <g id="call~~graph~~CallGraph_node39" class="node">
 <title>program~test23</title>
-<g id="a_call~~graph~~CallGraph_node39"><a xlink:href=".././program/test23.html" xlink:title="test23">
+<g id="a_call~~graph~~CallGraph_node39"><a xlink:href="../program/test23.html" xlink:title="test23">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-612 5.5,-612 5.5,-588 59.5,-588 59.5,-612"/>
 <text text-anchor="middle" x="32.5" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test23</text>
 </a>
@@ -977,43 +1065,43 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test23&#45;&gt;proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_edge86" class="edge">
 <title>program~test23&#45;&gt;proc~mtimer_start</title>
-<path fill="none" stroke="#760255" d="M53.44,-612.09C57.42,-614.83 61.46,-617.86 65,-621 83.4,-637.31 80.1,-650.05 101,-663 103.84,-664.76 106.83,-666.38 109.9,-667.86"/>
-<polygon fill="#760255" stroke="#760255" points="108.81,-671.19 119.38,-671.9 111.56,-664.76 108.81,-671.19"/>
+<path fill="none" stroke="#4c00ff" d="M53.44,-612.09C57.42,-614.83 61.46,-617.86 65,-621 83.4,-637.31 80.72,-649.1 101,-663 103.37,-664.63 105.88,-666.14 108.48,-667.54"/>
+<polygon fill="#4c00ff" stroke="#4c00ff" points="107.03,-670.73 117.56,-671.92 110.07,-664.43 107.03,-670.73"/>
 </g>
 <!-- program~test23&#45;&gt;proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_edge87" class="edge">
 <title>program~test23&#45;&gt;proc~mtimer_stop</title>
-<path fill="none" stroke="#760255" d="M55.21,-612.02C58.79,-614.65 62.23,-617.67 65,-621 90.97,-652.23 70.11,-678.62 101,-705 102.53,-706.3 104.12,-707.53 105.78,-708.68"/>
-<polygon fill="#760255" stroke="#760255" points="104.09,-711.75 114.48,-713.83 107.66,-705.72 104.09,-711.75"/>
+<path fill="none" stroke="#4c00ff" d="M55.21,-612.02C58.79,-614.65 62.23,-617.67 65,-621 90.97,-652.23 71.35,-677.24 101,-705 102.29,-706.21 103.66,-707.35 105.08,-708.43"/>
+<polygon fill="#4c00ff" stroke="#4c00ff" points="103.47,-711.54 113.79,-713.9 107.19,-705.62 103.47,-711.54"/>
 </g>
 <!-- program~test23&#45;&gt;proc~mtimer_write -->
 <g id="call~~graph~~CallGraph_edge88" class="edge">
 <title>program~test23&#45;&gt;proc~mtimer_write</title>
-<path fill="none" stroke="#760255" d="M59.72,-600C68.77,-600 79.5,-600 90.81,-600"/>
-<polygon fill="#760255" stroke="#760255" points="90.86,-603.5 100.86,-600 90.86,-596.5 90.86,-603.5"/>
+<path fill="none" stroke="#4c00ff" d="M59.51,-600C68.73,-600 79.6,-600 90.72,-600"/>
+<polygon fill="#4c00ff" stroke="#4c00ff" points="90.98,-603.5 100.98,-600 90.98,-596.5 90.98,-603.5"/>
 </g>
 <!-- program~test23&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge83" class="edge">
 <title>program~test23&#45;&gt;check</title>
-<path fill="none" stroke="#760255" d="M59.69,-591.49C72.15,-587.54 87.3,-582.86 101,-579 116.2,-574.72 133.07,-570.37 147.62,-566.76"/>
-<polygon fill="#760255" stroke="#760255" points="148.86,-570.05 157.74,-564.26 147.19,-563.26 148.86,-570.05"/>
+<path fill="none" stroke="#4c00ff" d="M59.51,-591.4C78.22,-585.21 103.69,-576.79 124.37,-569.95"/>
+<polygon fill="#4c00ff" stroke="#4c00ff" points="125.7,-573.2 134.09,-566.73 123.5,-566.55 125.7,-573.2"/>
 </g>
 <!-- program~test23&#45;&gt;mpi_finalize -->
 <g id="call~~graph~~CallGraph_edge84" class="edge">
 <title>program~test23&#45;&gt;mpi_finalize</title>
-<path fill="none" stroke="#760255" d="M59.69,-608.51C72.15,-612.46 87.3,-617.14 101,-621 112.51,-624.24 124.98,-627.52 136.67,-630.49"/>
-<polygon fill="#760255" stroke="#760255" points="136.15,-633.97 146.7,-633.02 137.86,-627.18 136.15,-633.97"/>
+<path fill="none" stroke="#4c00ff" d="M59.51,-608.6C75.25,-613.81 95.79,-620.6 114.24,-626.7"/>
+<polygon fill="#4c00ff" stroke="#4c00ff" points="113.34,-630.09 123.94,-629.91 115.54,-623.45 113.34,-630.09"/>
 </g>
 <!-- program~test23&#45;&gt;mpi_init -->
 <g id="call~~graph~~CallGraph_edge85" class="edge">
 <title>program~test23&#45;&gt;mpi_init</title>
-<path fill="none" stroke="#760255" d="M56.21,-612.23C59.51,-614.78 62.6,-617.71 65,-621 99.34,-668.04 59.19,-706.45 101,-747 113.17,-758.8 130.96,-764.25 146.96,-766.68"/>
-<polygon fill="#760255" stroke="#760255" points="146.79,-770.18 157.13,-767.86 147.6,-763.23 146.79,-770.18"/>
+<path fill="none" stroke="#4c00ff" d="M56.21,-612.23C59.51,-614.78 62.6,-617.71 65,-621 99.34,-668.04 61.09,-704.58 101,-747 107.22,-753.61 115.64,-758.14 124.19,-761.24"/>
+<polygon fill="#4c00ff" stroke="#4c00ff" points="123.2,-764.6 133.79,-764.18 125.25,-757.91 123.2,-764.6"/>
 </g>
 <!-- program~test24 -->
 <g id="call~~graph~~CallGraph_node40" class="node">
 <title>program~test24</title>
-<g id="a_call~~graph~~CallGraph_node40"><a xlink:href=".././program/test24.html" xlink:title="test24">
+<g id="a_call~~graph~~CallGraph_node40"><a xlink:href="../program/test24.html" xlink:title="test24">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-738 5.5,-738 5.5,-714 59.5,-714 59.5,-738"/>
 <text text-anchor="middle" x="32.5" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test24</text>
 </a>
@@ -1022,43 +1110,43 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test24&#45;&gt;proc~mtimer_start -->
 <g id="call~~graph~~CallGraph_edge92" class="edge">
 <title>program~test24&#45;&gt;proc~mtimer_start</title>
-<path fill="none" stroke="#105025" stroke-opacity="0.019608" d="M59.69,-717.49C72.15,-713.54 87.3,-708.86 101,-705 108.73,-702.82 116.89,-700.63 124.97,-698.52"/>
-<polygon fill="#105025" fill-opacity="0.019608" stroke="#105025" stroke-opacity="0.019608" points="125.92,-701.89 134.73,-696 124.17,-695.11 125.92,-701.89"/>
+<path fill="none" stroke="#6900ff" d="M59.51,-717.4C75.25,-712.19 95.79,-705.4 114.24,-699.3"/>
+<polygon fill="#6900ff" stroke="#6900ff" points="115.54,-702.55 123.94,-696.09 113.34,-695.91 115.54,-702.55"/>
 </g>
 <!-- program~test24&#45;&gt;proc~mtimer_stop -->
 <g id="call~~graph~~CallGraph_edge93" class="edge">
 <title>program~test24&#45;&gt;proc~mtimer_stop</title>
-<path fill="none" stroke="#105025" stroke-opacity="0.019608" d="M59.72,-726C69.26,-726 80.66,-726 92.63,-726"/>
-<polygon fill="#105025" fill-opacity="0.019608" stroke="#105025" stroke-opacity="0.019608" points="92.8,-729.5 102.8,-726 92.8,-722.5 92.8,-729.5"/>
+<path fill="none" stroke="#6900ff" d="M59.51,-726C69.1,-726 80.48,-726 92.08,-726"/>
+<polygon fill="#6900ff" stroke="#6900ff" points="92.29,-729.5 102.29,-726 92.29,-722.5 92.29,-729.5"/>
 </g>
 <!-- program~test24&#45;&gt;proc~mtimer_write -->
 <g id="call~~graph~~CallGraph_edge94" class="edge">
 <title>program~test24&#45;&gt;proc~mtimer_write</title>
-<path fill="none" stroke="#105025" stroke-opacity="0.019608" d="M55.21,-713.98C58.79,-711.35 62.23,-708.33 65,-705 90.97,-673.77 70.11,-647.38 101,-621 102.53,-619.7 104.12,-618.47 105.78,-617.32"/>
-<polygon fill="#105025" fill-opacity="0.019608" stroke="#105025" stroke-opacity="0.019608" points="107.66,-620.28 114.48,-612.17 104.09,-614.25 107.66,-620.28"/>
+<path fill="none" stroke="#6900ff" d="M55.21,-713.98C58.79,-711.35 62.23,-708.33 65,-705 90.97,-673.77 71.35,-648.76 101,-621 102.29,-619.79 103.66,-618.65 105.08,-617.57"/>
+<polygon fill="#6900ff" stroke="#6900ff" points="107.19,-620.38 113.79,-612.1 103.47,-614.46 107.19,-620.38"/>
 </g>
 <!-- program~test24&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge89" class="edge">
 <title>program~test24&#45;&gt;check</title>
-<path fill="none" stroke="#105025" stroke-opacity="0.019608" d="M56.21,-713.77C59.51,-711.22 62.6,-708.29 65,-705 99.34,-657.96 59.19,-619.55 101,-579 113.34,-567.03 131.47,-561.59 147.64,-559.22"/>
-<polygon fill="#105025" fill-opacity="0.019608" stroke="#105025" stroke-opacity="0.019608" points="148.36,-562.66 157.91,-558.07 147.58,-555.71 148.36,-562.66"/>
+<path fill="none" stroke="#6900ff" d="M56.21,-713.77C59.51,-711.22 62.6,-708.29 65,-705 99.34,-657.96 61.09,-621.42 101,-579 107.33,-572.28 115.94,-567.7 124.64,-564.59"/>
+<polygon fill="#6900ff" stroke="#6900ff" points="125.82,-567.89 134.39,-561.67 123.81,-561.19 125.82,-567.89"/>
 </g>
 <!-- program~test24&#45;&gt;mpi_finalize -->
 <g id="call~~graph~~CallGraph_edge90" class="edge">
 <title>program~test24&#45;&gt;mpi_finalize</title>
-<path fill="none" stroke="#105025" stroke-opacity="0.019608" d="M53.44,-713.91C57.42,-711.17 61.46,-708.14 65,-705 83.4,-688.69 80.1,-675.95 101,-663 111.87,-656.26 124.8,-651.68 137.18,-648.57"/>
-<polygon fill="#105025" fill-opacity="0.019608" stroke="#105025" stroke-opacity="0.019608" points="137.96,-651.98 146.95,-646.38 136.42,-645.15 137.96,-651.98"/>
+<path fill="none" stroke="#6900ff" d="M53.44,-713.91C57.42,-711.17 61.46,-708.14 65,-705 83.4,-688.69 80.72,-676.9 101,-663 105.02,-660.24 109.45,-657.81 114.01,-655.67"/>
+<polygon fill="#6900ff" stroke="#6900ff" points="115.63,-658.79 123.49,-651.68 112.92,-652.33 115.63,-658.79"/>
 </g>
 <!-- program~test24&#45;&gt;mpi_init -->
 <g id="call~~graph~~CallGraph_edge91" class="edge">
 <title>program~test24&#45;&gt;mpi_init</title>
-<path fill="none" stroke="#105025" stroke-opacity="0.019608" d="M59.69,-734.51C72.15,-738.46 87.3,-743.14 101,-747 116.08,-751.25 132.82,-755.56 147.28,-759.16"/>
-<polygon fill="#105025" fill-opacity="0.019608" stroke="#105025" stroke-opacity="0.019608" points="146.82,-762.65 157.36,-761.65 148.49,-755.85 146.82,-762.65"/>
+<path fill="none" stroke="#6900ff" d="M59.51,-734.6C78.09,-740.75 103.35,-749.1 123.96,-755.92"/>
+<polygon fill="#6900ff" stroke="#6900ff" points="123.06,-759.3 133.65,-759.12 125.26,-752.66 123.06,-759.3"/>
 </g>
 <!-- program~test25 -->
 <g id="call~~graph~~CallGraph_node41" class="node">
 <title>program~test25</title>
-<g id="a_call~~graph~~CallGraph_node41"><a xlink:href=".././program/test25.html" xlink:title="test25">
+<g id="a_call~~graph~~CallGraph_node41"><a xlink:href="../program/test25.html" xlink:title="test25">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1032 5.5,-1032 5.5,-1008 59.5,-1008 59.5,-1032"/>
 <text text-anchor="middle" x="32.5" y="-1017.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test25</text>
 </a>
@@ -1067,25 +1155,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test25&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge96" class="edge">
 <title>program~test25&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#134025" stroke-opacity="0.019608" d="M59.72,-1020C69.55,-1020 81.36,-1020 93.74,-1020"/>
-<polygon fill="#134025" fill-opacity="0.019608" stroke="#134025" stroke-opacity="0.019608" points="93.77,-1023.5 103.77,-1020 93.77,-1016.5 93.77,-1023.5"/>
+<path fill="none" stroke="#8600ff" d="M59.51,-1020C69.54,-1020 81.52,-1020 93.67,-1020"/>
+<polygon fill="#8600ff" stroke="#8600ff" points="93.87,-1023.5 103.87,-1020 93.87,-1016.5 93.87,-1023.5"/>
 </g>
 <!-- program~test25&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge97" class="edge">
 <title>program~test25&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#134025" stroke-opacity="0.019608" d="M59.69,-1011.49C72.15,-1007.54 87.3,-1002.86 101,-999 108.73,-996.82 116.89,-994.63 124.97,-992.52"/>
-<polygon fill="#134025" fill-opacity="0.019608" stroke="#134025" stroke-opacity="0.019608" points="125.92,-995.89 134.73,-990 124.17,-989.11 125.92,-995.89"/>
+<path fill="none" stroke="#8600ff" d="M59.51,-1011.4C75.25,-1006.19 95.79,-999.4 114.24,-993.3"/>
+<polygon fill="#8600ff" stroke="#8600ff" points="115.54,-996.55 123.94,-990.09 113.34,-989.91 115.54,-996.55"/>
 </g>
 <!-- program~test25&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge95" class="edge">
 <title>program~test25&#45;&gt;check</title>
-<path fill="none" stroke="#134025" stroke-opacity="0.019608" d="M57.09,-1007.89C60.2,-1005.35 62.99,-1002.39 65,-999 112.69,-918.37 40.35,-650.39 101,-579 112.4,-565.59 131.01,-560.09 147.73,-558.05"/>
-<polygon fill="#134025" fill-opacity="0.019608" stroke="#134025" stroke-opacity="0.019608" points="148.14,-561.53 157.81,-557.19 147.54,-554.56 148.14,-561.53"/>
+<path fill="none" stroke="#8600ff" d="M57.09,-1007.89C60.2,-1005.35 62.99,-1002.39 65,-999 112.69,-918.37 43.68,-653.09 101,-579 106.86,-571.43 115.65,-566.58 124.69,-563.48"/>
+<polygon fill="#8600ff" stroke="#8600ff" points="125.78,-566.81 134.47,-560.75 123.9,-560.06 125.78,-566.81"/>
 </g>
 <!-- program~test26 -->
 <g id="call~~graph~~CallGraph_node42" class="node">
 <title>program~test26</title>
-<g id="a_call~~graph~~CallGraph_node42"><a xlink:href=".././program/test26.html" xlink:title="test26">
+<g id="a_call~~graph~~CallGraph_node42"><a xlink:href="../program/test26.html" xlink:title="test26">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-948 5.5,-948 5.5,-924 59.5,-924 59.5,-948"/>
 <text text-anchor="middle" x="32.5" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test26</text>
 </a>
@@ -1094,31 +1182,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test26&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge99" class="edge">
 <title>program~test26&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#163025" stroke-opacity="0.019608" d="M53.44,-948.09C57.42,-950.83 61.46,-953.86 65,-957 83.4,-973.31 80.1,-986.05 101,-999 103.84,-1000.76 106.83,-1002.38 109.9,-1003.86"/>
-<polygon fill="#163025" fill-opacity="0.019608" stroke="#163025" stroke-opacity="0.019608" points="108.81,-1007.19 119.38,-1007.9 111.56,-1000.76 108.81,-1007.19"/>
+<path fill="none" stroke="#a300ff" d="M53.44,-948.09C57.42,-950.83 61.46,-953.86 65,-957 83.4,-973.31 80.72,-985.1 101,-999 103.37,-1000.63 105.88,-1002.14 108.48,-1003.54"/>
+<polygon fill="#a300ff" stroke="#a300ff" points="107.03,-1006.73 117.56,-1007.92 110.07,-1000.43 107.03,-1006.73"/>
 </g>
 <!-- program~test26&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge100" class="edge">
 <title>program~test26&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#163025" stroke-opacity="0.019608" d="M59.69,-944.51C72.15,-948.46 87.3,-953.14 101,-957 108.73,-959.18 116.89,-961.37 124.97,-963.48"/>
-<polygon fill="#163025" fill-opacity="0.019608" stroke="#163025" stroke-opacity="0.019608" points="124.17,-966.89 134.73,-966 125.92,-960.11 124.17,-966.89"/>
+<path fill="none" stroke="#a300ff" d="M59.51,-944.6C75.25,-949.81 95.79,-956.6 114.24,-962.7"/>
+<polygon fill="#a300ff" stroke="#a300ff" points="113.34,-966.09 123.94,-965.91 115.54,-959.45 113.34,-966.09"/>
 </g>
 <!-- program~test26&#45;&gt;proc~dtimer_write -->
 <g id="call~~graph~~CallGraph_edge101" class="edge">
 <title>program~test26&#45;&gt;proc~dtimer_write</title>
-<path fill="none" stroke="#163025" stroke-opacity="0.019608" d="M59.72,-936C69.26,-936 80.66,-936 92.63,-936"/>
-<polygon fill="#163025" fill-opacity="0.019608" stroke="#163025" stroke-opacity="0.019608" points="92.8,-939.5 102.8,-936 92.8,-932.5 92.8,-939.5"/>
+<path fill="none" stroke="#a300ff" d="M59.51,-936C69.1,-936 80.48,-936 92.08,-936"/>
+<polygon fill="#a300ff" stroke="#a300ff" points="92.29,-939.5 102.29,-936 92.29,-932.5 92.29,-939.5"/>
 </g>
 <!-- program~test26&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge98" class="edge">
 <title>program~test26&#45;&gt;check</title>
-<path fill="none" stroke="#163025" stroke-opacity="0.019608" d="M57.03,-923.85C60.14,-921.32 62.96,-918.37 65,-915 103.91,-850.78 51.77,-635.71 101,-579 112.54,-565.71 131.16,-560.22 147.85,-558.16"/>
-<polygon fill="#163025" fill-opacity="0.019608" stroke="#163025" stroke-opacity="0.019608" points="148.25,-561.64 157.91,-557.28 147.64,-554.66 148.25,-561.64"/>
+<path fill="none" stroke="#a300ff" d="M57.03,-923.85C60.14,-921.32 62.96,-918.37 65,-915 142.83,-786.55 7.84,-696.8 101,-579 106.89,-571.55 115.61,-566.74 124.57,-563.64"/>
+<polygon fill="#a300ff" stroke="#a300ff" points="125.59,-566.98 134.26,-560.89 123.69,-560.25 125.59,-566.98"/>
 </g>
 <!-- program~test27 -->
 <g id="call~~graph~~CallGraph_node43" class="node">
 <title>program~test27</title>
-<g id="a_call~~graph~~CallGraph_node43"><a xlink:href=".././program/test27.html" xlink:title="test27">
+<g id="a_call~~graph~~CallGraph_node43"><a xlink:href="../program/test27.html" xlink:title="test27">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-906 5.5,-906 5.5,-882 59.5,-882 59.5,-906"/>
 <text text-anchor="middle" x="32.5" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test27</text>
 </a>
@@ -1127,31 +1215,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test27&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge103" class="edge">
 <title>program~test27&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#192025" stroke-opacity="0.019608" d="M55.21,-906.02C58.79,-908.65 62.23,-911.67 65,-915 90.97,-946.23 70.11,-972.62 101,-999 102.53,-1000.3 104.12,-1001.53 105.78,-1002.68"/>
-<polygon fill="#192025" fill-opacity="0.019608" stroke="#192025" stroke-opacity="0.019608" points="104.09,-1005.75 114.48,-1007.83 107.66,-999.72 104.09,-1005.75"/>
+<path fill="none" stroke="#c000ff" d="M55.21,-906.02C58.79,-908.65 62.23,-911.67 65,-915 90.97,-946.23 71.35,-971.24 101,-999 102.29,-1000.21 103.66,-1001.35 105.08,-1002.43"/>
+<polygon fill="#c000ff" stroke="#c000ff" points="103.47,-1005.54 113.79,-1007.9 107.19,-999.62 103.47,-1005.54"/>
 </g>
 <!-- program~test27&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge104" class="edge">
 <title>program~test27&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#192025" stroke-opacity="0.019608" d="M53.44,-906.09C57.42,-908.83 61.46,-911.86 65,-915 83.4,-931.31 80.1,-944.05 101,-957 103.84,-958.76 106.83,-960.38 109.9,-961.86"/>
-<polygon fill="#192025" fill-opacity="0.019608" stroke="#192025" stroke-opacity="0.019608" points="108.81,-965.19 119.38,-965.9 111.56,-958.76 108.81,-965.19"/>
+<path fill="none" stroke="#c000ff" d="M53.44,-906.09C57.42,-908.83 61.46,-911.86 65,-915 83.4,-931.31 80.72,-943.1 101,-957 103.37,-958.63 105.88,-960.14 108.48,-961.54"/>
+<polygon fill="#c000ff" stroke="#c000ff" points="107.03,-964.73 117.56,-965.92 110.07,-958.43 107.03,-964.73"/>
 </g>
 <!-- program~test27&#45;&gt;proc~dtimer_write -->
 <g id="call~~graph~~CallGraph_edge105" class="edge">
 <title>program~test27&#45;&gt;proc~dtimer_write</title>
-<path fill="none" stroke="#192025" stroke-opacity="0.019608" d="M59.72,-901.32C79.33,-906.79 106.82,-914.46 130.96,-921.2"/>
-<polygon fill="#192025" fill-opacity="0.019608" stroke="#192025" stroke-opacity="0.019608" points="130.14,-924.6 140.72,-923.92 132.02,-917.86 130.14,-924.6"/>
+<path fill="none" stroke="#c000ff" d="M59.51,-902.6C75.25,-907.81 95.79,-914.6 114.24,-920.7"/>
+<polygon fill="#c000ff" stroke="#c000ff" points="113.34,-924.09 123.94,-923.91 115.54,-917.45 113.34,-924.09"/>
 </g>
 <!-- program~test27&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge102" class="edge">
 <title>program~test27&#45;&gt;check</title>
-<path fill="none" stroke="#192025" stroke-opacity="0.019608" d="M56.98,-881.82C60.1,-879.29 62.93,-876.36 65,-873 134.07,-760.93 13.96,-677.76 101,-579 112.64,-565.79 131.27,-560.31 147.93,-558.23"/>
-<polygon fill="#192025" fill-opacity="0.019608" stroke="#192025" stroke-opacity="0.019608" points="148.33,-561.71 157.98,-557.34 147.71,-554.74 148.33,-561.71"/>
+<path fill="none" stroke="#c000ff" d="M56.98,-881.82C60.1,-879.29 62.93,-876.36 65,-873 134.07,-760.93 18.57,-681.64 101,-579 106.94,-571.6 115.68,-566.8 124.64,-563.69"/>
+<polygon fill="#c000ff" stroke="#c000ff" points="125.66,-567.04 134.33,-560.94 123.75,-560.31 125.66,-567.04"/>
 </g>
 <!-- program~test28 -->
 <g id="call~~graph~~CallGraph_node44" class="node">
 <title>program~test28</title>
-<g id="a_call~~graph~~CallGraph_node44"><a xlink:href=".././program/test28.html" xlink:title="test28">
+<g id="a_call~~graph~~CallGraph_node44"><a xlink:href="../program/test28.html" xlink:title="test28">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1074 5.5,-1074 5.5,-1050 59.5,-1050 59.5,-1074"/>
 <text text-anchor="middle" x="32.5" y="-1059.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test28</text>
 </a>
@@ -1160,25 +1248,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test28&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge107" class="edge">
 <title>program~test28&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#221025" stroke-opacity="0.019608" d="M59.72,-1054.68C79.33,-1049.21 106.82,-1041.54 130.96,-1034.8"/>
-<polygon fill="#221025" fill-opacity="0.019608" stroke="#221025" stroke-opacity="0.019608" points="132.02,-1038.14 140.72,-1032.08 130.14,-1031.4 132.02,-1038.14"/>
+<path fill="none" stroke="#dd00ff" d="M59.51,-1053.4C75.25,-1048.19 95.79,-1041.4 114.24,-1035.3"/>
+<polygon fill="#dd00ff" stroke="#dd00ff" points="115.54,-1038.55 123.94,-1032.09 113.34,-1031.91 115.54,-1038.55"/>
 </g>
 <!-- program~test28&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge108" class="edge">
 <title>program~test28&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#221025" stroke-opacity="0.019608" d="M53.44,-1049.91C57.42,-1047.17 61.46,-1044.14 65,-1041 83.4,-1024.69 80.1,-1011.95 101,-999 103.84,-997.24 106.83,-995.62 109.9,-994.14"/>
-<polygon fill="#221025" fill-opacity="0.019608" stroke="#221025" stroke-opacity="0.019608" points="111.56,-997.24 119.38,-990.1 108.81,-990.81 111.56,-997.24"/>
+<path fill="none" stroke="#dd00ff" d="M53.44,-1049.91C57.42,-1047.17 61.46,-1044.14 65,-1041 83.4,-1024.69 80.72,-1012.9 101,-999 103.37,-997.37 105.88,-995.86 108.48,-994.46"/>
+<polygon fill="#dd00ff" stroke="#dd00ff" points="110.07,-997.57 117.56,-990.08 107.03,-991.27 110.07,-997.57"/>
 </g>
 <!-- program~test28&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge106" class="edge">
 <title>program~test28&#45;&gt;check</title>
-<path fill="none" stroke="#221025" stroke-opacity="0.019608" d="M57.11,-1049.9C60.22,-1047.36 63.01,-1044.4 65,-1041 117.08,-952.16 34.63,-657.74 101,-579 112.34,-565.54 130.95,-560.04 147.68,-558.02"/>
-<polygon fill="#221025" fill-opacity="0.019608" stroke="#221025" stroke-opacity="0.019608" points="148.1,-561.49 157.77,-557.16 147.51,-554.52 148.1,-561.49"/>
+<path fill="none" stroke="#dd00ff" d="M57.11,-1049.9C60.22,-1047.36 63.01,-1044.4 65,-1041 117.08,-952.16 38.3,-660.69 101,-579 106.83,-571.41 115.61,-566.55 124.65,-563.45"/>
+<polygon fill="#dd00ff" stroke="#dd00ff" points="125.74,-566.78 134.44,-560.72 123.86,-560.03 125.74,-566.78"/>
 </g>
 <!-- program~test29 -->
 <g id="call~~graph~~CallGraph_node45" class="node">
 <title>program~test29</title>
-<g id="a_call~~graph~~CallGraph_node45"><a xlink:href=".././program/test29.html" xlink:title="test29">
+<g id="a_call~~graph~~CallGraph_node45"><a xlink:href="../program/test29.html" xlink:title="test29">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-864 5.5,-864 5.5,-840 59.5,-840 59.5,-864"/>
 <text text-anchor="middle" x="32.5" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test29</text>
 </a>
@@ -1187,31 +1275,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test29&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge110" class="edge">
 <title>program~test29&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#250025" stroke-opacity="0.019608" d="M56.21,-864.23C59.51,-866.78 62.6,-869.71 65,-873 99.34,-920.04 59.19,-958.45 101,-999 102.13,-1000.1 103.32,-1001.14 104.54,-1002.14"/>
-<polygon fill="#250025" fill-opacity="0.019608" stroke="#250025" stroke-opacity="0.019608" points="102.94,-1005.27 113.19,-1007.95 106.84,-999.47 102.94,-1005.27"/>
+<path fill="none" stroke="#fa00ff" d="M56.21,-864.23C59.51,-866.78 62.6,-869.71 65,-873 99.34,-920.04 61.09,-956.58 101,-999 102.03,-1000.1 103.12,-1001.14 104.27,-1002.12"/>
+<polygon fill="#fa00ff" stroke="#fa00ff" points="102.27,-1004.99 112.46,-1007.87 106.29,-999.26 102.27,-1004.99"/>
 </g>
 <!-- program~test29&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge111" class="edge">
 <title>program~test29&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#250025" stroke-opacity="0.019608" d="M55.21,-864.02C58.79,-866.65 62.23,-869.67 65,-873 90.97,-904.23 70.11,-930.62 101,-957 102.53,-958.3 104.12,-959.53 105.78,-960.68"/>
-<polygon fill="#250025" fill-opacity="0.019608" stroke="#250025" stroke-opacity="0.019608" points="104.09,-963.75 114.48,-965.83 107.66,-957.72 104.09,-963.75"/>
+<path fill="none" stroke="#fa00ff" d="M55.21,-864.02C58.79,-866.65 62.23,-869.67 65,-873 90.97,-904.23 71.35,-929.24 101,-957 102.29,-958.21 103.66,-959.35 105.08,-960.43"/>
+<polygon fill="#fa00ff" stroke="#fa00ff" points="103.47,-963.54 113.79,-965.9 107.19,-957.62 103.47,-963.54"/>
 </g>
 <!-- program~test29&#45;&gt;proc~dtimer_write -->
 <g id="call~~graph~~CallGraph_edge112" class="edge">
 <title>program~test29&#45;&gt;proc~dtimer_write</title>
-<path fill="none" stroke="#250025" stroke-opacity="0.019608" d="M55.06,-864.04C80.88,-878.44 124.29,-902.67 153.52,-918.99"/>
-<polygon fill="#250025" fill-opacity="0.019608" stroke="#250025" stroke-opacity="0.019608" points="152.04,-922.17 162.48,-923.99 155.45,-916.06 152.04,-922.17"/>
+<path fill="none" stroke="#fa00ff" d="M51.7,-864.04C73.2,-878.26 109.16,-902.04 133.81,-918.35"/>
+<polygon fill="#fa00ff" stroke="#fa00ff" points="132.07,-921.39 142.34,-923.99 135.93,-915.55 132.07,-921.39"/>
 </g>
 <!-- program~test29&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge109" class="edge">
 <title>program~test29&#45;&gt;check</title>
-<path fill="none" stroke="#250025" stroke-opacity="0.019608" d="M56.92,-839.79C60.05,-837.26 62.9,-834.34 65,-831 125.32,-735.29 25.35,-663.12 101,-579 112.69,-566 131.15,-560.52 147.7,-558.38"/>
-<polygon fill="#250025" fill-opacity="0.019608" stroke="#250025" stroke-opacity="0.019608" points="148.05,-561.86 157.68,-557.45 147.4,-554.89 148.05,-561.86"/>
+<path fill="none" stroke="#fa00ff" d="M56.92,-839.79C60.05,-837.26 62.9,-834.34 65,-831 125.32,-735.29 29.27,-666.49 101,-579 107.02,-571.66 115.78,-566.88 124.74,-563.77"/>
+<polygon fill="#fa00ff" stroke="#fa00ff" points="125.76,-567.12 134.41,-561.01 123.84,-560.39 125.76,-567.12"/>
 </g>
 <!-- program~test3 -->
 <g id="call~~graph~~CallGraph_node46" class="node">
 <title>program~test3</title>
-<g id="a_call~~graph~~CallGraph_node46"><a xlink:href=".././program/test3.html" xlink:title="test3">
+<g id="a_call~~graph~~CallGraph_node46"><a xlink:href="../program/test3.html" xlink:title="test3">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-234 5.5,-234 5.5,-210 59.5,-210 59.5,-234"/>
 <text text-anchor="middle" x="32.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test3</text>
 </a>
@@ -1220,31 +1308,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test3&#45;&gt;proc~timer_start -->
 <g id="call~~graph~~CallGraph_edge114" class="edge">
 <title>program~test3&#45;&gt;proc~timer_start</title>
-<path fill="none" stroke="transparent" d="M59.72,-214.68C79.33,-209.21 106.82,-201.54 130.96,-194.8"/>
-<polygon fill="transparent" stroke="transparent" points="132.02,-198.14 140.72,-192.08 130.14,-191.4 132.02,-198.14"/>
+<path fill="none" stroke="#ff00e6" d="M59.51,-213.4C75.25,-208.19 95.79,-201.4 114.24,-195.3"/>
+<polygon fill="#ff00e6" stroke="#ff00e6" points="115.54,-198.55 123.94,-192.09 113.34,-191.91 115.54,-198.55"/>
 </g>
 <!-- program~test3&#45;&gt;proc~timer_stop -->
 <g id="call~~graph~~CallGraph_edge115" class="edge">
 <title>program~test3&#45;&gt;proc~timer_stop</title>
-<path fill="none" stroke="transparent" d="M53.44,-209.91C57.42,-207.17 61.46,-204.14 65,-201 83.4,-184.69 80.1,-171.95 101,-159 103.84,-157.24 106.83,-155.62 109.9,-154.14"/>
-<polygon fill="transparent" stroke="transparent" points="111.56,-157.24 119.38,-150.1 108.81,-150.81 111.56,-157.24"/>
+<path fill="none" stroke="#ff00e6" d="M53.44,-209.91C57.42,-207.17 61.46,-204.14 65,-201 83.4,-184.69 80.72,-172.9 101,-159 103.37,-157.37 105.88,-155.86 108.48,-154.46"/>
+<polygon fill="#ff00e6" stroke="#ff00e6" points="110.07,-157.57 117.56,-150.08 107.03,-151.27 110.07,-157.57"/>
 </g>
 <!-- program~test3&#45;&gt;proc~timer_write -->
 <g id="call~~graph~~CallGraph_edge116" class="edge">
 <title>program~test3&#45;&gt;proc~timer_write</title>
-<path fill="none" stroke="transparent" d="M55.21,-209.98C58.79,-207.35 62.23,-204.33 65,-201 90.97,-169.77 70.11,-143.38 101,-117 102.53,-115.7 104.12,-114.47 105.78,-113.32"/>
-<polygon fill="transparent" stroke="transparent" points="107.66,-116.28 114.48,-108.17 104.09,-110.25 107.66,-116.28"/>
+<path fill="none" stroke="#ff00e6" d="M55.21,-209.98C58.79,-207.35 62.23,-204.33 65,-201 90.97,-169.77 71.35,-144.76 101,-117 102.29,-115.79 103.66,-114.65 105.08,-113.57"/>
+<polygon fill="#ff00e6" stroke="#ff00e6" points="107.19,-116.38 113.79,-108.1 103.47,-110.46 107.19,-116.38"/>
 </g>
 <!-- program~test3&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge113" class="edge">
 <title>program~test3&#45;&gt;check</title>
-<path fill="none" stroke="transparent" d="M56.92,-234.21C60.05,-236.74 62.9,-239.66 65,-243 125.32,-338.71 43.64,-397.48 101,-495 112.48,-514.52 132.58,-530.01 150.12,-540.75"/>
-<polygon fill="transparent" stroke="transparent" points="148.6,-543.92 159.01,-545.93 152.13,-537.87 148.6,-543.92"/>
+<path fill="none" stroke="#ff00e6" d="M56.92,-234.21C60.05,-236.74 62.9,-239.66 65,-243 125.32,-338.71 51.85,-393.09 101,-495 109.33,-512.28 124.13,-527.98 136.88,-539.38"/>
+<polygon fill="#ff00e6" stroke="#ff00e6" points="134.61,-542.05 144.48,-545.9 139.17,-536.74 134.61,-542.05"/>
 </g>
 <!-- program~test30 -->
 <g id="call~~graph~~CallGraph_node47" class="node">
 <title>program~test30</title>
-<g id="a_call~~graph~~CallGraph_node47"><a xlink:href=".././program/test30.html" xlink:title="test30">
+<g id="a_call~~graph~~CallGraph_node47"><a xlink:href="../program/test30.html" xlink:title="test30">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-990 5.5,-990 5.5,-966 59.5,-966 59.5,-990"/>
 <text text-anchor="middle" x="32.5" y="-975.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test30</text>
 </a>
@@ -1253,31 +1341,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test30&#45;&gt;proc~dtimer_start -->
 <g id="call~~graph~~CallGraph_edge118" class="edge">
 <title>program~test30&#45;&gt;proc~dtimer_start</title>
-<path fill="none" stroke="#255020" stroke-opacity="0.007843" d="M59.69,-986.51C72.15,-990.46 87.3,-995.14 101,-999 108.73,-1001.18 116.89,-1003.37 124.97,-1005.48"/>
-<polygon fill="#255020" fill-opacity="0.007843" stroke="#255020" stroke-opacity="0.007843" points="124.17,-1008.89 134.73,-1008 125.92,-1002.11 124.17,-1008.89"/>
+<path fill="none" stroke="#ff00ca" d="M59.51,-986.6C75.25,-991.81 95.79,-998.6 114.24,-1004.7"/>
+<polygon fill="#ff00ca" stroke="#ff00ca" points="113.34,-1008.09 123.94,-1007.91 115.54,-1001.45 113.34,-1008.09"/>
 </g>
 <!-- program~test30&#45;&gt;proc~dtimer_stop -->
 <g id="call~~graph~~CallGraph_edge119" class="edge">
 <title>program~test30&#45;&gt;proc~dtimer_stop</title>
-<path fill="none" stroke="#255020" stroke-opacity="0.007843" d="M59.72,-978C69.75,-978 81.84,-978 94.5,-978"/>
-<polygon fill="#255020" fill-opacity="0.007843" stroke="#255020" stroke-opacity="0.007843" points="94.74,-981.5 104.74,-978 94.74,-974.5 94.74,-981.5"/>
+<path fill="none" stroke="#ff00ca" d="M59.51,-978C69.66,-978 81.79,-978 94.08,-978"/>
+<polygon fill="#ff00ca" stroke="#ff00ca" points="94.39,-981.5 104.39,-978 94.39,-974.5 94.39,-981.5"/>
 </g>
 <!-- program~test30&#45;&gt;proc~dtimer_write -->
 <g id="call~~graph~~CallGraph_edge120" class="edge">
 <title>program~test30&#45;&gt;proc~dtimer_write</title>
-<path fill="none" stroke="#255020" stroke-opacity="0.007843" d="M59.69,-969.49C72.15,-965.54 87.3,-960.86 101,-957 108.73,-954.82 116.89,-952.63 124.97,-950.52"/>
-<polygon fill="#255020" fill-opacity="0.007843" stroke="#255020" stroke-opacity="0.007843" points="125.92,-953.89 134.73,-948 124.17,-947.11 125.92,-953.89"/>
+<path fill="none" stroke="#ff00ca" d="M59.51,-969.4C75.25,-964.19 95.79,-957.4 114.24,-951.3"/>
+<polygon fill="#ff00ca" stroke="#ff00ca" points="115.54,-954.55 123.94,-948.09 113.34,-947.91 115.54,-954.55"/>
 </g>
 <!-- program~test30&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge117" class="edge">
 <title>program~test30&#45;&gt;check</title>
-<path fill="none" stroke="#255020" stroke-opacity="0.007843" d="M57.06,-965.87C60.17,-963.34 62.98,-960.38 65,-957 108.3,-884.58 46.06,-643.05 101,-579 112.46,-565.64 131.08,-560.15 147.78,-558.1"/>
-<polygon fill="#255020" fill-opacity="0.007843" stroke="#255020" stroke-opacity="0.007843" points="148.19,-561.58 157.85,-557.23 147.59,-554.6 148.19,-561.58"/>
+<path fill="none" stroke="#ff00ca" d="M57.06,-965.87C60.17,-963.34 62.98,-960.38 65,-957 108.3,-884.58 49.05,-645.49 101,-579 106.84,-571.52 115.55,-566.7 124.51,-563.59"/>
+<polygon fill="#ff00ca" stroke="#ff00ca" points="125.54,-566.94 134.21,-560.85 123.63,-560.2 125.54,-566.94"/>
 </g>
 <!-- program~test4 -->
 <g id="call~~graph~~CallGraph_node48" class="node">
 <title>program~test4</title>
-<g id="a_call~~graph~~CallGraph_node48"><a xlink:href=".././program/test4.html" xlink:title="test4">
+<g id="a_call~~graph~~CallGraph_node48"><a xlink:href="../program/test4.html" xlink:title="test4">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1200 5.5,-1200 5.5,-1176 59.5,-1176 59.5,-1200"/>
 <text text-anchor="middle" x="32.5" y="-1185.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test4</text>
 </a>
@@ -1286,19 +1374,19 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test4&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge121" class="edge">
 <title>program~test4&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#255017" stroke-opacity="0.011765" d="M52.45,-1200.03C56.66,-1202.87 61.04,-1205.96 65,-1209 101.34,-1236.94 140.71,-1272.92 163.82,-1294.68"/>
-<polygon fill="#255017" fill-opacity="0.011765" stroke="#255017" stroke-opacity="0.011765" points="161.62,-1297.41 171.29,-1301.75 166.43,-1292.33 161.62,-1297.41"/>
+<path fill="none" stroke="#ff00ad" d="M53.37,-1200.17C57.35,-1202.9 61.41,-1205.91 65,-1209 95.84,-1235.53 126.62,-1271.51 144.59,-1293.72"/>
+<polygon fill="#ff00ad" stroke="#ff00ad" points="142.06,-1296.16 151.04,-1301.78 147.53,-1291.78 142.06,-1296.16"/>
 </g>
 <!-- program~test4&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge122" class="edge">
 <title>program~test4&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#255017" stroke-opacity="0.011765" d="M56.21,-1200.23C59.51,-1202.78 62.6,-1205.71 65,-1209 99.34,-1256.04 59.19,-1294.45 101,-1335 102.13,-1336.1 103.32,-1337.14 104.54,-1338.14"/>
-<polygon fill="#255017" fill-opacity="0.011765" stroke="#255017" stroke-opacity="0.011765" points="102.94,-1341.27 113.19,-1343.95 106.84,-1335.47 102.94,-1341.27"/>
+<path fill="none" stroke="#ff00ad" d="M56.21,-1200.23C59.51,-1202.78 62.6,-1205.71 65,-1209 99.34,-1256.04 61.09,-1292.58 101,-1335 102.03,-1336.1 103.12,-1337.14 104.27,-1338.12"/>
+<polygon fill="#ff00ad" stroke="#ff00ad" points="102.27,-1340.99 112.46,-1343.87 106.29,-1335.26 102.27,-1340.99"/>
 </g>
 <!-- program~test5 -->
 <g id="call~~graph~~CallGraph_node49" class="node">
 <title>program~test5</title>
-<g id="a_call~~graph~~CallGraph_node49"><a xlink:href=".././program/test5.html" xlink:title="test5">
+<g id="a_call~~graph~~CallGraph_node49"><a xlink:href="../program/test5.html" xlink:title="test5">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1494 5.5,-1494 5.5,-1470 59.5,-1470 59.5,-1494"/>
 <text text-anchor="middle" x="32.5" y="-1479.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test5</text>
 </a>
@@ -1307,25 +1395,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test5&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge123" class="edge">
 <title>program~test5&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#255014" stroke-opacity="0.015686" d="M56.21,-1469.77C59.51,-1467.22 62.6,-1464.29 65,-1461 99.34,-1413.96 59.19,-1375.55 101,-1335 102.13,-1333.9 103.32,-1332.86 104.54,-1331.86"/>
-<polygon fill="#255014" fill-opacity="0.015686" stroke="#255014" stroke-opacity="0.015686" points="106.84,-1334.53 113.19,-1326.05 102.94,-1328.73 106.84,-1334.53"/>
+<path fill="none" stroke="#ff0090" d="M56.21,-1469.77C59.51,-1467.22 62.6,-1464.29 65,-1461 99.34,-1413.96 61.09,-1377.42 101,-1335 102.03,-1333.9 103.12,-1332.86 104.27,-1331.88"/>
+<polygon fill="#ff0090" stroke="#ff0090" points="106.29,-1334.74 112.46,-1326.13 102.27,-1329.01 106.29,-1334.74"/>
 </g>
 <!-- program~test5&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge124" class="edge">
 <title>program~test5&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#255014" stroke-opacity="0.015686" d="M55.21,-1469.98C58.79,-1467.35 62.23,-1464.33 65,-1461 90.97,-1429.77 70.11,-1403.38 101,-1377 102.53,-1375.7 104.12,-1374.47 105.78,-1373.32"/>
-<polygon fill="#255014" fill-opacity="0.015686" stroke="#255014" stroke-opacity="0.015686" points="107.66,-1376.28 114.48,-1368.17 104.09,-1370.25 107.66,-1376.28"/>
+<path fill="none" stroke="#ff0090" d="M55.21,-1469.98C58.79,-1467.35 62.23,-1464.33 65,-1461 90.97,-1429.77 71.35,-1404.76 101,-1377 102.29,-1375.79 103.66,-1374.65 105.08,-1373.57"/>
+<polygon fill="#ff0090" stroke="#ff0090" points="107.19,-1376.38 113.79,-1368.1 103.47,-1370.46 107.19,-1376.38"/>
 </g>
 <!-- program~test5&#45;&gt;proc~ctimer_write -->
 <g id="call~~graph~~CallGraph_edge125" class="edge">
 <title>program~test5&#45;&gt;proc~ctimer_write</title>
-<path fill="none" stroke="#255014" stroke-opacity="0.015686" d="M55.06,-1469.96C80.88,-1455.56 124.29,-1431.33 153.52,-1415.01"/>
-<polygon fill="#255014" fill-opacity="0.015686" stroke="#255014" stroke-opacity="0.015686" points="155.45,-1417.94 162.48,-1410.01 152.04,-1411.83 155.45,-1417.94"/>
+<path fill="none" stroke="#ff0090" d="M51.7,-1469.96C73.2,-1455.74 109.16,-1431.96 133.81,-1415.65"/>
+<polygon fill="#ff0090" stroke="#ff0090" points="135.93,-1418.45 142.34,-1410.01 132.07,-1412.61 135.93,-1418.45"/>
 </g>
 <!-- program~test6 -->
 <g id="call~~graph~~CallGraph_node50" class="node">
 <title>program~test6</title>
-<g id="a_call~~graph~~CallGraph_node50"><a xlink:href=".././program/test6.html" xlink:title="test6">
+<g id="a_call~~graph~~CallGraph_node50"><a xlink:href="../program/test6.html" xlink:title="test6">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-1452 5.5,-1452 5.5,-1428 59.5,-1428 59.5,-1452"/>
 <text text-anchor="middle" x="32.5" y="-1437.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test6</text>
 </a>
@@ -1334,25 +1422,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test6&#45;&gt;proc~ctimer_start -->
 <g id="call~~graph~~CallGraph_edge126" class="edge">
 <title>program~test6&#45;&gt;proc~ctimer_start</title>
-<path fill="none" stroke="#255011" stroke-opacity="0.019608" d="M55.21,-1427.98C58.79,-1425.35 62.23,-1422.33 65,-1419 90.97,-1387.77 70.11,-1361.38 101,-1335 102.53,-1333.7 104.12,-1332.47 105.78,-1331.32"/>
-<polygon fill="#255011" fill-opacity="0.019608" stroke="#255011" stroke-opacity="0.019608" points="107.66,-1334.28 114.48,-1326.17 104.09,-1328.25 107.66,-1334.28"/>
+<path fill="none" stroke="#ff0073" d="M55.21,-1427.98C58.79,-1425.35 62.23,-1422.33 65,-1419 90.97,-1387.77 71.35,-1362.76 101,-1335 102.29,-1333.79 103.66,-1332.65 105.08,-1331.57"/>
+<polygon fill="#ff0073" stroke="#ff0073" points="107.19,-1334.38 113.79,-1326.1 103.47,-1328.46 107.19,-1334.38"/>
 </g>
 <!-- program~test6&#45;&gt;proc~ctimer_stop -->
 <g id="call~~graph~~CallGraph_edge127" class="edge">
 <title>program~test6&#45;&gt;proc~ctimer_stop</title>
-<path fill="none" stroke="#255011" stroke-opacity="0.019608" d="M53.44,-1427.91C57.42,-1425.17 61.46,-1422.14 65,-1419 83.4,-1402.69 80.1,-1389.95 101,-1377 103.84,-1375.24 106.83,-1373.62 109.9,-1372.14"/>
-<polygon fill="#255011" fill-opacity="0.019608" stroke="#255011" stroke-opacity="0.019608" points="111.56,-1375.24 119.38,-1368.1 108.81,-1368.81 111.56,-1375.24"/>
+<path fill="none" stroke="#ff0073" d="M53.44,-1427.91C57.42,-1425.17 61.46,-1422.14 65,-1419 83.4,-1402.69 80.72,-1390.9 101,-1377 103.37,-1375.37 105.88,-1373.86 108.48,-1372.46"/>
+<polygon fill="#ff0073" stroke="#ff0073" points="110.07,-1375.57 117.56,-1368.08 107.03,-1369.27 110.07,-1375.57"/>
 </g>
 <!-- program~test6&#45;&gt;proc~ctimer_write -->
 <g id="call~~graph~~CallGraph_edge128" class="edge">
 <title>program~test6&#45;&gt;proc~ctimer_write</title>
-<path fill="none" stroke="#255011" stroke-opacity="0.019608" d="M59.72,-1432.68C79.33,-1427.21 106.82,-1419.54 130.96,-1412.8"/>
-<polygon fill="#255011" fill-opacity="0.019608" stroke="#255011" stroke-opacity="0.019608" points="132.02,-1416.14 140.72,-1410.08 130.14,-1409.4 132.02,-1416.14"/>
+<path fill="none" stroke="#ff0073" d="M59.51,-1431.4C75.25,-1426.19 95.79,-1419.4 114.24,-1413.3"/>
+<polygon fill="#ff0073" stroke="#ff0073" points="115.54,-1416.55 123.94,-1410.09 113.34,-1409.91 115.54,-1416.55"/>
 </g>
 <!-- program~test7 -->
 <g id="call~~graph~~CallGraph_node51" class="node">
 <title>program~test7</title>
-<g id="a_call~~graph~~CallGraph_node51"><a xlink:href=".././program/test7.html" xlink:title="test7">
+<g id="a_call~~graph~~CallGraph_node51"><a xlink:href="../program/test7.html" xlink:title="test7">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-528 5.5,-528 5.5,-504 59.5,-504 59.5,-528"/>
 <text text-anchor="middle" x="32.5" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test7</text>
 </a>
@@ -1361,25 +1449,25 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test7&#45;&gt;proc~otimer_start -->
 <g id="call~~graph~~CallGraph_edge130" class="edge">
 <title>program~test7&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#255086" d="M53.44,-503.91C57.42,-501.17 61.46,-498.14 65,-495 83.4,-478.69 80.1,-465.95 101,-453 103.84,-451.24 106.83,-449.62 109.9,-448.14"/>
-<polygon fill="#255086" stroke="#255086" points="111.56,-451.24 119.38,-444.1 108.81,-444.81 111.56,-451.24"/>
+<path fill="none" stroke="#ff0056" d="M53.44,-503.91C57.42,-501.17 61.46,-498.14 65,-495 83.4,-478.69 80.72,-466.9 101,-453 103.37,-451.37 105.88,-449.86 108.48,-448.46"/>
+<polygon fill="#ff0056" stroke="#ff0056" points="110.07,-451.57 117.56,-444.08 107.03,-445.27 110.07,-451.57"/>
 </g>
 <!-- program~test7&#45;&gt;proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_edge131" class="edge">
 <title>program~test7&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#255086" d="M59.72,-508.68C79.33,-503.21 106.82,-495.54 130.96,-488.8"/>
-<polygon fill="#255086" stroke="#255086" points="132.02,-492.14 140.72,-486.08 130.14,-485.4 132.02,-492.14"/>
+<path fill="none" stroke="#ff0056" d="M59.51,-507.4C75.25,-502.19 95.79,-495.4 114.24,-489.3"/>
+<polygon fill="#ff0056" stroke="#ff0056" points="115.54,-492.55 123.94,-486.09 113.34,-485.91 115.54,-492.55"/>
 </g>
 <!-- program~test7&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge129" class="edge">
 <title>program~test7&#45;&gt;check</title>
-<path fill="none" stroke="#255086" d="M59.72,-523.32C84.13,-530.13 120.76,-540.35 147.93,-547.93"/>
-<polygon fill="#255086" stroke="#255086" points="147.26,-551.38 157.83,-550.7 149.14,-544.64 147.26,-551.38"/>
+<path fill="none" stroke="#ff0056" d="M59.51,-524.6C78.22,-530.79 103.69,-539.21 124.37,-546.05"/>
+<polygon fill="#ff0056" stroke="#ff0056" points="123.5,-549.45 134.09,-549.27 125.7,-542.8 123.5,-549.45"/>
 </g>
 <!-- program~test8 -->
 <g id="call~~graph~~CallGraph_node52" class="node">
 <title>program~test8</title>
-<g id="a_call~~graph~~CallGraph_node52"><a xlink:href=".././program/test8.html" xlink:title="test8">
+<g id="a_call~~graph~~CallGraph_node52"><a xlink:href="../program/test8.html" xlink:title="test8">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-486 5.5,-486 5.5,-462 59.5,-462 59.5,-486"/>
 <text text-anchor="middle" x="32.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test8</text>
 </a>
@@ -1388,31 +1476,31 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test8&#45;&gt;proc~otimer_start -->
 <g id="call~~graph~~CallGraph_edge133" class="edge">
 <title>program~test8&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#255057" d="M59.69,-465.49C72.15,-461.54 87.3,-456.86 101,-453 108.73,-450.82 116.89,-448.63 124.97,-446.52"/>
-<polygon fill="#255057" stroke="#255057" points="125.92,-449.89 134.73,-444 124.17,-443.11 125.92,-449.89"/>
+<path fill="none" stroke="#ff0039" d="M59.51,-465.4C75.25,-460.19 95.79,-453.4 114.24,-447.3"/>
+<polygon fill="#ff0039" stroke="#ff0039" points="115.54,-450.55 123.94,-444.09 113.34,-443.91 115.54,-450.55"/>
 </g>
 <!-- program~test8&#45;&gt;proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_edge134" class="edge">
 <title>program~test8&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#255057" d="M59.72,-474C69.75,-474 81.84,-474 94.5,-474"/>
-<polygon fill="#255057" stroke="#255057" points="94.74,-477.5 104.74,-474 94.74,-470.5 94.74,-477.5"/>
+<path fill="none" stroke="#ff0039" d="M59.51,-474C69.66,-474 81.79,-474 94.08,-474"/>
+<polygon fill="#ff0039" stroke="#ff0039" points="94.39,-477.5 104.39,-474 94.39,-470.5 94.39,-477.5"/>
 </g>
 <!-- program~test8&#45;&gt;proc~otimer_write -->
 <g id="call~~graph~~CallGraph_edge135" class="edge">
 <title>program~test8&#45;&gt;proc~otimer_write</title>
-<path fill="none" stroke="#255057" d="M53.44,-461.91C57.42,-459.17 61.46,-456.14 65,-453 83.4,-436.69 80.1,-423.95 101,-411 103.84,-409.24 106.83,-407.62 109.9,-406.14"/>
-<polygon fill="#255057" stroke="#255057" points="111.56,-409.24 119.38,-402.1 108.81,-402.81 111.56,-409.24"/>
+<path fill="none" stroke="#ff0039" d="M53.44,-461.91C57.42,-459.17 61.46,-456.14 65,-453 83.4,-436.69 80.72,-424.9 101,-411 103.37,-409.37 105.88,-407.86 108.48,-406.46"/>
+<polygon fill="#ff0039" stroke="#ff0039" points="110.07,-409.57 117.56,-402.08 107.03,-403.27 110.07,-409.57"/>
 </g>
 <!-- program~test8&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge132" class="edge">
 <title>program~test8&#45;&gt;check</title>
-<path fill="none" stroke="#255057" d="M55.06,-486.04C80.88,-500.44 124.29,-524.67 153.52,-540.99"/>
-<polygon fill="#255057" stroke="#255057" points="152.04,-544.17 162.48,-545.99 155.45,-538.06 152.04,-544.17"/>
+<path fill="none" stroke="#ff0039" d="M51.7,-486.04C73.2,-500.26 109.16,-524.04 133.81,-540.35"/>
+<polygon fill="#ff0039" stroke="#ff0039" points="132.07,-543.39 142.34,-545.99 135.93,-537.55 132.07,-543.39"/>
 </g>
 <!-- program~test9 -->
 <g id="call~~graph~~CallGraph_node53" class="node">
 <title>program~test9</title>
-<g id="a_call~~graph~~CallGraph_node53"><a xlink:href=".././program/test9.html" xlink:title="test9">
+<g id="a_call~~graph~~CallGraph_node53"><a xlink:href="../program/test9.html" xlink:title="test9">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-444 5.5,-444 5.5,-420 59.5,-420 59.5,-444"/>
 <text text-anchor="middle" x="32.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test9</text>
 </a>
@@ -1421,40 +1509,40 @@ Optionally, it can print a message along with the elapsed time.</p></td></tr>
 <!-- program~test9&#45;&gt;proc~otimer_start -->
 <g id="call~~graph~~CallGraph_edge137" class="edge">
 <title>program~test9&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#255028" d="M59.72,-432C69.55,-432 81.36,-432 93.74,-432"/>
-<polygon fill="#255028" stroke="#255028" points="93.77,-435.5 103.77,-432 93.77,-428.5 93.77,-435.5"/>
+<path fill="none" stroke="#ff001c" d="M59.51,-432C69.54,-432 81.52,-432 93.67,-432"/>
+<polygon fill="#ff001c" stroke="#ff001c" points="93.87,-435.5 103.87,-432 93.87,-428.5 93.87,-435.5"/>
 </g>
 <!-- program~test9&#45;&gt;proc~otimer_stop -->
 <g id="call~~graph~~CallGraph_edge138" class="edge">
 <title>program~test9&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#255028" d="M59.69,-440.51C72.15,-444.46 87.3,-449.14 101,-453 108.73,-455.18 116.89,-457.37 124.97,-459.48"/>
-<polygon fill="#255028" stroke="#255028" points="124.17,-462.89 134.73,-462 125.92,-456.11 124.17,-462.89"/>
+<path fill="none" stroke="#ff001c" d="M59.51,-440.6C75.25,-445.81 95.79,-452.6 114.24,-458.7"/>
+<polygon fill="#ff001c" stroke="#ff001c" points="113.34,-462.09 123.94,-461.91 115.54,-455.45 113.34,-462.09"/>
 </g>
 <!-- program~test9&#45;&gt;proc~otimer_write -->
 <g id="call~~graph~~CallGraph_edge139" class="edge">
 <title>program~test9&#45;&gt;proc~otimer_write</title>
-<path fill="none" stroke="#255028" d="M59.69,-423.49C72.15,-419.54 87.3,-414.86 101,-411 108.73,-408.82 116.89,-406.63 124.97,-404.52"/>
-<polygon fill="#255028" stroke="#255028" points="125.92,-407.89 134.73,-402 124.17,-401.11 125.92,-407.89"/>
+<path fill="none" stroke="#ff001c" d="M59.51,-423.4C75.25,-418.19 95.79,-411.4 114.24,-405.3"/>
+<polygon fill="#ff001c" stroke="#ff001c" points="115.54,-408.55 123.94,-402.09 113.34,-401.91 115.54,-408.55"/>
 </g>
 <!-- program~test9&#45;&gt;check -->
 <g id="call~~graph~~CallGraph_edge136" class="edge">
 <title>program~test9&#45;&gt;check</title>
-<path fill="none" stroke="#255028" d="M53.44,-444.09C57.42,-446.83 61.46,-449.86 65,-453 83.4,-469.31 83.11,-478.14 101,-495 118.71,-511.69 140.74,-528.24 157.64,-540.19"/>
-<polygon fill="#255028" stroke="#255028" points="155.76,-543.14 165.97,-545.99 159.77,-537.4 155.76,-543.14"/>
+<path fill="none" stroke="#ff001c" d="M53.44,-444.09C57.42,-446.83 61.46,-449.86 65,-453 83.4,-469.31 84.55,-476.72 101,-495 114.21,-509.68 129.51,-525.87 141.29,-538.16"/>
+<polygon fill="#ff001c" stroke="#ff001c" points="139.01,-540.83 148.47,-545.62 144.06,-535.98 139.01,-540.83"/>
 </g>
 </g>
 </svg>
-</div>        <div><a type="button" class="graph-help" data-toggle="modal" href="#CallGraph-help-text">Help</a></div>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallGraph-help-text">Help</a>
+          </div>
           <div class="modal fade" id="CallGraph-help-text" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                   <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              <div class="modal-body">
+                <div class="modal-body">
 <p>Nodes of different colours represent the following: </p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -1530,14 +1618,17 @@ large graphs.</div>
     <footer>
       <div class="container">
         <div class="row justify-content-between">
-          <div class="col"><p>ForTime was developed by Seyed Ali Ghasemi<br>&copy; 2023 
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023 
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02T14:05:31.514732             </p>
+ on 2024-04-20T23:44:43.464507             </p>
           </div>
         </div>
         <br>

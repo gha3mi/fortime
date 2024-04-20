@@ -1,3 +1,5 @@
+<!-- -*- mode: jinja2 -*- -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +19,8 @@
     <link href="../css/local.css" rel="stylesheet">
       <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
   <body>
@@ -71,8 +74,7 @@
         <ul class="list-inline" style="margin-bottom:0px;display:inline">
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
-              <a data-bs-toggle="tooltip"
-                 data-bs-placement="bottom" data-html="true"
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
                  title=" 3.2% of total for programs.">16 statements</a>
             </li>
 
@@ -112,10 +114,10 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../program/test8.html#variable-t~6">t</a>
-            <a class="list-group-item" href="../program/test8.html#variable-ut~4">ut</a>
-            <a class="list-group-item" href="../program/test8.html#variable-nl~4">nl</a>
-            <a class="list-group-item" href="../program/test8.html#variable-nloops~9">nloops</a>
+            <a class="list-group-item" href="../program/test8.html#variable-t~26">t</a>
+            <a class="list-group-item" href="../program/test8.html#variable-ut~16">ut</a>
+            <a class="list-group-item" href="../program/test8.html#variable-nl~19">nl</a>
+            <a class="list-group-item" href="../program/test8.html#variable-nloops~24">nloops</a>
         </div>
       </div>
     </div>
@@ -158,8 +160,8 @@
             <li class="list-group-item">
               <ul class="list-inline">
                   <li class="list-inline-item">forunittest</li>
-                  <li class="list-inline-item">kinds</li>
                   <li class="list-inline-item"><a href='../module/fortime.html'>fortime</a></li>
+                  <li class="list-inline-item">kinds</li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -189,8 +191,8 @@
 <!-- program~test8&#45;&gt;forunittest -->
 <g id="program~~test8~~UsesGraph_edge1" class="edge">
 <title>program~test8&#45;&gt;forunittest</title>
-<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M192.93,-63.04C183.57,-67 172.82,-71.55 162.65,-75.85"/>
-<polygon fill="#255000" stroke="#255000" points="160.99,-72.75 153.14,-79.88 163.72,-79.2 160.99,-72.75"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M192.93,-63.04C183.57,-67 172.82,-71.55 162.65,-75.85"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="160.99,-72.75 153.14,-79.88 163.72,-79.2 160.99,-72.75"/>
 </g>
 <!-- kinds -->
 <g id="program~~test8~~UsesGraph_node3" class="node">
@@ -201,13 +203,13 @@
 <!-- program~test8&#45;&gt;kinds -->
 <g id="program~~test8~~UsesGraph_edge2" class="edge">
 <title>program~test8&#45;&gt;kinds</title>
-<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M192.84,-49.26C159.5,-45.77 101.7,-39.72 64.16,-35.79"/>
-<polygon fill="#255000" stroke="#255000" points="64.46,-32.3 54.15,-34.74 63.73,-39.26 64.46,-32.3"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M192.84,-49.26C159.5,-45.77 101.7,-39.72 64.16,-35.79"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="64.46,-32.3 54.15,-34.74 63.73,-39.26 64.46,-32.3"/>
 </g>
 <!-- module~fortime -->
 <g id="program~~test8~~UsesGraph_node4" class="node">
 <title>module~fortime</title>
-<g id="a_program~~test8~~UsesGraph_node4"><a xlink:href=".././module/fortime.html" xlink:title="fortime">
+<g id="a_program~~test8~~UsesGraph_node4"><a xlink:href="../module/fortime.html" xlink:title="fortime">
 <polygon fill="#337ab7" stroke="#337ab7" points="150.5,-24 96.5,-24 96.5,0 150.5,0 150.5,-24"/>
 <text text-anchor="middle" x="123.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime</text>
 </a>
@@ -216,28 +218,28 @@
 <!-- program~test8&#45;&gt;module~fortime -->
 <g id="program~~test8~~UsesGraph_edge3" class="edge">
 <title>program~test8&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#255000" stroke-dasharray="5,2" d="M192.93,-40.96C182.79,-36.67 171,-31.68 160.1,-27.07"/>
-<polygon fill="#255000" stroke="#255000" points="161.39,-23.81 150.82,-23.14 158.66,-30.26 161.39,-23.81"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M192.93,-40.96C182.79,-36.67 171,-31.68 160.1,-27.07"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="161.39,-23.81 150.82,-23.14 158.66,-30.26 161.39,-23.81"/>
 </g>
 <!-- module~fortime&#45;&gt;kinds -->
 <g id="program~~test8~~UsesGraph_edge4" class="edge">
 <title>module~fortime&#45;&gt;kinds</title>
-<path fill="none" stroke="#002505" stroke-dasharray="5,2" d="M96.43,-17.52C86.49,-19.62 74.98,-22.06 64.27,-24.32"/>
-<polygon fill="#002505" stroke="#002505" points="63.37,-20.94 54.32,-26.43 64.82,-27.78 63.37,-20.94"/>
+<path fill="none" stroke="#0000ff" stroke-dasharray="5,2" d="M96.43,-17.52C86.49,-19.62 74.98,-22.06 64.27,-24.32"/>
+<polygon fill="#0000ff" stroke="#0000ff" points="63.37,-20.94 54.32,-26.43 64.82,-27.78 63.37,-20.94"/>
 </g>
 </g>
 </svg>
-</div>        <div><a type="button" class="graph-help" data-toggle="modal" href="#UsesGraph-help-text">Help</a></div>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#UsesGraph-help-text">Help</a>
+          </div>
           <div class="modal fade" id="UsesGraph-help-text" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                   <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              <div class="modal-body">
+                <div class="modal-body">
 <p>Nodes of different colours represent the following: </p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -317,11 +319,11 @@ large graphs.</div>
 <!-- Generated by graphviz version 2.43.0 (0)
  -->
 <!-- Title: program~~test8~~CallsGraph Pages: 1 -->
-<svg id="programtest8CallsGraph" width="411pt" height="158pt"
- viewBox="0.00 0.00 411.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg id="programtest8CallsGraph" width="349pt" height="158pt"
+ viewBox="0.00 0.00 349.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="program~~test8~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
 <title>program~~test8~~CallsGraph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 407,-154 407,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-154 345,-154 345,4 -4,4"/>
 <!-- program~test8 -->
 <g id="program~~test8~~CallsGraph_node1" class="node">
 <title>program~test8</title>
@@ -331,106 +333,106 @@ large graphs.</div>
 <!-- check -->
 <g id="program~~test8~~CallsGraph_node2" class="node">
 <title>check</title>
-<polygon fill="#777777" stroke="#777777" points="199,-150 145,-150 145,-126 199,-126 199,-150"/>
-<text text-anchor="middle" x="172" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
+<polygon fill="#777777" stroke="#777777" points="176,-150 122,-150 122,-126 176,-126 176,-150"/>
+<text text-anchor="middle" x="149" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
 </g>
 <!-- program~test8&#45;&gt;check -->
 <g id="program~~test8~~CallsGraph_edge1" class="edge">
 <title>program~test8&#45;&gt;check</title>
-<path fill="none" stroke="#255000" d="M42.92,-87.27C54.97,-96.62 72.7,-109.18 90,-117 104.06,-123.36 120.4,-128.05 134.7,-131.37"/>
-<polygon fill="#255000" stroke="#255000" points="134.18,-134.84 144.7,-133.55 135.67,-128 134.18,-134.84"/>
+<path fill="none" stroke="#ff0000" d="M43.64,-87.2C55.79,-96.27 73.32,-108.5 90,-117 96.97,-120.55 104.68,-123.78 112.14,-126.59"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="111.13,-129.95 121.72,-130.03 113.49,-123.36 111.13,-129.95"/>
 </g>
 <!-- proc~otimer_start -->
 <g id="program~~test8~~CallsGraph_node3" class="node">
 <title>proc~otimer_start</title>
-<g id="a_program~~test8~~CallsGraph_node3"><a xlink:href=".././proc/otimer_start.html" xlink:title="fortime::timer%otimer_start">
-<polygon fill="#d9534f" stroke="#d9534f" points="253,-108 91,-108 91,-84 253,-84 253,-108"/>
-<text text-anchor="middle" x="172" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_start</text>
+<g id="a_program~~test8~~CallsGraph_node3"><a xlink:href="../proc/otimer_start.html" xlink:title="timer%otimer_start">
+<polygon fill="#d9534f" stroke="#d9534f" points="206.5,-108 91.5,-108 91.5,-84 206.5,-84 206.5,-108"/>
+<text text-anchor="middle" x="149" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_start</text>
 </a>
 </g>
 </g>
 <!-- program~test8&#45;&gt;proc~otimer_start -->
 <g id="program~~test8~~CallsGraph_edge2" class="edge">
 <title>program~test8&#45;&gt;proc~otimer_start</title>
-<path fill="none" stroke="#255000" d="M54.23,-78.85C62.07,-80 71.14,-81.34 80.7,-82.74"/>
-<polygon fill="#255000" stroke="#255000" points="80.39,-86.23 90.8,-84.22 81.41,-79.31 80.39,-86.23"/>
+<path fill="none" stroke="#ff0000" d="M54.04,-79.56C62.22,-80.99 71.67,-82.64 81.34,-84.34"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="81.02,-87.83 91.47,-86.11 82.22,-80.94 81.02,-87.83"/>
 </g>
 <!-- proc~otimer_stop -->
 <g id="program~~test8~~CallsGraph_node4" class="node">
 <title>proc~otimer_stop</title>
-<g id="a_program~~test8~~CallsGraph_node4"><a xlink:href=".././proc/otimer_stop.html" xlink:title="fortime::timer%otimer_stop">
-<polygon fill="#d9534f" stroke="#d9534f" points="252,-66 92,-66 92,-42 252,-42 252,-66"/>
-<text text-anchor="middle" x="172" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_stop</text>
+<g id="a_program~~test8~~CallsGraph_node4"><a xlink:href="../proc/otimer_stop.html" xlink:title="timer%otimer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="206,-66 92,-66 92,-42 206,-42 206,-66"/>
+<text text-anchor="middle" x="149" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_stop</text>
 </a>
 </g>
 </g>
 <!-- program~test8&#45;&gt;proc~otimer_stop -->
 <g id="program~~test8~~CallsGraph_edge3" class="edge">
 <title>program~test8&#45;&gt;proc~otimer_stop</title>
-<path fill="none" stroke="#255000" d="M54.23,-71.15C62.33,-69.96 71.75,-68.57 81.66,-67.12"/>
-<polygon fill="#255000" stroke="#255000" points="82.32,-70.56 91.7,-65.64 81.3,-63.63 82.32,-70.56"/>
+<path fill="none" stroke="#ff0000" d="M54.04,-70.44C62.41,-68.98 72.1,-67.28 82.02,-65.55"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="82.71,-68.98 91.96,-63.81 81.51,-62.08 82.71,-68.98"/>
 </g>
 <!-- proc~otimer_write -->
 <g id="program~~test8~~CallsGraph_node5" class="node">
 <title>proc~otimer_write</title>
-<g id="a_program~~test8~~CallsGraph_node5"><a xlink:href=".././proc/otimer_write.html" xlink:title="fortime::timer%otimer_write">
-<polygon fill="#d9534f" stroke="#d9534f" points="254,-24 90,-24 90,0 254,0 254,-24"/>
-<text text-anchor="middle" x="172" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::timer%otimer_write</text>
+<g id="a_program~~test8~~CallsGraph_node5"><a xlink:href="../proc/otimer_write.html" xlink:title="timer%otimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="208,-24 90,-24 90,0 208,0 208,-24"/>
+<text text-anchor="middle" x="149" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_write</text>
 </a>
 </g>
 </g>
 <!-- program~test8&#45;&gt;proc~otimer_write -->
 <g id="program~~test8~~CallsGraph_edge4" class="edge">
 <title>program~test8&#45;&gt;proc~otimer_write</title>
-<path fill="none" stroke="#255000" d="M42.92,-62.73C54.97,-53.38 72.7,-40.82 90,-33 94.68,-30.89 99.61,-28.95 104.63,-27.2"/>
-<polygon fill="#255000" stroke="#255000" points="105.94,-30.45 114.37,-24.03 103.78,-23.79 105.94,-30.45"/>
+<path fill="none" stroke="#ff0000" d="M43.64,-62.8C55.79,-53.73 73.32,-41.5 90,-33 93.5,-31.22 97.18,-29.52 100.92,-27.91"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="102.34,-31.11 110.29,-24.11 99.71,-24.62 102.34,-31.11"/>
 </g>
 <!-- omp_get_wtime -->
 <g id="program~~test8~~CallsGraph_node6" class="node">
 <title>omp_get_wtime</title>
-<polygon fill="#777777" stroke="#777777" points="395,-108 298,-108 298,-84 395,-84 395,-108"/>
-<text text-anchor="middle" x="346.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">omp_get_wtime</text>
+<polygon fill="#777777" stroke="#777777" points="341,-108 244,-108 244,-84 341,-84 341,-108"/>
+<text text-anchor="middle" x="292.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">omp_get_wtime</text>
 </g>
 <!-- proc~otimer_start&#45;&gt;omp_get_wtime -->
 <g id="program~~test8~~CallsGraph_edge5" class="edge">
 <title>proc~otimer_start&#45;&gt;omp_get_wtime</title>
-<path fill="none" stroke="transparent" d="M253.19,-96C264.91,-96 276.78,-96 287.93,-96"/>
-<polygon fill="transparent" stroke="transparent" points="287.94,-99.5 297.94,-96 287.94,-92.5 287.94,-99.5"/>
+<path fill="none" stroke="#7fff00" d="M206.74,-96C215.58,-96 224.73,-96 233.59,-96"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="233.84,-99.5 243.84,-96 233.84,-92.5 233.84,-99.5"/>
 </g>
 <!-- proc~otimer_stop&#45;&gt;omp_get_wtime -->
 <g id="program~~test8~~CallsGraph_edge6" class="edge">
 <title>proc~otimer_stop&#45;&gt;omp_get_wtime</title>
-<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M222.43,-66.04C242.89,-71.02 266.74,-76.82 287.98,-81.99"/>
-<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="287.3,-85.43 297.84,-84.4 288.96,-78.63 287.3,-85.43"/>
+<path fill="none" stroke="#00ffff" d="M190.55,-66.04C206.24,-70.69 224.37,-76.07 240.9,-80.98"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="240.36,-84.47 250.95,-83.96 242.36,-77.76 240.36,-84.47"/>
 </g>
 <!-- proc~print_time -->
 <g id="program~~test8~~CallsGraph_node7" class="node">
 <title>proc~print_time</title>
-<g id="a_program~~test8~~CallsGraph_node7"><a xlink:href=".././proc/print_time.html" xlink:title="fortime::print_time">
-<polygon fill="#d9534f" stroke="#d9534f" points="403,-66 290,-66 290,-42 403,-42 403,-66"/>
-<text text-anchor="middle" x="346.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">fortime::print_time</text>
+<g id="a_program~~test8~~CallsGraph_node7"><a xlink:href="../proc/print_time.html" xlink:title="print_time">
+<polygon fill="#d9534f" stroke="#d9534f" points="326,-66 259,-66 259,-42 326,-42 326,-66"/>
+<text text-anchor="middle" x="292.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">print_time</text>
 </a>
 </g>
 </g>
 <!-- proc~otimer_stop&#45;&gt;proc~print_time -->
 <g id="program~~test8~~CallsGraph_edge7" class="edge">
 <title>proc~otimer_stop&#45;&gt;proc~print_time</title>
-<path fill="none" stroke="#025525" stroke-opacity="0.019608" d="M252.18,-54C261.45,-54 270.82,-54 279.88,-54"/>
-<polygon fill="#025525" fill-opacity="0.019608" stroke="#025525" stroke-opacity="0.019608" points="279.94,-57.5 289.94,-54 279.94,-50.5 279.94,-57.5"/>
+<path fill="none" stroke="#00ffff" d="M206.33,-54C220.44,-54 235.35,-54 248.68,-54"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="248.99,-57.5 258.99,-54 248.99,-50.5 248.99,-57.5"/>
 </g>
 </g>
 </svg>
-</div>        <div><a type="button" class="graph-help" data-toggle="modal" href="#CallsGraph-help-text">Help</a></div>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CallsGraph-help-text">Help</a>
+          </div>
           <div class="modal fade" id="CallsGraph-help-text" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
                   <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-              <div class="modal-body">
+                <div class="modal-body">
 <p>Nodes of different colours represent the following: </p>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -517,7 +519,7 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-t~6"></span>
+              <span class="anchor" id="variable-t~26"></span>
               type(<a href='../type/timer.html'>timer</a>)
             </td>
             <td>
@@ -533,7 +535,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-ut~4"></span>
+              <span class="anchor" id="variable-ut~16"></span>
               type(unit_test)
             </td>
             <td>
@@ -549,7 +551,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nl~4"></span>
+              <span class="anchor" id="variable-nl~19"></span>
               integer
             </td>
             <td>
@@ -565,7 +567,7 @@ large graphs.</div>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~9"></span>
+              <span class="anchor" id="variable-nloops~24"></span>
               integer
             </td>
             <td>
@@ -634,14 +636,17 @@ large graphs.</div>
     <footer>
       <div class="container">
         <div class="row justify-content-between">
-          <div class="col"><p>ForTime was developed by Seyed Ali Ghasemi<br>&copy; 2023 
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023 
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02T14:05:31.514732             </p>
+ on 2024-04-20T23:44:43.464507             </p>
           </div>
         </div>
         <br>

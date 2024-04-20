@@ -1,3 +1,5 @@
+<!-- -*- mode: jinja2 -*- -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +19,8 @@
     <link href="../css/local.css" rel="stylesheet">
       <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
   </head>
 
   <body>
@@ -72,8 +75,7 @@
         <ul class="list-inline" style="margin-bottom:0px;display:inline">
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
-              <a data-bs-toggle="tooltip"
-                 data-bs-placement="bottom" data-html="true"
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
                  title="<p>100.0% of total for derived types.</p>Including implementation: 256 statements, 100.0% of total for derived types.">39 statements</a>
             </li>
 
@@ -189,7 +191,8 @@
     </div>
     
     <div class="col-md-9" id='text'>
-      <h2>type, public :: timer</h2>
+      <h2 id="type-def-statement">
+        type, public :: timer</h2>
     
     <br>
 
@@ -609,7 +612,7 @@ This value is used to calculate the elapsed time later.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -667,7 +670,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -769,7 +772,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -842,7 +845,7 @@ This value is used to calculate the CPU time later.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -900,7 +903,7 @@ Optionally, it can print a message along with the CPU time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1002,7 +1005,7 @@ Optionally, it can print a message along with the CPU time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -1075,7 +1078,7 @@ This value is used to calculate the OMP time later.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1133,7 +1136,7 @@ Optionally, it can print a message along with the OMP time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1235,7 +1238,7 @@ Optionally, it can print a message along with the OMP time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -1308,7 +1311,7 @@ This value is used to calculate the MPI time later.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1366,7 +1369,7 @@ Optionally, it can print a message along with the MPI time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1468,7 +1471,7 @@ Optionally, it can print a message along with the MPI time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -1541,7 +1544,7 @@ This value is used to calculate the elapsed time later.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1599,7 +1602,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
               <td></td>            <td>
@@ -1701,7 +1704,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <tr>
             <td>
               <span class="anchor" ></span>
-              class(<a href='../type/timer.html'>timer</a>),
+              class(<a href='timer.html'>timer</a>),
             </td>
 <td>intent(in)</td>
               <td></td>            <td>
@@ -1748,14 +1751,17 @@ Optionally, it can print a message along with the elapsed time.</p>
     <footer>
       <div class="container">
         <div class="row justify-content-between">
-          <div class="col"><p>ForTime was developed by Seyed Ali Ghasemi<br>&copy; 2023 
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023 
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-01-02T14:05:31.514732             </p>
+ on 2024-04-20T23:44:43.464507             </p>
           </div>
         </div>
         <br>
