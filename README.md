@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/github/license/gha3mi/fortime?color=green)](https://github.com/gha3mi/fortime/blob/main/LICENSE)
 [![Build](https://github.com/gha3mi/fortime/actions/workflows/CI_test.yml/badge.svg)](https://github.com/gha3mi/fortime/actions/workflows/CI_test.yml)
 
-<img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750">
+<!-- <img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750"> -->
 
 **ForTime**: A Fortran library for measuring elapsed time, DATE_AND_TIME time, CPU time, OMP time and MPI time.
 
@@ -99,69 +99,35 @@ call t%mtimer_write(file_name) ! Optionally, write the result to a file
 
 **Note:** Don't forget to compile with the `-DUSE_MPI` option when using the MPI timer.
 
-## How to run examples
+## Running Examples and Tests
 
-**Clone the repository:**
+### Clone the Repository
 
-You can clone the `ForTime` repository from GitHub using the following command:
+First, clone the `ForTime` repository from GitHub and navigate to the project directory:
 
 ```shell
 git clone https://github.com/gha3mi/fortime.git
 cd fortime
 ```
+### Running Examples
 
-**For Intel Fortran Compiler (ifort):**
+To run a specific example from the `example` directory using your preferred Fortran compiler, use the following command:
 
-  ```shell
-  fpm run --example --all --compiler ifort
-  ```
+```shell
+fpm run --example <example_name> --compiler <compiler>
+```
+Replace `<example_name>` with the name of the example file (excluding the `.f90` extension) and `<compiler>` with the name of your Fortran compiler (e.g., `ifx`, `ifort`, `gfortran`, `nvfortran`).
 
-**For Intel Fortran Compiler (ifx):**
+### Running Tests
 
-  ```shell
-  fpm run --example --all --compiler ifx
-  ```
+To execute tests, use the following command with your chosen compiler:
 
-**For NVIDIA Compiler (nvfortran):**
+```shell
+fpm test --compiler <compiler>
+```
+Replace `<compiler>` with the name of your Fortran compiler.
 
-  ```shell
-  fpm run --example --all --compiler nvfortran
-  ```
-
-**For GNU Fortran Compiler (gfortran):**
-
-  ```shell
-  fpm run --example --all --compiler gfortran
-  ```
-
-## How to run tests
-
-
-**For Intel Fortran Compiler (ifort):**
-
-  ```shell
-  fpm test --compiler ifort
-  ```
-
-**For Intel Fortran Compiler (ifx):**
-
-  ```shell
-  fpm test --compiler ifx
-  ```
-
-**For NVIDIA Compiler (nvfortran):**
-
-  ```shell
-  fpm test --compiler nvfortran
-  ```
-
-**For GNU Fortran Compiler (gfortran):**
-
-  ```shell
-  fpm test --compiler gfortran
-  ```
-
-## API documentation
+## Documentation
 
 The most up-to-date API documentation for the master branch is available
 [here](https://gha3mi.github.io/fortime/).
