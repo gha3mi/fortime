@@ -22,8 +22,6 @@ fortime = {git="https://github.com/gha3mi/fortime.git"}
 
 ### Measuring elapsed time (system_clock)
 
-To measure the elapsed wall-clock time, use the following:
-
 ```fortran
 use fortime
 type(timer) :: t
@@ -36,8 +34,6 @@ call t%timer_write(file_name) ! Optionally, write the result to a file
 ```
 
 ### Measuring elapsed time (date_and_time)
-
-To measure the elapsed wall-clock time, use the following:
 
 ```fortran
 use fortime
@@ -52,8 +48,6 @@ call t%dtimer_write(file_name) ! Optionally, write the result to a file
 
 ### Measuring CPU time (cpu_time)
 
-To measure the CPU time consumed by your code, use these functions:
-
 ```fortran
 use fortime
 type(timer) :: t
@@ -67,8 +61,6 @@ call t%ctimer_write(file_name) ! Optionally, write the result to a file
 
 ### Measuring OpenMP time (omp_get_wtime)
 
-If your code includes OpenMP parallelization, you can measure the time taken by the parallel regions using:
-
 ```fortran
 use fortime
 type(timer) :: t
@@ -80,11 +72,9 @@ call t%otimer_stop(nloops, message, print) ! nloops, message and print are optio
 call t%otimer_write(file_name) ! Optionally, write the result to a file
 ```
 
-**Note:** Ensure you compile with the `-DUSE_OMP` option when using the OpenMP timer.
+**Note:** Compile with the `-DUSE_OMP` option when using the OpenMP timer.
 
 ### Measuring MPI time (mpi_wtime)
-
-When using MPI (Message Passing Interface), you can measure the time taken by your MPI processes using:
 
 ```fortran
 use fortime
@@ -97,7 +87,7 @@ call t%mtimer_stop(nloops, message, print) ! nloops, message and print are optio
 call t%mtimer_write(file_name) ! Optionally, write the result to a file
 ```
 
-**Note:** Don't forget to compile with the `-DUSE_MPI` option when using the MPI timer.
+**Note:** Compile with the `-DUSE_MPI` option when using the MPI timer.
 
 ## Running Examples and Tests
 
