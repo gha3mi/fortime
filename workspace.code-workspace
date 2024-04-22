@@ -10,7 +10,7 @@
 		"fortran.fortls.directories": [
 			"${workspaceFolder}/src",
 			"${workspaceFolder}/test",
-			"${workspaceFolder}/app"
+			"${workspaceFolder}/example",
 		]
 	}
 }
