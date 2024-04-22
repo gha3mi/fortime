@@ -20,7 +20,7 @@ fortime = {git="https://github.com/gha3mi/fortime.git"}
 
 ## Usage
 
-### Measuring elapsed time
+### Measuring elapsed time (system_clock)
 
 To measure the elapsed wall-clock time, use the following:
 
@@ -50,7 +50,7 @@ call t%dtimer_stop(nloops, message, print) ! nloops, message and print are optio
 call t%dtimer_write(file_name) ! Optionally, write the result to a file
 ```
 
-### Measuring CPU time
+### Measuring CPU time (cpu_time)
 
 To measure the CPU time consumed by your code, use these functions:
 
@@ -65,7 +65,7 @@ call t%ctimer_stop(nloops, message, print) ! nloops, message and print are optio
 call t%ctimer_write(file_name) ! Optionally, write the result to a file
 ```
 
-### Measuring OpenMP (OMP) time
+### Measuring OpenMP time (omp_get_wtime)
 
 If your code includes OpenMP parallelization, you can measure the time taken by the parallel regions using:
 
@@ -82,7 +82,7 @@ call t%otimer_write(file_name) ! Optionally, write the result to a file
 
 **Note:** Ensure you compile with the `-DUSE_OMP` option when using the OpenMP timer.
 
-### Measuring MPI time
+### Measuring MPI time (mpi_wtime)
 
 When using MPI (Message Passing Interface), you can measure the time taken by your MPI processes using:
 
