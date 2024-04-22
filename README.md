@@ -89,6 +89,9 @@ call t%mtimer_write(file_name) ! Optionally, write the result to a file
 
 **Note:** Compile with the `-DUSE_MPI` option when using the MPI timer.
 
+### To measure elapsed time within a pure procedure, use [ForDebug](https://github.com/gha3mi/fordebug).
+
+
 ## Running Examples and Tests
 
 ### Clone the Repository
