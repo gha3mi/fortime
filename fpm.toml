@@ -8,6 +8,7 @@ license    = "LICENSE"
 
 [dependencies]
 kinds = {git="https://github.com/gha3mi/kinds.git"}
+FACE = {git="https://github.com/szaghi/FACE.git"}
 forunittest = {git="https://github.com/gha3mi/forunittest.git"}
 
 [build]
