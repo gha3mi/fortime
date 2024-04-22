@@ -9,7 +9,7 @@ module fortime
 
    private
 
-   public :: timer, timer_start, timer_stop
+   public :: timer
 
    !===============================================================================
    type :: timer
