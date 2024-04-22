@@ -1,6 +1,6 @@
 project:             ForTime
 version:             {!VERSION!}
-year:                2023
+year:                2023-2024
 project_github:      https://github.com/gha3mi/fortime
 author:              Seyed Ali Ghasemi
 email:               info@gha3mi.com

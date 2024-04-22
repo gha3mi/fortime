@@ -2,7 +2,7 @@ name       = "fortime"
 version    = "VERSION"
 author     = "Seyed Ali Ghasemi"
 maintainer = "info@gha3mi.com"
-copyright  = "Copyright 2023, Seyed Ali Ghasemi"
+copyright  = "Copyright 2023-2024, Seyed Ali Ghasemi"
 license    = "LICENSE"
 
 
