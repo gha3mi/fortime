@@ -1,9 +1,9 @@
 name       = "fortime"
-version    = "VERSION"
+version    = "0.4.0"
+license    = "BSD 3-Clause License"
 author     = "Seyed Ali Ghasemi"
 maintainer = "info@gha3mi.com"
 copyright  = "Copyright 2023-2024, Seyed Ali Ghasemi"
-license    = "LICENSE"
 
 
 [dependencies]
