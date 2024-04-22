@@ -76,7 +76,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="100.0% of total for modules and submodules.">273 statements</a>
+                 title="100.0% of total for modules and submodules.">284 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -1525,7 +1525,7 @@ This value is used to calculate the elapsed time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-timer_stop"></span> <h3>private impure subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print)  
+    <div class="card-header codesum"><span class="anchor" id="proc-timer_stop"></span> <h3>private impure subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print, color)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1563,7 +1563,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~8"></span>
+              <span class="anchor" id="variable-nloops~23"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1602,6 +1602,21 @@ Optionally, it can print a message along with the elapsed time.</p>
             </td>
             <td>::</td>
             <td><strong>print</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
             <td>
 
             </td>
@@ -1716,7 +1731,7 @@ This value is used to calculate the CPU time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_stop"></span> <h3>private impure subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print)  
+    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_stop"></span> <h3>private impure subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print, color)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1754,7 +1769,7 @@ Optionally, it can print a message along with the CPU time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~9"></span>
+              <span class="anchor" id="variable-nloops~24"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1793,6 +1808,21 @@ Optionally, it can print a message along with the CPU time.</p>
             </td>
             <td>::</td>
             <td><strong>print</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~2"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
             <td>
 
             </td>
@@ -1907,7 +1937,7 @@ This value is used to calculate the OMP time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-otimer_stop"></span> <h3>private impure subroutine <a href='../proc/otimer_stop.html'>otimer_stop</a>(this, nloops, message, print)  
+    <div class="card-header codesum"><span class="anchor" id="proc-otimer_stop"></span> <h3>private impure subroutine <a href='../proc/otimer_stop.html'>otimer_stop</a>(this, nloops, message, print, color)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1945,7 +1975,7 @@ Optionally, it can print a message along with the OMP time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~10"></span>
+              <span class="anchor" id="variable-nloops~25"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1984,6 +2014,21 @@ Optionally, it can print a message along with the OMP time.</p>
             </td>
             <td>::</td>
             <td><strong>print</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~3"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
             <td>
 
             </td>
@@ -2098,7 +2143,7 @@ This value is used to calculate the MPI time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mtimer_stop"></span> <h3>private impure subroutine <a href='../proc/mtimer_stop.html'>mtimer_stop</a>(this, nloops, message, print)  
+    <div class="card-header codesum"><span class="anchor" id="proc-mtimer_stop"></span> <h3>private impure subroutine <a href='../proc/mtimer_stop.html'>mtimer_stop</a>(this, nloops, message, print, color)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2136,7 +2181,7 @@ Optionally, it can print a message along with the MPI time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~11"></span>
+              <span class="anchor" id="variable-nloops~26"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -2175,6 +2220,21 @@ Optionally, it can print a message along with the MPI time.</p>
             </td>
             <td>::</td>
             <td><strong>print</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~4"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
             <td>
 
             </td>
@@ -2289,7 +2349,7 @@ This value is used to calculate the elapsed time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_stop"></span> <h3>private impure subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print)  
+    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_stop"></span> <h3>private impure subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print, color)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2327,7 +2387,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~12"></span>
+              <span class="anchor" id="variable-nloops~27"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -2366,6 +2426,21 @@ Optionally, it can print a message along with the elapsed time.</p>
             </td>
             <td>::</td>
             <td><strong>print</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~5"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
             <td>
 
             </td>
@@ -2436,7 +2511,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-print_time"></span> <h3>private impure subroutine <a href='../proc/print_time.html'>print_time</a>(time, message)  
+    <div class="card-header codesum"><span class="anchor" id="proc-print_time"></span> <h3>private impure subroutine <a href='../proc/print_time.html'>print_time</a>(time, message, color)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2486,6 +2561,21 @@ Optionally, it can print a message along with the elapsed time.</p>
 
             </td>
         </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~6"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+
+            </td>
+        </tr>
     </tbody>
   </table>
 
@@ -2516,7 +2606,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-04-22T08:06:45.443687             </p>
+ on 2024-04-22T09:42:49.196740             </p>
           </div>
         </div>
         <br>

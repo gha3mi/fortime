@@ -102,7 +102,7 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span>
 <span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message and print are optional</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print and color are optional</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
 </code></pre></div>
@@ -113,7 +113,7 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_start</span><span class="p">()</span>
 <span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message and print are optional</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print and color are optional</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
 </code></pre></div>
@@ -124,7 +124,7 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_start</span><span class="p">()</span>
 <span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message and print are optional</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print and color are optional</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
 </code></pre></div>
@@ -135,7 +135,7 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_start</span><span class="p">()</span>
 <span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message and print are optional</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print and color are optional</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
 </code></pre></div>
@@ -147,7 +147,7 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_start</span><span class="p">()</span>
 <span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message and print are optional</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print and color are optional</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
 </code></pre></div>
@@ -265,7 +265,7 @@ command:</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-04-22T08:06:45.443687             </p>
+ on 2024-04-22T09:42:49.196740             </p>
           </div>
         </div>
         <br>
