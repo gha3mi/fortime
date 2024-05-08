@@ -471,7 +471,6 @@ contains
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
       logical,      intent(in), optional :: print
-      real(rk)                           :: values_elapsed_sec
       character(*), intent(in), optional :: color
 
       ! Stop the timer
