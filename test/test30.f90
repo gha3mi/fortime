@@ -17,7 +17,7 @@ program test30
       call sleep(1) ! Perform operations ntimes
    end do
    call t%dtimer_stop(message = 'Elapsed time:', print=.false.)
-   call t%dtimer_write('test/test30_etimes') ! Optionally, write the elapsed time to a file
+   call t%dtimer_write('test/test30_etimes.txt') ! Optionally, write the elapsed time to a file
 
    call ut%check(res=t%elapsed_dtime, expected=real(nloops,rk)*1.0_rk, tol=1.0e-1_rk, msg='test30')
 

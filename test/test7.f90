@@ -6,11 +6,11 @@ program test7
 
    implicit none
 
+#if defined(USE_OMP)
    type(timer) :: t
    type(unit_test) :: ut
 
 
-#if defined(USE_OMP)
    ! OMP time
    call t%otimer_start()
       call sleep(1) ! Perform operations here

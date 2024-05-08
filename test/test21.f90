@@ -6,12 +6,12 @@ program test21
 
    implicit none
 
+#if defined(USE_OMP)
    type(timer) :: t
    type(unit_test) :: ut
    integer :: nl, nloops=3
 
 
-#if defined(USE_OMP)
    ! OMP time with nloops
    call t%otimer_start()
    do nl = 1, nloops

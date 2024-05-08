@@ -6,12 +6,12 @@ program test22
 
    implicit none
 
+#if defined(USE_MPI)
    type(timer) :: t
    type(unit_test) :: ut
    integer :: ierr
 
 
-#if defined(USE_MPI)
    ! MPI time
    call mpi_init(ierr)
    call t%mtimer_start()
