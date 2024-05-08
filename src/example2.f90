@@ -12,6 +12,6 @@ program example2
         call sleep(1) ! Perform operations ntimes
     end do
    call t%timer_stop(nloops = nloops, message = 'Elapsed time:', print = .true., color='green') ! nloops, message, print and color are optional. 
-   call t%timer_write('example/example2_etimes') ! Optionally, write the elapsed time to a file
+   call t%timer_write('example/example2_etimes.txt') ! Optionally, write the elapsed time to a file
 
 end program example2

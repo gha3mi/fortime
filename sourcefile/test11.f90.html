@@ -251,13 +251,13 @@ large graphs.</div>
 <a id="ln-6" name="ln-6" href="#ln-6"></a>
 <a id="ln-7" name="ln-7" href="#ln-7"></a><span class="w">   </span><span class="k">implicit none</span>
 <a id="ln-8" name="ln-8" href="#ln-8"></a>
-<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="k">   type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
-<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">unit_test</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ut</span>
-<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nl</span><span class="p">,</span><span class="w"> </span><span class="n">nloops</span><span class="o">=</span><span class="mi">3</span>
-<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ierr</span>
-<a id="ln-13" name="ln-13" href="#ln-13"></a>
+<a id="ln-9" name="ln-9" href="#ln-9"></a><span class="cp">#if defined(USE_MPI)</span>
+<a id="ln-10" name="ln-10" href="#ln-10"></a><span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
+<a id="ln-11" name="ln-11" href="#ln-11"></a><span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">unit_test</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ut</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nl</span><span class="p">,</span><span class="w"> </span><span class="n">nloops</span><span class="o">=</span><span class="mi">3</span>
+<a id="ln-13" name="ln-13" href="#ln-13"></a><span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ierr</span>
 <a id="ln-14" name="ln-14" href="#ln-14"></a>
-<a id="ln-15" name="ln-15" href="#ln-15"></a><span class="cp">#if defined(USE_MPI)</span>
+<a id="ln-15" name="ln-15" href="#ln-15"></a>
 <a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">   </span><span class="c">! MPI time with nloops</span>
 <a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">   </span><span class="k">call </span><span class="n">mpi_init</span><span class="p">(</span><span class="n">ierr</span><span class="p">)</span>
 <a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">   </span><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_start</span><span class="p">()</span>
@@ -266,7 +266,7 @@ large graphs.</div>
 <a id="ln-21" name="ln-21" href="#ln-21"></a><span class="w">   </span><span class="k">end do</span>
 <a id="ln-22" name="ln-22" href="#ln-22"></a><span class="k">   call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;MPI time:&#39;</span><span class="p">)</span>
 <a id="ln-23" name="ln-23" href="#ln-23"></a><span class="w">   </span><span class="k">call </span><span class="n">mpi_finalize</span><span class="p">(</span><span class="n">ierr</span><span class="p">)</span>
-<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="w">   </span><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_write</span><span class="p">(</span><span class="s1">&#39;test/test11_mtimes&#39;</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the elapsed time to a file</span>
+<a id="ln-24" name="ln-24" href="#ln-24"></a><span class="w">   </span><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_write</span><span class="p">(</span><span class="s1">&#39;test/test11_mtimes.txt&#39;</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the elapsed time to a file</span>
 <a id="ln-25" name="ln-25" href="#ln-25"></a>
 <a id="ln-26" name="ln-26" href="#ln-26"></a><span class="w">   </span><span class="k">call </span><span class="n">ut</span><span class="p">%</span><span class="n">check</span><span class="p">(</span><span class="n">res</span><span class="o">=</span><span class="n">t</span><span class="p">%</span><span class="n">mpi_time</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="o">=</span><span class="mf">1.0_rk</span><span class="p">,</span><span class="w"> </span><span class="n">tol</span><span class="o">=</span><span class="mf">1.0e-1_rk</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="o">=</span><span class="s1">&#39;test11&#39;</span><span class="p">)</span>
 <a id="ln-27" name="ln-27" href="#ln-27"></a>
@@ -294,7 +294,7 @@ large graphs.</div>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2024-04-22T10:05:45.998116             </p>
+ on 2024-05-08T13:10:52.239100             </p>
           </div>
         </div>
         <br>

@@ -15,7 +15,7 @@ program test5
       call sleep(1) ! Perform operations ntimes
    end do
    call t%ctimer_stop(nloops = nloops, message = 'CPU time:')
-   call t%ctimer_write('test/test5_ctimes') ! Optionally, write the elapsed time to a file
+   call t%ctimer_write('test/test5_ctimes.txt') ! Optionally, write the elapsed time to a file
 
 end program test5
 
