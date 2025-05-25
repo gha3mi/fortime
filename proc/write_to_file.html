@@ -1,0 +1,805 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for ForTime">
+    <meta name="author" content="Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>write_to_file &ndash; ForTime</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForTime <small>0.5.0</small></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>write_to_file
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Seyed Ali Ghasemi</li>
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> BSD 3-Clause</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 5.5% of total for procedures.">14 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/fortime.f90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/fortime.html'>fortime</a></li>
+            <li class="breadcrumb-item active" aria-current="page">write_to_file</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/write_to_file.html#src">write_to_file</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private impure subroutine write_to_file(time, file_name)  
+</h2>
+    
+
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-time~2"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-file_name~6"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>file_name</strong></td>
+            <td>
+                
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: proc~~write_to_file~~CalledByGraph Pages: 1 -->
+<svg id="procwrite_to_fileCalledByGraph" width="342pt" height="956pt"
+ viewBox="0.00 0.00 342.00 956.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~write_to_file~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 952)">
+<title>proc~~write_to_file~~CalledByGraph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-952 338,-952 338,4 -4,4"/>
+<!-- proc~write_to_file -->
+<g id="proc~~write_to_file~~CalledByGraph_node1" class="node">
+<title>proc~write_to_file</title>
+<polygon fill="none" stroke="black" points="334,-465 258,-465 258,-441 334,-441 334,-465"/>
+<text text-anchor="middle" x="296" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50">write_to_file</text>
+</g>
+<!-- proc~ctimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_node2" class="node">
+<title>proc~ctimer_write</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node2"><a xlink:href="../proc/ctimer_write.html" xlink:title="timer%ctimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="220,-843 103,-843 103,-819 220,-819 220,-843"/>
+<text text-anchor="middle" x="161.5" y="-828.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%ctimer_write</text>
+</a>
+</g>
+</g>
+<!-- proc~ctimer_write&#45;&gt;proc~write_to_file -->
+<g id="proc~~write_to_file~~CalledByGraph_edge1" class="edge">
+<title>proc~ctimer_write&#45;&gt;proc~write_to_file</title>
+<path fill="none" stroke="#ff0000" d="M166.76,-818.85C185.72,-764.76 262.6,-545.42 287.31,-474.93"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="290.69,-475.89 290.69,-465.29 284.08,-473.57 290.69,-475.89"/>
+</g>
+<!-- proc~dtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_node3" class="node">
+<title>proc~dtimer_write</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node3"><a xlink:href="../proc/dtimer_write.html" xlink:title="timer%dtimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="220.5,-633 102.5,-633 102.5,-609 220.5,-609 220.5,-633"/>
+<text text-anchor="middle" x="161.5" y="-618.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%dtimer_write</text>
+</a>
+</g>
+</g>
+<!-- proc~dtimer_write&#45;&gt;proc~write_to_file -->
+<g id="proc~~write_to_file~~CalledByGraph_edge2" class="edge">
+<title>proc~dtimer_write&#45;&gt;proc~write_to_file</title>
+<path fill="none" stroke="#ff0000" d="M172.03,-608.92C194.46,-580.48 250.79,-509.06 278.74,-473.61"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="281.76,-475.45 285.2,-465.43 276.26,-471.11 281.76,-475.45"/>
+</g>
+<!-- proc~mtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_node4" class="node">
+<title>proc~mtimer_write</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node4"><a xlink:href="../proc/mtimer_write.html" xlink:title="timer%mtimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="222,-465 101,-465 101,-441 222,-441 222,-465"/>
+<text text-anchor="middle" x="161.5" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%mtimer_write</text>
+</a>
+</g>
+</g>
+<!-- proc~mtimer_write&#45;&gt;proc~write_to_file -->
+<g id="proc~~write_to_file~~CalledByGraph_edge3" class="edge">
+<title>proc~mtimer_write&#45;&gt;proc~write_to_file</title>
+<path fill="none" stroke="#ff0000" d="M222.16,-453C230.66,-453 239.31,-453 247.53,-453"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="247.68,-456.5 257.68,-453 247.68,-449.5 247.68,-456.5"/>
+</g>
+<!-- proc~otimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_node5" class="node">
+<title>proc~otimer_write</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node5"><a xlink:href="../proc/otimer_write.html" xlink:title="timer%otimer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="220.5,-318 102.5,-318 102.5,-294 220.5,-294 220.5,-318"/>
+<text text-anchor="middle" x="161.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%otimer_write</text>
+</a>
+</g>
+</g>
+<!-- proc~otimer_write&#45;&gt;proc~write_to_file -->
+<g id="proc~~write_to_file~~CalledByGraph_edge4" class="edge">
+<title>proc~otimer_write&#45;&gt;proc~write_to_file</title>
+<path fill="none" stroke="#ff0000" d="M173.34,-318.03C196.15,-343.33 249.28,-402.28 277.17,-433.22"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="274.71,-435.72 284.01,-440.8 279.91,-431.03 274.71,-435.72"/>
+</g>
+<!-- proc~timer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_node6" class="node">
+<title>proc~timer_write</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node6"><a xlink:href="../proc/timer_write.html" xlink:title="timer%timer_write">
+<polygon fill="#d9534f" stroke="#d9534f" points="217,-129 106,-129 106,-105 217,-105 217,-129"/>
+<text text-anchor="middle" x="161.5" y="-114.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%timer_write</text>
+</a>
+</g>
+</g>
+<!-- proc~timer_write&#45;&gt;proc~write_to_file -->
+<g id="proc~~write_to_file~~CalledByGraph_edge5" class="edge">
+<title>proc~timer_write&#45;&gt;proc~write_to_file</title>
+<path fill="none" stroke="#ff0000" d="M167.37,-129.36C187.1,-179.38 261.17,-367.21 286.47,-431.37"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="283.3,-432.87 290.22,-440.89 289.81,-430.3 283.3,-432.87"/>
+</g>
+<!-- program~example2 -->
+<g id="proc~~write_to_file~~CalledByGraph_node7" class="node">
+<title>program~example2</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node7"><a xlink:href="../program/example2.html" xlink:title="example2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-192 0,-192 0,-168 65,-168 65,-192"/>
+<text text-anchor="middle" x="32.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example2</text>
+</a>
+</g>
+</g>
+<!-- program~example2&#45;&gt;proc~timer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge24" class="edge">
+<title>program~example2&#45;&gt;proc~timer_write</title>
+<path fill="none" stroke="#cc00ff" d="M57.99,-167.85C77.58,-158.14 105.25,-144.41 126.91,-133.66"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="128.69,-136.69 136.09,-129.11 125.57,-130.42 128.69,-136.69"/>
+</g>
+<!-- program~example4 -->
+<g id="proc~~write_to_file~~CalledByGraph_node8" class="node">
+<title>program~example4</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node8"><a xlink:href="../program/example4.html" xlink:title="example4">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-948 0,-948 0,-924 65,-924 65,-948"/>
+<text text-anchor="middle" x="32.5" y="-933.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example4</text>
+</a>
+</g>
+</g>
+<!-- program~example4&#45;&gt;proc~ctimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge6" class="edge">
+<title>program~example4&#45;&gt;proc~ctimer_write</title>
+<path fill="none" stroke="#ff0000" d="M52.44,-923.96C56.65,-921.13 61.04,-918.04 65,-915 92.13,-894.18 121.38,-867.8 140.27,-850.22"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="142.78,-852.65 147.69,-843.26 138,-847.55 142.78,-852.65"/>
+</g>
+<!-- program~example6 -->
+<g id="proc~~write_to_file~~CalledByGraph_node9" class="node">
+<title>program~example6</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node9"><a xlink:href="../program/example6.html" xlink:title="example6">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="65,-738 0,-738 0,-714 65,-714 65,-738"/>
+<text text-anchor="middle" x="32.5" y="-723.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example6</text>
+</a>
+</g>
+</g>
+<!-- program~example6&#45;&gt;proc~dtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge11" class="edge">
+<title>program~example6&#45;&gt;proc~dtimer_write</title>
+<path fill="none" stroke="#cbff00" d="M52.44,-713.96C56.65,-711.13 61.04,-708.04 65,-705 92.13,-684.18 121.38,-657.8 140.27,-640.22"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="142.78,-642.65 147.69,-633.26 138,-637.55 142.78,-642.65"/>
+</g>
+<!-- program~test11 -->
+<g id="proc~~write_to_file~~CalledByGraph_node10" class="node">
+<title>program~test11</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node10"><a xlink:href="../program/test11.html" xlink:title="test11">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-528 5.5,-528 5.5,-504 59.5,-504 59.5,-528"/>
+<text text-anchor="middle" x="32.5" y="-513.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test11</text>
+</a>
+</g>
+</g>
+<!-- program~test11&#45;&gt;proc~mtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge16" class="edge">
+<title>program~test11&#45;&gt;proc~mtimer_write</title>
+<path fill="none" stroke="#00ff66" d="M57.99,-503.85C77.58,-494.14 105.25,-480.41 126.91,-469.66"/>
+<polygon fill="#00ff66" stroke="#00ff66" points="128.69,-472.69 136.09,-465.11 125.57,-466.42 128.69,-472.69"/>
+</g>
+<!-- program~test12 -->
+<g id="proc~~write_to_file~~CalledByGraph_node11" class="node">
+<title>program~test12</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node11"><a xlink:href="../program/test12.html" xlink:title="test12">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-486 5.5,-486 5.5,-462 59.5,-462 59.5,-486"/>
+<text text-anchor="middle" x="32.5" y="-471.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test12</text>
+</a>
+</g>
+</g>
+<!-- program~test12&#45;&gt;proc~mtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge17" class="edge">
+<title>program~test12&#45;&gt;proc~mtimer_write</title>
+<path fill="none" stroke="#00ff66" d="M59.51,-469.7C68.82,-468.16 79.82,-466.34 91.06,-464.48"/>
+<polygon fill="#00ff66" stroke="#00ff66" points="91.68,-467.93 100.98,-462.84 90.54,-461.02 91.68,-467.93"/>
+</g>
+<!-- program~test14 -->
+<g id="proc~~write_to_file~~CalledByGraph_node12" class="node">
+<title>program~test14</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node12"><a xlink:href="../program/test14.html" xlink:title="test14">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-150 5.5,-150 5.5,-126 59.5,-126 59.5,-150"/>
+<text text-anchor="middle" x="32.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test14</text>
+</a>
+</g>
+</g>
+<!-- program~test14&#45;&gt;proc~timer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge25" class="edge">
+<title>program~test14&#45;&gt;proc~timer_write</title>
+<path fill="none" stroke="#cc00ff" d="M59.51,-133.7C70.21,-131.93 83.12,-129.8 96.08,-127.65"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="96.67,-131.1 105.96,-126.02 95.53,-124.2 96.67,-131.1"/>
+</g>
+<!-- program~test15 -->
+<g id="proc~~write_to_file~~CalledByGraph_node13" class="node">
+<title>program~test15</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node13"><a xlink:href="../program/test15.html" xlink:title="test15">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-108 5.5,-108 5.5,-84 59.5,-84 59.5,-108"/>
+<text text-anchor="middle" x="32.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test15</text>
+</a>
+</g>
+</g>
+<!-- program~test15&#45;&gt;proc~timer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge26" class="edge">
+<title>program~test15&#45;&gt;proc~timer_write</title>
+<path fill="none" stroke="#cc00ff" d="M59.51,-100.3C70.21,-102.07 83.12,-104.2 96.08,-106.35"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="95.53,-109.8 105.96,-107.98 96.67,-102.9 95.53,-109.8"/>
+</g>
+<!-- program~test17 -->
+<g id="proc~~write_to_file~~CalledByGraph_node14" class="node">
+<title>program~test17</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node14"><a xlink:href="../program/test17.html" xlink:title="test17">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-906 5.5,-906 5.5,-882 59.5,-882 59.5,-906"/>
+<text text-anchor="middle" x="32.5" y="-891.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test17</text>
+</a>
+</g>
+</g>
+<!-- program~test17&#45;&gt;proc~ctimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge7" class="edge">
+<title>program~test17&#45;&gt;proc~ctimer_write</title>
+<path fill="none" stroke="#ff0000" d="M57.99,-881.85C77.58,-872.14 105.25,-858.41 126.91,-847.66"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="128.69,-850.69 136.09,-843.11 125.57,-844.42 128.69,-850.69"/>
+</g>
+<!-- program~test18 -->
+<g id="proc~~write_to_file~~CalledByGraph_node15" class="node">
+<title>program~test18</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node15"><a xlink:href="../program/test18.html" xlink:title="test18">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-864 5.5,-864 5.5,-840 59.5,-840 59.5,-864"/>
+<text text-anchor="middle" x="32.5" y="-849.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test18</text>
+</a>
+</g>
+</g>
+<!-- program~test18&#45;&gt;proc~ctimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge8" class="edge">
+<title>program~test18&#45;&gt;proc~ctimer_write</title>
+<path fill="none" stroke="#ff0000" d="M59.51,-847.7C69.32,-846.08 80.98,-844.15 92.84,-842.19"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="93.52,-845.62 102.82,-840.54 92.38,-838.72 93.52,-845.62"/>
+</g>
+<!-- program~test2 -->
+<g id="proc~~write_to_file~~CalledByGraph_node16" class="node">
+<title>program~test2</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node16"><a xlink:href="../program/test2.html" xlink:title="test2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-66 5.5,-66 5.5,-42 59.5,-42 59.5,-66"/>
+<text text-anchor="middle" x="32.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test2</text>
+</a>
+</g>
+</g>
+<!-- program~test2&#45;&gt;proc~timer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge27" class="edge">
+<title>program~test2&#45;&gt;proc~timer_write</title>
+<path fill="none" stroke="#cc00ff" d="M57.99,-66.15C77.58,-75.86 105.25,-89.59 126.91,-100.34"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="125.57,-103.58 136.09,-104.89 128.69,-97.31 125.57,-103.58"/>
+</g>
+<!-- program~test20 -->
+<g id="proc~~write_to_file~~CalledByGraph_node17" class="node">
+<title>program~test20</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node17"><a xlink:href="../program/test20.html" xlink:title="test20">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-360 5.5,-360 5.5,-336 59.5,-336 59.5,-360"/>
+<text text-anchor="middle" x="32.5" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test20</text>
+</a>
+</g>
+</g>
+<!-- program~test20&#45;&gt;proc~otimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge20" class="edge">
+<title>program~test20&#45;&gt;proc~otimer_write</title>
+<path fill="none" stroke="#0066ff" d="M59.51,-339.4C75.25,-334.19 95.79,-327.4 114.24,-321.3"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="115.54,-324.55 123.94,-318.09 113.34,-317.91 115.54,-324.55"/>
+</g>
+<!-- program~test21 -->
+<g id="proc~~write_to_file~~CalledByGraph_node18" class="node">
+<title>program~test21</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node18"><a xlink:href="../program/test21.html" xlink:title="test21">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-318 5.5,-318 5.5,-294 59.5,-294 59.5,-318"/>
+<text text-anchor="middle" x="32.5" y="-303.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test21</text>
+</a>
+</g>
+</g>
+<!-- program~test21&#45;&gt;proc~otimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge21" class="edge">
+<title>program~test21&#45;&gt;proc~otimer_write</title>
+<path fill="none" stroke="#0066ff" d="M59.51,-306C69.1,-306 80.48,-306 92.08,-306"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="92.29,-309.5 102.29,-306 92.29,-302.5 92.29,-309.5"/>
+</g>
+<!-- program~test23 -->
+<g id="proc~~write_to_file~~CalledByGraph_node19" class="node">
+<title>program~test23</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node19"><a xlink:href="../program/test23.html" xlink:title="test23">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-444 5.5,-444 5.5,-420 59.5,-420 59.5,-444"/>
+<text text-anchor="middle" x="32.5" y="-429.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test23</text>
+</a>
+</g>
+</g>
+<!-- program~test23&#45;&gt;proc~mtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge18" class="edge">
+<title>program~test23&#45;&gt;proc~mtimer_write</title>
+<path fill="none" stroke="#00ff66" d="M59.51,-436.3C68.82,-437.84 79.82,-439.66 91.06,-441.52"/>
+<polygon fill="#00ff66" stroke="#00ff66" points="90.54,-444.98 100.98,-443.16 91.68,-438.07 90.54,-444.98"/>
+</g>
+<!-- program~test24 -->
+<g id="proc~~write_to_file~~CalledByGraph_node20" class="node">
+<title>program~test24</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node20"><a xlink:href="../program/test24.html" xlink:title="test24">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-402 5.5,-402 5.5,-378 59.5,-378 59.5,-402"/>
+<text text-anchor="middle" x="32.5" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test24</text>
+</a>
+</g>
+</g>
+<!-- program~test24&#45;&gt;proc~mtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge19" class="edge">
+<title>program~test24&#45;&gt;proc~mtimer_write</title>
+<path fill="none" stroke="#00ff66" d="M57.99,-402.15C77.58,-411.86 105.25,-425.59 126.91,-436.34"/>
+<polygon fill="#00ff66" stroke="#00ff66" points="125.57,-439.58 136.09,-440.89 128.69,-433.31 125.57,-439.58"/>
+</g>
+<!-- program~test26 -->
+<g id="proc~~write_to_file~~CalledByGraph_node21" class="node">
+<title>program~test26</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node21"><a xlink:href="../program/test26.html" xlink:title="test26">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-696 5.5,-696 5.5,-672 59.5,-672 59.5,-696"/>
+<text text-anchor="middle" x="32.5" y="-681.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test26</text>
+</a>
+</g>
+</g>
+<!-- program~test26&#45;&gt;proc~dtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge12" class="edge">
+<title>program~test26&#45;&gt;proc~dtimer_write</title>
+<path fill="none" stroke="#cbff00" d="M57.99,-671.85C77.58,-662.14 105.25,-648.41 126.91,-637.66"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="128.69,-640.69 136.09,-633.11 125.57,-634.42 128.69,-640.69"/>
+</g>
+<!-- program~test27 -->
+<g id="proc~~write_to_file~~CalledByGraph_node22" class="node">
+<title>program~test27</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node22"><a xlink:href="../program/test27.html" xlink:title="test27">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-654 5.5,-654 5.5,-630 59.5,-630 59.5,-654"/>
+<text text-anchor="middle" x="32.5" y="-639.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test27</text>
+</a>
+</g>
+</g>
+<!-- program~test27&#45;&gt;proc~dtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge13" class="edge">
+<title>program~test27&#45;&gt;proc~dtimer_write</title>
+<path fill="none" stroke="#cbff00" d="M59.51,-637.7C69.1,-636.11 80.48,-634.23 92.08,-632.31"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="93,-635.71 102.29,-630.63 91.85,-628.8 93,-635.71"/>
+</g>
+<!-- program~test29 -->
+<g id="proc~~write_to_file~~CalledByGraph_node23" class="node">
+<title>program~test29</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node23"><a xlink:href="../program/test29.html" xlink:title="test29">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-612 5.5,-612 5.5,-588 59.5,-588 59.5,-612"/>
+<text text-anchor="middle" x="32.5" y="-597.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test29</text>
+</a>
+</g>
+</g>
+<!-- program~test29&#45;&gt;proc~dtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge14" class="edge">
+<title>program~test29&#45;&gt;proc~dtimer_write</title>
+<path fill="none" stroke="#cbff00" d="M59.51,-604.3C69.1,-605.89 80.48,-607.77 92.08,-609.69"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="91.85,-613.2 102.29,-611.37 93,-606.29 91.85,-613.2"/>
+</g>
+<!-- program~test3 -->
+<g id="proc~~write_to_file~~CalledByGraph_node24" class="node">
+<title>program~test3</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node24"><a xlink:href="../program/test3.html" xlink:title="test3">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-24 5.5,-24 5.5,0 59.5,0 59.5,-24"/>
+<text text-anchor="middle" x="32.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test3</text>
+</a>
+</g>
+</g>
+<!-- program~test3&#45;&gt;proc~timer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge28" class="edge">
+<title>program~test3&#45;&gt;proc~timer_write</title>
+<path fill="none" stroke="#cc00ff" d="M52.44,-24.04C56.65,-26.87 61.04,-29.96 65,-33 92.13,-53.82 121.38,-80.2 140.27,-97.78"/>
+<polygon fill="#cc00ff" stroke="#cc00ff" points="138,-100.45 147.69,-104.74 142.78,-95.35 138,-100.45"/>
+</g>
+<!-- program~test30 -->
+<g id="proc~~write_to_file~~CalledByGraph_node25" class="node">
+<title>program~test30</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node25"><a xlink:href="../program/test30.html" xlink:title="test30">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-570 5.5,-570 5.5,-546 59.5,-546 59.5,-570"/>
+<text text-anchor="middle" x="32.5" y="-555.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test30</text>
+</a>
+</g>
+</g>
+<!-- program~test30&#45;&gt;proc~dtimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge15" class="edge">
+<title>program~test30&#45;&gt;proc~dtimer_write</title>
+<path fill="none" stroke="#cbff00" d="M57.99,-570.15C77.58,-579.86 105.25,-593.59 126.91,-604.34"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="125.57,-607.58 136.09,-608.89 128.69,-601.31 125.57,-607.58"/>
+</g>
+<!-- program~test5 -->
+<g id="proc~~write_to_file~~CalledByGraph_node26" class="node">
+<title>program~test5</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node26"><a xlink:href="../program/test5.html" xlink:title="test5">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-822 5.5,-822 5.5,-798 59.5,-798 59.5,-822"/>
+<text text-anchor="middle" x="32.5" y="-807.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test5</text>
+</a>
+</g>
+</g>
+<!-- program~test5&#45;&gt;proc~ctimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge9" class="edge">
+<title>program~test5&#45;&gt;proc~ctimer_write</title>
+<path fill="none" stroke="#ff0000" d="M59.51,-814.3C69.32,-815.92 80.98,-817.85 92.84,-819.81"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="92.38,-823.28 102.82,-821.46 93.52,-816.38 92.38,-823.28"/>
+</g>
+<!-- program~test6 -->
+<g id="proc~~write_to_file~~CalledByGraph_node27" class="node">
+<title>program~test6</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node27"><a xlink:href="../program/test6.html" xlink:title="test6">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-780 5.5,-780 5.5,-756 59.5,-756 59.5,-780"/>
+<text text-anchor="middle" x="32.5" y="-765.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test6</text>
+</a>
+</g>
+</g>
+<!-- program~test6&#45;&gt;proc~ctimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge10" class="edge">
+<title>program~test6&#45;&gt;proc~ctimer_write</title>
+<path fill="none" stroke="#ff0000" d="M57.99,-780.15C77.58,-789.86 105.25,-803.59 126.91,-814.34"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="125.57,-817.58 136.09,-818.89 128.69,-811.31 125.57,-817.58"/>
+</g>
+<!-- program~test8 -->
+<g id="proc~~write_to_file~~CalledByGraph_node28" class="node">
+<title>program~test8</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node28"><a xlink:href="../program/test8.html" xlink:title="test8">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-276 5.5,-276 5.5,-252 59.5,-252 59.5,-276"/>
+<text text-anchor="middle" x="32.5" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test8</text>
+</a>
+</g>
+</g>
+<!-- program~test8&#45;&gt;proc~otimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge22" class="edge">
+<title>program~test8&#45;&gt;proc~otimer_write</title>
+<path fill="none" stroke="#0066ff" d="M59.51,-272.6C75.25,-277.81 95.79,-284.6 114.24,-290.7"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="113.34,-294.09 123.94,-293.91 115.54,-287.45 113.34,-294.09"/>
+</g>
+<!-- program~test9 -->
+<g id="proc~~write_to_file~~CalledByGraph_node29" class="node">
+<title>program~test9</title>
+<g id="a_proc~~write_to_file~~CalledByGraph_node29"><a xlink:href="../program/test9.html" xlink:title="test9">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="59.5,-234 5.5,-234 5.5,-210 59.5,-210 59.5,-234"/>
+<text text-anchor="middle" x="32.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test9</text>
+</a>
+</g>
+</g>
+<!-- program~test9&#45;&gt;proc~otimer_write -->
+<g id="proc~~write_to_file~~CalledByGraph_edge23" class="edge">
+<title>program~test9&#45;&gt;proc~otimer_write</title>
+<path fill="none" stroke="#0066ff" d="M51.7,-234.04C73.2,-248.26 109.16,-272.04 133.81,-288.35"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="132.07,-291.39 142.34,-293.99 135.93,-285.55 132.07,-291.39"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.86 0.86) rotate(0) translate(4 28)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-28 741.5,-28 741.5,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="70,-24 0,-24 0,0 70,0 70,-24"/>
+<text text-anchor="middle" x="35" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="146,-24 88,-24 88,0 146,0 146,-24"/>
+<text text-anchor="middle" x="117" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="225.5,-24 164.5,-24 164.5,0 225.5,0 225.5,-24"/>
+<text text-anchor="middle" x="195" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="374,-24 244,-24 244,0 374,0 374,-24"/>
+<text text-anchor="middle" x="309" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="537.5,-24 392.5,-24 392.5,0 537.5,0 537.5,-24"/>
+<text text-anchor="middle" x="465" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="614,-24 556,-24 556,0 614,0 614,-24"/>
+<text text-anchor="middle" x="585" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="737.5,-24 632.5,-24 632.5,0 737.5,0 737.5,-24"/>
+<text text-anchor="middle" x="685" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">impure subroutine </span><span class="n">write_to_file</span><span class="p">(</span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">)</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="nb">      </span><span class="kt">character</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">file_name</span>
+<span class="w">      </span><span class="kt">logical</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">file_exists</span>
+<span class="w">      </span><span class="kt">integer</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">nunit</span>
+
+<span class="w">      </span><span class="c">! Check if the file exists</span>
+<span class="w">      </span><span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">file_exists</span><span class="p">)</span>
+
+<span class="w">      </span><span class="c">! Open the file in appropriate mode</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">file_exists</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;old&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;write&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="k">else</span>
+<span class="k">         open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s1">&#39;new&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;write&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="k">end if</span>
+
+<span class="w">      </span><span class="c">! Write the elapsed time to the file</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;(g0)&#39;</span><span class="p">)</span><span class="w"> </span><span class="nb">time</span>
+
+<span class="w">      </span><span class="c">! Close the file</span>
+<span class="w">      </span><span class="k">close</span><span class="p">(</span><span class="n">nunit</span><span class="p">)</span>
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">write_to_file</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2024 BSD 3-Clause
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-05-25T12:16:36.276988+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
