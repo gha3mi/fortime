@@ -34,9 +34,16 @@ jobs:
         submodules: recursive
 
     - name: Setup Fortran Package Manager (fpm)
+      if: matrix.os != 'macos-latest'
       uses: fortran-lang/setup-fpm@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Install fpm on macOS
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew tap fortran-lang/homebrew-fortran
+        brew install fpm
 
     - name: Setup Fortran Compiler
       uses: fortran-lang/setup-fortran@main
@@ -44,10 +51,6 @@ jobs:
       with:
         compiler: ${{ matrix.toolchain.compiler }}
         version: ${{ matrix.toolchain.version }}
-
-    - name: Install gcc@10 on macos required by fpm
-      if: contains(matrix.os, 'macos')
-      run: brew install gcc@10
 
     - name: Run test (Debug)
       run: fpm test --profile debug --flag '-fopenmp -DUSE_OMP' --compiler ${{ env.FC}}
