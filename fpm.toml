@@ -7,13 +7,14 @@ copyright  = "Copyright 2023-2024, Seyed Ali Ghasemi"
 
 
 [dependencies]
-kinds = {git="https://github.com/gha3mi/kinds.git"}
 FACE = {git="https://github.com/szaghi/FACE.git"}
-forunittest = {git="https://github.com/gha3mi/forunittest.git"}
+
+[dev-dependencies]
+forunittest = {git="https://github.com/gha3mi/forunittest"}
 
 [build]
 auto-executables = false
-auto-tests       = false
+auto-tests       = true
 auto-examples    = false
 module-naming    = false
 
@@ -27,156 +28,6 @@ source-form       = "free"
 
 [preprocess]
 [preprocess.cpp]
-
-[[test]]
-name       = "test1"
-source-dir = "test"
-main       = "test1.f90"
-
-[[test]]
-name       = "test2"
-source-dir = "test"
-main       = "test2.f90"
-
-[[test]]
-name       = "test3"
-source-dir = "test"
-main       = "test3.f90"
-
-[[test]]
-name       = "test4"
-source-dir = "test"
-main       = "test4.f90"
-
-[[test]]
-name       = "test5"
-source-dir = "test"
-main       = "test5.f90"
-
-[[test]]
-name       = "test6"
-source-dir = "test"
-main       = "test6.f90"
-
-[[test]]
-name       = "test7"
-source-dir = "test"
-main       = "test7.f90"
-
-[[test]]
-name       = "test8"
-source-dir = "test"
-main       = "test8.f90"
-
-[[test]]
-name       = "test9"
-source-dir = "test"
-main       = "test9.f90"
-
-[[test]]
-name       = "test10"
-source-dir = "test"
-main       = "test10.f90"
-
-[[test]]
-name       = "test11"
-source-dir = "test"
-main       = "test11.f90"
-
-[[test]]
-name       = "test12"
-source-dir = "test"
-main       = "test12.f90"
-
-[[test]]
-name       = "test13"
-source-dir = "test"
-main       = "test13.f90"
-
-[[test]]
-name       = "test14"
-source-dir = "test"
-main       = "test14.f90"
-
-[[test]]
-name       = "test15"
-source-dir = "test"
-main       = "test15.f90"
-
-[[test]]
-name       = "test16"
-source-dir = "test"
-main       = "test16.f90"
-
-[[test]]
-name       = "test17"
-source-dir = "test"
-main       = "test17.f90"
-
-[[test]]
-name       = "test18"
-source-dir = "test"
-main       = "test18.f90"
-
-[[test]]
-name       = "test19"
-source-dir = "test"
-main       = "test19.f90"
-
-[[test]]
-name       = "test20"
-source-dir = "test"
-main       = "test20.f90"
-
-[[test]]
-name       = "test21"
-source-dir = "test"
-main       = "test21.f90"
-
-[[test]]
-name       = "test22"
-source-dir = "test"
-main       = "test22.f90"
-
-[[test]]
-name       = "test23"
-source-dir = "test"
-main       = "test23.f90"
-
-[[test]]
-name       = "test24"
-source-dir = "test"
-main       = "test24.f90"
-
-[[test]]
-name       = "test25"
-source-dir = "test"
-main       = "test25.f90"
-
-[[test]]
-name       = "test26"
-source-dir = "test"
-main       = "test26.f90"
-
-[[test]]
-name       = "test27"
-source-dir = "test"
-main       = "test27.f90"
-
-[[test]]
-name       = "test28"
-source-dir = "test"
-main       = "test28.f90"
-
-[[test]]
-name       = "test29"
-source-dir = "test"
-main       = "test29.f90"
-
-[[test]]
-name       = "test30"
-source-dir = "test"
-main       = "test30.f90"
 
 
 [[example]]

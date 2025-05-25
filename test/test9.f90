@@ -1,8 +1,7 @@
 program test9
 
-   use kinds
-   use fortime
-   use forunittest
+   use fortime, only: timer
+   use forunittest, only: unit_test, rk
 
    implicit none
 

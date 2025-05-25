@@ -1,6 +1,5 @@
 program test18
 
-   use kinds
    use fortime
 
    implicit none

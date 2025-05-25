@@ -3,13 +3,15 @@
  !> as calculating and printing the elapsed time in seconds.
 module fortime
 
-   use kinds
+   use iso_fortran_env, only: real64
 
    implicit none
 
    private
 
-   public :: timer
+   public :: timer, rk
+
+   integer, parameter :: rk = real64
 
    !===============================================================================
    type :: timer
@@ -18,6 +20,8 @@ module fortime
       integer, private :: clock_end        ! End time in processor ticks
       integer, private :: clock_elapsed    ! Elapsed time in processor ticks
       real(rk)         :: elapsed_time     ! Elapsed time in seconds
+      integer, private :: clock_pause              ! Pause start time (processor ticks)
+      integer, private :: clock_accum_paused = 0   ! Accumulated paused time (processor ticks)
 
       real(rk), private :: cpu_start       ! Start CPU time
       real(rk), private :: cpu_end         ! End CPU time
@@ -38,14 +42,20 @@ module fortime
       real(rk)          :: mpi_time        ! Elapsed time in seconds
 #endif
 
-      integer, dimension(8), private :: values_start     ! Start date and time values
-      integer, dimension(8), private :: values_end       ! End date and time values
-      integer, dimension(8), private :: values_elapsed   ! Elapsed date and time values
-      real(rk)                       :: elapsed_dtime    ! Elapsed time in seconds
+      integer, private :: values_start(8)     ! Start date and time values
+      integer, private :: values_end(8)       ! End date and time values
+      integer, private :: values_elapsed(8)   ! Elapsed date and time values
+      real(rk)         :: elapsed_dtime       ! Elapsed time in seconds
+
+      logical, private :: is_started = .false.     ! Indicates if timer is started
+      logical, private :: is_paused = .false.      ! Indicates if timer is paused
+
    contains
       procedure :: timer_start     ! Procedure for starting the timer
       procedure :: timer_stop      ! Procedure for stopping the timer
       procedure :: timer_write     ! Procedure for writing elapsed time to a file
+      procedure :: timer_pause
+      procedure :: timer_resume
 
       procedure :: ctimer_start    ! Procedure for starting the CPU timer
       procedure :: ctimer_stop     ! Procedure for stopping the CPU timer
@@ -78,6 +88,10 @@ contains
    impure subroutine timer_start(this)
       class(timer), intent(inout) :: this
 
+      this%is_started = .true.
+      this%is_paused = .false.
+      this%clock_accum_paused = 0
+
       ! Get the processor clock rate
       call system_clock(count_rate=this%clock_rate)
 
@@ -103,8 +117,20 @@ contains
       ! Stop the timer
       call system_clock(count=this%clock_end)
 
-      ! Calculate the elapsed processor ticks
-      this%clock_elapsed = this%clock_end - this%clock_start
+      if (.not. this%is_started) then
+         print*, "Error: timer_stop called before timer_start!"
+         return
+      end if
+
+      if (this%is_paused) then
+         print*, "Error: timer_stop called while timer is paused!"
+         return
+      end if
+
+      this%clock_elapsed = this%clock_end - this%clock_start - this%clock_accum_paused
+
+      this%clock_accum_paused = 0
+      this%is_started = .false.
 
       ! Convert processor ticks to seconds
       if (.not.present(nloops)) &
@@ -141,22 +167,7 @@ contains
       logical                  :: file_exists
       integer                  :: nunit
 
-      ! Check if the file exists
-      inquire(file=file_name, exist=file_exists)
-
-      ! Open the file in appropriate mode
-      if (file_exists) then
-         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
-      else
-         open(newunit=nunit, file=file_name, status='new', action='write')
-      end if
-
-      ! Write the elapsed time to the file
-      write(nunit, '(g0)') this%elapsed_time
-
-      ! Close the file
-      close(nunit)
-
+      call write_to_file(this%elapsed_time, file_name)
    end subroutine timer_write
    !===============================================================================
 
@@ -226,31 +237,16 @@ contains
       logical                  :: file_exists
       integer                  :: nunit
 
-      ! Check if the file exists
-      inquire(file=file_name, exist=file_exists)
-
-      ! Open the file in appropriate mode
-      if (file_exists) then
-         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
-      else
-         open(newunit=nunit, file=file_name, status='new', action='write')
-      end if
-
-      ! Write the CPU time to the file
-      write(nunit, '(g0)') this%cpu_time
-
-      ! Close the file
-      close(nunit)
-
+      call write_to_file(this%cpu_time, file_name)
    end subroutine ctimer_write
    !===============================================================================
 
 
+#if defined(USE_OMP)
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    !> Starts the timer by recording the current OMP time value.
    !> This value is used to calculate the OMP time later.
-#if defined(USE_OMP)
    impure subroutine otimer_start(this)
       use omp_lib
       class(timer), intent(inout) :: this
@@ -319,22 +315,7 @@ contains
       logical                  :: file_exists
       integer                  :: nunit
 
-      ! Check if the file exists
-      inquire(file=file_name, exist=file_exists)
-
-      ! Open the file in appropriate mode
-      if (file_exists) then
-         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
-      else
-         open(newunit=nunit, file=file_name, status='new', action='write')
-      end if
-
-      ! Write the OMP time to the file
-      write(nunit, '(g0)') this%omp_time
-
-      ! Close the file
-      close(nunit)
-
+      call write_to_file(this%omp_time, file_name)
    end subroutine otimer_write
    !===============================================================================
 #endif
@@ -352,6 +333,7 @@ contains
       interface
          function mpi_wtime()
             import rk
+            implicit none
             real(rk) :: mpi_wtime
          end function mpi_wtime
       end interface
@@ -381,6 +363,7 @@ contains
       interface
          function mpi_wtime()
             import rk
+            implicit none
             real(rk) :: mpi_wtime
          end function mpi_wtime
       end interface
@@ -426,22 +409,7 @@ contains
       logical                  :: file_exists
       integer                  :: nunit
 
-      ! Check if the file exists
-      inquire(file=file_name, exist=file_exists)
-
-      ! Open the file in appropriate mode
-      if (file_exists) then
-         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
-      else
-         open(newunit=nunit, file=file_name, status='new', action='write')
-      end if
-
-      ! Write the MPI time to the file
-      write(nunit, '(g0)') this%mpi_time
-
-      ! Close the file
-      close(nunit)
-
+      call write_to_file(this%mpi_time, file_name)
    end subroutine mtimer_write
    !===============================================================================
 #endif
@@ -514,22 +482,7 @@ contains
       logical                  :: file_exists
       integer                  :: nunit
 
-      ! Check if the file exists
-      inquire(file=file_name, exist=file_exists)
-
-      ! Open the file in appropriate mode
-      if (file_exists) then
-         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
-      else
-         open(newunit=nunit, file=file_name, status='new', action='write')
-      end if
-
-      ! Write the elapsed time to the file
-      write(nunit, '(g0)') this%elapsed_dtime
-
-      ! Close the file
-      close(nunit)
-
+      call write_to_file(this%elapsed_dtime, file_name)
    end subroutine dtimer_write
    !===============================================================================
 
@@ -537,8 +490,8 @@ contains
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    pure function to_seconds(values) result(seconds)
-      integer, dimension(8), intent(in) :: values
-      real(rk)                          :: seconds
+      integer, intent(in) :: values(8)
+      real(rk)            :: seconds
 
       seconds = real(values(3), rk) * 24.0_rk * 60.0_rk * 60.0_rk + &
                 real(values(5), rk) * 60.0_rk * 60.0_rk + &
@@ -564,6 +517,70 @@ contains
          print '(A, F16.9, A)', colorize(trim(message), color_fg='blue'), time, colorize(" [s]", color_fg='blue')
       end if
    end subroutine print_time
+   !===============================================================================
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   impure subroutine write_to_file(time, file_name)
+      real(rk), intent(in)     :: time
+      character(*), intent(in) :: file_name
+      logical                  :: file_exists
+      integer                  :: nunit
+
+      ! Check if the file exists
+      inquire(file=file_name, exist=file_exists)
+
+      ! Open the file in appropriate mode
+      if (file_exists) then
+         open(newunit=nunit, file=file_name, status='old', action='write', position='append')
+      else
+         open(newunit=nunit, file=file_name, status='new', action='write')
+      end if
+
+      ! Write the elapsed time to the file
+      write(nunit, '(g0)') time
+
+      ! Close the file
+      close(nunit)
+   end subroutine write_to_file
+   !===============================================================================
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   impure subroutine timer_pause(this)
+      class(timer), intent(inout) :: this
+      integer :: clock_current
+
+      if (.not. this%is_paused) then
+         call system_clock(count=clock_current)
+         this%clock_pause = clock_current
+         this%is_paused = .true.
+      else
+         print*, "Warning: timer cannot pause."
+         print*, "Please resume the timer before pausing again."
+      end if
+   end subroutine timer_pause
+   !===============================================================================
+
+
+   !===============================================================================
+   !> author: Seyed Ali Ghasemi
+   impure subroutine timer_resume(this)
+      class(timer), intent(inout) :: this
+      integer :: clock_current, pause_duration
+
+      if (this%is_paused) then
+         call system_clock(count=clock_current)
+         pause_duration = clock_current - this%clock_pause
+         this%clock_accum_paused = this%clock_accum_paused + pause_duration
+         this%is_paused = .false.
+      else
+         print*, "Warning: timer cannot resume."
+         print*, "Please pause the timer before resuming."
+      end if
+   end subroutine timer_resume
    !===============================================================================
 
 end module fortime
