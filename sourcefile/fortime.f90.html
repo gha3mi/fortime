@@ -811,12 +811,12 @@ large graphs.</div>
 <a id="ln-9" name="ln-9" href="#ln-9"></a>
 <a id="ln-10" name="ln-10" href="#ln-10"></a><span class="k">   private</span>
 <a id="ln-11" name="ln-11" href="#ln-11"></a>
-<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="k">   public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer</span><span class="p">,</span><span class="w"> </span><span class="n">rk</span>
+<a id="ln-12" name="ln-12" href="#ln-12"></a><span class="k">   public </span><span class="n">timer</span><span class="p">,</span><span class="w"> </span><span class="n">rk</span>
 <a id="ln-13" name="ln-13" href="#ln-13"></a>
 <a id="ln-14" name="ln-14" href="#ln-14"></a><span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">real64</span>
 <a id="ln-15" name="ln-15" href="#ln-15"></a>
 <a id="ln-16" name="ln-16" href="#ln-16"></a><span class="w">   </span><span class="c">!===============================================================================</span>
-<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">   </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer</span>
+<a id="ln-17" name="ln-17" href="#ln-17"></a><span class="w">   </span><span class="k">type </span><span class="n">timer</span>
 <a id="ln-18" name="ln-18" href="#ln-18"></a><span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">clock_rate</span><span class="w">       </span><span class="c">! Processor clock rate</span>
 <a id="ln-19" name="ln-19" href="#ln-19"></a><span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">clock_start</span><span class="w">      </span><span class="c">! Start time in processor ticks</span>
 <a id="ln-20" name="ln-20" href="#ln-20"></a><span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">clock_end</span><span class="w">        </span><span class="c">! End time in processor ticks</span>
@@ -900,7 +900,7 @@ large graphs.</div>
 <a id="ln-98" name="ln-98" href="#ln-98"></a><span class="w">      </span><span class="c">! Start the timer</span>
 <a id="ln-99" name="ln-99" href="#ln-99"></a><span class="w">      </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="o">=</span><span class="n">this</span><span class="p">%</span><span class="n">clock_start</span><span class="p">)</span>
 <a id="ln-100" name="ln-100" href="#ln-100"></a>
-<a id="ln-101" name="ln-101" href="#ln-101"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">timer_start</span>
+<a id="ln-101" name="ln-101" href="#ln-101"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-102" name="ln-102" href="#ln-102"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-103" name="ln-103" href="#ln-103"></a>
 <a id="ln-104" name="ln-104" href="#ln-104"></a>
@@ -956,7 +956,7 @@ large graphs.</div>
 <a id="ln-154" name="ln-154" href="#ln-154"></a><span class="w">      </span><span class="c">! Deallocate the message</span>
 <a id="ln-155" name="ln-155" href="#ln-155"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <a id="ln-156" name="ln-156" href="#ln-156"></a>
-<a id="ln-157" name="ln-157" href="#ln-157"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">timer_stop</span>
+<a id="ln-157" name="ln-157" href="#ln-157"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-158" name="ln-158" href="#ln-158"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-159" name="ln-159" href="#ln-159"></a>
 <a id="ln-160" name="ln-160" href="#ln-160"></a>
@@ -970,7 +970,7 @@ large graphs.</div>
 <a id="ln-168" name="ln-168" href="#ln-168"></a><span class="w">      </span><span class="kt">integer</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">nunit</span>
 <a id="ln-169" name="ln-169" href="#ln-169"></a>
 <a id="ln-170" name="ln-170" href="#ln-170"></a><span class="w">      </span><span class="k">call </span><span class="n">write_to_file</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">elapsed_time</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">)</span>
-<a id="ln-171" name="ln-171" href="#ln-171"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">timer_write</span>
+<a id="ln-171" name="ln-171" href="#ln-171"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-172" name="ln-172" href="#ln-172"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-173" name="ln-173" href="#ln-173"></a>
 <a id="ln-174" name="ln-174" href="#ln-174"></a>
@@ -984,7 +984,7 @@ large graphs.</div>
 <a id="ln-182" name="ln-182" href="#ln-182"></a><span class="w">      </span><span class="c">! Start the timer</span>
 <a id="ln-183" name="ln-183" href="#ln-183"></a><span class="w">      </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">cpu_start</span><span class="p">)</span>
 <a id="ln-184" name="ln-184" href="#ln-184"></a>
-<a id="ln-185" name="ln-185" href="#ln-185"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">ctimer_start</span>
+<a id="ln-185" name="ln-185" href="#ln-185"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-186" name="ln-186" href="#ln-186"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-187" name="ln-187" href="#ln-187"></a>
 <a id="ln-188" name="ln-188" href="#ln-188"></a>
@@ -1026,7 +1026,7 @@ large graphs.</div>
 <a id="ln-224" name="ln-224" href="#ln-224"></a><span class="w">      </span><span class="c">! Deallocate the message</span>
 <a id="ln-225" name="ln-225" href="#ln-225"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <a id="ln-226" name="ln-226" href="#ln-226"></a>
-<a id="ln-227" name="ln-227" href="#ln-227"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">ctimer_stop</span>
+<a id="ln-227" name="ln-227" href="#ln-227"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-228" name="ln-228" href="#ln-228"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-229" name="ln-229" href="#ln-229"></a>
 <a id="ln-230" name="ln-230" href="#ln-230"></a>
@@ -1056,7 +1056,7 @@ large graphs.</div>
 <a id="ln-254" name="ln-254" href="#ln-254"></a><span class="w">      </span><span class="c">! Start the timer</span>
 <a id="ln-255" name="ln-255" href="#ln-255"></a><span class="w">      </span><span class="n">this</span><span class="p">%</span><span class="n">omp_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">omp_get_wtime</span><span class="p">()</span>
 <a id="ln-256" name="ln-256" href="#ln-256"></a>
-<a id="ln-257" name="ln-257" href="#ln-257"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">otimer_start</span>
+<a id="ln-257" name="ln-257" href="#ln-257"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-258" name="ln-258" href="#ln-258"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-259" name="ln-259" href="#ln-259"></a><span class="cp">#endif</span>
 <a id="ln-260" name="ln-260" href="#ln-260"></a>
@@ -1101,7 +1101,7 @@ large graphs.</div>
 <a id="ln-299" name="ln-299" href="#ln-299"></a><span class="w">      </span><span class="c">! Deallocate the message</span>
 <a id="ln-300" name="ln-300" href="#ln-300"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <a id="ln-301" name="ln-301" href="#ln-301"></a>
-<a id="ln-302" name="ln-302" href="#ln-302"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">otimer_stop</span>
+<a id="ln-302" name="ln-302" href="#ln-302"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-303" name="ln-303" href="#ln-303"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-304" name="ln-304" href="#ln-304"></a><span class="cp">#endif</span>
 <a id="ln-305" name="ln-305" href="#ln-305"></a>
@@ -1118,7 +1118,7 @@ large graphs.</div>
 <a id="ln-316" name="ln-316" href="#ln-316"></a><span class="w">      </span><span class="kt">integer</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">nunit</span>
 <a id="ln-317" name="ln-317" href="#ln-317"></a>
 <a id="ln-318" name="ln-318" href="#ln-318"></a><span class="w">      </span><span class="k">call </span><span class="n">write_to_file</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">omp_time</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">)</span>
-<a id="ln-319" name="ln-319" href="#ln-319"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">otimer_write</span>
+<a id="ln-319" name="ln-319" href="#ln-319"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-320" name="ln-320" href="#ln-320"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-321" name="ln-321" href="#ln-321"></a><span class="cp">#endif</span>
 <a id="ln-322" name="ln-322" href="#ln-322"></a>
@@ -1143,7 +1143,7 @@ large graphs.</div>
 <a id="ln-341" name="ln-341" href="#ln-341"></a><span class="w">      </span><span class="c">! Start the timer</span>
 <a id="ln-342" name="ln-342" href="#ln-342"></a><span class="w">      </span><span class="n">this</span><span class="p">%</span><span class="n">mpi_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpi_wtime</span><span class="p">()</span>
 <a id="ln-343" name="ln-343" href="#ln-343"></a>
-<a id="ln-344" name="ln-344" href="#ln-344"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">mtimer_start</span>
+<a id="ln-344" name="ln-344" href="#ln-344"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-345" name="ln-345" href="#ln-345"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-346" name="ln-346" href="#ln-346"></a><span class="cp">#endif</span>
 <a id="ln-347" name="ln-347" href="#ln-347"></a>
@@ -1196,7 +1196,7 @@ large graphs.</div>
 <a id="ln-394" name="ln-394" href="#ln-394"></a><span class="w">      </span><span class="c">! Deallocate the message</span>
 <a id="ln-395" name="ln-395" href="#ln-395"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <a id="ln-396" name="ln-396" href="#ln-396"></a>
-<a id="ln-397" name="ln-397" href="#ln-397"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">mtimer_stop</span>
+<a id="ln-397" name="ln-397" href="#ln-397"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-398" name="ln-398" href="#ln-398"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-399" name="ln-399" href="#ln-399"></a><span class="cp">#endif</span>
 <a id="ln-400" name="ln-400" href="#ln-400"></a>
@@ -1212,7 +1212,7 @@ large graphs.</div>
 <a id="ln-410" name="ln-410" href="#ln-410"></a><span class="w">      </span><span class="kt">integer</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">nunit</span>
 <a id="ln-411" name="ln-411" href="#ln-411"></a>
 <a id="ln-412" name="ln-412" href="#ln-412"></a><span class="w">      </span><span class="k">call </span><span class="n">write_to_file</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">mpi_time</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">)</span>
-<a id="ln-413" name="ln-413" href="#ln-413"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">mtimer_write</span>
+<a id="ln-413" name="ln-413" href="#ln-413"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-414" name="ln-414" href="#ln-414"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-415" name="ln-415" href="#ln-415"></a><span class="cp">#endif</span>
 <a id="ln-416" name="ln-416" href="#ln-416"></a>
@@ -1227,7 +1227,7 @@ large graphs.</div>
 <a id="ln-425" name="ln-425" href="#ln-425"></a><span class="w">      </span><span class="c">! Start the timer</span>
 <a id="ln-426" name="ln-426" href="#ln-426"></a><span class="w">      </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">this</span><span class="p">%</span><span class="n">values_start</span><span class="p">)</span>
 <a id="ln-427" name="ln-427" href="#ln-427"></a>
-<a id="ln-428" name="ln-428" href="#ln-428"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">dtimer_start</span>
+<a id="ln-428" name="ln-428" href="#ln-428"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-429" name="ln-429" href="#ln-429"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-430" name="ln-430" href="#ln-430"></a>
 <a id="ln-431" name="ln-431" href="#ln-431"></a>
@@ -1271,7 +1271,7 @@ large graphs.</div>
 <a id="ln-469" name="ln-469" href="#ln-469"></a><span class="w">      </span><span class="c">! Deallocate the message</span>
 <a id="ln-470" name="ln-470" href="#ln-470"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 <a id="ln-471" name="ln-471" href="#ln-471"></a>
-<a id="ln-472" name="ln-472" href="#ln-472"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">dtimer_stop</span>
+<a id="ln-472" name="ln-472" href="#ln-472"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-473" name="ln-473" href="#ln-473"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-474" name="ln-474" href="#ln-474"></a>
 <a id="ln-475" name="ln-475" href="#ln-475"></a>
@@ -1285,7 +1285,7 @@ large graphs.</div>
 <a id="ln-483" name="ln-483" href="#ln-483"></a><span class="w">      </span><span class="kt">integer</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">nunit</span>
 <a id="ln-484" name="ln-484" href="#ln-484"></a>
 <a id="ln-485" name="ln-485" href="#ln-485"></a><span class="w">      </span><span class="k">call </span><span class="n">write_to_file</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">elapsed_dtime</span><span class="p">,</span><span class="w"> </span><span class="n">file_name</span><span class="p">)</span>
-<a id="ln-486" name="ln-486" href="#ln-486"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">dtimer_write</span>
+<a id="ln-486" name="ln-486" href="#ln-486"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-487" name="ln-487" href="#ln-487"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-488" name="ln-488" href="#ln-488"></a>
 <a id="ln-489" name="ln-489" href="#ln-489"></a>
@@ -1298,10 +1298,10 @@ large graphs.</div>
 <a id="ln-496" name="ln-496" href="#ln-496"></a><span class="w">      </span><span class="n">seconds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="mf">4.0_rk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="mf">0.0_rk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="mf">0.0_rk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span>
 <a id="ln-497" name="ln-497" href="#ln-497"></a><span class="w">                </span><span class="kt">real</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="w"> </span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="mf">0.0_rk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="mf">0.0_rk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span>
 <a id="ln-498" name="ln-498" href="#ln-498"></a><span class="w">                </span><span class="kt">real</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">6</span><span class="mf">0.0_rk</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span>
-<a id="ln-499" name="ln-499" href="#ln-499"></a><span class="w">                </span><span class="kt">real</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>
+<a id="ln-499" name="ln-499" href="#ln-499"></a><span class="w">                </span><span class="kt">real</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="w"> </span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">&amp;</span>
 <a id="ln-500" name="ln-500" href="#ln-500"></a><span class="w">                </span><span class="kt">real</span><span class="p">(</span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">rk</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="mf">0.0_rk</span>
 <a id="ln-501" name="ln-501" href="#ln-501"></a>
-<a id="ln-502" name="ln-502" href="#ln-502"></a><span class="w">   </span><span class="k">end function </span><span class="n">to_seconds</span>
+<a id="ln-502" name="ln-502" href="#ln-502"></a><span class="w">   </span><span class="k">end function</span>
 <a id="ln-503" name="ln-503" href="#ln-503"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-504" name="ln-504" href="#ln-504"></a>
 <a id="ln-505" name="ln-505" href="#ln-505"></a>
@@ -1318,7 +1318,7 @@ large graphs.</div>
 <a id="ln-516" name="ln-516" href="#ln-516"></a><span class="w">      </span><span class="k">else</span>
 <a id="ln-517" name="ln-517" href="#ln-517"></a><span class="k">         print</span><span class="w"> </span><span class="s1">&#39;(A, F16.9, A)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">colorize</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">message</span><span class="p">),</span><span class="w"> </span><span class="n">color_fg</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">),</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">colorize</span><span class="p">(</span><span class="s2">&quot; [s]&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">color_fg</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 <a id="ln-518" name="ln-518" href="#ln-518"></a><span class="w">      </span><span class="k">end if</span>
-<a id="ln-519" name="ln-519" href="#ln-519"></a><span class="k">   end subroutine </span><span class="n">print_time</span>
+<a id="ln-519" name="ln-519" href="#ln-519"></a><span class="k">   end subroutine</span>
 <a id="ln-520" name="ln-520" href="#ln-520"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-521" name="ln-521" href="#ln-521"></a>
 <a id="ln-522" name="ln-522" href="#ln-522"></a>
@@ -1345,7 +1345,7 @@ large graphs.</div>
 <a id="ln-543" name="ln-543" href="#ln-543"></a>
 <a id="ln-544" name="ln-544" href="#ln-544"></a><span class="w">      </span><span class="c">! Close the file</span>
 <a id="ln-545" name="ln-545" href="#ln-545"></a><span class="w">      </span><span class="k">close</span><span class="p">(</span><span class="n">nunit</span><span class="p">)</span>
-<a id="ln-546" name="ln-546" href="#ln-546"></a><span class="w">   </span><span class="k">end subroutine </span><span class="n">write_to_file</span>
+<a id="ln-546" name="ln-546" href="#ln-546"></a><span class="w">   </span><span class="k">end subroutine</span>
 <a id="ln-547" name="ln-547" href="#ln-547"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-548" name="ln-548" href="#ln-548"></a>
 <a id="ln-549" name="ln-549" href="#ln-549"></a>
@@ -1363,7 +1363,7 @@ large graphs.</div>
 <a id="ln-561" name="ln-561" href="#ln-561"></a><span class="k">         print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Warning: timer cannot pause.&quot;</span>
 <a id="ln-562" name="ln-562" href="#ln-562"></a><span class="w">         </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Please resume the timer before pausing again.&quot;</span>
 <a id="ln-563" name="ln-563" href="#ln-563"></a><span class="w">      </span><span class="k">end if</span>
-<a id="ln-564" name="ln-564" href="#ln-564"></a><span class="k">   end subroutine </span><span class="n">timer_pause</span>
+<a id="ln-564" name="ln-564" href="#ln-564"></a><span class="k">   end subroutine</span>
 <a id="ln-565" name="ln-565" href="#ln-565"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-566" name="ln-566" href="#ln-566"></a>
 <a id="ln-567" name="ln-567" href="#ln-567"></a>
@@ -1382,10 +1382,10 @@ large graphs.</div>
 <a id="ln-580" name="ln-580" href="#ln-580"></a><span class="k">         print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Warning: timer cannot resume.&quot;</span>
 <a id="ln-581" name="ln-581" href="#ln-581"></a><span class="w">         </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Please pause the timer before resuming.&quot;</span>
 <a id="ln-582" name="ln-582" href="#ln-582"></a><span class="w">      </span><span class="k">end if</span>
-<a id="ln-583" name="ln-583" href="#ln-583"></a><span class="k">   end subroutine </span><span class="n">timer_resume</span>
+<a id="ln-583" name="ln-583" href="#ln-583"></a><span class="k">   end subroutine</span>
 <a id="ln-584" name="ln-584" href="#ln-584"></a><span class="w">   </span><span class="c">!===============================================================================</span>
 <a id="ln-585" name="ln-585" href="#ln-585"></a>
-<a id="ln-586" name="ln-586" href="#ln-586"></a><span class="k">end module </span><span class="n">fortime</span>
+<a id="ln-586" name="ln-586" href="#ln-586"></a><span class="k">end module</span>
 </pre></div>
 
       </section>
@@ -1400,14 +1400,14 @@ large graphs.</div>
           <div class="col">
             <p>
               ForTime
- was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2024 BSD 3-Clause
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2025 BSD 3-Clause
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-05-25T12:22:35.901565+0000             </p>
+ on 2025-05-25T21:09:32.377357+0000             </p>
           </div>
         </div>
         <br>

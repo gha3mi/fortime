@@ -9,12 +9,12 @@ module fortime
 
    private
 
-   public :: timer, rk
+   public timer, rk
 
    integer, parameter :: rk = real64
 
    !===============================================================================
-   type :: timer
+   type timer
       integer, private :: clock_rate       ! Processor clock rate
       integer, private :: clock_start      ! Start time in processor ticks
       integer, private :: clock_end        ! End time in processor ticks
@@ -98,7 +98,7 @@ contains
       ! Start the timer
       call system_clock(count=this%clock_start)
 
-   end subroutine timer_start
+   end subroutine
    !===============================================================================
 
 
@@ -154,7 +154,7 @@ contains
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
 
-   end subroutine timer_stop
+   end subroutine
    !===============================================================================
 
 
@@ -168,7 +168,7 @@ contains
       integer                  :: nunit
 
       call write_to_file(this%elapsed_time, file_name)
-   end subroutine timer_write
+   end subroutine
    !===============================================================================
 
 
@@ -182,7 +182,7 @@ contains
       ! Start the timer
       call cpu_time(this%cpu_start)
 
-   end subroutine ctimer_start
+   end subroutine
    !===============================================================================
 
 
@@ -224,7 +224,7 @@ contains
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
 
-   end subroutine ctimer_stop
+   end subroutine
    !===============================================================================
 
 
@@ -254,7 +254,7 @@ contains
       ! Start the timer
       this%omp_start = omp_get_wtime()
 
-   end subroutine otimer_start
+   end subroutine
    !===============================================================================
 #endif
 
@@ -299,7 +299,7 @@ contains
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
 
-   end subroutine otimer_stop
+   end subroutine
    !===============================================================================
 #endif
 
@@ -316,7 +316,7 @@ contains
       integer                  :: nunit
 
       call write_to_file(this%omp_time, file_name)
-   end subroutine otimer_write
+   end subroutine
    !===============================================================================
 #endif
 
@@ -341,7 +341,7 @@ contains
       ! Start the timer
       this%mpi_start = mpi_wtime()
 
-   end subroutine mtimer_start
+   end subroutine
    !===============================================================================
 #endif
 
@@ -394,7 +394,7 @@ contains
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
 
-   end subroutine mtimer_stop
+   end subroutine
    !===============================================================================
 #endif
 
@@ -410,7 +410,7 @@ contains
       integer                  :: nunit
 
       call write_to_file(this%mpi_time, file_name)
-   end subroutine mtimer_write
+   end subroutine
    !===============================================================================
 #endif
 
@@ -425,7 +425,7 @@ contains
       ! Start the timer
       call date_and_time(values=this%values_start)
 
-   end subroutine dtimer_start
+   end subroutine
    !===============================================================================
 
 
@@ -469,7 +469,7 @@ contains
       ! Deallocate the message
       if (allocated(msg)) deallocate(msg)
 
-   end subroutine dtimer_stop
+   end subroutine
    !===============================================================================
 
 
@@ -483,7 +483,7 @@ contains
       integer                  :: nunit
 
       call write_to_file(this%elapsed_dtime, file_name)
-   end subroutine dtimer_write
+   end subroutine
    !===============================================================================
 
 
@@ -496,10 +496,10 @@ contains
       seconds = real(values(3), rk) * 24.0_rk * 60.0_rk * 60.0_rk + &
                 real(values(5), rk) * 60.0_rk * 60.0_rk + &
                 real(values(6), rk) * 60.0_rk + &
-                real(values(7), rk) + & 
+                real(values(7), rk) + &
                 real(values(8), rk) / 1000.0_rk
 
-   end function to_seconds
+   end function
    !===============================================================================
 
 
@@ -516,7 +516,7 @@ contains
       else
          print '(A, F16.9, A)', colorize(trim(message), color_fg='blue'), time, colorize(" [s]", color_fg='blue')
       end if
-   end subroutine print_time
+   end subroutine
    !===============================================================================
 
 
@@ -543,7 +543,7 @@ contains
 
       ! Close the file
       close(nunit)
-   end subroutine write_to_file
+   end subroutine
    !===============================================================================
 
 
@@ -561,7 +561,7 @@ contains
          print*, "Warning: timer cannot pause."
          print*, "Please resume the timer before pausing again."
       end if
-   end subroutine timer_pause
+   end subroutine
    !===============================================================================
 
 
@@ -580,7 +580,7 @@ contains
          print*, "Warning: timer cannot resume."
          print*, "Please pause the timer before resuming."
       end if
-   end subroutine timer_resume
+   end subroutine
    !===============================================================================
 
-end module fortime
+end module
