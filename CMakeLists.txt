@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 project(fortime LANGUAGES Fortran)
 
 # Metadata
-set(PROJECT_VERSION "0.6.0")
+set(PROJECT_VERSION "0.6.1")
 set(PROJECT_LICENSE "BSD 3-Clause License")
 set(PROJECT_AUTHOR "Seyed Ali Ghasemi")
 
