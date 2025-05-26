@@ -1,4 +1,5 @@
 /build
 /doc
 /mod
-*.txt
+test/*.txt
+example/*.txt
