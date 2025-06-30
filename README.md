@@ -120,6 +120,11 @@ fpm test --compiler <compiler>
 ```
 Replace `<compiler>` with the name of your Fortran compiler.
 
+## Status
+
+<!-- STATUS:setup-fortran-conda:START -->
+<!-- STATUS:setup-fortran-conda:END -->
+
 ## Documentation
 
 The most up-to-date API documentation for the master branch is available
