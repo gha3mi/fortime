@@ -1,5 +1,5 @@
 name       = "fortime"
-version    = "0.6.1"
+version    = "VERSION"
 license    = "BSD 3-Clause License"
 author     = "Seyed Ali Ghasemi"
 maintainer = "info@gha3mi.com"
@@ -63,7 +63,6 @@ main       = "example6.f90"
 
 [extra.ford]
 project             = "ForTime"
-version             = "0.6.1"
 year                = "2023-2025"
 project_github      = "https://github.com/gha3mi/fortime"
 author              = "Seyed Ali Ghasemi"
