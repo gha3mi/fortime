@@ -46,13 +46,11 @@ options --flag "-cpp"
 options test
 options --compiler lfortran
 options --profile debug
-options --flag "--cpp"
 
 @ubuntu-latest_lfortran_release
 options test
 options --compiler lfortran
 options --profile release
-options --flag "--cpp"
 
 
 ## macOS
@@ -70,13 +68,11 @@ options --profile release
 options test
 options --compiler lfortran
 options --profile debug
-options --flag "--cpp"
 
 @macos-latest_lfortran_release
 options test
 options --compiler lfortran
 options --profile release
-options --flag "--cpp"
 
 
 ## windows
@@ -114,7 +110,6 @@ options --flag "-cpp"
 options test
 options --compiler lfortran
 options --profile debug
-options --flag "--cpp"
 
 @windows-latest_lfortran_release
 options test
