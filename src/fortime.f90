@@ -164,8 +164,6 @@ contains
    impure subroutine timer_write(this, file_name)
       class(timer), intent(in) :: this
       character(*), intent(in) :: file_name
-      logical                  :: file_exists
-      integer                  :: nunit
 
       call write_to_file(this%elapsed_time, file_name)
    end subroutine
@@ -234,8 +232,6 @@ contains
    impure subroutine ctimer_write(this, file_name)
       class(timer), intent(in) :: this
       character(*), intent(in) :: file_name
-      logical                  :: file_exists
-      integer                  :: nunit
 
       call write_to_file(this%cpu_time, file_name)
    end subroutine ctimer_write
@@ -479,8 +475,6 @@ contains
    impure subroutine dtimer_write(this, file_name)
       class(timer), intent(in) :: this
       character(*), intent(in) :: file_name
-      logical                  :: file_exists
-      integer                  :: nunit
 
       call write_to_file(this%elapsed_dtime, file_name)
    end subroutine
