@@ -1,6 +1,6 @@
 program example6
 
-   use fortime
+   use fortime, only: timer
 
    implicit none
 
