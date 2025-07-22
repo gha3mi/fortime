@@ -3,15 +3,25 @@ name: Setup Fortran Conda CI/CD
 on:
   push:
     branches: [main, master, dev]
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'VERSION'
+      - 'LICENSE'
   pull_request:
     branches: [main, master]
-
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'VERSION'
+      - 'LICENSE'
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
   test_fpm:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     name: ${{ matrix.os }}_${{ matrix.compiler }}_fpm
     runs-on: ${{ matrix.os }}
     strategy:
@@ -45,12 +55,59 @@ jobs:
           extra-packages: ${{ matrix.extra-packages }}
 
       - name: fpm test (debug)
-        run: fpm test --compiler ${{ matrix.compiler }} --profile debug --verbose
+        run: fpm @${{ matrix.os }}_${{ matrix.compiler }}_debug --verbose
 
       - name: fpm test (release)
-        run: fpm test --compiler ${{ matrix.compiler }} --profile release --verbose
+        run: fpm @${{ matrix.os }}_${{ matrix.compiler }}_release --verbose
+
+  test_cmake:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    name: ${{ matrix.os }}_${{ matrix.compiler }}_cmake
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        compiler: [gfortran, ifx, lfortran, flang-new, nvfortran]
+        include:
+          - os: ubuntu-latest
+            extra-packages: "cmake, ninja"
+          - os: windows-latest
+            extra-packages: "cmake, ninja"
+          - os: macos-latest
+            extra-packages: "cmake, ninja"
+        exclude:
+          - os: macos-latest
+            compiler: flang-new
+          - os: macos-latest
+            compiler: ifx
+          - os: macos-latest
+            compiler: nvfortran
+          - os: windows-latest
+            compiler: nvfortran
+
+    steps:
+      - name: Setup Fortran
+        uses: gha3mi/setup-fortran-conda@latest
+        with:
+          compiler: ${{ matrix.compiler }}
+          platform: ${{ matrix.os }}
+          extra-packages: ${{ matrix.extra-packages }}
+
+      - name: cmake test (debug)
+        run: |
+          cmake -S . -B build/debug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_Fortran_COMPILER=${{ matrix.compiler }} -G Ninja -DFORTIME_BUILD_TESTS=ON
+          cmake --build build/debug --config Debug
+          ctest --test-dir build/debug --output-on-failure
+
+      - name: cmake test (release)
+        run: |
+          cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release -DCMAKE_Fortran_COMPILER=${{ matrix.compiler }} -G Ninja -DFORTIME_BUILD_TESTS=ON
+          cmake --build build/release --config Release
+          ctest --test-dir build/release --output-on-failure
 
   doc_ford:
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') }}
     name: Generate FORD Documentation
     runs-on: ubuntu-latest
     steps:
@@ -65,11 +122,11 @@ jobs:
           ford-output-directory: doc
           ford-branch: gh-pages
           ford-target-folder: .
-  
+
   status_fpm:
+    if: ${{ always() && github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') }}
     name: Generate STATUS.md
-    if: always()
-    needs: test_fpm
+    needs: [test_fpm]
     runs-on: ubuntu-latest
     steps:
       - name: Generate summary
@@ -77,12 +134,21 @@ jobs:
         with:
           generate-status-fpm: true
 
+  status_cmake:
+    if: ${{ always() && github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') }}
+    name: Generate STATUS.md
+    needs: [test_cmake]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate summary
+        uses: gha3mi/setup-fortran-conda@latest
+        with:
+          generate-status-cmake: true
+
   update_readme_table:
+    if: ${{ always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '[skip ci]') }}
     name: Update README.md status table
-    if: |
-      always() &&
-      github.ref != 'refs/heads/update-readme-table'
-    needs: [status_fpm]
+    needs: [status_fpm, status_cmake]
     runs-on: ubuntu-latest
     steps:
       - name: Update README status
@@ -94,6 +160,7 @@ jobs:
           update-readme-user-email: "info@gha3mi.com"  # Update with your email
 
   linter_fortitude:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     name: Run Fortitude Linter
     runs-on: ubuntu-latest
     steps:
