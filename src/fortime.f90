@@ -244,7 +244,7 @@ contains
    !> Starts the timer by recording the current OMP time value.
    !> This value is used to calculate the OMP time later.
    impure subroutine otimer_start(this)
-      use omp_lib
+      use omp_lib, only: omp_get_wtime
       class(timer), intent(inout) :: this
 
       ! Start the timer
@@ -261,7 +261,7 @@ contains
    !> Stops the timer and calculates the OMP time.
    !> Optionally, it can print a message along with the OMP time.
    impure subroutine otimer_stop(this, nloops, message, print, color)
-      use omp_lib
+      use omp_lib, only: omp_get_wtime
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
@@ -305,7 +305,7 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Writes the OMP time to a file.
    impure subroutine otimer_write(this, file_name)
-      use omp_lib
+      use omp_lib, only: omp_get_wtime
       class(timer), intent(in) :: this
       character(*), intent(in) :: file_name
       logical                  :: file_exists
@@ -500,7 +500,7 @@ contains
    !===============================================================================
    !> author: Seyed Ali Ghasemi
    impure subroutine print_time(time, message, color)
-      use face
+      use face, only: colorize
       real(rk),     intent(in) :: time
       character(*), intent(in) :: message
       character(*), intent(in), optional :: color
