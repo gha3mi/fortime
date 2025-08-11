@@ -106,13 +106,14 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the elapsed time.
    !> Optionally, it can print a message along with the elapsed time.
-   impure subroutine timer_stop(this, nloops, message, print, color)
+   impure subroutine timer_stop(this, nloops, message, print, color, rfmt)
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
       logical,      intent(in), optional :: print
       character(*), intent(in), optional :: color
+      character(*), intent(in), optional :: rfmt
 
       ! Stop the timer
       call system_clock(count=this%clock_end)
@@ -146,9 +147,9 @@ contains
       end if
 
       if (present(print)) then
-         if (print) call print_time(this%elapsed_time, msg, color)
+         if (print) call print_time(this%elapsed_time, msg, color, rfmt)
       else
-         call print_time(this%elapsed_time, msg, color)
+         call print_time(this%elapsed_time, msg, color, rfmt)
       end if
 
       ! Deallocate the message
@@ -188,13 +189,14 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the CPU time.
    !> Optionally, it can print a message along with the CPU time.
-   impure subroutine ctimer_stop(this, nloops, message, print, color)
+   impure subroutine ctimer_stop(this, nloops, message, print, color, rfmt)
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
       logical,      intent(in), optional :: print
       character(*), intent(in), optional :: color
+      character(*), intent(in), optional :: rfmt
 
       ! Stop the timer
       call cpu_time(this%cpu_end)
@@ -214,9 +216,9 @@ contains
       end if
 
       if (present(print)) then
-         if (print) call print_time(this%cpu_time, msg, color)
+         if (print) call print_time(this%cpu_time, msg, color, rfmt)
       else
-         call print_time(this%cpu_time, msg, color)
+         call print_time(this%cpu_time, msg, color, rfmt)
       end if
 
       ! Deallocate the message
@@ -260,7 +262,7 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the OMP time.
    !> Optionally, it can print a message along with the OMP time.
-   impure subroutine otimer_stop(this, nloops, message, print, color)
+   impure subroutine otimer_stop(this, nloops, message, print, color, rfmt)
       use omp_lib, only: omp_get_wtime
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
@@ -268,6 +270,7 @@ contains
       character(:), allocatable          :: msg
       logical,      intent(in), optional :: print
       character(*), intent(in), optional :: color
+      character(*), intent(in), optional :: rfmt
 
       ! Stop the timer
       this%omp_end = omp_get_wtime()
@@ -287,9 +290,9 @@ contains
       end if
 
       if (present(print)) then
-         if (print) call print_time(this%omp_time, msg, color)
+         if (print) call print_time(this%omp_time, msg, color, rfmt)
       else
-         call print_time(this%omp_time, msg, color)
+         call print_time(this%omp_time, msg, color, rfmt)
       end if
 
       ! Deallocate the message
@@ -347,7 +350,7 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the MPI time.
    !> Optionally, it can print a message along with the MPI time.
-   impure subroutine mtimer_stop(this, nloops, message, print, color)
+   impure subroutine mtimer_stop(this, nloops, message, print, color, rfmt)
       ! include 'mpif.h'
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
@@ -355,6 +358,7 @@ contains
       character(:), allocatable          :: msg
       logical,      intent(in), optional :: print
       character(*), intent(in), optional :: color
+      character(*), intent(in), optional :: rfmt
 
       interface
          function mpi_wtime()
@@ -382,9 +386,9 @@ contains
       end if
 
       if (present(print)) then
-         if (print) call print_time(this%mpi_time, msg, color)
+         if (print) call print_time(this%mpi_time, msg, color, rfmt)
       else
-         call print_time(this%mpi_time, msg, color)
+         call print_time(this%mpi_time, msg, color, rfmt)
       end if
 
       ! Deallocate the message
@@ -429,13 +433,14 @@ contains
    !> author: Seyed Ali Ghasemi
    !> Stops the timer and calculates the elapsed time.
    !> Optionally, it can print a message along with the elapsed time.
-   impure subroutine dtimer_stop(this, nloops, message, print, color)
+   impure subroutine dtimer_stop(this, nloops, message, print, color, rfmt)
       class(timer), intent(inout)        :: this
       integer,      intent(in), optional :: nloops
       character(*), intent(in), optional :: message
       character(:), allocatable          :: msg
       logical,      intent(in), optional :: print
       character(*), intent(in), optional :: color
+      character(*), intent(in), optional :: rfmt
 
       ! Stop the timer
       call date_and_time(values=this%values_end)
@@ -457,9 +462,9 @@ contains
       end if
 
       if (present(print)) then
-         if (print) call print_time(this%elapsed_dtime, msg, color)
+         if (print) call print_time(this%elapsed_dtime, msg, color, rfmt)
       else
-         call print_time(this%elapsed_dtime, msg, color)
+         call print_time(this%elapsed_dtime, msg, color, rfmt)
       end if
 
       ! Deallocate the message
@@ -499,16 +504,25 @@ contains
 
    !===============================================================================
    !> author: Seyed Ali Ghasemi
-   impure subroutine print_time(time, message, color)
+   impure subroutine print_time(time, message, color, rfmt)
       use face, only: colorize
       real(rk),     intent(in) :: time
       character(*), intent(in) :: message
       character(*), intent(in), optional :: color
+      character(*), intent(in), optional :: rfmt
+
+      character(len=:), allocatable :: rfmt_
+
+      if (present(rfmt)) then
+         rfmt_ = adjustl(trim(rfmt))
+      else
+         rfmt_ = 'F16.9'
+      end if
 
       if (present(color)) then
-         print '(A, F16.9, A)', colorize(trim(message), color_fg=trim(color)), time, colorize(" [s]", color_fg=trim(color))
+         print '(A, '// rfmt_ //', A)', colorize(trim(message), color_fg=trim(color)), time, colorize(" [s]", color_fg=trim(color))
       else
-         print '(A, F16.9, A)', colorize(trim(message), color_fg='blue'), time, colorize(" [s]", color_fg='blue')
+         print '(A, '// rfmt_ //', A)', colorize(trim(message), color_fg='blue'), time, colorize(" [s]", color_fg='blue')
       end if
    end subroutine
    !===============================================================================
