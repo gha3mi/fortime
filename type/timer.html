@@ -92,7 +92,7 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="<p>100.0% of total for derived types.</p>Including implementation: 265 statements, 100.0% of total for derived types.">45 statements</a>
+                 title="<p>100.0% of total for derived types.</p>Including implementation: 270 statements, 100.0% of total for derived types.">45 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -739,7 +739,7 @@ This value is used to calculate the CPU time later.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print, color)  
+    private impure subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3>
         <dl class="dl-horizontal">
         <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
@@ -832,6 +832,21 @@ Optionally, it can print a message along with the CPU time.</p>
             </td>
             <td>::</td>
             <td><strong>color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
             <td>
 
             </td>
@@ -990,7 +1005,7 @@ This value is used to calculate the elapsed time later.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print, color)  
+    private impure subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3>
         <dl class="dl-horizontal">
         <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
@@ -1083,6 +1098,21 @@ Optionally, it can print a message along with the elapsed time.</p>
             </td>
             <td>::</td>
             <td><strong>color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
             <td>
 
             </td>
@@ -1241,7 +1271,7 @@ This value is used to calculate the MPI time later.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/mtimer_stop.html'>mtimer_stop</a>(this, nloops, message, print, color)  
+    private impure subroutine <a href='../proc/mtimer_stop.html'>mtimer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3>
         <dl class="dl-horizontal">
         <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
@@ -1334,6 +1364,21 @@ Optionally, it can print a message along with the MPI time.</p>
             </td>
             <td>::</td>
             <td><strong>color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
             <td>
 
             </td>
@@ -1492,7 +1537,7 @@ This value is used to calculate the OMP time later.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/otimer_stop.html'>otimer_stop</a>(this, nloops, message, print, color)  
+    private impure subroutine <a href='../proc/otimer_stop.html'>otimer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3>
         <dl class="dl-horizontal">
         <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
@@ -1585,6 +1630,21 @@ Optionally, it can print a message along with the OMP time.</p>
             </td>
             <td>::</td>
             <td><strong>color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
             <td>
 
             </td>
@@ -1859,7 +1919,7 @@ This value is used to calculate the elapsed time later.</p>
       <ul class="list-group">
           <li class="list-group-item">
                     <h3>
-    private impure subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print, color)  
+    private impure subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3>
         <dl class="dl-horizontal">
         <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
@@ -1952,6 +2012,21 @@ Optionally, it can print a message along with the elapsed time.</p>
             </td>
             <td>::</td>
             <td><strong>color</strong></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
             <td>
 
             </td>
@@ -2059,7 +2134,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-07-22T08:59:57.312334+0000             </p>
+ on 2025-08-11T14:19:51.535138+0000             </p>
           </div>
         </div>
         <br>
