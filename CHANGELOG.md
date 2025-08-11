@@ -1,3 +1,24 @@
+## [v0.8.0](https://github.com/gha3mi/fortime/compare/v0.7.0...v0.8.0) - 2025-08-11
+
+
+### Features
+
+* feat: add optional format parameter to timer stop ([d5da53a](https://github.com/gha3mi/fortime/commit/d5da53ac971be2b1b4c4cd1e46bd1136ae857f6a)) by [@gha3mi](https://github.com/gha3mi)
+
+### Others
+
+* chore: update release.sh ([06eeb42](https://github.com/gha3mi/fortime/commit/06eeb42aa08f84d958bfd03545cf76eff848ab1a)) by [@gha3mi](https://github.com/gha3mi)
+* docs: update README [skip ci] ([ea10b68](https://github.com/gha3mi/fortime/commit/ea10b68df1957cefc003457c46d29821170be497)) by [@gha3mi](https://github.com/gha3mi)
+* docs: fix badge ([099a701](https://github.com/gha3mi/fortime/commit/099a7012dcd48872f73bd30fcc3105835463bfae)) by [@gha3mi](https://github.com/gha3mi)
+
+
+### Contributors
+- [@gha3mi](https://github.com/gha3mi)
+
+
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/gha3mi/fortime/compare/v0.7.0...v0.8.0)
+
 ## [v0.7.0](https://github.com/gha3mi/fortime/compare/v0.6.1...v0.7.0) - 2025-07-22
 
 
@@ -29,5 +50,3 @@
 
 
 Full Changelog: [v0.6.1...v0.7.0](https://github.com/gha3mi/fortime/compare/v0.6.1...v0.7.0)
-
-
