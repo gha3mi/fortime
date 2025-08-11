@@ -28,7 +28,7 @@ type(timer) :: t
 
 call t%timer_start()
 ! Your code or section to be timed
-call t%timer_stop(nloops, message, print, color) ! nloops, message, print and color are optional
+call t%timer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
 
 call t%timer_write(file_name) ! Optionally, write the result to a file
 ```
@@ -41,7 +41,7 @@ type(timer) :: t
 
 call t%dtimer_start()
 ! Your code or section to be timed
-call t%dtimer_stop(nloops, message, print, color) ! nloops, message, print and color are optional
+call t%dtimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
 
 call t%dtimer_write(file_name) ! Optionally, write the result to a file
 ```
@@ -54,7 +54,7 @@ type(timer) :: t
 
 call t%ctimer_start()
 ! Your code or section to be timed
-call t%ctimer_stop(nloops, message, print, color) ! nloops, message, print and color are optional
+call t%ctimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
 
 call t%ctimer_write(file_name) ! Optionally, write the result to a file
 ```
@@ -67,7 +67,7 @@ type(timer) :: t
 
 call t%otimer_start()
 ! Your code or section to be timed
-call t%otimer_stop(nloops, message, print, color) ! nloops, message, print and color are optional
+call t%otimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
 
 call t%otimer_write(file_name) ! Optionally, write the result to a file
 ```
@@ -82,7 +82,7 @@ type(timer) :: t
 
 call t%mtimer_start()
 ! Your code or section to be timed
-call t%mtimer_stop(nloops, message, print, color) ! nloops, message, print and color are optional
+call t%mtimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
 
 call t%mtimer_write(file_name) ! Optionally, write the result to a file
 ```
