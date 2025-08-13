@@ -92,19 +92,19 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="100.0% of total for modules and submodules.">315 statements</a>
+                 title="100.0% of total for modules and submodules.">214 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/fortime.f90"> Source File</a>
+              <a href="../src/fortime.F90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.f90</a></li>
+                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.F90</a></li>
             <li class="breadcrumb-item active" aria-current="page">fortime</li>
           </ol>
         </nav>
@@ -183,12 +183,6 @@
             <a class="list-group-item" href="../module/fortime.html#proc-dtimer_start">dtimer_start</a>
             <a class="list-group-item" href="../module/fortime.html#proc-dtimer_stop">dtimer_stop</a>
             <a class="list-group-item" href="../module/fortime.html#proc-dtimer_write">dtimer_write</a>
-            <a class="list-group-item" href="../module/fortime.html#proc-mtimer_start">mtimer_start</a>
-            <a class="list-group-item" href="../module/fortime.html#proc-mtimer_stop">mtimer_stop</a>
-            <a class="list-group-item" href="../module/fortime.html#proc-mtimer_write">mtimer_write</a>
-            <a class="list-group-item" href="../module/fortime.html#proc-otimer_start">otimer_start</a>
-            <a class="list-group-item" href="../module/fortime.html#proc-otimer_stop">otimer_stop</a>
-            <a class="list-group-item" href="../module/fortime.html#proc-otimer_write">otimer_write</a>
             <a class="list-group-item" href="../module/fortime.html#proc-print_time">print_time</a>
             <a class="list-group-item" href="../module/fortime.html#proc-timer_pause">timer_pause</a>
             <a class="list-group-item" href="../module/fortime.html#proc-timer_resume">timer_resume</a>
@@ -1113,40 +1107,6 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-mpi_time"></span>
-              real(kind=rk),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>mpi_time</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omp_time"></span>
-              real(kind=rk),
-            </td>
-              <td>public</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omp_time</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
               <span class="anchor" id="variable-clock_accum_paused"></span>
               integer,
             </td>
@@ -1334,108 +1294,6 @@ parameter
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-mpi_elapsed"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>mpi_elapsed</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-mpi_end"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>mpi_end</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-mpi_start"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>mpi_start</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omp_elapsed"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omp_elapsed</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omp_end"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omp_end</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-omp_start"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>omp_start</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
               <span class="anchor" id="variable-values_elapsed"></span>
               integer,
             </td>
@@ -1522,36 +1380,6 @@ parameter
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-dtimer_write'>dtimer_write</a></strong></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/timer.html#boundprocedure-mtimer_start'>mtimer_start</a></strong></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/timer.html#boundprocedure-mtimer_stop'>mtimer_stop</a></strong></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/timer.html#boundprocedure-mtimer_write'>mtimer_write</a></strong></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/timer.html#boundprocedure-otimer_start'>otimer_start</a></strong></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/timer.html#boundprocedure-otimer_stop'>otimer_stop</a></strong></td>
-                  <td></td>
-              </tr>
-              <tr>
-                <td>  procedure, public ::
-  <strong><a href='../type/timer.html#boundprocedure-otimer_write'>otimer_write</a></strong></td>
                   <td></td>
               </tr>
               <tr>
@@ -1728,7 +1556,7 @@ Optionally, it can print a message along with the CPU time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~14"></span>
+              <span class="anchor" id="variable-nloops~15"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -1892,7 +1720,7 @@ This value is used to calculate the elapsed time later.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~13"></span>
+              <span class="anchor" id="variable-this~7"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
@@ -1937,454 +1765,6 @@ Optionally, it can print a message along with the elapsed time.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~14"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nloops~17"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nloops</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message~5"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-print~5"></span>
-              logical,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>print</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-color~5"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>color</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rfmt~5"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>rfmt</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_write"></span> <h3>private impure subroutine <a href='../proc/dtimer_write.html'>dtimer_write</a>(this, file_name)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Writes the elapsed time to a file.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~15"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-file_name~5"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>file_name</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mtimer_start"></span> <h3>private impure subroutine <a href='../proc/mtimer_start.html'>mtimer_start</a>(this)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Starts the timer by recording the current MPI time value.
-This value is used to calculate the MPI time later.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~10"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mtimer_stop"></span> <h3>private impure subroutine <a href='../proc/mtimer_stop.html'>mtimer_stop</a>(this, nloops, message, print, color, rfmt)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Stops the timer and calculates the MPI time.
-Optionally, it can print a message along with the MPI time.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~11"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nloops~16"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nloops</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-print~4"></span>
-              logical,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>print</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-color~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>color</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rfmt~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>rfmt</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-mtimer_write"></span> <h3>private impure subroutine <a href='../proc/mtimer_write.html'>mtimer_write</a>(this, file_name)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Writes the MPI time to a file.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~12"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-file_name~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>file_name</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-otimer_start"></span> <h3>private impure subroutine <a href='../proc/otimer_start.html'>otimer_start</a>(this)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Starts the timer by recording the current OMP time value.
-This value is used to calculate the OMP time later.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~7"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-otimer_stop"></span> <h3>private impure subroutine <a href='../proc/otimer_stop.html'>otimer_stop</a>(this, nloops, message, print, color, rfmt)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Stops the timer and calculates the OMP time.
-Optionally, it can print a message along with the OMP time.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
               <span class="anchor" id="variable-this~8"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
@@ -2400,7 +1780,7 @@ Optionally, it can print a message along with the OMP time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~15"></span>
+              <span class="anchor" id="variable-nloops~16"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -2481,7 +1861,7 @@ Optionally, it can print a message along with the OMP time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-otimer_write"></span> <h3>private impure subroutine <a href='../proc/otimer_write.html'>otimer_write</a>(this, file_name)  
+    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_write"></span> <h3>private impure subroutine <a href='../proc/dtimer_write.html'>dtimer_write</a>(this, file_name)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2489,7 +1869,7 @@ Optionally, it can print a message along with the OMP time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Writes the OMP time to a file.</p>
+  <p>Writes the elapsed time to a file.</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2578,7 +1958,7 @@ Optionally, it can print a message along with the OMP time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-message~6"></span>
+              <span class="anchor" id="variable-message~4"></span>
               character(len=*),
             </td>
 <td>intent(in)</td>
@@ -2593,7 +1973,7 @@ Optionally, it can print a message along with the OMP time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-color~6"></span>
+              <span class="anchor" id="variable-color~4"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -2608,7 +1988,7 @@ Optionally, it can print a message along with the OMP time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rfmt~6"></span>
+              <span class="anchor" id="variable-rfmt~4"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -2652,7 +2032,7 @@ Optionally, it can print a message along with the OMP time.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~16"></span>
+              <span class="anchor" id="variable-this~10"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
@@ -2696,7 +2076,7 @@ Optionally, it can print a message along with the OMP time.</p>
     <tbody>
         <tr>
             <td>
-              <span class="anchor" id="variable-this~17"></span>
+              <span class="anchor" id="variable-this~11"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
 <td>intent(inout)</td>
@@ -2801,7 +2181,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~13"></span>
+              <span class="anchor" id="variable-nloops~14"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -2979,7 +2359,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-file_name~6"></span>
+              <span class="anchor" id="variable-file_name~4"></span>
               character(len=*),
             </td>
 <td>intent(in)</td>
@@ -3022,7 +2402,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-08-12T21:25:28.091390+0000             </p>
+ on 2025-08-13T19:18:02.852740+0000             </p>
           </div>
         </div>
         <br>
