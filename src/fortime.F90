@@ -312,7 +312,6 @@ contains
       class(timer), intent(in) :: this
       character(*), intent(in) :: file_name
       logical                  :: file_exists
-      integer                  :: nunit
 
       call write_to_file(this%omp_time, file_name)
    end subroutine
@@ -407,7 +406,6 @@ contains
       class(timer), intent(in) :: this
       character(*), intent(in) :: file_name
       logical                  :: file_exists
-      integer                  :: nunit
 
       call write_to_file(this%mpi_time, file_name)
    end subroutine
