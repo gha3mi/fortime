@@ -1,10 +1,13 @@
-name       = "fortime"
-version    = "VERSION"
-license    = "BSD 3-Clause License"
-author     = "Seyed Ali Ghasemi"
-maintainer = "info@gha3mi.com"
-copyright  = "Copyright 2023-2025, Seyed Ali Ghasemi"
-
+name        = "fortime"
+description = "A Fortran library for measuring elapsed time, DATE_AND_TIME time, CPU time, OMP time and MPI time"
+version     = "VERSION"
+license     = "BSD 3-Clause License"
+author      = "Seyed Ali Ghasemi"
+maintainer  = "info@gha3mi.com"
+homepage    = "https://github.com/gha3mi/fortime"
+copyright   = "Copyright 2023-2025, Seyed Ali Ghasemi"
+categories  = ["time"]
+keywords    = ["Fortran", "time", "omp", "mpi", "date_and_time", "cpu_time", "elapsed_time"]
 
 [dependencies]
 FACE = {git="https://github.com/szaghi/FACE.git"}
