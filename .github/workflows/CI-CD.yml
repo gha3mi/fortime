@@ -2,19 +2,13 @@ name: Setup Fortran Conda CI/CD
 
 on:
   push:
-    branches: [main, master, dev]
-    paths-ignore:
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - 'VERSION'
-      - 'LICENSE'
+    branches: [main, dev]
+    paths-ignore: ['README.md','CHANGELOG.md','VERSION','LICENSE']
   pull_request:
-    branches: [main, master]
-    paths-ignore:
-      - 'README.md'
-      - 'CHANGELOG.md'
-      - 'VERSION'
-      - 'LICENSE'
+    branches: [main]
+    paths-ignore: ['README.md','CHANGELOG.md','VERSION','LICENSE']
+  workflow_dispatch:
+
 permissions:
   contents: write
   pull-requests: write
@@ -27,32 +21,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        compiler: [gfortran, ifx, lfortran, flang-new, nvfortran]
         include:
-          - os: ubuntu-latest
-            extra-packages: ""
-          - os: windows-latest
-            extra-packages: ""
-          - os: macos-latest
-            extra-packages: ""
-        exclude:
-          - os: macos-latest
-            compiler: flang-new
-          - os: macos-latest
-            compiler: ifx
-          - os: macos-latest
-            compiler: nvfortran
-          - os: windows-latest
-            compiler: nvfortran
+        - {os: ubuntu-latest,  compiler: gfortran }
+        - {os: ubuntu-latest,  compiler: ifx      }
+        - {os: ubuntu-latest,  compiler: flang-new}
+        - {os: ubuntu-latest,  compiler: nvfortran}
+        - {os: ubuntu-latest,  compiler: lfortran }
+        - {os: windows-latest, compiler: gfortran }
+        - {os: windows-latest, compiler: ifx      }
+        - {os: windows-latest, compiler: flang-new}
+        - {os: windows-latest, compiler: lfortran }
+        - {os: macos-latest,   compiler: gfortran }
+        - {os: macos-latest,   compiler: lfortran }
 
     steps:
       - name: Setup Fortran
         uses: gha3mi/setup-fortran-conda@latest
         with:
-          compiler: ${{ matrix.compiler }}
           platform: ${{ matrix.os }}
-          extra-packages: ${{ matrix.extra-packages }}
+          compiler: ${{ matrix.compiler }}
 
       - name: fpm test (debug)
         run: fpm @${{ matrix.os }}_${{ matrix.compiler }}_debug --verbose
@@ -67,32 +54,25 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        compiler: [gfortran, ifx, lfortran, flang-new, nvfortran]
         include:
-          - os: ubuntu-latest
-            extra-packages: "cmake, ninja"
-          - os: windows-latest
-            extra-packages: "cmake, ninja"
-          - os: macos-latest
-            extra-packages: "cmake, ninja"
-        exclude:
-          - os: macos-latest
-            compiler: flang-new
-          - os: macos-latest
-            compiler: ifx
-          - os: macos-latest
-            compiler: nvfortran
-          - os: windows-latest
-            compiler: nvfortran
+        - {os: ubuntu-latest,  compiler: gfortran }
+        - {os: ubuntu-latest,  compiler: ifx      }
+        - {os: ubuntu-latest,  compiler: flang-new}
+        - {os: ubuntu-latest,  compiler: nvfortran}
+        - {os: ubuntu-latest,  compiler: lfortran }
+        - {os: windows-latest, compiler: gfortran }
+        - {os: windows-latest, compiler: ifx      }
+        - {os: windows-latest, compiler: flang-new}
+        - {os: windows-latest, compiler: lfortran }
+        - {os: macos-latest,   compiler: gfortran }
+        - {os: macos-latest,   compiler: lfortran }
 
     steps:
       - name: Setup Fortran
         uses: gha3mi/setup-fortran-conda@latest
         with:
-          compiler: ${{ matrix.compiler }}
           platform: ${{ matrix.os }}
-          extra-packages: ${{ matrix.extra-packages }}
+          compiler: ${{ matrix.compiler }}
 
       - name: cmake test (debug)
         run: |
