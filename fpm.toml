@@ -5,7 +5,7 @@ license     = "BSD 3-Clause License"
 author      = "Seyed Ali Ghasemi"
 maintainer  = "info@gha3mi.com"
 homepage    = "https://github.com/gha3mi/fortime"
-copyright   = "Copyright 2023-2025, Seyed Ali Ghasemi"
+copyright   = "Copyright 2023-2026, Seyed Ali Ghasemi"
 categories  = ["time"]
 keywords    = ["Fortran", "time", "omp", "mpi", "date_and_time", "cpu_time", "elapsed_time"]
 
@@ -66,7 +66,7 @@ main       = "example6.f90"
 
 [extra.ford]
 project             = "ForTime"
-year                = "2023-2025"
+year                = "2023-2026"
 project_github      = "https://github.com/gha3mi/fortime"
 author              = "Seyed Ali Ghasemi"
 email               = "info@gha3mi.com"
