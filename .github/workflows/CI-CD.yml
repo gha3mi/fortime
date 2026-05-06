@@ -101,9 +101,9 @@ jobs:
           generate-doc-ford: true
           ford-working-directory: .
           ford-config: README.md
-          ford-output-directory: doc/ford
+          ford-output-directory: doc
           ford-branch: gh-pages-ford
-          ford-target-folder: doc/ford
+          ford-target-folder: doc
 
   status_fpm:
     if: ${{ always() && github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') }}
