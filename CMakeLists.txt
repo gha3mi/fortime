@@ -15,6 +15,8 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/mod)
 # Options
 option(FORTIME_BUILD_EXAMPLES "Build fortime examples" OFF)
 option(FORTIME_BUILD_TESTS "Build fortime tests" OFF)
+option(FORTIME_ENABLE_OPENMP "Enable OpenMP timer support" OFF)
+option(FORTIME_ENABLE_MPI "Enable MPI timer support" OFF)
 
 # Dependencies
 include(FetchContent)
@@ -37,24 +39,24 @@ add_library(fortime ${SOURCES})
 target_include_directories(fortime PUBLIC ${CMAKE_Fortran_MODULE_DIRECTORY})
 target_link_libraries(fortime PUBLIC FACE)
 
-# Optional: OpenMP support
-find_package(OpenMP)
-if(OpenMP_Fortran_FOUND)
+# Optional OpenMP support
+if(FORTIME_ENABLE_OPENMP)
+  find_package(OpenMP REQUIRED COMPONENTS Fortran)
   target_link_libraries(fortime PUBLIC OpenMP::OpenMP_Fortran)
   target_compile_definitions(fortime PUBLIC USE_OMP)
-  message(STATUS "OpenMP support enabled")
+  message(STATUS "OpenMP timer support enabled")
 else()
-  message(STATUS "OpenMP not found — building without OpenMP support")
+  message(STATUS "OpenMP timer support disabled")
 endif()
 
-# Optional: MPI support
-find_package(MPI)
-if(MPI_Fortran_FOUND)
+# Optional MPI support
+if(FORTIME_ENABLE_MPI)
+  find_package(MPI REQUIRED COMPONENTS Fortran)
   target_link_libraries(fortime PUBLIC MPI::MPI_Fortran)
   target_compile_definitions(fortime PUBLIC USE_MPI)
-  message(STATUS "MPI support enabled")
+  message(STATUS "MPI timer support enabled")
 else()
-  message(STATUS "MPI not found — building without MPI support")
+  message(STATUS "MPI timer support disabled")
 endif()
 
 # Examples (optional)
@@ -93,6 +95,11 @@ if(FORTIME_BUILD_TESTS)
       Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/mod/test
       RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/test
     )
-    add_test(NAME ${test_name} COMMAND ${CMAKE_BINARY_DIR}/test/${test_name})
+    if(FORTIME_ENABLE_MPI)
+      add_test(NAME ${test_name}
+        COMMAND ${MPIEXEC_EXECUTABLE} ${MPIEXEC_NUMPROC_FLAG} 1 $<TARGET_FILE:${test_name}>)
+    else()
+      add_test(NAME ${test_name} COMMAND $<TARGET_FILE:${test_name}>)
+    endif()
   endforeach()
 endif()
