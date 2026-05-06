@@ -100,9 +100,7 @@
 <a href="https://gha3mi.github.io/fortime/"><img alt="Documentation" src="https://img.shields.io/badge/ford-Documentation%20-blueviolet.svg"></a>
 <a href="https://github.com/gha3mi/fortime/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/gha3mi/fortime?color=green"></a>
 <a href="https://github.com/gha3mi/fortime/actions/workflows/CI-CD.yml"><img alt="Build" src="https://github.com/gha3mi/fortime/actions/workflows/CI-CD.yml/badge.svg"></a></p>
-<!-- <img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750"> -->
-
-<p><strong>ForTime</strong>: A Fortran library for measuring elapsed time, DATE_AND_TIME time, CPU time, OMP time and MPI time.</p>
+<p><strong>ForTime</strong>: A Fortran timing library for measuring wall-clock, date_and_time, CPU, OpenMP and MPI elapsed time.</p>
 <h2>fpm dependency</h2>
 <p>If you want to use <code>ForTime</code> as a dependency in your own fpm project,
 you can easily include it by adding the following line to your <code>fpm.toml</code> file:</p>
@@ -111,71 +109,171 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 </code></pre></div>
 
 <h2>Usage</h2>
-<h3>Measuring elapsed time (system_clock)</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
+<p><code>ForTime</code> exposes the <code>timer</code> type, the real kind <code>rk</code>, and the integer kind
+<code>ik</code>. Timing results are stored as <code>real(rk)</code> components on the timer object.</p>
+<h3>Simple Usage</h3>
+<h4>system_clock wall time</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+
 <span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span>
-<span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">rfmt</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print, color and rfmt are optional</span>
+<span class="c">! Code to time.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">()</span>
 
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_write</span><span class="p">(</span><span class="s1">&#39;elapsed_time.txt&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<h3>Measuring elapsed time (date_and_time)</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
+<h4>date_and_time wall time</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+
 <span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_start</span><span class="p">()</span>
-<span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">rfmt</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print, color and rfmt are optional</span>
+<span class="c">! Code to time.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_stop</span><span class="p">()</span>
 
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_write</span><span class="p">(</span><span class="s1">&#39;elapsed_dtime.txt&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<h3>Measuring CPU time (cpu_time)</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
+<h4>CPU time</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+
 <span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_start</span><span class="p">()</span>
-<span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">rfmt</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print, color and rfmt are optional</span>
+<span class="c">! Code to time.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_stop</span><span class="p">()</span>
 
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_write</span><span class="p">(</span><span class="s1">&#39;cpu_time.txt&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<h3>Measuring OpenMP time (omp_get_wtime)</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
+<h4>OpenMP wall time</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+
 <span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_start</span><span class="p">()</span>
-<span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">rfmt</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print, color and rfmt are optional</span>
+<span class="c">! Code to time.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_stop</span><span class="p">()</span>
 
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_write</span><span class="p">(</span><span class="s1">&#39;omp_time.txt&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<p><strong>Note:</strong> Compile with the <code>-DUSE_OMP</code> option when using the OpenMP timer.</p>
-<h3>Measuring MPI time (mpi_wtime)</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span>
+<p>Compile with OpenMP enabled and define <code>USE_OMP</code>.</p>
+<h4>MPI wall time</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+
 <span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
 
 <span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_start</span><span class="p">()</span>
-<span class="c">! Your code or section to be timed</span>
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">rfmt</span><span class="p">)</span><span class="w"> </span><span class="c">! nloops, message, print, color and rfmt are optional</span>
+<span class="c">! Code to time.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">()</span>
 
-<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_write</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span><span class="w"> </span><span class="c">! Optionally, write the result to a file</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_write</span><span class="p">(</span><span class="s1">&#39;mpi_time.txt&#39;</span><span class="p">)</span>
 </code></pre></div>
 
-<p><strong>Note:</strong> Compile with the <code>-DUSE_MPI</code> option when using the MPI timer.</p>
-<h3>To measure elapsed time within a pure procedure, use <a href="https://github.com/gha3mi/fordebug">ForDebug</a>.</h3>
+<p>Compile with MPI enabled, define <code>USE_MPI</code>, and call the MPI timer while MPI is
+initialized.</p>
+<h3>Optional Variables and Stop Arguments</h3>
+<p>All stop routines accept the same optional keyword arguments:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="k">print</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">rfmt</span><span class="p">)</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">dtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="k">print</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">rfmt</span><span class="p">)</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">ctimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="k">print</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">rfmt</span><span class="p">)</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">otimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="k">print</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">rfmt</span><span class="p">)</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">mtimer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="p">,</span><span class="n">message</span><span class="p">,</span><span class="k">print</span><span class="p">,</span><span class="n">color</span><span class="p">,</span><span class="n">rfmt</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><code>nloops</code>: positive default-integer loop count used to report an average time.</li>
+<li><code>message</code>: label printed before the timing value.</li>
+<li><code>print</code>: set to <code>.false.</code> to suppress output; the default is <code>.true.</code>.</li>
+<li><code>color</code>: FACE foreground color for printed output.</li>
+<li><code>rfmt</code>: Fortran real edit descriptor; the default is <code>F16.9</code>.</li>
+</ul>
+<h3>Loop Averages</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nloops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span>
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nloops</span>
+<span class="w">   </span><span class="c">! Repeated work.</span>
+<span class="k">end do</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="o">=</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Average elapsed time:&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3>Pause and Resume</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span>
+<span class="c">! Timed work.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_pause</span><span class="p">()</span>
+<span class="c">! Work not included in elapsed_time.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_resume</span><span class="p">()</span>
+<span class="c">! More timed work.</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">()</span>
+</code></pre></div>
+
+<p><code>timer_pause</code> and <code>timer_resume</code> apply only to the <code>system_clock</code> timer.</p>
+<h3>Timer Reference</h3>
+<table>
+<thead>
+<tr>
+<th>Timer backend</th>
+<th>Start</th>
+<th>Stop</th>
+<th>Result component</th>
+<th>Write routine</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>system_clock</code></td>
+<td><code>timer_start</code></td>
+<td><code>timer_stop</code></td>
+<td><code>elapsed_time</code></td>
+<td><code>timer_write</code></td>
+<td>Always available</td>
+</tr>
+<tr>
+<td><code>date_and_time</code></td>
+<td><code>dtimer_start</code></td>
+<td><code>dtimer_stop</code></td>
+<td><code>elapsed_dtime</code></td>
+<td><code>dtimer_write</code></td>
+<td>Always available</td>
+</tr>
+<tr>
+<td><code>cpu_time</code></td>
+<td><code>ctimer_start</code></td>
+<td><code>ctimer_stop</code></td>
+<td><code>cpu_time</code></td>
+<td><code>ctimer_write</code></td>
+<td>Always available</td>
+</tr>
+<tr>
+<td><code>omp_get_wtime</code></td>
+<td><code>otimer_start</code></td>
+<td><code>otimer_stop</code></td>
+<td><code>omp_time</code></td>
+<td><code>otimer_write</code></td>
+<td>Compile with <code>USE_OMP</code></td>
+</tr>
+<tr>
+<td><code>MPI_Wtime</code></td>
+<td><code>mtimer_start</code></td>
+<td><code>mtimer_stop</code></td>
+<td><code>mpi_time</code></td>
+<td><code>mtimer_write</code></td>
+<td>Compile with <code>USE_MPI</code></td>
+</tr>
+</tbody>
+</table>
+<p>To measure elapsed time within a pure procedure, use
+<a href="https://github.com/gha3mi/fordebug">ForDebug</a>.</p>
 <h2>Running Examples and Tests</h2>
-<h3>Clone the Repository</h3>
-<p>First, clone the <code>ForTime</code> repository from GitHub and navigate to the project directory:</p>
-<div class="codehilite"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gha3mi/fortime.git
-<span class="nb">cd</span><span class="w"> </span>fortime
-</code></pre></div>
-
 <h3>Running Examples</h3>
 <p>To run a specific example from the <code>example</code> directory using your preferred Fortran compiler, use the following command:</p>
 <div class="codehilite"><pre><span></span><code>fpm<span class="w"> </span>run<span class="w"> </span>--example<span class="w"> </span>&lt;example_name&gt;<span class="w"> </span>--compiler<span class="w"> </span>&lt;compiler&gt;
@@ -236,7 +334,7 @@ you can easily include it by adding the following line to your <code>fpm.toml</c
 
 <p>This table is automatically generated by the CI workflow using <a href="https://github.com/gha3mi/setup-fortran-conda">setup-fortran-conda</a>.</p>
 <h2>Documentation</h2>
-<p>The most up-to-date API documentation for the master branch is available
+<p>The most up-to-date API documentation for the main branch is available
 <a href="https://gha3mi.github.io/fortime/">here</a>.
 To generate the API documentation for <code>ForTime</code> using
 <a href="https://github.com/Fortran-FOSS-Programmers/ford">ford</a> run the following
@@ -271,7 +369,7 @@ command:</p>
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Source Files</h3>
-              <ul><li><a href='sourcefile/example1.f90.html'>example1.f90</a></li><li><a href='sourcefile/example2.f90.html'>example2.f90</a></li><li><a href='sourcefile/example3.f90.html'>example3.f90</a></li><li><a href='sourcefile/example4.f90.html'>example4.f90</a></li><li><a href='sourcefile/example5.f90.html'>example5.f90</a></li><li><a href='sourcefile/example6.f90.html'>example6.f90</a></li><li><a href='sourcefile/fortime.f90.html'>fortime.F90</a></li><li><a href='sourcefile/test1.f90.html'>test1.f90</a></li><li><a href='sourcefile/test10.f90.html'>test10.F90</a></li><li><a href='sourcefile/test11.f90.html'>test11.F90</a></li></ul>
+              <ul><li><a href='sourcefile/check.f90.html'>check.F90</a></li><li><a href='sourcefile/example1.f90.html'>example1.f90</a></li><li><a href='sourcefile/example2.f90.html'>example2.f90</a></li><li><a href='sourcefile/example3.f90.html'>example3.f90</a></li><li><a href='sourcefile/example4.f90.html'>example4.f90</a></li><li><a href='sourcefile/example5.f90.html'>example5.f90</a></li><li><a href='sourcefile/example6.f90.html'>example6.f90</a></li><li><a href='sourcefile/fortime.f90.html'>fortime.F90</a></li></ul>
             </div>
             <div>
               <ul>
@@ -293,7 +391,7 @@ command:</p>
           <div class="col-xs-6 col-sm-3">
             <div>
               <h3>Procedures</h3>
-              <ul><li><a href='proc/ctimer_start.html'>ctimer_start</a></li><li><a href='proc/ctimer_stop.html'>ctimer_stop</a></li><li><a href='proc/ctimer_write.html'>ctimer_write</a></li><li><a href='proc/dtimer_start.html'>dtimer_start</a></li><li><a href='proc/dtimer_stop.html'>dtimer_stop</a></li><li><a href='proc/dtimer_write.html'>dtimer_write</a></li><li><a href='proc/print_time.html'>print_time</a></li><li><a href='proc/timer_pause.html'>timer_pause</a></li><li><a href='proc/timer_resume.html'>timer_resume</a></li><li><a href='proc/timer_start.html'>timer_start</a></li></ul>
+              <ul><li><a href='proc/ctimer_start.html'>ctimer_start</a></li><li><a href='proc/ctimer_stop.html'>ctimer_stop</a></li><li><a href='proc/ctimer_write.html'>ctimer_write</a></li><li><a href='proc/days_from_civil.html'>days_from_civil</a></li><li><a href='proc/dtimer_start.html'>dtimer_start</a></li><li><a href='proc/dtimer_stop.html'>dtimer_stop</a></li><li><a href='proc/dtimer_write.html'>dtimer_write</a></li><li><a href='proc/epoch_seconds_utc.html'>epoch_seconds_utc</a></li><li><a href='proc/finalize_timing.html'>finalize_timing</a></li><li><a href='proc/print_time.html'>print_time</a></li></ul>
             </div>
             <div>
               <ul>
@@ -321,14 +419,14 @@ command:</p>
           <div class="col">
             <p>
               ForTime
- was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2025 BSD 3-Clause
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2026 BSD 3-Clause
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2026-02-09T20:13:57.633260+0000             </p>
+ on 2026-05-06T20:26:19.919522+0000             </p>
           </div>
         </div>
         <br>

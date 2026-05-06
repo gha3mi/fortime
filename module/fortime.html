@@ -88,11 +88,12 @@
     <div class="row align-items-center justify-content-between" id="info-bar">
       <div class="col">
         <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Seyed Ali Ghasemi</li>
             <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> BSD 3-Clause</li>
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title="100.0% of total for modules and submodules.">214 statements</a>
+                 title="100.0% of total for modules and submodules.">336 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
@@ -133,6 +134,7 @@
       </a>
       <div id="vars-0" class="collapse">
         <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../module/fortime.html#variable-ik">ik</a>
             <a class="list-group-item" href="../module/fortime.html#variable-rk">rk</a>
         </div>
       </div>
@@ -165,7 +167,9 @@
       </a>
       <div id="funcs-0" class="collapse">
         <div class="list-group list-group-flush">
-            <a class="list-group-item" href="../module/fortime.html#proc-to_seconds">to_seconds</a>
+            <a class="list-group-item" href="../module/fortime.html#proc-days_from_civil">days_from_civil</a>
+            <a class="list-group-item" href="../module/fortime.html#proc-epoch_seconds_utc">epoch_seconds_utc</a>
+            <a class="list-group-item" href="../module/fortime.html#proc-ticks_diff">ticks_diff</a>
         </div>
       </div>
     </div>
@@ -183,6 +187,7 @@
             <a class="list-group-item" href="../module/fortime.html#proc-dtimer_start">dtimer_start</a>
             <a class="list-group-item" href="../module/fortime.html#proc-dtimer_stop">dtimer_stop</a>
             <a class="list-group-item" href="../module/fortime.html#proc-dtimer_write">dtimer_write</a>
+            <a class="list-group-item" href="../module/fortime.html#proc-finalize_timing">finalize_timing</a>
             <a class="list-group-item" href="../module/fortime.html#proc-print_time">print_time</a>
             <a class="list-group-item" href="../module/fortime.html#proc-timer_pause">timer_pause</a>
             <a class="list-group-item" href="../module/fortime.html#proc-timer_resume">timer_resume</a>
@@ -208,9 +213,44 @@
     </div>
 
     <div class="col-md-9" id='text'>
-      <p>This module provides a timer object for measuring elapsed time.
-It includes procedures for starting and stopping the timer, as well
-as calculating and printing the elapsed time in seconds.</p>
+      <p><code>fortime</code> provides the <code>timer</code> derived type plus the public real kind <code>rk</code>
+and integer kind <code>ik</code>.
+A single <code>timer</code> object can measure several kinds of elapsed time:</p>
+<ul>
+<li><code>timer_start</code> / <code>timer_stop</code> use the intrinsic <code>system_clock</code>.</li>
+<li><code>ctimer_start</code> / <code>ctimer_stop</code> use the intrinsic <code>cpu_time</code>.</li>
+<li><code>dtimer_start</code> / <code>dtimer_stop</code> use the intrinsic <code>date_and_time</code>.</li>
+<li><code>otimer_start</code> / <code>otimer_stop</code> use <code>omp_get_wtime</code> when <code>USE_OMP</code> is defined.</li>
+<li><code>mtimer_start</code> / <code>mtimer_stop</code> use <code>MPI_Wtime</code> when <code>USE_MPI</code> is defined.</li>
+</ul>
+<p>The usual workflow is to call a start routine, execute the code being timed,
+call the matching stop routine, and then read the matching public result
+component. Stop routines can also print the elapsed time, average it over a
+positive loop count, and customize the output label, color, and real format.</p>
+<p>Basic usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">use </span><span class="n">fortime</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">timer</span>
+<span class="k">type</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t</span>
+
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span>
+<span class="k">call </span><span class="n">work</span><span class="p">()</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="k">print</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">%</span><span class="n">elapsed_time</span>
+</code></pre></div>
+
+<p>Loop-averaged usage:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_start</span><span class="p">()</span>
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nloops</span>
+<span class="w">   </span><span class="k">call </span><span class="n">work</span><span class="p">()</span>
+<span class="k">end do</span>
+<span class="k">call </span><span class="n">t</span><span class="p">%</span><span class="n">timer_stop</span><span class="p">(</span><span class="n">nloops</span><span class="o">=</span><span class="n">nloops</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Average time:&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">print</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+</code></pre></div>
+
+<div class="alert alert-info">
+<p class="alert-title h4">Note</p>
+<p>The <code>system_clock</code>, OpenMP, and MPI timers are the preferred wall-clock
+timers. The <code>date_and_time</code> timer is a civil-clock fallback and is not
+guaranteed to be monotonic.</p>
+</div>
 <br>          <div class="card mb-4">
       <h3 class="card-header card-title bg-light">Uses</h3>
       <div class="card-body">
@@ -343,571 +383,121 @@ large graphs.</div>
 <!-- Generated by graphviz version 14.1.2 (20260126.1125)
  -->
 <!-- Title: module~~fortime~~UsedByGraph Pages: 1 -->
-<svg id="modulefortimeUsedByGraph" width="162pt" height="1544pt"
- viewBox="0.00 0.00 162.00 1544.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="module~~fortime~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 1540.27)">
+<svg id="modulefortimeUsedByGraph" width="162pt" height="284pt"
+ viewBox="0.00 0.00 162.00 284.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="module~~fortime~~UsedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 280.27)">
 <title>module~~fortime~~UsedByGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-1540.27 158.02,-1540.27 158.02,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-280.27 158.02,-280.27 158.02,4 -4,4"/>
 <!-- module~fortime -->
 <g id="module~~fortime~~UsedByGraph_node1" class="node">
 <title>module~fortime</title>
-<polygon fill="none" stroke="black" points="54,-780.27 0,-780.27 0,-756 54,-756 54,-780.27"/>
-<text xml:space="preserve" text-anchor="middle" x="27" y="-764.53" font-family="Helvetica,sans-Serif" font-size="10.50">fortime</text>
+<polygon fill="none" stroke="black" points="54,-150.27 0,-150.27 0,-126 54,-126 54,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50">fortime</text>
+</g>
+<!-- program~check -->
+<g id="module~~fortime~~UsedByGraph_node2" class="node">
+<title>program~check</title>
+<g id="a_module~~fortime~~UsedByGraph_node2"><a xlink:href="../program/check.html" xlink:title="check">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-276.27 95.01,-276.27 95.01,-252 149.01,-252 149.01,-276.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-260.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
+</a>
+</g>
+</g>
+<!-- program~check&#45;&gt;module~fortime -->
+<g id="module~~fortime~~UsedByGraph_edge1" class="edge">
+<title>program~check&#45;&gt;module~fortime</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M99.65,-251.53C96.21,-249 92.85,-246.17 90,-243.13 66.81,-218.46 48.39,-183.62 37.84,-160.96"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="41.1,-159.68 33.8,-152 34.72,-162.55 41.1,-159.68"/>
 </g>
 <!-- program~example1 -->
-<g id="module~~fortime~~UsedByGraph_node2" class="node">
+<g id="module~~fortime~~UsedByGraph_node3" class="node">
 <title>program~example1</title>
-<g id="a_module~~fortime~~UsedByGraph_node2"><a xlink:href="../program/example1.html" xlink:title="example1">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-1536.27 90,-1536.27 90,-1512 154.02,-1512 154.02,-1536.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1520.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
+<g id="a_module~~fortime~~UsedByGraph_node3"><a xlink:href="../program/example1.html" xlink:title="example1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-234.27 90,-234.27 90,-210 154.02,-210 154.02,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
 </a>
 </g>
 </g>
 <!-- program~example1&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge1" class="edge">
+<g id="module~~fortime~~UsedByGraph_edge2" class="edge">
 <title>program~example1&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.47,-1511.72C94.54,-1509.25 91.91,-1506.39 90,-1503.13 53.27,-1440.43 32.93,-911.11 28.79,-791.91"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="32.3,-791.95 28.46,-782.07 25.3,-792.18 32.3,-791.95"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M101.23,-209.6C97.4,-206.94 93.5,-204.05 90,-201.13 74.29,-188.05 58.13,-171.52 46.26,-158.67"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="49.11,-156.61 39.79,-151.58 43.94,-161.33 49.11,-156.61"/>
 </g>
 <!-- program~example2 -->
-<g id="module~~fortime~~UsedByGraph_node3" class="node">
+<g id="module~~fortime~~UsedByGraph_node4" class="node">
 <title>program~example2</title>
-<g id="a_module~~fortime~~UsedByGraph_node3"><a xlink:href="../program/example2.html" xlink:title="example2">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-1494.27 90,-1494.27 90,-1470 154.02,-1470 154.02,-1494.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1478.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example2</text>
+<g id="a_module~~fortime~~UsedByGraph_node4"><a xlink:href="../program/example2.html" xlink:title="example2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-192.27 90,-192.27 90,-168 154.02,-168 154.02,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example2</text>
 </a>
 </g>
 </g>
 <!-- program~example2&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge2" class="edge">
+<g id="module~~fortime~~UsedByGraph_edge3" class="edge">
 <title>program~example2&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.49,-1469.71C94.55,-1467.24 91.91,-1464.38 90,-1461.13 55.35,-1402.33 33.56,-907.14 28.93,-791.99"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="32.43,-792.05 28.54,-782.2 25.44,-792.33 32.43,-792.05"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M93.1,-167.53C84.16,-163.5 74.12,-158.96 64.65,-154.69"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="66.23,-151.56 55.67,-150.63 63.35,-157.94 66.23,-151.56"/>
 </g>
 <!-- program~example3 -->
-<g id="module~~fortime~~UsedByGraph_node4" class="node">
+<g id="module~~fortime~~UsedByGraph_node5" class="node">
 <title>program~example3</title>
-<g id="a_module~~fortime~~UsedByGraph_node4"><a xlink:href="../program/example3.html" xlink:title="example3">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-1452.27 90,-1452.27 90,-1428 154.02,-1428 154.02,-1452.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1436.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example3</text>
+<g id="a_module~~fortime~~UsedByGraph_node5"><a xlink:href="../program/example3.html" xlink:title="example3">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-150.27 90,-150.27 90,-126 154.02,-126 154.02,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example3</text>
 </a>
 </g>
 </g>
 <!-- program~example3&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge3" class="edge">
+<g id="module~~fortime~~UsedByGraph_edge4" class="edge">
 <title>program~example3&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.51,-1427.7C94.57,-1425.23 91.92,-1422.38 90,-1419.13 25.38,-1310.16 26.31,-896.37 27.61,-792.1"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="31.11,-792.28 27.75,-782.23 24.11,-792.18 31.11,-792.28"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M89.52,-138.13C81.96,-138.13 73.81,-138.13 65.99,-138.13"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="66.01,-134.64 56.01,-138.14 66.01,-141.64 66.01,-134.64"/>
 </g>
 <!-- program~example4 -->
-<g id="module~~fortime~~UsedByGraph_node5" class="node">
+<g id="module~~fortime~~UsedByGraph_node6" class="node">
 <title>program~example4</title>
-<g id="a_module~~fortime~~UsedByGraph_node5"><a xlink:href="../program/example4.html" xlink:title="example4">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-1410.27 90,-1410.27 90,-1386 154.02,-1386 154.02,-1410.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1394.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example4</text>
+<g id="a_module~~fortime~~UsedByGraph_node6"><a xlink:href="../program/example4.html" xlink:title="example4">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-108.27 90,-108.27 90,-84 154.02,-84 154.02,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example4</text>
 </a>
 </g>
 </g>
 <!-- program~example4&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge4" class="edge">
+<g id="module~~fortime~~UsedByGraph_edge5" class="edge">
 <title>program~example4&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.52,-1385.69C94.58,-1383.22 91.93,-1380.37 90,-1377.13 29.5,-1275.86 27.3,-892.19 27.79,-792.12"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="31.29,-792.18 27.85,-782.16 24.29,-792.14 31.29,-792.18"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M93.1,-108.74C84.16,-112.77 74.12,-117.31 64.65,-121.58"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="63.35,-118.33 55.67,-125.64 66.23,-124.71 63.35,-118.33"/>
 </g>
 <!-- program~example5 -->
-<g id="module~~fortime~~UsedByGraph_node6" class="node">
+<g id="module~~fortime~~UsedByGraph_node7" class="node">
 <title>program~example5</title>
-<g id="a_module~~fortime~~UsedByGraph_node6"><a xlink:href="../program/example5.html" xlink:title="example5">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-1368.27 90,-1368.27 90,-1344 154.02,-1344 154.02,-1368.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1352.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example5</text>
+<g id="a_module~~fortime~~UsedByGraph_node7"><a xlink:href="../program/example5.html" xlink:title="example5">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-66.27 90,-66.27 90,-42 154.02,-42 154.02,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example5</text>
 </a>
 </g>
 </g>
 <!-- program~example5&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge5" class="edge">
+<g id="module~~fortime~~UsedByGraph_edge6" class="edge">
 <title>program~example5&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.55,-1343.68C94.6,-1341.21 91.95,-1338.37 90,-1335.13 33.57,-1241.47 28.36,-887.43 27.99,-791.97"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="31.49,-792 27.97,-782.01 24.49,-792.02 31.49,-792"/>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M101.23,-66.67C97.4,-69.33 93.5,-72.22 90,-75.14 74.29,-88.22 58.13,-104.75 46.26,-117.6"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="43.94,-114.94 39.79,-124.69 49.11,-119.66 43.94,-114.94"/>
 </g>
 <!-- program~example6 -->
-<g id="module~~fortime~~UsedByGraph_node7" class="node">
+<g id="module~~fortime~~UsedByGraph_node8" class="node">
 <title>program~example6</title>
-<g id="a_module~~fortime~~UsedByGraph_node7"><a xlink:href="../program/example6.html" xlink:title="example6">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-1326.27 90,-1326.27 90,-1302 154.02,-1302 154.02,-1326.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1310.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example6</text>
+<g id="a_module~~fortime~~UsedByGraph_node8"><a xlink:href="../program/example6.html" xlink:title="example6">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="154.02,-24.27 90,-24.27 90,0 154.02,0 154.02,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="122.01" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example6</text>
 </a>
 </g>
 </g>
 <!-- program~example6&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge6" class="edge">
-<title>program~example6&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.57,-1301.66C94.62,-1299.2 91.96,-1296.36 90,-1293.13 37.66,-1207.1 29.5,-882.8 28.23,-791.93"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="31.73,-791.96 28.11,-782 24.73,-792.05 31.73,-791.96"/>
-</g>
-<!-- program~test1 -->
-<g id="module~~fortime~~UsedByGraph_node8" class="node">
-<title>program~test1</title>
-<g id="a_module~~fortime~~UsedByGraph_node8"><a xlink:href="../program/test1.html" xlink:title="test1">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1284.27 95.01,-1284.27 95.01,-1260 149.01,-1260 149.01,-1284.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1268.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test1</text>
-</a>
-</g>
-</g>
-<!-- program~test1&#45;&gt;module~fortime -->
 <g id="module~~fortime~~UsedByGraph_edge7" class="edge">
-<title>program~test1&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.6,-1259.64C94.65,-1257.18 91.98,-1254.35 90,-1251.13 41.7,-1172.64 30.7,-877.47 28.5,-791.66"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="32,-791.8 28.27,-781.88 25.01,-791.96 32,-791.8"/>
-</g>
-<!-- program~test10 -->
-<g id="module~~fortime~~UsedByGraph_node9" class="node">
-<title>program~test10</title>
-<g id="a_module~~fortime~~UsedByGraph_node9"><a xlink:href="../program/test10.html" xlink:title="test10">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1242.27 95.01,-1242.27 95.01,-1218 149.01,-1218 149.01,-1242.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1226.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test10</text>
-</a>
-</g>
-</g>
-<!-- program~test10&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge8" class="edge">
-<title>program~test10&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.64,-1217.62C94.68,-1215.16 92,-1212.33 90,-1209.13 45.83,-1138.3 32.06,-873.17 28.83,-791.94"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="32.34,-791.91 28.46,-782.05 25.34,-792.18 32.34,-791.91"/>
-</g>
-<!-- program~test11 -->
-<g id="module~~fortime~~UsedByGraph_node10" class="node">
-<title>program~test11</title>
-<g id="a_module~~fortime~~UsedByGraph_node10"><a xlink:href="../program/test11.html" xlink:title="test11">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1200.27 95.01,-1200.27 95.01,-1176 149.01,-1176 149.01,-1200.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1184.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test11</text>
-</a>
-</g>
-</g>
-<!-- program~test11&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge9" class="edge">
-<title>program~test11&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.68,-1175.6C94.71,-1173.14 92.02,-1170.32 90,-1167.13 49.83,-1103.75 33.49,-867.35 29.21,-791.63"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="32.73,-791.84 28.69,-782.04 25.74,-792.22 32.73,-791.84"/>
-</g>
-<!-- program~test12 -->
-<g id="module~~fortime~~UsedByGraph_node11" class="node">
-<title>program~test12</title>
-<g id="a_module~~fortime~~UsedByGraph_node11"><a xlink:href="../program/test12.html" xlink:title="test12">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1158.27 95.01,-1158.27 95.01,-1134 149.01,-1134 149.01,-1158.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1142.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test12</text>
-</a>
-</g>
-</g>
-<!-- program~test12&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge10" class="edge">
-<title>program~test12&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.73,-1133.56C94.76,-1131.11 92.05,-1128.3 90,-1125.13 53.92,-1069.31 35.16,-862.4 29.71,-791.87"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="33.22,-791.92 28.98,-782.21 26.24,-792.44 33.22,-791.92"/>
-</g>
-<!-- program~test13 -->
-<g id="module~~fortime~~UsedByGraph_node12" class="node">
-<title>program~test13</title>
-<g id="a_module~~fortime~~UsedByGraph_node12"><a xlink:href="../program/test13.html" xlink:title="test13">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1116.27 95.01,-1116.27 95.01,-1092 149.01,-1092 149.01,-1116.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1100.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test13</text>
-</a>
-</g>
-</g>
-<!-- program~test13&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge11" class="edge">
-<title>program~test13&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.79,-1091.52C94.81,-1089.08 92.08,-1086.28 90,-1083.13 57.97,-1034.78 37.04,-856.85 30.33,-791.99"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="33.82,-791.7 29.33,-782.1 26.86,-792.41 33.82,-791.7"/>
-</g>
-<!-- program~test14 -->
-<g id="module~~fortime~~UsedByGraph_node13" class="node">
-<title>program~test14</title>
-<g id="a_module~~fortime~~UsedByGraph_node13"><a xlink:href="../program/test14.html" xlink:title="test14">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1074.27 95.01,-1074.27 95.01,-1050 149.01,-1050 149.01,-1074.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1058.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test14</text>
-</a>
-</g>
-</g>
-<!-- program~test14&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge12" class="edge">
-<title>program~test14&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.18,-1049.72C95.07,-1047.22 92.2,-1044.36 90,-1041.13 35.78,-961.78 28.33,-842.13 27.75,-791.79"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="31.25,-792.05 27.73,-782.06 24.25,-792.07 31.25,-792.05"/>
-</g>
-<!-- program~test15 -->
-<g id="module~~fortime~~UsedByGraph_node14" class="node">
-<title>program~test15</title>
-<g id="a_module~~fortime~~UsedByGraph_node14"><a xlink:href="../program/test15.html" xlink:title="test15">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-1032.27 95.01,-1032.27 95.01,-1008 149.01,-1008 149.01,-1032.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-1016.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test15</text>
-</a>
-</g>
-</g>
-<!-- program~test15&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge13" class="edge">
-<title>program~test15&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.29,-1007.64C95.17,-1005.15 92.26,-1002.31 90,-999.13 43.75,-934.2 32,-836.73 29.02,-792.05"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="32.52,-791.98 28.46,-782.2 25.53,-792.38 32.52,-791.98"/>
-</g>
-<!-- program~test16 -->
-<g id="module~~fortime~~UsedByGraph_node15" class="node">
-<title>program~test16</title>
-<g id="a_module~~fortime~~UsedByGraph_node15"><a xlink:href="../program/test16.html" xlink:title="test16">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-990.27 95.01,-990.27 95.01,-966 149.01,-966 149.01,-990.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-974.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test16</text>
-</a>
-</g>
-</g>
-<!-- program~test16&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge14" class="edge">
-<title>program~test16&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.44,-965.53C95.3,-963.06 92.35,-960.25 90,-957.13 51.34,-905.89 36.14,-829.42 30.71,-791.37"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="34.24,-791.41 29.47,-781.95 27.3,-792.32 34.24,-791.41"/>
-</g>
-<!-- program~test17 -->
-<g id="module~~fortime~~UsedByGraph_node16" class="node">
-<title>program~test17</title>
-<g id="a_module~~fortime~~UsedByGraph_node16"><a xlink:href="../program/test17.html" xlink:title="test17">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-948.27 95.01,-948.27 95.01,-924 149.01,-924 149.01,-948.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-932.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test17</text>
-</a>
-</g>
-</g>
-<!-- program~test17&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge15" class="edge">
-<title>program~test17&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.98,-923.6C95.7,-921.09 92.56,-918.25 90,-915.13 59.13,-877.52 41.43,-822.31 33.36,-791.36"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="36.82,-790.75 31.02,-781.89 30.02,-792.43 36.82,-790.75"/>
-</g>
-<!-- program~test18 -->
-<g id="module~~fortime~~UsedByGraph_node17" class="node">
-<title>program~test18</title>
-<g id="a_module~~fortime~~UsedByGraph_node17"><a xlink:href="../program/test18.html" xlink:title="test18">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-906.27 95.01,-906.27 95.01,-882 149.01,-882 149.01,-906.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-890.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test18</text>
-</a>
-</g>
-</g>
-<!-- program~test18&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge16" class="edge">
-<title>program~test18&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M99.65,-881.53C96.21,-879 92.85,-876.17 90,-873.13 66.81,-848.46 48.39,-813.62 37.84,-790.96"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="41.1,-789.68 33.8,-782 34.72,-792.55 41.1,-789.68"/>
-</g>
-<!-- program~test19 -->
-<g id="module~~fortime~~UsedByGraph_node18" class="node">
-<title>program~test19</title>
-<g id="a_module~~fortime~~UsedByGraph_node18"><a xlink:href="../program/test19.html" xlink:title="test19">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-864.27 95.01,-864.27 95.01,-840 149.01,-840 149.01,-864.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-848.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test19</text>
-</a>
-</g>
-</g>
-<!-- program~test19&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge17" class="edge">
-<title>program~test19&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M101.23,-839.6C97.4,-836.94 93.5,-834.05 90,-831.13 74.29,-818.05 58.13,-801.52 46.26,-788.67"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="49.11,-786.61 39.79,-781.58 43.94,-791.33 49.11,-786.61"/>
-</g>
-<!-- program~test2 -->
-<g id="module~~fortime~~UsedByGraph_node19" class="node">
-<title>program~test2</title>
-<g id="a_module~~fortime~~UsedByGraph_node19"><a xlink:href="../program/test2.html" xlink:title="test2">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-822.27 95.01,-822.27 95.01,-798 149.01,-798 149.01,-822.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-806.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test2</text>
-</a>
-</g>
-</g>
-<!-- program~test2&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge18" class="edge">
-<title>program~test2&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M94.61,-798.21C85.38,-794.04 74.84,-789.29 64.91,-784.8"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="66.4,-781.64 55.85,-780.71 63.52,-788.02 66.4,-781.64"/>
-</g>
-<!-- program~test20 -->
-<g id="module~~fortime~~UsedByGraph_node20" class="node">
-<title>program~test20</title>
-<g id="a_module~~fortime~~UsedByGraph_node20"><a xlink:href="../program/test20.html" xlink:title="test20">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-780.27 95.01,-780.27 95.01,-756 149.01,-756 149.01,-780.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-764.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test20</text>
-</a>
-</g>
-</g>
-<!-- program~test20&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge19" class="edge">
-<title>program~test20&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M94.61,-768.13C85.67,-768.13 75.51,-768.13 65.86,-768.13"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="65.98,-764.64 55.98,-768.14 65.98,-771.64 65.98,-764.64"/>
-</g>
-<!-- program~test21 -->
-<g id="module~~fortime~~UsedByGraph_node21" class="node">
-<title>program~test21</title>
-<g id="a_module~~fortime~~UsedByGraph_node21"><a xlink:href="../program/test21.html" xlink:title="test21">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-738.27 95.01,-738.27 95.01,-714 149.01,-714 149.01,-738.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-722.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test21</text>
-</a>
-</g>
-</g>
-<!-- program~test21&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge20" class="edge">
-<title>program~test21&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M94.61,-738.06C85.38,-742.23 74.84,-746.98 64.91,-751.47"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="63.52,-748.25 55.85,-755.56 66.4,-754.63 63.52,-748.25"/>
-</g>
-<!-- program~test22 -->
-<g id="module~~fortime~~UsedByGraph_node22" class="node">
-<title>program~test22</title>
-<g id="a_module~~fortime~~UsedByGraph_node22"><a xlink:href="../program/test22.html" xlink:title="test22">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-696.27 95.01,-696.27 95.01,-672 149.01,-672 149.01,-696.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-680.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test22</text>
-</a>
-</g>
-</g>
-<!-- program~test22&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge21" class="edge">
-<title>program~test22&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M101.23,-696.67C97.4,-699.33 93.5,-702.22 90,-705.13 74.29,-718.22 58.13,-734.75 46.26,-747.6"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="43.94,-744.94 39.79,-754.69 49.11,-749.66 43.94,-744.94"/>
-</g>
-<!-- program~test23 -->
-<g id="module~~fortime~~UsedByGraph_node23" class="node">
-<title>program~test23</title>
-<g id="a_module~~fortime~~UsedByGraph_node23"><a xlink:href="../program/test23.html" xlink:title="test23">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-654.27 95.01,-654.27 95.01,-630 149.01,-630 149.01,-654.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-638.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test23</text>
-</a>
-</g>
-</g>
-<!-- program~test23&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge22" class="edge">
-<title>program~test23&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M99.65,-654.74C96.21,-657.27 92.85,-660.1 90,-663.13 66.81,-687.81 48.39,-722.65 37.84,-745.31"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="34.72,-743.72 33.8,-754.27 41.1,-746.59 34.72,-743.72"/>
-</g>
-<!-- program~test24 -->
-<g id="module~~fortime~~UsedByGraph_node24" class="node">
-<title>program~test24</title>
-<g id="a_module~~fortime~~UsedByGraph_node24"><a xlink:href="../program/test24.html" xlink:title="test24">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-612.27 95.01,-612.27 95.01,-588 149.01,-588 149.01,-612.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-596.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test24</text>
-</a>
-</g>
-</g>
-<!-- program~test24&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge23" class="edge">
-<title>program~test24&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.98,-612.67C95.7,-615.18 92.56,-618.02 90,-621.13 59.13,-658.75 41.43,-713.96 33.36,-744.91"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="30.02,-743.84 31.02,-754.38 36.82,-745.52 30.02,-743.84"/>
-</g>
-<!-- program~test25 -->
-<g id="module~~fortime~~UsedByGraph_node25" class="node">
-<title>program~test25</title>
-<g id="a_module~~fortime~~UsedByGraph_node25"><a xlink:href="../program/test25.html" xlink:title="test25">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-570.27 95.01,-570.27 95.01,-546 149.01,-546 149.01,-570.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-554.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test25</text>
-</a>
-</g>
-</g>
-<!-- program~test25&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge24" class="edge">
-<title>program~test25&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.44,-570.74C95.3,-573.21 92.35,-576.02 90,-579.13 51.34,-630.38 36.14,-706.85 30.71,-744.9"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="27.3,-743.95 29.47,-754.32 34.24,-744.86 27.3,-743.95"/>
-</g>
-<!-- program~test26 -->
-<g id="module~~fortime~~UsedByGraph_node26" class="node">
-<title>program~test26</title>
-<g id="a_module~~fortime~~UsedByGraph_node26"><a xlink:href="../program/test26.html" xlink:title="test26">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-528.27 95.01,-528.27 95.01,-504 149.01,-504 149.01,-528.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-512.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test26</text>
-</a>
-</g>
-</g>
-<!-- program~test26&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge25" class="edge">
-<title>program~test26&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.29,-528.63C95.17,-531.12 92.26,-533.96 90,-537.13 43.75,-602.07 32,-699.54 29.02,-744.22"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="25.53,-743.89 28.46,-754.07 32.52,-744.29 25.53,-743.89"/>
-</g>
-<!-- program~test27 -->
-<g id="module~~fortime~~UsedByGraph_node27" class="node">
-<title>program~test27</title>
-<g id="a_module~~fortime~~UsedByGraph_node27"><a xlink:href="../program/test27.html" xlink:title="test27">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-486.27 95.01,-486.27 95.01,-462 149.01,-462 149.01,-486.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-470.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test27</text>
-</a>
-</g>
-</g>
-<!-- program~test27&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge26" class="edge">
-<title>program~test27&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M98.18,-486.55C95.07,-489.05 92.2,-491.91 90,-495.13 35.78,-574.49 28.33,-694.14 27.75,-744.48"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="24.25,-744.2 27.73,-754.21 31.25,-744.22 24.25,-744.2"/>
-</g>
-<!-- program~test28 -->
-<g id="module~~fortime~~UsedByGraph_node28" class="node">
-<title>program~test28</title>
-<g id="a_module~~fortime~~UsedByGraph_node28"><a xlink:href="../program/test28.html" xlink:title="test28">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-444.27 95.01,-444.27 95.01,-420 149.01,-420 149.01,-444.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-428.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test28</text>
-</a>
-</g>
-</g>
-<!-- program~test28&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge27" class="edge">
-<title>program~test28&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.79,-444.75C94.81,-447.19 92.08,-449.99 90,-453.13 57.97,-501.49 37.04,-679.42 30.33,-744.28"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="26.86,-743.86 29.33,-754.17 33.82,-744.57 26.86,-743.86"/>
-</g>
-<!-- program~test29 -->
-<g id="module~~fortime~~UsedByGraph_node29" class="node">
-<title>program~test29</title>
-<g id="a_module~~fortime~~UsedByGraph_node29"><a xlink:href="../program/test29.html" xlink:title="test29">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-402.27 95.01,-402.27 95.01,-378 149.01,-378 149.01,-402.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-386.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test29</text>
-</a>
-</g>
-</g>
-<!-- program~test29&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge28" class="edge">
-<title>program~test29&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.73,-402.71C94.76,-405.16 92.05,-407.97 90,-411.13 53.92,-466.96 35.16,-673.87 29.71,-744.4"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="26.24,-743.83 28.98,-754.06 33.22,-744.35 26.24,-743.83"/>
-</g>
-<!-- program~test3 -->
-<g id="module~~fortime~~UsedByGraph_node30" class="node">
-<title>program~test3</title>
-<g id="a_module~~fortime~~UsedByGraph_node30"><a xlink:href="../program/test3.html" xlink:title="test3">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-360.27 95.01,-360.27 95.01,-336 149.01,-336 149.01,-360.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-344.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test3</text>
-</a>
-</g>
-</g>
-<!-- program~test3&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge29" class="edge">
-<title>program~test3&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.68,-360.67C94.71,-363.13 92.02,-365.95 90,-369.13 49.83,-432.52 33.49,-668.92 29.21,-744.64"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="25.74,-744.05 28.69,-754.23 32.73,-744.43 25.74,-744.05"/>
-</g>
-<!-- program~test30 -->
-<g id="module~~fortime~~UsedByGraph_node31" class="node">
-<title>program~test30</title>
-<g id="a_module~~fortime~~UsedByGraph_node31"><a xlink:href="../program/test30.html" xlink:title="test30">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-318.27 95.01,-318.27 95.01,-294 149.01,-294 149.01,-318.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-302.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test30</text>
-</a>
-</g>
-</g>
-<!-- program~test30&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge30" class="edge">
-<title>program~test30&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.64,-318.65C94.68,-321.11 92,-323.94 90,-327.13 45.83,-397.97 32.06,-663.1 28.83,-744.33"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="25.34,-744.09 28.46,-754.22 32.34,-744.36 25.34,-744.09"/>
-</g>
-<!-- program~test31 -->
-<g id="module~~fortime~~UsedByGraph_node32" class="node">
-<title>program~test31</title>
-<g id="a_module~~fortime~~UsedByGraph_node32"><a xlink:href="../program/test31.html" xlink:title="test31">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-276.27 95.01,-276.27 95.01,-252 149.01,-252 149.01,-276.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-260.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test31</text>
-</a>
-</g>
-</g>
-<!-- program~test31&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge31" class="edge">
-<title>program~test31&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.6,-276.63C94.65,-279.09 91.98,-281.92 90,-285.13 41.7,-363.63 30.7,-658.8 28.5,-744.61"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="25.01,-744.31 28.27,-754.39 32,-744.47 25.01,-744.31"/>
-</g>
-<!-- program~test4 -->
-<g id="module~~fortime~~UsedByGraph_node33" class="node">
-<title>program~test4</title>
-<g id="a_module~~fortime~~UsedByGraph_node33"><a xlink:href="../program/test4.html" xlink:title="test4">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-234.27 95.01,-234.27 95.01,-210 149.01,-210 149.01,-234.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test4</text>
-</a>
-</g>
-</g>
-<!-- program~test4&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge32" class="edge">
-<title>program~test4&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.57,-234.61C94.62,-237.07 91.96,-239.91 90,-243.13 37.66,-329.17 29.5,-653.47 28.23,-744.34"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="24.73,-744.22 28.11,-754.27 31.73,-744.31 24.73,-744.22"/>
-</g>
-<!-- program~test5 -->
-<g id="module~~fortime~~UsedByGraph_node34" class="node">
-<title>program~test5</title>
-<g id="a_module~~fortime~~UsedByGraph_node34"><a xlink:href="../program/test5.html" xlink:title="test5">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-192.27 95.01,-192.27 95.01,-168 149.01,-168 149.01,-192.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test5</text>
-</a>
-</g>
-</g>
-<!-- program~test5&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge33" class="edge">
-<title>program~test5&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.55,-192.59C94.6,-195.06 91.95,-197.9 90,-201.13 33.57,-294.8 28.36,-648.84 27.99,-744.3"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="24.49,-744.25 27.97,-754.26 31.49,-744.27 24.49,-744.25"/>
-</g>
-<!-- program~test6 -->
-<g id="module~~fortime~~UsedByGraph_node35" class="node">
-<title>program~test6</title>
-<g id="a_module~~fortime~~UsedByGraph_node35"><a xlink:href="../program/test6.html" xlink:title="test6">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-150.27 95.01,-150.27 95.01,-126 149.01,-126 149.01,-150.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test6</text>
-</a>
-</g>
-</g>
-<!-- program~test6&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge34" class="edge">
-<title>program~test6&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.52,-150.58C94.58,-153.05 91.93,-155.9 90,-159.13 29.5,-260.41 27.3,-644.08 27.79,-744.15"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="24.29,-744.13 27.85,-754.11 31.29,-744.09 24.29,-744.13"/>
-</g>
-<!-- program~test7 -->
-<g id="module~~fortime~~UsedByGraph_node36" class="node">
-<title>program~test7</title>
-<g id="a_module~~fortime~~UsedByGraph_node36"><a xlink:href="../program/test7.html" xlink:title="test7">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-108.27 95.01,-108.27 95.01,-84 149.01,-84 149.01,-108.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test7</text>
-</a>
-</g>
-</g>
-<!-- program~test7&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge35" class="edge">
-<title>program~test7&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.51,-108.57C94.57,-111.04 91.92,-113.89 90,-117.14 25.38,-226.11 26.31,-639.9 27.61,-744.17"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="24.11,-744.09 27.75,-754.04 31.11,-743.99 24.11,-744.09"/>
-</g>
-<!-- program~test8 -->
-<g id="module~~fortime~~UsedByGraph_node37" class="node">
-<title>program~test8</title>
-<g id="a_module~~fortime~~UsedByGraph_node37"><a xlink:href="../program/test8.html" xlink:title="test8">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-66.27 95.01,-66.27 95.01,-42 149.01,-42 149.01,-66.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test8</text>
-</a>
-</g>
-</g>
-<!-- program~test8&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge36" class="edge">
-<title>program~test8&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.49,-66.56C94.55,-69.03 91.91,-71.89 90,-75.14 55.35,-133.94 33.56,-629.13 28.93,-744.28"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="25.44,-743.94 28.54,-754.07 32.43,-744.22 25.44,-743.94"/>
-</g>
-<!-- program~test9 -->
-<g id="module~~fortime~~UsedByGraph_node38" class="node">
-<title>program~test9</title>
-<g id="a_module~~fortime~~UsedByGraph_node38"><a xlink:href="../program/test9.html" xlink:title="test9">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="149.01,-24.27 95.01,-24.27 95.01,0 149.01,0 149.01,-24.27"/>
-<text xml:space="preserve" text-anchor="middle" x="122.01" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">test9</text>
-</a>
-</g>
-</g>
-<!-- program~test9&#45;&gt;module~fortime -->
-<g id="module~~fortime~~UsedByGraph_edge37" class="edge">
-<title>program~test9&#45;&gt;module~fortime</title>
-<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M97.47,-24.55C94.54,-27.02 91.91,-29.88 90,-33.13 53.27,-95.84 32.93,-625.16 28.79,-744.36"/>
-<polygon fill="#ff0000" stroke="#ff0000" points="25.3,-744.09 28.46,-754.2 32.3,-744.32 25.3,-744.09"/>
+<title>program~example6&#45;&gt;module~fortime</title>
+<path fill="none" stroke="#ff0000" stroke-dasharray="5,2" d="M99.65,-24.74C96.21,-27.27 92.85,-30.1 90,-33.13 66.81,-57.81 48.39,-92.65 37.84,-115.31"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="34.72,-113.72 33.8,-124.27 41.1,-116.59 34.72,-113.72"/>
 </g>
 </g>
 </svg>
@@ -1005,6 +595,24 @@ large graphs.</div>
     <tbody>
         <tr>
             <td>
+              <span class="anchor" id="variable-ik"></span>
+              integer,
+            </td>
+              <td>public,</td>
+            <td>
+parameter               
+            </td>
+            <td>::</td>
+            <td><strong>ik</strong></td>
+<td> =</td>
+                <td>int64</td>
+            <td>
+                <p>Integer kind used by the internal tick counters and civil-date
+calculations. It is currently mapped to <code>int64</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
               <span class="anchor" id="variable-rk"></span>
               integer,
             </td>
@@ -1017,7 +625,8 @@ parameter
 <td> =</td>
                 <td>real64</td>
             <td>
-                
+                <p>Real kind used by the public timing results and internal real-valued
+calculations. It is currently mapped to <code>real64</code>.</p>
             </td>
         </tr>
     </tbody>
@@ -1041,7 +650,7 @@ parameter
       </h3>
     </div>
     <div class="card-body">
-      
+      <p>Timing object with independent state for each supported backend.</p><a href="../type/timer.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
         <h4>Components</h4>
           <table class="table table-striped varlist">
@@ -1065,10 +674,10 @@ parameter
             </td>
             <td>::</td>
             <td><strong>cpu_time</strong></td>
-                <td></td>
-                <td></td>
+<td> =</td>
+                <td>0.0_rk</td>
             <td>
-
+<p>Most recent successful CPU-time measurement in seconds.</p>
             </td>
         </tr>
         <tr>
@@ -1082,10 +691,10 @@ parameter
             </td>
             <td>::</td>
             <td><strong>elapsed_dtime</strong></td>
-                <td></td>
-                <td></td>
+<td> =</td>
+                <td>0.0_rk</td>
             <td>
-
+<p>Most recent successful <code>date_and_time</code> elapsed time in seconds.</p>
             </td>
         </tr>
         <tr>
@@ -1099,84 +708,33 @@ parameter
             </td>
             <td>::</td>
             <td><strong>elapsed_time</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-clock_accum_paused"></span>
-              integer,
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>clock_accum_paused</strong></td>
 <td> =</td>
-                <td>0</td>
+                <td>0.0_rk</td>
             <td>
-
+<p>Most recent successful <code>system_clock</code> elapsed time in seconds.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-clock_elapsed"></span>
-              integer,
+              <span class="anchor" id="variable-clock_max"></span>
+              integer(kind=ik),
             </td>
               <td>private</td>
             <td>
               
             </td>
             <td>::</td>
-            <td><strong>clock_elapsed</strong></td>
-                <td></td>
-                <td></td>
+            <td><strong>clock_max</strong></td>
+<td> =</td>
+                <td>0_ik</td>
             <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-clock_end"></span>
-              integer,
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>clock_end</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-clock_pause"></span>
-              integer,
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>clock_pause</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
+<p>Cached maximum <code>system_clock</code> count used to handle one counter wrap.</p>
             </td>
         </tr>
         <tr>
             <td>
               <span class="anchor" id="variable-clock_rate"></span>
-              integer,
+              integer(kind=ik),
             </td>
               <td>private</td>
             <td>
@@ -1184,16 +742,16 @@ parameter
             </td>
             <td>::</td>
             <td><strong>clock_rate</strong></td>
-                <td></td>
-                <td></td>
+<td> =</td>
+                <td>0_ik</td>
             <td>
-
+<p>Cached <code>system_clock</code> count rate in ticks per second.</p>
             </td>
         </tr>
         <tr>
             <td>
               <span class="anchor" id="variable-clock_start"></span>
-              integer,
+              integer(kind=ik),
             </td>
               <td>private</td>
             <td>
@@ -1201,44 +759,10 @@ parameter
             </td>
             <td>::</td>
             <td><strong>clock_start</strong></td>
-                <td></td>
-                <td></td>
+<td> =</td>
+                <td>0_ik</td>
             <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-cpu_elapsed"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>cpu_elapsed</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-cpu_end"></span>
-              real(kind=rk),
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>cpu_end</strong></td>
-                <td></td>
-                <td></td>
-            <td>
-
+<p><code>system_clock</code> count captured at the start of the wall-clock interval.</p>
             </td>
         </tr>
         <tr>
@@ -1252,10 +776,61 @@ parameter
             </td>
             <td>::</td>
             <td><strong>cpu_start</strong></td>
-                <td></td>
-                <td></td>
+<td> =</td>
+                <td>0.0_rk</td>
             <td>
-
+<p>CPU time, in seconds, captured by <code>ctimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dtime_start_utc"></span>
+              real(kind=rk),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dtime_start_utc</strong></td>
+<td> =</td>
+                <td>0.0_rk</td>
+            <td>
+<p>UTC epoch seconds computed from <code>date_and_time</code> at <code>dtimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_cpu_started"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_cpu_started</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+<p>True after <code>ctimer_start</code> and before a successful <code>ctimer_stop</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_dtime_started"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_dtime_started</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+<p>True after <code>dtimer_start</code> and before a successful <code>dtimer_stop</code>.</p>
             </td>
         </tr>
         <tr>
@@ -1272,7 +847,7 @@ parameter
 <td> =</td>
                 <td>.false.</td>
             <td>
-
+<p>True after <code>timer_pause</code> and before a matching <code>timer_resume</code>.</p>
             </td>
         </tr>
         <tr>
@@ -1289,58 +864,41 @@ parameter
 <td> =</td>
                 <td>.false.</td>
             <td>
-
+<p>True after <code>timer_start</code> and before a successful <code>timer_stop</code>.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-values_elapsed"></span>
-              integer,
+              <span class="anchor" id="variable-pause_start"></span>
+              integer(kind=ik),
             </td>
               <td>private</td>
             <td>
               
             </td>
             <td>::</td>
-            <td><strong>values_elapsed</strong>(8)</td>
-                <td></td>
-                <td></td>
+            <td><strong>pause_start</strong></td>
+<td> =</td>
+                <td>0_ik</td>
             <td>
-
+<p><code>system_clock</code> count captured when the wall-clock timer is paused.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-values_end"></span>
-              integer,
+              <span class="anchor" id="variable-paused_ticks"></span>
+              integer(kind=ik),
             </td>
               <td>private</td>
             <td>
               
             </td>
             <td>::</td>
-            <td><strong>values_end</strong>(8)</td>
-                <td></td>
-                <td></td>
+            <td><strong>paused_ticks</strong></td>
+<td> =</td>
+                <td>0_ik</td>
             <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-values_start"></span>
-              integer,
-            </td>
-              <td>private</td>
-            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>values_start</strong>(8)</td>
-                <td></td>
-                <td></td>
-            <td>
-
+<p>Total paused duration, in <code>system_clock</code> ticks, excluded from the result.</p>
             </td>
         </tr>
     </tbody>
@@ -1355,57 +913,57 @@ parameter
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-ctimer_start'>ctimer_start</a></strong></td>
-                  <td></td>
+                  <td><p>Start a CPU-time measurement.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-ctimer_stop'>ctimer_stop</a></strong></td>
-                  <td></td>
+                  <td><p>Stop a CPU-time measurement and update <code>cpu_time</code>.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-ctimer_write'>ctimer_write</a></strong></td>
-                  <td></td>
+                  <td><p>Append <code>cpu_time</code> to a text file.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-dtimer_start'>dtimer_start</a></strong></td>
-                  <td></td>
+                  <td><p>Start a <code>date_and_time</code> civil-clock measurement.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-dtimer_stop'>dtimer_stop</a></strong></td>
-                  <td></td>
+                  <td><p>Stop a <code>date_and_time</code> civil-clock measurement and update <code>elapsed_dtime</code>.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-dtimer_write'>dtimer_write</a></strong></td>
-                  <td></td>
+                  <td><p>Append <code>elapsed_dtime</code> to a text file.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-timer_pause'>timer_pause</a></strong></td>
-                  <td></td>
+                  <td><p>Pause a running <code>system_clock</code> wall-clock measurement.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-timer_resume'>timer_resume</a></strong></td>
-                  <td></td>
+                  <td><p>Resume a paused <code>system_clock</code> wall-clock measurement.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-timer_start'>timer_start</a></strong></td>
-                  <td></td>
+                  <td><p>Start a <code>system_clock</code> wall-clock measurement.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-timer_stop'>timer_stop</a></strong></td>
-                  <td></td>
+                  <td><p>Stop a <code>system_clock</code> wall-clock measurement and update <code>elapsed_time</code>.</p></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
   <strong><a href='../type/timer.html#boundprocedure-timer_write'>timer_write</a></strong></td>
-                  <td></td>
+                  <td><p>Append <code>elapsed_time</code> to a text file.</p></td>
               </tr>
           </tbody>
         </table>
@@ -1418,7 +976,7 @@ parameter
         <section>
           <h2>Functions</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-to_seconds"></span> <h3>private pure function <a href='../proc/to_seconds.html'>to_seconds</a>(values) result(seconds)  
+    <div class="card-header codesum"><span class="anchor" id="proc-days_from_civil"></span> <h3>private pure function <a href='../proc/days_from_civil.html'>days_from_civil</a>(y, m, d) result(days)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1426,7 +984,86 @@ parameter
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  
+  <p>Convert a civil calendar date to days since the Unix epoch.</p><a href="../proc/days_from_civil.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-y"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>y</strong></td>
+            <td>
+<p>Civil year in the proleptic Gregorian calendar.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-m"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>m</strong></td>
+            <td>
+<p>Civil month in the range 1 to 12.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-d"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>d</strong></td>
+            <td>
+<p>Civil day of month.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=ik)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-epoch_seconds_utc"></span> <h3>private pure function <a href='../proc/epoch_seconds_utc.html'>epoch_seconds_utc</a>(values) result(t)  
+</h3></div>
+    <div class="card-body">
+              <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+  <p>Convert <code>date_and_time</code> values to UTC epoch seconds.</p><a href="../proc/epoch_seconds_utc.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1451,7 +1088,7 @@ parameter
             <td>::</td>
             <td><strong>values</strong>(8)</td>
             <td>
-
+<p>Eight-element result from <code>date_and_time(values=...)</code>.</p>
             </td>
         </tr>
     </tbody>
@@ -1466,13 +1103,92 @@ parameter
     </div>
   </div>
 
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-ticks_diff"></span> <h3>private pure function <a href='../proc/ticks_diff.html'>ticks_diff</a>(t_end, t_start, t_max) result(dt)  
+</h3></div>
+    <div class="card-body">
+              <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+  <p>Compute the elapsed tick count between two <code>system_clock</code> values.</p><a href="../proc/ticks_diff.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t_end"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t_end</strong></td>
+            <td>
+<p>End tick captured from <code>system_clock</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t_start"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t_start</strong></td>
+            <td>
+<p>Start tick captured from <code>system_clock</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t_max"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t_max</strong></td>
+            <td>
+<p>Maximum count returned by <code>system_clock</code>; non-positive means unknown.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h4>
+    Return Value
+    <small>integer(kind=ik)</small>
+    </h4>
+    
+
+    </div>
+  </div>
+
         </section>
         <br>
 
         <section>
           <h2>Subroutines</h2>
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_start"></span> <h3>private impure subroutine <a href='../proc/ctimer_start.html'>ctimer_start</a>(this)  
+    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_start"></span> <h3>private  subroutine <a href='../proc/ctimer_start.html'>ctimer_start</a>(this)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1480,172 +1196,7 @@ parameter
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Starts the timer by recording the current CPU time value.
-This value is used to calculate the CPU time later.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~4"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_stop"></span> <h3>private impure subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print, color, rfmt)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Stops the timer and calculates the CPU time.
-Optionally, it can print a message along with the CPU time.</p>
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-this~5"></span>
-              class(<a href='../type/timer.html'>timer</a>),
-            </td>
-<td>intent(inout)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>this</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-nloops~2"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nloops</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message~2"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-print~2"></span>
-              logical,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>print</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-color~2"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>color</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rfmt~2"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>rfmt</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_write"></span> <h3>private impure subroutine <a href='../proc/ctimer_write.html'>ctimer_write</a>(this, file_name)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  <p>Writes the CPU time to a file.</p>
+  <p>Start the CPU-time timer.</p><a href="../proc/ctimer_start.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1663,29 +1214,14 @@ Optionally, it can print a message along with the CPU time.</p>
               <span class="anchor" id="variable-this~6"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
-<td>intent(in)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-file_name~2"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>file_name</strong></td>
-            <td>
-
+<p>Timer instance whose CPU-time state is initialized.</p>
             </td>
         </tr>
     </tbody>
@@ -1696,7 +1232,7 @@ Optionally, it can print a message along with the CPU time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_start"></span> <h3>private impure subroutine <a href='../proc/dtimer_start.html'>dtimer_start</a>(this)  
+    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_stop"></span> <h3>private  subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1704,8 +1240,7 @@ Optionally, it can print a message along with the CPU time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Starts the timer by recording the current processor clock value.
-This value is used to calculate the elapsed time later.</p>
+  <p>Stop the CPU-time timer and store elapsed CPU seconds.</p><a href="../proc/ctimer_stop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1730,7 +1265,82 @@ This value is used to calculate the elapsed time later.</p>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance previously started with <code>ctimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nloops~4"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nloops</strong></td>
+            <td>
+<p>Optional positive loop count used to compute average CPU time.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~3"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Optional output label; defaults to <code>CPU time:</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-print~3"></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>print</strong></td>
+            <td>
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~3"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color used for printed output.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rfmt~3"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor used for printed output.</p>
             </td>
         </tr>
     </tbody>
@@ -1741,7 +1351,7 @@ This value is used to calculate the elapsed time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_stop"></span> <h3>private impure subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print, color, rfmt)  
+    <div class="card-header codesum"><span class="anchor" id="proc-ctimer_write"></span> <h3>private  subroutine <a href='../proc/ctimer_write.html'>ctimer_write</a>(this, file_name)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1749,8 +1359,7 @@ This value is used to calculate the elapsed time later.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Stops the timer and calculates the elapsed time.
-Optionally, it can print a message along with the elapsed time.</p>
+  <p>Append the last CPU-time result to a text file.</p><a href="../proc/ctimer_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1768,89 +1377,29 @@ Optionally, it can print a message along with the elapsed time.</p>
               <span class="anchor" id="variable-this~8"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance whose <code>cpu_time</code> value is written.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops~3"></span>
-              integer,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>nloops</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message~3"></span>
+              <span class="anchor" id="variable-file_name~2"></span>
               character(len=*),
             </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
+<td>intent(in)</td>
+              <td></td>            <td>
               
             </td>
             <td>::</td>
-            <td><strong>message</strong></td>
+            <td><strong>file_name</strong></td>
             <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-print~3"></span>
-              logical,
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>print</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-color~3"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>color</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rfmt~3"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>rfmt</strong></td>
-            <td>
-
+<p>Path to the output text file.</p>
             </td>
         </tr>
     </tbody>
@@ -1861,7 +1410,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_write"></span> <h3>private impure subroutine <a href='../proc/dtimer_write.html'>dtimer_write</a>(this, file_name)  
+    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_start"></span> <h3>private  subroutine <a href='../proc/dtimer_start.html'>dtimer_start</a>(this)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1869,7 +1418,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Writes the elapsed time to a file.</p>
+  <p>Start the <code>date_and_time</code> wall-clock timer.</p><a href="../proc/dtimer_start.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -1887,29 +1436,14 @@ Optionally, it can print a message along with the elapsed time.</p>
               <span class="anchor" id="variable-this~9"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
-<td>intent(in)</td>
+<td>intent(inout)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-file_name~3"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>file_name</strong></td>
-            <td>
-
+<p>Timer instance whose date/time timing state is initialized.</p>
             </td>
         </tr>
     </tbody>
@@ -1920,7 +1454,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-print_time"></span> <h3>private impure subroutine <a href='../proc/print_time.html'>print_time</a>(time, message, color, rfmt)  
+    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_stop"></span> <h3>private  subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -1928,96 +1462,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  
-
-  <h4>Arguments</h4>
-      <table class="table table-striped varlist">
-    <thead>
-      <tr>
-        <th scope="col">Type</th>
-<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col"></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-time"></span>
-              real(kind=rk),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>time</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-message~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in)</td>
-              <td></td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>message</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-color~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>color</strong></td>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <span class="anchor" id="variable-rfmt~4"></span>
-              character(len=*),
-            </td>
-<td>intent(in),</td>
-              <td>optional</td>            <td>
-              
-            </td>
-            <td>::</td>
-            <td><strong>rfmt</strong></td>
-            <td>
-
-            </td>
-        </tr>
-    </tbody>
-  </table>
-
-
-    </div>
-  </div>
-
-              <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-timer_pause"></span> <h3>private impure subroutine <a href='../proc/timer_pause.html'>timer_pause</a>(this)  
-</h3></div>
-    <div class="card-body">
-              <dl class="dl-horizontal">
-        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
-        <dt>License</dt><dd>BSD 3-Clause</dd>
-    </dl>
-
-  
+  <p>Stop the <code>date_and_time</code> timer and store elapsed seconds.</p><a href="../proc/dtimer_stop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2042,7 +1487,82 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance previously started with <code>dtimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nloops~5"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nloops</strong></td>
+            <td>
+<p>Optional positive loop count used to compute average date/time duration.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~4"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Optional output label; defaults to <code>Elapsed time:</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-print~4"></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>print</strong></td>
+            <td>
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~4"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color used for printed output.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rfmt~4"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor used for printed output.</p>
             </td>
         </tr>
     </tbody>
@@ -2053,7 +1573,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-timer_resume"></span> <h3>private impure subroutine <a href='../proc/timer_resume.html'>timer_resume</a>(this)  
+    <div class="card-header codesum"><span class="anchor" id="proc-dtimer_write"></span> <h3>private  subroutine <a href='../proc/dtimer_write.html'>dtimer_write</a>(this, file_name)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2061,7 +1581,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  
+  <p>Append the last <code>date_and_time</code> result to a text file.</p><a href="../proc/dtimer_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2079,14 +1599,29 @@ Optionally, it can print a message along with the elapsed time.</p>
               <span class="anchor" id="variable-this~11"></span>
               class(<a href='../type/timer.html'>timer</a>),
             </td>
-<td>intent(inout)</td>
+<td>intent(in)</td>
               <td></td>            <td>
               
             </td>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance whose <code>elapsed_dtime</code> value is written.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-file_name~3"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>file_name</strong></td>
+            <td>
+<p>Path to the output text file.</p>
             </td>
         </tr>
     </tbody>
@@ -2097,7 +1632,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-timer_start"></span> <h3>private impure subroutine <a href='../proc/timer_start.html'>timer_start</a>(this)  
+    <div class="card-header codesum"><span class="anchor" id="proc-finalize_timing"></span> <h3>private  subroutine <a href='../proc/finalize_timing.html'>finalize_timing</a>(value_raw, nloops, value_out, default_label, message, print, color, rfmt, ok)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2105,8 +1640,363 @@ Optionally, it can print a message along with the elapsed time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Starts the timer by recording the current processor clock value.
-This value is used to calculate the elapsed time later.</p>
+  <p>Validate, average, and optionally print a measured duration.</p><a href="../proc/finalize_timing.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value_raw"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value_raw</strong></td>
+            <td>
+<p>Raw measured duration in seconds.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-nloops~2"></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nloops</strong></td>
+            <td>
+<p>Optional positive loop count used to compute an average time per loop.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-value_out"></span>
+              real(kind=rk),
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>value_out</strong></td>
+            <td>
+<p>Validated duration in seconds, averaged by <code>nloops</code> when present.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-default_label"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>default_label</strong></td>
+            <td>
+<p>Backend-specific output label used when <code>message</code> is absent.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Optional output label printed before the timing value.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-print"></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>print</strong></td>
+            <td>
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color for the printed label and unit suffix.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rfmt"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor used by <code>print_time</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ok"></span>
+              logical,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ok</strong></td>
+            <td>
+<p>True when finalization succeeds and the caller may store <code>value_out</code>.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-print_time"></span> <h3>private  subroutine <a href='../proc/print_time.html'>print_time</a>(time, message, color, rfmt, ok)  
+</h3></div>
+    <div class="card-body">
+              <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+  <p>Print a formatted timing value.</p><a href="../proc/print_time.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-time"></span>
+              real(kind=rk),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>time</strong></td>
+            <td>
+<p>Timing value in seconds.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-message~5"></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Label printed before <code>time</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-color~5"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color; defaults to <code>blue</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-rfmt~5"></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor; defaults to <code>F16.9</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-ok~5"></span>
+              logical,
+            </td>
+<td>intent(out)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>ok</strong></td>
+            <td>
+<p>True when the formatted write completed successfully.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-timer_pause"></span> <h3>private  subroutine <a href='../proc/timer_pause.html'>timer_pause</a>(this)  
+</h3></div>
+    <div class="card-body">
+              <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+  <p>Pause a running <code>system_clock</code> wall-clock timer.</p><a href="../proc/timer_pause.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~4"></span>
+              class(<a href='../type/timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Running wall-clock timer instance to pause.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-timer_resume"></span> <h3>private  subroutine <a href='../proc/timer_resume.html'>timer_resume</a>(this)  
+</h3></div>
+    <div class="card-body">
+              <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+  <p>Resume a paused <code>system_clock</code> wall-clock timer.</p><a href="../proc/timer_resume.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~5"></span>
+              class(<a href='../type/timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Paused wall-clock timer instance to resume.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+    </div>
+  </div>
+
+              <div class="card">
+    <div class="card-header codesum"><span class="anchor" id="proc-timer_start"></span> <h3>private  subroutine <a href='../proc/timer_start.html'>timer_start</a>(this)  
+</h3></div>
+    <div class="card-body">
+              <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+  <p>Start the <code>system_clock</code> wall-clock timer.</p><a href="../proc/timer_start.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2131,7 +2021,7 @@ This value is used to calculate the elapsed time later.</p>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance whose wall-clock state is initialized.</p>
             </td>
         </tr>
     </tbody>
@@ -2142,7 +2032,7 @@ This value is used to calculate the elapsed time later.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-timer_stop"></span> <h3>private impure subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print, color, rfmt)  
+    <div class="card-header codesum"><span class="anchor" id="proc-timer_stop"></span> <h3>private  subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print, color, rfmt)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2150,8 +2040,7 @@ This value is used to calculate the elapsed time later.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Stops the timer and calculates the elapsed time.
-Optionally, it can print a message along with the elapsed time.</p>
+  <p>Stop the <code>system_clock</code> wall-clock timer and store elapsed seconds.</p><a href="../proc/timer_stop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2176,12 +2065,12 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance previously started with <code>timer_start</code>.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-nloops"></span>
+              <span class="anchor" id="variable-nloops~3"></span>
               integer,
             </td>
 <td>intent(in),</td>
@@ -2191,12 +2080,12 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>nloops</strong></td>
             <td>
-
+<p>Optional positive loop count used to compute average elapsed time.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-message"></span>
+              <span class="anchor" id="variable-message~2"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -2206,12 +2095,12 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>message</strong></td>
             <td>
-
+<p>Optional output label; defaults to <code>Elapsed time:</code>.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-print"></span>
+              <span class="anchor" id="variable-print~2"></span>
               logical,
             </td>
 <td>intent(in),</td>
@@ -2221,12 +2110,12 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>print</strong></td>
             <td>
-
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-color"></span>
+              <span class="anchor" id="variable-color~2"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -2236,12 +2125,12 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>color</strong></td>
             <td>
-
+<p>Optional FACE foreground color used for printed output.</p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-rfmt"></span>
+              <span class="anchor" id="variable-rfmt~2"></span>
               character(len=*),
             </td>
 <td>intent(in),</td>
@@ -2251,7 +2140,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>rfmt</strong></td>
             <td>
-
+<p>Optional Fortran real edit descriptor used for printed output.</p>
             </td>
         </tr>
     </tbody>
@@ -2262,7 +2151,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-timer_write"></span> <h3>private impure subroutine <a href='../proc/timer_write.html'>timer_write</a>(this, file_name)  
+    <div class="card-header codesum"><span class="anchor" id="proc-timer_write"></span> <h3>private  subroutine <a href='../proc/timer_write.html'>timer_write</a>(this, file_name)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2270,7 +2159,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  <p>Writes the elapsed time to a file.</p>
+  <p>Append the last <code>system_clock</code> result to a text file.</p><a href="../proc/timer_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2295,7 +2184,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>this</strong></td>
             <td>
-
+<p>Timer instance whose <code>elapsed_time</code> value is written.</p>
             </td>
         </tr>
         <tr>
@@ -2310,7 +2199,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>file_name</strong></td>
             <td>
-
+<p>Path to the output text file.</p>
             </td>
         </tr>
     </tbody>
@@ -2321,7 +2210,7 @@ Optionally, it can print a message along with the elapsed time.</p>
   </div>
 
               <div class="card">
-    <div class="card-header codesum"><span class="anchor" id="proc-write_to_file"></span> <h3>private impure subroutine <a href='../proc/write_to_file.html'>write_to_file</a>(time, file_name)  
+    <div class="card-header codesum"><span class="anchor" id="proc-write_to_file"></span> <h3>private  subroutine <a href='../proc/write_to_file.html'>write_to_file</a>(time, file_name)  
 </h3></div>
     <div class="card-body">
               <dl class="dl-horizontal">
@@ -2329,7 +2218,7 @@ Optionally, it can print a message along with the elapsed time.</p>
         <dt>License</dt><dd>BSD 3-Clause</dd>
     </dl>
 
-  
+  <p>Append a timing value to a text file.</p><a href="../proc/write_to_file.html" class="pull-right"><emph>Read more&hellip;</emph></a>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -2354,7 +2243,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>time</strong></td>
             <td>
-
+<p>Timing value in seconds to write.</p>
             </td>
         </tr>
         <tr>
@@ -2369,7 +2258,7 @@ Optionally, it can print a message along with the elapsed time.</p>
             <td>::</td>
             <td><strong>file_name</strong></td>
             <td>
-
+<p>Path to the output text file.</p>
             </td>
         </tr>
     </tbody>
@@ -2395,14 +2284,14 @@ Optionally, it can print a message along with the elapsed time.</p>
           <div class="col">
             <p>
               ForTime
- was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2025 BSD 3-Clause
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2026 BSD 3-Clause
 </p>
           </div>
           <div class="col">
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2026-02-09T20:13:57.633260+0000             </p>
+ on 2026-05-06T20:26:19.919522+0000             </p>
           </div>
         </div>
         <br>

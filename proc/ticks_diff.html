@@ -1,0 +1,650 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for ForTime">
+    <meta name="author" content="Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>ticks_diff &ndash; ForTime</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForTime </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>ticks_diff
+      <small>Function</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Seyed Ali Ghasemi</li>
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> BSD 3-Clause</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 2.5% of total for procedures.">14 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/fortime.F90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.F90</a></li>
+                <li class="breadcrumb-item"><a href='../module/fortime.html'>fortime</a></li>
+            <li class="breadcrumb-item active" aria-current="page">ticks_diff</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/ticks_diff.html#src">ticks_diff</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private pure function ticks_diff(t_end, t_start, t_max) result(dt)  
+</h2>
+    
+
+    <p>The routine handles a single <code>system_clock</code> wrap when <code>t_max</code> is positive.
+If <code>t_max</code> is unavailable or non-positive, the routine falls back to direct
+subtraction because wrap-safe reconstruction is not possible. The function
+result, <code>dt</code>, is the tick distance from <code>t_start</code> to <code>t_end</code>.</p>
+
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t_end"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t_end</strong></td>
+            <td>
+                <p>End tick captured from <code>system_clock</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t_start"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t_start</strong></td>
+            <td>
+                <p>Start tick captured from <code>system_clock</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t_max"></span>
+              integer(kind=ik),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t_max</strong></td>
+            <td>
+                <p>Maximum count returned by <code>system_clock</code>; non-positive means unknown.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+      <h3>Return Value
+        <small>
+          <span class="anchor" id="variable-dt"></span>
+          integer(kind=ik)
+        </small>
+      </h3>
+      
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: proc~~ticks_diff~~CalledByGraph Pages: 1 -->
+<svg id="procticks_diffCalledByGraph" width="419pt" height="410pt"
+ viewBox="0.00 0.00 419.00 410.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~ticks_diff~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 406.27)">
+<title>proc~~ticks_diff~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-406.27 415.06,-406.27 415.06,4 -4,4"/>
+<!-- proc~ticks_diff -->
+<g id="proc~~ticks_diff~~CalledByGraph_node1" class="node">
+<title>proc~ticks_diff</title>
+<polygon fill="none" stroke="black" points="411.06,-108.27 353.04,-108.27 353.04,-84 411.06,-84 411.06,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="382.05" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50">ticks_diff</text>
+</g>
+<!-- proc~timer_resume -->
+<g id="proc~~ticks_diff~~CalledByGraph_node2" class="node">
+<title>proc~timer_resume</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node2"><a xlink:href="../proc/timer_resume.html" xlink:title="timer%timer_resume">
+<polygon fill="#d9534f" stroke="#d9534f" points="317.04,-87.27 193.77,-87.27 193.77,-63 317.04,-63 317.04,-87.27"/>
+<text xml:space="preserve" text-anchor="middle" x="255.4" y="-71.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%timer_resume</text>
+</a>
+</g>
+</g>
+<!-- proc~timer_resume&#45;&gt;proc~ticks_diff -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge1" class="edge">
+<title>proc~timer_resume&#45;&gt;proc~ticks_diff</title>
+<path fill="none" stroke="#ff0000" d="M317.27,-85.39C325.47,-86.77 333.72,-88.16 341.42,-89.46"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="340.69,-92.89 351.14,-91.1 341.86,-85.98 340.69,-92.89"/>
+</g>
+<!-- proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_node3" class="node">
+<title>proc~timer_stop</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node3"><a xlink:href="../proc/timer_stop.html" xlink:title="timer%timer_stop">
+<polygon fill="#d9534f" stroke="#d9534f" points="308.41,-192.27 202.39,-192.27 202.39,-168 308.41,-168 308.41,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="255.4" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">timer%timer_stop</text>
+</a>
+</g>
+</g>
+<!-- proc~timer_stop&#45;&gt;proc~ticks_diff -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge2" class="edge">
+<title>proc~timer_stop&#45;&gt;proc~ticks_diff</title>
+<path fill="none" stroke="#ff0000" d="M275.07,-167.56C295.75,-153.62 329.31,-131 353.13,-114.95"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="355.08,-117.86 361.41,-109.37 351.16,-112.05 355.08,-117.86"/>
+</g>
+<!-- proc~run_test1 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node4" class="node">
+<title>proc~run_test1</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node4"><a xlink:href="../proc/run_test1.html" xlink:title="run_test1">
+<polygon fill="#d9534f" stroke="#d9534f" points="154.39,-402.27 93.38,-402.27 93.38,-378 154.39,-378 154.39,-402.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-386.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test1</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test1&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge4" class="edge">
+<title>proc~run_test1&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M148.05,-377.59C151.56,-375.08 154.95,-372.24 157.77,-369.13 204.04,-318.22 234.21,-241.05 247.16,-203"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="250.34,-204.55 250.15,-193.96 243.69,-202.35 250.34,-204.55"/>
+</g>
+<!-- proc~run_test13 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node5" class="node">
+<title>proc~run_test13</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node5"><a xlink:href="../proc/run_test13.html" xlink:title="run_test13">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-360.27 90,-360.27 90,-336 157.77,-336 157.77,-360.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-344.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test13</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test13&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge5" class="edge">
+<title>proc~run_test13&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M147.42,-335.56C151.09,-333.02 154.68,-330.18 157.77,-327.13 196.3,-289.11 227.8,-233.28 243.53,-202.52"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="246.57,-204.27 247.92,-193.76 240.31,-201.13 246.57,-204.27"/>
+</g>
+<!-- proc~run_test14 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node6" class="node">
+<title>proc~run_test14</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node6"><a xlink:href="../proc/run_test14.html" xlink:title="run_test14">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-318.27 90,-318.27 90,-294 157.77,-294 157.77,-318.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-302.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test14</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test14&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge6" class="edge">
+<title>proc~run_test14&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M146.33,-293.58C150.26,-290.96 154.24,-288.09 157.77,-285.13 188.67,-259.23 219.34,-223.83 237.58,-201.47"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="240.11,-203.92 243.65,-193.93 234.65,-199.53 240.11,-203.92"/>
+</g>
+<!-- proc~run_test15 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node7" class="node">
+<title>proc~run_test15</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node7"><a xlink:href="../proc/run_test15.html" xlink:title="run_test15">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-276.27 90,-276.27 90,-252 157.77,-252 157.77,-276.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-260.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test15</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test15&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge7" class="edge">
+<title>proc~run_test15&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M144.73,-251.51C149.03,-248.75 153.56,-245.85 157.77,-243.13 180.7,-228.34 206.59,-211.45 225.8,-198.88"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="227.47,-201.97 233.92,-193.57 223.64,-196.12 227.47,-201.97"/>
+</g>
+<!-- proc~run_test2 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node8" class="node">
+<title>proc~run_test2</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node8"><a xlink:href="../proc/run_test2.html" xlink:title="run_test2">
+<polygon fill="#d9534f" stroke="#d9534f" points="154.39,-234.27 93.38,-234.27 93.38,-210 154.39,-210 154.39,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test2</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test2&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge8" class="edge">
+<title>proc~run_test2&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M154.6,-212.5C169.43,-207.69 187.76,-201.75 204.65,-196.27"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="205.62,-199.63 214.05,-193.22 203.46,-192.98 205.62,-199.63"/>
+</g>
+<!-- proc~run_test3 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node9" class="node">
+<title>proc~run_test3</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node9"><a xlink:href="../proc/run_test3.html" xlink:title="run_test3">
+<polygon fill="#d9534f" stroke="#d9534f" points="154.39,-192.27 93.38,-192.27 93.38,-168 154.39,-168 154.39,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test3</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test3&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge9" class="edge">
+<title>proc~run_test3&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M154.6,-180.13C165.35,-180.13 177.94,-180.13 190.49,-180.13"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="190.44,-183.64 200.44,-180.14 190.44,-176.64 190.44,-183.64"/>
+</g>
+<!-- proc~run_test31 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node10" class="node">
+<title>proc~run_test31</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node10"><a xlink:href="../proc/run_test31.html" xlink:title="run_test31">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-24.27 90,-24.27 90,0 157.77,0 157.77,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test31</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test31&#45;&gt;proc~timer_resume -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge3" class="edge">
+<title>proc~run_test31&#45;&gt;proc~timer_resume</title>
+<path fill="none" stroke="#ff0000" d="M150.78,-24.73C170.2,-34.18 197,-47.21 218.49,-57.66"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="216.67,-60.67 227.19,-61.9 219.73,-54.38 216.67,-60.67"/>
+</g>
+<!-- proc~run_test31&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge10" class="edge">
+<title>proc~run_test31&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M147.59,-24.56C151.23,-27.11 154.78,-30 157.77,-33.13 180.01,-56.49 176.31,-69.02 193.77,-96.14 207.85,-118 225.38,-141.97 237.96,-158.69"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="234.98,-160.56 243.82,-166.41 240.56,-156.33 234.98,-160.56"/>
+</g>
+<!-- proc~run_test32 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node11" class="node">
+<title>proc~run_test32</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node11"><a xlink:href="../proc/run_test32.html" xlink:title="run_test32">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-150.27 90,-150.27 90,-126 157.77,-126 157.77,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test32</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test32&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge11" class="edge">
+<title>proc~run_test32&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M158.24,-148.95C172.49,-153.57 189.42,-159.06 205.07,-164.14"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="203.62,-167.35 214.21,-167.1 205.78,-160.69 203.62,-167.35"/>
+</g>
+<!-- program~example1 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node12" class="node">
+<title>program~example1</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node12"><a xlink:href="../program/example1.html" xlink:title="example1">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="155.89,-108.27 91.88,-108.27 91.88,-84 155.89,-84 155.89,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example1</text>
+</a>
+</g>
+</g>
+<!-- program~example1&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge12" class="edge">
+<title>program~example1&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M144.73,-108.76C149.03,-111.52 153.56,-114.42 157.77,-117.14 180.7,-131.93 206.59,-148.82 225.8,-161.39"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="223.64,-164.15 233.92,-166.7 227.47,-158.3 223.64,-164.15"/>
+</g>
+<!-- program~example2 -->
+<g id="proc~~ticks_diff~~CalledByGraph_node13" class="node">
+<title>program~example2</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node13"><a xlink:href="../program/example2.html" xlink:title="example2">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="155.89,-66.27 91.88,-66.27 91.88,-42 155.89,-42 155.89,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example2</text>
+</a>
+</g>
+</g>
+<!-- program~example2&#45;&gt;proc~timer_stop -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge13" class="edge">
+<title>program~example2&#45;&gt;proc~timer_stop</title>
+<path fill="none" stroke="#00ffff" d="M146.33,-66.69C150.26,-69.31 154.24,-72.18 157.77,-75.14 188.67,-101.04 219.34,-136.44 237.58,-158.8"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="234.65,-160.74 243.65,-166.34 240.11,-156.35 234.65,-160.74"/>
+</g>
+<!-- program~check -->
+<g id="proc~~ticks_diff~~CalledByGraph_node14" class="node">
+<title>program~check</title>
+<g id="a_proc~~ticks_diff~~CalledByGraph_node14"><a xlink:href="../program/check.html" xlink:title="check">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="54,-255.27 0,-255.27 0,-231 54,-231 54,-255.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-239.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
+</a>
+</g>
+</g>
+<!-- program~check&#45;&gt;proc~run_test1 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge14" class="edge">
+<title>program~check&#45;&gt;proc~run_test1</title>
+<path fill="none" stroke="#ff0000" d="M31.6,-255.52C39.12,-279.7 58.46,-333.89 90,-369.13 90.35,-369.53 90.71,-369.91 91.08,-370.3"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="88.64,-372.82 98.53,-376.64 93.18,-367.49 88.64,-372.82"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test13 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge15" class="edge">
+<title>program~check&#45;&gt;proc~run_test13</title>
+<path fill="none" stroke="#ff9900" d="M35.2,-255.64C45.66,-273.1 66.43,-305.1 90,-327.13 90.61,-327.71 91.24,-328.27 91.89,-328.83"/>
+<polygon fill="#ff9900" stroke="#ff9900" points="89.55,-331.45 99.62,-334.73 93.79,-325.88 89.55,-331.45"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test14 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge16" class="edge">
+<title>program~check&#45;&gt;proc~run_test14</title>
+<path fill="none" stroke="#cbff00" d="M46.36,-255.76C58.65,-264.17 75.23,-275.42 90,-285.13 91.18,-285.91 92.38,-286.7 93.6,-287.49"/>
+<polygon fill="#cbff00" stroke="#cbff00" points="91.43,-290.26 101.73,-292.74 95.23,-284.38 91.43,-290.26"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test15 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge17" class="edge">
+<title>program~check&#45;&gt;proc~run_test15</title>
+<path fill="none" stroke="#33ff00" d="M54.43,-248.98C61.97,-250.65 70.4,-252.52 78.69,-254.35"/>
+<polygon fill="#33ff00" stroke="#33ff00" points="77.83,-257.75 88.35,-256.49 79.34,-250.91 77.83,-257.75"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test2 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge18" class="edge">
+<title>program~check&#45;&gt;proc~run_test2</title>
+<path fill="none" stroke="#00ff66" d="M54.43,-237.29C62.93,-235.4 72.56,-233.27 81.85,-231.22"/>
+<polygon fill="#00ff66" stroke="#00ff66" points="82.43,-234.67 91.44,-229.09 80.92,-227.84 82.43,-234.67"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test3 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge19" class="edge">
+<title>program~check&#45;&gt;proc~run_test3</title>
+<path fill="none" stroke="#00ffff" d="M46.36,-230.51C58.65,-222.1 75.23,-210.85 90,-201.13 91.18,-200.36 92.38,-199.57 93.6,-198.78"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="95.23,-201.89 101.73,-193.53 91.43,-196.01 95.23,-201.89"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test31 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge20" class="edge">
+<title>program~check&#45;&gt;proc~run_test31</title>
+<path fill="none" stroke="#0066ff" d="M28.67,-230.92C31.14,-196.42 42.25,-96.63 90,-33.13 90.15,-32.94 90.3,-32.74 90.45,-32.55"/>
+<polygon fill="#0066ff" stroke="#0066ff" points="92.68,-35.26 97.45,-25.8 87.82,-30.23 92.68,-35.26"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test32 -->
+<g id="proc~~ticks_diff~~CalledByGraph_edge21" class="edge">
+<title>program~check&#45;&gt;proc~run_test32</title>
+<path fill="none" stroke="#3200ff" d="M35.2,-230.63C45.66,-213.17 66.43,-181.17 90,-159.13 90.61,-158.56 91.24,-158 91.89,-157.44"/>
+<polygon fill="#3200ff" stroke="#3200ff" points="93.79,-160.39 99.62,-151.54 89.55,-154.82 93.79,-160.39"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.873868 0.873868) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 729.52,-28.27 729.52,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="143.89,-24.27 87.38,-24.27 87.38,0 143.89,0 143.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="115.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="221.39,-24.27 161.88,-24.27 161.88,0 221.39,0 221.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="191.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="368.27,-24.27 239,-24.27 239,0 368.27,0 368.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="303.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="529.39,-24.27 385.88,-24.27 385.88,0 529.39,0 529.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="457.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="603.89,-24.27 547.38,-24.27 547.38,0 603.89,0 603.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="575.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="725.52,-24.27 621.75,-24.27 621.75,0 725.52,0 725.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="673.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">pure </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">t_end</span><span class="p">,</span><span class="w"> </span><span class="n">t_start</span><span class="p">,</span><span class="w"> </span><span class="n">t_max</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_end</span>
+<span class="w">         </span><span class="c">!! End tick captured from `system_clock`.</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_start</span>
+<span class="w">         </span><span class="c">!! Start tick captured from `system_clock`.</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_max</span>
+<span class="w">         </span><span class="c">!! Maximum count returned by `system_clock`; non-positive means unknown.</span>
+
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t_max</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0_ik</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         if</span><span class="w"> </span><span class="p">(</span><span class="n">t_end</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">t_start</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">            </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span>
+<span class="w">         </span><span class="k">else</span>
+<span class="k">            </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">t_max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1_ik</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t_end</span>
+<span class="w">         </span><span class="k">end if</span>
+<span class="k">      else</span>
+<span class="k">         </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t_start</span>
+<span class="w">      </span><span class="k">end if</span>
+<span class="k">   end function </span><span class="n">ticks_diff</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2026 BSD 3-Clause
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2026-05-06T20:26:19.919522+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
