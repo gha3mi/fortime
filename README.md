@@ -4,9 +4,7 @@
 [![License](https://img.shields.io/github/license/gha3mi/fortime?color=green)](https://github.com/gha3mi/fortime/blob/main/LICENSE)
 [![Build](https://github.com/gha3mi/fortime/actions/workflows/CI-CD.yml/badge.svg)](https://github.com/gha3mi/fortime/actions/workflows/CI-CD.yml)
 
-<!-- <img alt="ForTime" src="https://github.com/gha3mi/fortime/raw/main/media/logo.png" width="750"> -->
-
-**ForTime**: A Fortran library for measuring elapsed time, DATE_AND_TIME time, CPU time, OMP time and MPI time.
+**ForTime**: A Fortran timing library for measuring wall-clock, date_and_time, CPU, OpenMP and MPI elapsed time.
 
 ## fpm dependency
 
@@ -20,88 +18,150 @@ fortime = {git="https://github.com/gha3mi/fortime.git"}
 
 ## Usage
 
-### Measuring elapsed time (system_clock)
+`ForTime` exposes the `timer` type, the real kind `rk`, and the integer kind
+`ik`. Timing results are stored as `real(rk)` components on the timer object.
+
+### Simple Usage
+
+#### system_clock wall time
 
 ```fortran
-use fortime
+use fortime, only: timer
+
 type(timer) :: t
 
 call t%timer_start()
-! Your code or section to be timed
-call t%timer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
+! Code to time.
+call t%timer_stop()
 
-call t%timer_write(file_name) ! Optionally, write the result to a file
+call t%timer_write('elapsed_time.txt')
 ```
 
-### Measuring elapsed time (date_and_time)
+#### date_and_time wall time
 
 ```fortran
-use fortime
+use fortime, only: timer
+
 type(timer) :: t
 
 call t%dtimer_start()
-! Your code or section to be timed
-call t%dtimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
+! Code to time.
+call t%dtimer_stop()
 
-call t%dtimer_write(file_name) ! Optionally, write the result to a file
+call t%dtimer_write('elapsed_dtime.txt')
 ```
 
-### Measuring CPU time (cpu_time)
+#### CPU time
 
 ```fortran
-use fortime
+use fortime, only: timer
+
 type(timer) :: t
 
 call t%ctimer_start()
-! Your code or section to be timed
-call t%ctimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
+! Code to time.
+call t%ctimer_stop()
 
-call t%ctimer_write(file_name) ! Optionally, write the result to a file
+call t%ctimer_write('cpu_time.txt')
 ```
 
-### Measuring OpenMP time (omp_get_wtime)
+#### OpenMP wall time
 
 ```fortran
-use fortime
+use fortime, only: timer
+
 type(timer) :: t
 
 call t%otimer_start()
-! Your code or section to be timed
-call t%otimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
+! Code to time.
+call t%otimer_stop()
 
-call t%otimer_write(file_name) ! Optionally, write the result to a file
+call t%otimer_write('omp_time.txt')
 ```
 
-**Note:** Compile with the `-DUSE_OMP` option when using the OpenMP timer.
+Compile with OpenMP enabled and define `USE_OMP`.
 
-### Measuring MPI time (mpi_wtime)
+#### MPI wall time
 
 ```fortran
-use fortime
+use fortime, only: timer
+
 type(timer) :: t
 
 call t%mtimer_start()
-! Your code or section to be timed
-call t%mtimer_stop(nloops, message, print, color, rfmt) ! nloops, message, print, color and rfmt are optional
+! Code to time.
+call t%mtimer_stop()
 
-call t%mtimer_write(file_name) ! Optionally, write the result to a file
+call t%mtimer_write('mpi_time.txt')
 ```
 
-**Note:** Compile with the `-DUSE_MPI` option when using the MPI timer.
+Compile with MPI enabled, define `USE_MPI`, and call the MPI timer while MPI is
+initialized.
 
-### To measure elapsed time within a pure procedure, use [ForDebug](https://github.com/gha3mi/fordebug).
+### Optional Variables and Stop Arguments
 
+All stop routines accept the same optional keyword arguments:
+
+```fortran
+call t%timer_stop(nloops,message,print,color,rfmt)
+call t%dtimer_stop(nloops,message,print,color,rfmt)
+call t%ctimer_stop(nloops,message,print,color,rfmt)
+call t%otimer_stop(nloops,message,print,color,rfmt)
+call t%mtimer_stop(nloops,message,print,color,rfmt)
+```
+
+- `nloops`: positive default-integer loop count used to report an average time.
+- `message`: label printed before the timing value.
+- `print`: set to `.false.` to suppress output; the default is `.true.`.
+- `color`: FACE foreground color for printed output.
+- `rfmt`: Fortran real edit descriptor; the default is `F16.9`.
+
+### Loop Averages
+
+```fortran
+use fortime, only: timer
+
+type(timer) :: t
+integer :: i
+integer, parameter :: nloops = 10
+
+call t%timer_start()
+do i = 1, nloops
+   ! Repeated work.
+end do
+call t%timer_stop(nloops=nloops, message='Average elapsed time:')
+```
+
+### Pause and Resume
+
+```fortran
+call t%timer_start()
+! Timed work.
+call t%timer_pause()
+! Work not included in elapsed_time.
+call t%timer_resume()
+! More timed work.
+call t%timer_stop()
+```
+
+`timer_pause` and `timer_resume` apply only to the `system_clock` timer.
+
+### Timer Reference
+
+| Timer backend | Start | Stop | Result component | Write routine | Requirement |
+| --- | --- | --- | --- | --- | --- |
+| `system_clock` | `timer_start` | `timer_stop` | `elapsed_time` | `timer_write` | Always available |
+| `date_and_time` | `dtimer_start` | `dtimer_stop` | `elapsed_dtime` | `dtimer_write` | Always available |
+| `cpu_time` | `ctimer_start` | `ctimer_stop` | `cpu_time` | `ctimer_write` | Always available |
+| `omp_get_wtime` | `otimer_start` | `otimer_stop` | `omp_time` | `otimer_write` | Compile with `USE_OMP` |
+| `MPI_Wtime` | `mtimer_start` | `mtimer_stop` | `mpi_time` | `mtimer_write` | Compile with `USE_MPI` |
+
+
+To measure elapsed time within a pure procedure, use
+[ForDebug](https://github.com/gha3mi/fordebug).
 
 ## Running Examples and Tests
 
-### Clone the Repository
-
-First, clone the `ForTime` repository from GitHub and navigate to the project directory:
-
-```shell
-git clone https://github.com/gha3mi/fortime.git
-cd fortime
-```
 ### Running Examples
 
 To run a specific example from the `example` directory using your preferred Fortran compiler, use the following command:
@@ -136,7 +196,7 @@ This table is automatically generated by the CI workflow using [setup-fortran-co
 
 ## Documentation
 
-The most up-to-date API documentation for the master branch is available
+The most up-to-date API documentation for the main branch is available
 [here](https://gha3mi.github.io/fortime/).
 To generate the API documentation for `ForTime` using
 [ford](https://github.com/Fortran-FOSS-Programmers/ford) run the following
