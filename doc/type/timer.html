@@ -1,0 +1,1581 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for ForTime">
+    <meta name="author" content="Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>timer &ndash; ForTime </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForTime </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>timer
+      <small>Derived Type</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Seyed Ali Ghasemi</li>
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> BSD 3-Clause</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title="<p>100.0% of total for derived types.</p>Including implementation: 182 statements, 100.0% of total for derived types.">28 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/fortime.F90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.F90</a></li>
+                <li class="breadcrumb-item"><a href='../module/fortime.html'>fortime</a></li>
+            <li class="breadcrumb-item active" aria-current="page">timer</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#vars-0"
+         aria-expanded="false" aria-controls="vars-0">
+         <h4 class="card-header bg-primary text-white">Variables</h4>
+      </a>
+      <div id="vars-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../type/timer.html#variable-cpu_time">cpu_time</a>
+            <a class="list-group-item" href="../type/timer.html#variable-elapsed_dtime">elapsed_dtime</a>
+            <a class="list-group-item" href="../type/timer.html#variable-elapsed_time">elapsed_time</a>
+            <a class="list-group-item" href="../type/timer.html#variable-clock_max">clock_max</a>
+            <a class="list-group-item" href="../type/timer.html#variable-clock_rate">clock_rate</a>
+            <a class="list-group-item" href="../type/timer.html#variable-clock_start">clock_start</a>
+            <a class="list-group-item" href="../type/timer.html#variable-cpu_start">cpu_start</a>
+            <a class="list-group-item" href="../type/timer.html#variable-dtime_start_utc">dtime_start_utc</a>
+            <a class="list-group-item" href="../type/timer.html#variable-is_cpu_started">is_cpu_started</a>
+            <a class="list-group-item" href="../type/timer.html#variable-is_dtime_started">is_dtime_started</a>
+            <a class="list-group-item" href="../type/timer.html#variable-is_paused">is_paused</a>
+            <a class="list-group-item" href="../type/timer.html#variable-is_started">is_started</a>
+            <a class="list-group-item" href="../type/timer.html#variable-pause_start">pause_start</a>
+            <a class="list-group-item" href="../type/timer.html#variable-paused_ticks">paused_ticks</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      <div class="card mb-4">
+      <a data-bs-toggle="collapse" href="#boundprocs-0"
+         aria-expanded="false" aria-controls="boundprocs-0">
+         <h4 class="card-header bg-primary text-white">Type-Bound Procedures</h4>
+      </a>
+      <div id="boundprocs-0" class="collapse">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-ctimer_start">ctimer_start</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-ctimer_stop">ctimer_stop</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-ctimer_write">ctimer_write</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-dtimer_start">dtimer_start</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-dtimer_stop">dtimer_stop</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-dtimer_write">dtimer_write</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-timer_pause">timer_pause</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-timer_resume">timer_resume</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-timer_start">timer_start</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-timer_stop">timer_stop</a>
+            <a class="list-group-item" href="../type/timer.html#boundprocedure-timer_write">timer_write</a>
+        </div>
+      </div>
+    </div>
+
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../type/timer.html#src">timer</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+      <h2 id="type-def-statement">
+        type, public :: timer</h2>
+    <p>A <code>timer</code> instance stores private start times and state flags for the
+enabled timing backends. The most recent successful measurement from
+each backend is exposed through a public result component:
+<code>elapsed_time</code>, <code>cpu_time</code>, <code>elapsed_dtime</code>, and, when enabled,
+<code>omp_time</code> and <code>mpi_time</code>.</p>
+<p>Start and stop calls must be matched by backend. For example,
+<code>timer_start</code> must be followed by <code>timer_stop</code>, and <code>ctimer_start</code> must
+be followed by <code>ctimer_stop</code>. Calling a stop routine before its matching
+start routine reports an error and leaves the stored result unchanged.</p>
+    <br>
+
+    <section>
+    <h2>Components</h2>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Visibility</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+<th></th><th scope="col">Initial</th>        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cpu_time"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>cpu_time</strong></td>
+<td> =</td>
+                <td>0.0_rk</td>
+            <td>
+                <p>Most recent successful CPU-time measurement in seconds.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-elapsed_dtime"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>elapsed_dtime</strong></td>
+<td> =</td>
+                <td>0.0_rk</td>
+            <td>
+                <p>Most recent successful <code>date_and_time</code> elapsed time in seconds.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-elapsed_time"></span>
+              real(kind=rk),
+            </td>
+              <td>public</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>elapsed_time</strong></td>
+<td> =</td>
+                <td>0.0_rk</td>
+            <td>
+                <p>Most recent successful <code>system_clock</code> elapsed time in seconds.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-clock_max"></span>
+              integer(kind=ik),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>clock_max</strong></td>
+<td> =</td>
+                <td>0_ik</td>
+            <td>
+                <p>Cached maximum <code>system_clock</code> count used to handle one counter wrap.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-clock_rate"></span>
+              integer(kind=ik),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>clock_rate</strong></td>
+<td> =</td>
+                <td>0_ik</td>
+            <td>
+                <p>Cached <code>system_clock</code> count rate in ticks per second.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-clock_start"></span>
+              integer(kind=ik),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>clock_start</strong></td>
+<td> =</td>
+                <td>0_ik</td>
+            <td>
+                <p><code>system_clock</code> count captured at the start of the wall-clock interval.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-cpu_start"></span>
+              real(kind=rk),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>cpu_start</strong></td>
+<td> =</td>
+                <td>0.0_rk</td>
+            <td>
+                <p>CPU time, in seconds, captured by <code>ctimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-dtime_start_utc"></span>
+              real(kind=rk),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>dtime_start_utc</strong></td>
+<td> =</td>
+                <td>0.0_rk</td>
+            <td>
+                <p>UTC epoch seconds computed from <code>date_and_time</code> at <code>dtimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_cpu_started"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_cpu_started</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                <p>True after <code>ctimer_start</code> and before a successful <code>ctimer_stop</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_dtime_started"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_dtime_started</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                <p>True after <code>dtimer_start</code> and before a successful <code>dtimer_stop</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_paused"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_paused</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                <p>True after <code>timer_pause</code> and before a matching <code>timer_resume</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-is_started"></span>
+              logical,
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>is_started</strong></td>
+<td> =</td>
+                <td>.false.</td>
+            <td>
+                <p>True after <code>timer_start</code> and before a successful <code>timer_stop</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-pause_start"></span>
+              integer(kind=ik),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>pause_start</strong></td>
+<td> =</td>
+                <td>0_ik</td>
+            <td>
+                <p><code>system_clock</code> count captured when the wall-clock timer is paused.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-paused_ticks"></span>
+              integer(kind=ik),
+            </td>
+              <td>private</td>
+            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>paused_ticks</strong></td>
+<td> =</td>
+                <td>0_ik</td>
+            <td>
+                <p>Total paused duration, in <code>system_clock</code> ticks, excluded from the result.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    </section>
+    <br>
+    
+
+
+      <section>
+        <h2>Type-Bound Procedures</h2>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-ctimer_start"></span>
+      <h3>
+          procedure, public ::
+  <strong>ctimer_start</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Start a CPU-time measurement.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/ctimer_start.html'>ctimer_start</a>(this)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Start the CPU-time timer.</p><a href="../proc/ctimer_start.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance whose CPU-time state is initialized.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-ctimer_stop"></span>
+      <h3>
+          procedure, public ::
+  <strong>ctimer_stop</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Stop a CPU-time measurement and update <code>cpu_time</code>.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/ctimer_stop.html'>ctimer_stop</a>(this, nloops, message, print, color, rfmt)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Stop the CPU-time timer and store elapsed CPU seconds.</p><a href="../proc/ctimer_stop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance previously started with <code>ctimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nloops</strong></td>
+            <td>
+<p>Optional positive loop count used to compute average CPU time.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Optional output label; defaults to <code>CPU time:</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>print</strong></td>
+            <td>
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color used for printed output.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor used for printed output.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-ctimer_write"></span>
+      <h3>
+          procedure, public ::
+  <strong>ctimer_write</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Append <code>cpu_time</code> to a text file.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/ctimer_write.html'>ctimer_write</a>(this, file_name)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Append the last CPU-time result to a text file.</p><a href="../proc/ctimer_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance whose <code>cpu_time</code> value is written.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>file_name</strong></td>
+            <td>
+<p>Path to the output text file.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-dtimer_start"></span>
+      <h3>
+          procedure, public ::
+  <strong>dtimer_start</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Start a <code>date_and_time</code> civil-clock measurement.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/dtimer_start.html'>dtimer_start</a>(this)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Start the <code>date_and_time</code> wall-clock timer.</p><a href="../proc/dtimer_start.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance whose date/time timing state is initialized.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-dtimer_stop"></span>
+      <h3>
+          procedure, public ::
+  <strong>dtimer_stop</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Stop a <code>date_and_time</code> civil-clock measurement and update <code>elapsed_dtime</code>.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/dtimer_stop.html'>dtimer_stop</a>(this, nloops, message, print, color, rfmt)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Stop the <code>date_and_time</code> timer and store elapsed seconds.</p><a href="../proc/dtimer_stop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance previously started with <code>dtimer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nloops</strong></td>
+            <td>
+<p>Optional positive loop count used to compute average date/time duration.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Optional output label; defaults to <code>Elapsed time:</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>print</strong></td>
+            <td>
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color used for printed output.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor used for printed output.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-dtimer_write"></span>
+      <h3>
+          procedure, public ::
+  <strong>dtimer_write</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Append <code>elapsed_dtime</code> to a text file.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/dtimer_write.html'>dtimer_write</a>(this, file_name)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Append the last <code>date_and_time</code> result to a text file.</p><a href="../proc/dtimer_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance whose <code>elapsed_dtime</code> value is written.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>file_name</strong></td>
+            <td>
+<p>Path to the output text file.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-timer_pause"></span>
+      <h3>
+          procedure, public ::
+  <strong>timer_pause</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Pause a running <code>system_clock</code> wall-clock measurement.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/timer_pause.html'>timer_pause</a>(this)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Pause a running <code>system_clock</code> wall-clock timer.</p><a href="../proc/timer_pause.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Running wall-clock timer instance to pause.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-timer_resume"></span>
+      <h3>
+          procedure, public ::
+  <strong>timer_resume</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Resume a paused <code>system_clock</code> wall-clock measurement.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/timer_resume.html'>timer_resume</a>(this)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Resume a paused <code>system_clock</code> wall-clock timer.</p><a href="../proc/timer_resume.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Paused wall-clock timer instance to resume.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-timer_start"></span>
+      <h3>
+          procedure, public ::
+  <strong>timer_start</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Start a <code>system_clock</code> wall-clock measurement.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/timer_start.html'>timer_start</a>(this)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Start the <code>system_clock</code> wall-clock timer.</p><a href="../proc/timer_start.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance whose wall-clock state is initialized.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-timer_stop"></span>
+      <h3>
+          procedure, public ::
+  <strong>timer_stop</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Stop a <code>system_clock</code> wall-clock measurement and update <code>elapsed_time</code>.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/timer_stop.html'>timer_stop</a>(this, nloops, message, print, color, rfmt)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Stop the <code>system_clock</code> wall-clock timer and store elapsed seconds.</p><a href="../proc/timer_stop.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance previously started with <code>timer_start</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              integer,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>nloops</strong></td>
+            <td>
+<p>Optional positive loop count used to compute average elapsed time.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>message</strong></td>
+            <td>
+<p>Optional output label; defaults to <code>Elapsed time:</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              logical,
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>print</strong></td>
+            <td>
+<p>Optional output switch; defaults to <code>.true.</code>.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>color</strong></td>
+            <td>
+<p>Optional FACE foreground color used for printed output.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in),</td>
+              <td>optional</td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>rfmt</strong></td>
+            <td>
+<p>Optional Fortran real edit descriptor used for printed output.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+          <div class="row">
+              <div class="card mt-3">
+    <div class="card-header codesum">
+      <span class="anchor" id="boundprocedure-timer_write"></span>
+      <h3>
+          procedure, public ::
+  <strong>timer_write</strong>
+        
+      </h3>
+    </div>
+        <div class="card-body">
+          
+          <p>Append <code>elapsed_time</code> to a text file.</p>
+        </div>
+      <ul class="list-group">
+          <li class="list-group-item">
+                    <h3>
+    private  subroutine <a href='../proc/timer_write.html'>timer_write</a>(this, file_name)  
+</h3>
+        <dl class="dl-horizontal">
+        <dt>Author</dt><dd>Seyed Ali Ghasemi</dd>
+        <dt>License</dt><dd>BSD 3-Clause</dd>
+    </dl>
+
+
+  <p>Append the last <code>system_clock</code> result to a text file.</p><a href="../proc/timer_write.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+
+  <h4>Arguments</h4>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              class(<a href='timer.html'>timer</a>),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+<p>Timer instance whose <code>elapsed_time</code> value is written.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" ></span>
+              character(len=*),
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>file_name</strong></td>
+            <td>
+<p>Path to the output text file.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+          </li>
+      </ul>
+  </div>
+
+          </div>
+      </section>
+
+    <section>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">type </span><span class="n">timer</span>
+<span class="w">      </span><span class="c">!! author: Seyed Ali Ghasemi</span>
+<span class="w">      </span><span class="c">!! summary: Timing object with independent state for each supported backend.</span>
+<span class="w">      </span><span class="c">!!</span>
+<span class="w">      </span><span class="c">!! A `timer` instance stores private start times and state flags for the</span>
+<span class="w">      </span><span class="c">!! enabled timing backends. The most recent successful measurement from</span>
+<span class="w">      </span><span class="c">!! each backend is exposed through a public result component:</span>
+<span class="w">      </span><span class="c">!! `elapsed_time`, `cpu_time`, `elapsed_dtime`, and, when enabled,</span>
+<span class="w">      </span><span class="c">!! `omp_time` and `mpi_time`.</span>
+<span class="w">      </span><span class="c">!!</span>
+<span class="w">      </span><span class="c">!! Start and stop calls must be matched by backend. For example,</span>
+<span class="w">      </span><span class="c">!! `timer_start` must be followed by `timer_stop`, and `ctimer_start` must</span>
+<span class="w">      </span><span class="c">!! be followed by `ctimer_stop`. Calling a stop routine before its matching</span>
+<span class="w">      </span><span class="c">!! start routine reports an error and leaves the stored result unchanged.</span>
+
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">clock_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0_ik</span>
+<span class="w">         </span><span class="c">!! Cached `system_clock` count rate in ticks per second.</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">clock_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0_ik</span>
+<span class="w">         </span><span class="c">!! Cached maximum `system_clock` count used to handle one counter wrap.</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">clock_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0_ik</span>
+<span class="w">         </span><span class="c">!! `system_clock` count captured at the start of the wall-clock interval.</span>
+
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pause_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0_ik</span>
+<span class="w">         </span><span class="c">!! `system_clock` count captured when the wall-clock timer is paused.</span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">(</span><span class="n">ik</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">paused_ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0_ik</span>
+<span class="w">         </span><span class="c">!! Total paused duration, in `system_clock` ticks, excluded from the result.</span>
+
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span><span class="c">!! True after `timer_start` and before a successful `timer_stop`.</span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_paused</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span><span class="c">!! True after `timer_pause` and before a matching `timer_resume`.</span>
+
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cpu_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! CPU time, in seconds, captured by `ctimer_start`.</span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_cpu_started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span><span class="c">!! True after `ctimer_start` and before a successful `ctimer_stop`.</span>
+
+<span class="cp">#if defined(USE_OMP)</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omp_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! OpenMP wall-clock time, in seconds, captured by `otimer_start`.</span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_omp_started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span><span class="c">!! True after `otimer_start` and before a successful `otimer_stop`.</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#if defined(USE_MPI)</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mpi_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! MPI wall-clock time, in seconds, captured by `mtimer_start`.</span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_mpi_started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span><span class="c">!! True after `mtimer_start` and before a successful `mtimer_stop`.</span>
+<span class="cp">#endif</span>
+
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtime_start_utc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! UTC epoch seconds computed from `date_and_time` at `dtimer_start`.</span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">is_dtime_started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">         </span><span class="c">!! True after `dtimer_start` and before a successful `dtimer_stop`.</span>
+
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">elapsed_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! Most recent successful `system_clock` elapsed time in seconds.</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">cpu_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! Most recent successful CPU-time measurement in seconds.</span>
+<span class="cp">#if defined(USE_OMP)</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">omp_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! Most recent successful OpenMP wall-clock measurement in seconds.</span>
+<span class="cp">#endif</span>
+<span class="cp">#if defined(USE_MPI)</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mpi_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! Most recent successful MPI wall-clock measurement in seconds.</span>
+<span class="cp">#endif</span>
+<span class="w">      </span><span class="kt">real</span><span class="p">(</span><span class="n">rk</span><span class="p">),</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">elapsed_dtime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0_rk</span>
+<span class="w">         </span><span class="c">!! Most recent successful `date_and_time` elapsed time in seconds.</span>
+
+<span class="w">   </span><span class="k">contains</span>
+<span class="k">      procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer_start</span>
+<span class="w">         </span><span class="c">!! Start a `system_clock` wall-clock measurement.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer_stop</span>
+<span class="w">         </span><span class="c">!! Stop a `system_clock` wall-clock measurement and update `elapsed_time`.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer_write</span>
+<span class="w">         </span><span class="c">!! Append `elapsed_time` to a text file.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer_pause</span>
+<span class="w">         </span><span class="c">!! Pause a running `system_clock` wall-clock measurement.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">timer_resume</span>
+<span class="w">         </span><span class="c">!! Resume a paused `system_clock` wall-clock measurement.</span>
+
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ctimer_start</span>
+<span class="w">         </span><span class="c">!! Start a CPU-time measurement.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ctimer_stop</span>
+<span class="w">         </span><span class="c">!! Stop a CPU-time measurement and update `cpu_time`.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ctimer_write</span>
+<span class="w">         </span><span class="c">!! Append `cpu_time` to a text file.</span>
+
+<span class="cp">#if defined(USE_OMP)</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">otimer_start</span>
+<span class="w">         </span><span class="c">!! Start an OpenMP wall-clock measurement.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">otimer_stop</span>
+<span class="w">         </span><span class="c">!! Stop an OpenMP wall-clock measurement and update `omp_time`.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">otimer_write</span>
+<span class="w">         </span><span class="c">!! Append `omp_time` to a text file.</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#if defined(USE_MPI)</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mtimer_start</span>
+<span class="w">         </span><span class="c">!! Start an MPI wall-clock measurement.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mtimer_stop</span>
+<span class="w">         </span><span class="c">!! Stop an MPI wall-clock measurement and update `mpi_time`.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mtimer_write</span>
+<span class="w">         </span><span class="c">!! Append `mpi_time` to a text file.</span>
+<span class="cp">#endif</span>
+
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtimer_start</span>
+<span class="w">         </span><span class="c">!! Start a `date_and_time` civil-clock measurement.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtimer_stop</span>
+<span class="w">         </span><span class="c">!! Stop a `date_and_time` civil-clock measurement and update `elapsed_dtime`.</span>
+<span class="w">      </span><span class="k">procedure</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtimer_write</span>
+<span class="w">         </span><span class="c">!! Append `elapsed_dtime` to a text file.</span>
+<span class="w">   </span><span class="k">end type </span><span class="n">timer</span>
+</pre></div>
+
+    </section>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2026 BSD 3-Clause
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2026-05-06T20:44:50.645406+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,523 @@
+<!-- -*- mode: jinja2 -*- -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Documentation for ForTime">
+    <meta name="author" content="Seyed Ali Ghasemi" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>ctimer_start &ndash; ForTime</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="../css/fontawesome.min.css" rel="stylesheet">
+    <link href="../css/brands.min.css" rel="stylesheet">
+    <link href="../css/regular.min.css" rel="stylesheet">
+    <link href="../css/solid.min.css" rel="stylesheet">
+    <link href="../css/v4-font-face.min.css" rel="stylesheet">
+    <link href="../css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="../css/local.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <script src="../js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="../index.html">ForTime </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="../lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/types.html">Derived Types</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="../lists/programs.html">Programs</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="../search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <h1>ctimer_start
+      <small>Subroutine</small>
+      
+    </h1>
+      <div class="container p-2 mb-4 bg-light border rounded-3">
+    <div class="row align-items-center justify-content-between" id="info-bar">
+      <div class="col">
+        <ul class="list-inline" style="margin-bottom:0px;display:inline">
+            <li class="list-inline-item" id="meta-author"><i class="fa fa-pencil"></i> Seyed Ali Ghasemi</li>
+            <li class="list-inline-item" id="meta-license"><i class="fa fa-legal"></i> BSD 3-Clause</li>
+
+            <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
+              <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                 title=" 0.9% of total for procedures.">5 statements</a>
+            </li>
+
+            <li class="list-inline-item" id="source-file">
+              <i class="fa fa-code"></i>
+              <a href="../src/fortime.F90"> Source File</a>
+            </li>
+        </ul>
+      </div>
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-end mb-0">
+                <li class="breadcrumb-item"><a href='../sourcefile/fortime.f90.html'>fortime.F90</a></li>
+                <li class="breadcrumb-item"><a href='../module/fortime.html'>fortime</a></li>
+            <li class="breadcrumb-item active" aria-current="page">ctimer_start</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Enable Bootstrap tooltips
+    (function () {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    })();
+  </script>
+
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+      <div id="sidebar">
+      <h3>Contents</h3>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    <div class="card card-primary">
+      <div class="card-header text-left"><h3 class="card-title">Source Code</h3></div>
+      <div class="list-group">
+        <a class="list-group-item" href="../proc/ctimer_start.html#src">ctimer_start</a>
+      </div>
+    </div>
+
+
+  </div>
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+    <h2>private  subroutine ctimer_start(this)  
+</h2>
+    
+
+    <p><code>ctimer_start</code> captures the process CPU time reported by the intrinsic
+<code>cpu_time</code>. The matching stop routine is <code>ctimer_stop</code>.</p>
+
+    <h3>Type Bound</h3>
+    <p><a href='../type/timer.html'>timer</a></p>
+
+    <h3>Arguments</h3>
+        <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-this~6"></span>
+              class(<a href='../type/timer.html'>timer</a>),
+            </td>
+<td>intent(inout)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>this</strong></td>
+            <td>
+                <p>Timer instance whose CPU-time state is initialized.</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <div class="card">
+      <div class="card-header">
+  <h3 class="card-title">Called by</h3>
+      </div>
+      <div class="card-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: proc~~ctimer_start~~CalledByGraph Pages: 1 -->
+<svg id="procctimer_startCalledByGraph" width="315pt" height="326pt"
+ viewBox="0.00 0.00 315.00 326.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~ctimer_start~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 322.27)">
+<title>proc~~ctimer_start~~CalledByGraph</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-322.27 311.29,-322.27 311.29,4 -4,4"/>
+<!-- proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_node1" class="node">
+<title>proc~ctimer_start</title>
+<polygon fill="none" stroke="black" points="307.29,-171.27 193.77,-171.27 193.77,-147 307.29,-147 307.29,-171.27"/>
+<text xml:space="preserve" text-anchor="middle" x="250.53" y="-155.53" font-family="Helvetica,sans-Serif" font-size="10.50">timer%ctimer_start</text>
+</g>
+<!-- proc~run_test16 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node2" class="node">
+<title>proc~run_test16</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node2"><a xlink:href="../proc/run_test16.html" xlink:title="run_test16">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-318.27 90,-318.27 90,-294 157.77,-294 157.77,-318.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-302.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test16</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test16&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge1" class="edge">
+<title>proc~run_test16&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M146.96,-293.66C150.75,-291.08 154.51,-288.2 157.77,-285.13 191.38,-253.52 220.92,-208.12 236.91,-181.33"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="239.93,-183.1 241.95,-172.7 233.88,-179.57 239.93,-183.1"/>
+</g>
+<!-- proc~run_test17 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node3" class="node">
+<title>proc~run_test17</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node3"><a xlink:href="../proc/run_test17.html" xlink:title="run_test17">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-276.27 90,-276.27 90,-252 157.77,-252 157.77,-276.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-260.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test17</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test17&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge2" class="edge">
+<title>proc~run_test17&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M145.78,-251.56C149.85,-248.9 154.01,-246.02 157.77,-243.13 183.83,-223.13 211.31,-197.24 229.33,-179.52"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="231.67,-182.14 236.3,-172.61 226.73,-177.17 231.67,-182.14"/>
+</g>
+<!-- proc~run_test18 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node4" class="node">
+<title>proc~run_test18</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node4"><a xlink:href="../proc/run_test18.html" xlink:title="run_test18">
+<polygon fill="#d9534f" stroke="#d9534f" points="157.77,-234.27 90,-234.27 90,-210 157.77,-210 157.77,-234.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-218.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test18</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test18&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge3" class="edge">
+<title>proc~run_test18&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M149.81,-209.54C168.32,-200.18 193.82,-187.29 214.4,-176.89"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="215.95,-180.03 223.3,-172.39 212.79,-173.78 215.95,-180.03"/>
+</g>
+<!-- proc~run_test4 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node5" class="node">
+<title>proc~run_test4</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node5"><a xlink:href="../proc/run_test4.html" xlink:title="run_test4">
+<polygon fill="#d9534f" stroke="#d9534f" points="154.39,-192.27 93.37,-192.27 93.37,-168 154.39,-168 154.39,-192.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-176.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test4</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test4&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge4" class="edge">
+<title>proc~run_test4&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M154.74,-175.1C163.13,-173.69 172.6,-172.1 182.23,-170.47"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="182.79,-173.93 192.07,-168.82 181.63,-167.03 182.79,-173.93"/>
+</g>
+<!-- proc~run_test5 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node6" class="node">
+<title>proc~run_test5</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node6"><a xlink:href="../proc/run_test5.html" xlink:title="run_test5">
+<polygon fill="#d9534f" stroke="#d9534f" points="154.39,-150.27 93.37,-150.27 93.37,-126 154.39,-126 154.39,-150.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-134.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test5</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test5&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge5" class="edge">
+<title>proc~run_test5&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M154.74,-143.17C163.13,-144.58 172.6,-146.17 182.23,-147.8"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="181.63,-151.24 192.07,-149.45 182.79,-144.34 181.63,-151.24"/>
+</g>
+<!-- proc~run_test6 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node7" class="node">
+<title>proc~run_test6</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node7"><a xlink:href="../proc/run_test6.html" xlink:title="run_test6">
+<polygon fill="#d9534f" stroke="#d9534f" points="154.39,-108.27 93.37,-108.27 93.37,-84 154.39,-84 154.39,-108.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-92.54" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">run_test6</text>
+</a>
+</g>
+</g>
+<!-- proc~run_test6&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge6" class="edge">
+<title>proc~run_test6&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M149.81,-108.73C168.32,-118.09 193.82,-130.98 214.4,-141.38"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="212.79,-144.49 223.3,-145.88 215.95,-138.24 212.79,-144.49"/>
+</g>
+<!-- program~example3 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node8" class="node">
+<title>program~example3</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node8"><a xlink:href="../program/example3.html" xlink:title="example3">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="155.89,-66.27 91.87,-66.27 91.87,-42 155.89,-42 155.89,-66.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-50.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example3</text>
+</a>
+</g>
+</g>
+<!-- program~example3&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge7" class="edge">
+<title>program~example3&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M145.78,-66.71C149.85,-69.37 154.01,-72.25 157.77,-75.14 183.83,-95.14 211.31,-121.03 229.33,-138.75"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="226.73,-141.1 236.3,-145.66 231.67,-136.13 226.73,-141.1"/>
+</g>
+<!-- program~example4 -->
+<g id="proc~~ctimer_start~~CalledByGraph_node9" class="node">
+<title>program~example4</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node9"><a xlink:href="../program/example4.html" xlink:title="example4">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="155.89,-24.27 91.87,-24.27 91.87,0 155.89,0 155.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="123.88" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">example4</text>
+</a>
+</g>
+</g>
+<!-- program~example4&#45;&gt;proc~ctimer_start -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge8" class="edge">
+<title>program~example4&#45;&gt;proc~ctimer_start</title>
+<path fill="none" stroke="#ff0000" d="M146.96,-24.61C150.75,-27.19 154.51,-30.07 157.77,-33.13 191.38,-64.75 220.92,-110.15 236.91,-136.94"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="233.88,-138.7 241.95,-145.57 239.93,-135.17 233.88,-138.7"/>
+</g>
+<!-- program~check -->
+<g id="proc~~ctimer_start~~CalledByGraph_node10" class="node">
+<title>program~check</title>
+<g id="a_proc~~ctimer_start~~CalledByGraph_node10"><a xlink:href="../program/check.html" xlink:title="check">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="54,-213.27 0,-213.27 0,-189 54,-189 54,-213.27"/>
+<text xml:space="preserve" text-anchor="middle" x="27" y="-197.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">check</text>
+</a>
+</g>
+</g>
+<!-- program~check&#45;&gt;proc~run_test16 -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge9" class="edge">
+<title>program~check&#45;&gt;proc~run_test16</title>
+<path fill="none" stroke="#ff0000" d="M35.2,-213.64C45.66,-231.1 66.43,-263.1 90,-285.13 90.61,-285.71 91.24,-286.27 91.89,-286.83"/>
+<polygon fill="#ff0000" stroke="#ff0000" points="89.55,-289.45 99.62,-292.73 93.79,-283.88 89.55,-289.45"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test17 -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge10" class="edge">
+<title>program~check&#45;&gt;proc~run_test17</title>
+<path fill="none" stroke="#ffbf00" d="M46.36,-213.76C58.65,-222.17 75.23,-233.42 90,-243.13 91.18,-243.91 92.38,-244.7 93.6,-245.49"/>
+<polygon fill="#ffbf00" stroke="#ffbf00" points="91.43,-248.26 101.73,-250.74 95.23,-242.38 91.43,-248.26"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test18 -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge11" class="edge">
+<title>program~check&#45;&gt;proc~run_test18</title>
+<path fill="none" stroke="#7fff00" d="M54.43,-206.98C61.97,-208.65 70.4,-210.52 78.69,-212.35"/>
+<polygon fill="#7fff00" stroke="#7fff00" points="77.83,-215.75 88.35,-214.49 79.34,-208.91 77.83,-215.75"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test4 -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge12" class="edge">
+<title>program~check&#45;&gt;proc~run_test4</title>
+<path fill="none" stroke="#00ff3f" d="M54.43,-195.29C62.93,-193.4 72.56,-191.27 81.85,-189.22"/>
+<polygon fill="#00ff3f" stroke="#00ff3f" points="82.43,-192.67 91.44,-187.09 80.92,-185.84 82.43,-192.67"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test5 -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge13" class="edge">
+<title>program~check&#45;&gt;proc~run_test5</title>
+<path fill="none" stroke="#00ffff" d="M46.36,-188.51C58.65,-180.1 75.23,-168.85 90,-159.13 91.18,-158.36 92.38,-157.57 93.6,-156.78"/>
+<polygon fill="#00ffff" stroke="#00ffff" points="95.23,-159.89 101.73,-151.53 91.43,-154.01 95.23,-159.89"/>
+</g>
+<!-- program~check&#45;&gt;proc~run_test6 -->
+<g id="proc~~ctimer_start~~CalledByGraph_edge14" class="edge">
+<title>program~check&#45;&gt;proc~run_test6</title>
+<path fill="none" stroke="#003fff" d="M35.2,-188.63C45.66,-171.17 66.43,-139.17 90,-117.14 90.61,-116.56 91.24,-116 91.89,-115.44"/>
+<polygon fill="#003fff" stroke="#003fff" points="93.79,-118.39 99.62,-109.54 89.55,-112.82 93.79,-118.39"/>
+</g>
+</g>
+</svg>
+</div>          <div>
+            <a type="button" class="graph-help" data-bs-toggle="modal" href="#CalledByGraph-help-text">Help</a>
+          </div>
+          <div class="modal fade" id="CalledByGraph-help-text" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+<p>Nodes of different colours represent the following: </p>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 14.1.2 (20260126.1125)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(0.873868 0.873868) rotate(0) translate(4 28.27)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-28.27 729.52,-28.27 729.52,4 -4,4"/>
+<!-- Subroutine -->
+<g id="node1" class="node">
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="69.27,-24.27 0,-24.27 0,0 69.27,0 69.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="34.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="143.89,-24.27 87.38,-24.27 87.38,0 143.89,0 143.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="115.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="221.39,-24.27 161.88,-24.27 161.88,0 221.39,0 221.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="191.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Type Bound Procedure -->
+<g id="node4" class="node">
+<title>Type Bound Procedure</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="368.27,-24.27 239,-24.27 239,0 368.27,0 368.27,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="303.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type Bound Procedure</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node5" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="529.39,-24.27 385.88,-24.27 385.88,0 529.39,0 529.39,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="457.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node6" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="603.89,-24.27 547.38,-24.27 547.38,0 603.89,0 603.89,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="575.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node7" class="node">
+<title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="725.52,-24.27 621.75,-24.27 621.75,0 725.52,0 725.52,-24.27"/>
+<text xml:space="preserve" text-anchor="middle" x="673.63" y="-8.53" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.
+</p>
+ Where possible, edges connecting nodes are
+given different colours to make them easier to distinguish in
+large graphs.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    
+    
+
+    
+    
+
+
+
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="hl codehilite"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">ctimer_start</span><span class="p">(</span><span class="n">this</span><span class="p">)</span>
+<span class="w">      </span><span class="k">class</span><span class="p">(</span><span class="n">timer</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">this</span>
+<span class="w">         </span><span class="c">!! Timer instance whose CPU-time state is initialized.</span>
+<span class="w">      </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">this</span><span class="p">%</span><span class="n">cpu_start</span><span class="p">)</span>
+<span class="w">      </span><span class="n">this</span><span class="p">%</span><span class="n">is_cpu_started</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">ctimer_start</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    </div>
+  </div>
+
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              ForTime
+ was developed by Seyed Ali Ghasemi<br>              &copy; 2023-2026 BSD 3-Clause
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2026-05-06T20:44:50.645406+0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
