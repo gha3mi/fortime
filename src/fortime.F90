@@ -57,6 +57,23 @@ module fortime
       !! Integer kind used by the internal tick counters and civil-date
       !! calculations. It is currently mapped to `int64`.
 
+#if defined(USE_MPI)
+   interface
+      function mpi_wtime() result(time)
+         !! author: Seyed Ali Ghasemi
+         !! summary: Return the MPI wall-clock time from the external MPI library.
+         !!
+         !! This explicit interface avoids a compile-time dependency on `mpi.mod`
+         !! during non-MPI dependency scans while preserving the MPI timer when
+         !! the library is compiled and linked with MPI support.
+         import rk
+         implicit none
+         real(rk) :: time
+            !! MPI wall-clock time in seconds.
+      end function mpi_wtime
+   end interface
+#endif
+
    type timer
       !! author: Seyed Ali Ghasemi
       !! summary: Timing object with independent state for each supported backend.
@@ -588,10 +605,9 @@ contains
    !> `USE_MPI`. It captures `MPI_Wtime` and marks the MPI timer as active. The
    !> caller is responsible for calling it while MPI is initialized.
    subroutine mtimer_start(this)
-      use mpi, only: MPI_Wtime
       class(timer), intent(inout) :: this
          !! Timer instance whose MPI timing state is initialized.
-      this%mpi_start = real(MPI_Wtime(), rk)
+      this%mpi_start = mpi_wtime()
       this%is_mpi_started = .true.
    end subroutine mtimer_start
 
@@ -604,7 +620,6 @@ contains
    !> optionally averages and prints the duration, and writes the finalized value
    !> to `mpi_time`.
    subroutine mtimer_stop(this, nloops, message, print, color, rfmt)
-      use mpi, only: MPI_Wtime
       class(timer), intent(inout) :: this
          !! Timer instance previously started with `mtimer_start`.
       integer, intent(in), optional :: nloops
@@ -627,7 +642,7 @@ contains
       logical :: ok
          !! Finalization status returned by `finalize_timing`.
 
-      mpi_end = real(MPI_Wtime(), rk)
+      mpi_end = mpi_wtime()
 
       if (.not. this%is_mpi_started) then
          write(error_unit, '(A)') 'Error: mtimer_stop called before mtimer_start!'

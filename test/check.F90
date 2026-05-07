@@ -2,11 +2,22 @@ program check
 
    use fortime, only: timer
    use forunittest, only: unit_test, rk
-#if defined(USE_MPI)
-   use mpi, only: mpi_init, mpi_finalize
-#endif
 
    implicit none
+
+#if defined(USE_MPI)
+   interface
+      subroutine mpi_init(ierr)
+         implicit none
+         integer, intent(out) :: ierr
+      end subroutine mpi_init
+
+      subroutine mpi_finalize(ierr)
+         implicit none
+         integer, intent(out) :: ierr
+      end subroutine mpi_finalize
+   end interface
+#endif
 
    type(unit_test) :: ut
 #if defined(USE_MPI)
