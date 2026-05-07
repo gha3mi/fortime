@@ -1,3 +1,35 @@
+## [v0.8.1](https://github.com/gha3mi/fortime/compare/v0.8.0...v0.8.1) - 2026-05-07
+
+
+### Fixes
+
+* fix: rename .f90 to .F90 ([4fbe811](https://github.com/gha3mi/fortime/commit/4fbe8112387a02b156648fc90a42320b03ada6c2)) by [@gha3mi](https://github.com/gha3mi)
+* fix: add options for OpenMP and MPI support in CMake configuration ([9569b17](https://github.com/gha3mi/fortime/commit/9569b171a118c5cbbfa0e5d0d5cb9dd8682aef09)) by [@gha3mi](https://github.com/gha3mi)
+* fix: avoid mpi module dependency in non-MPI scans ([d6264ad](https://github.com/gha3mi/fortime/commit/d6264ad28cc583b3b674967b0c16703f4d250ffa)) by [@gha3mi](https://github.com/gha3mi)
+* fix: release.sh URL ([d826f88](https://github.com/gha3mi/fortime/commit/d826f889f755dbde872d3f0d6b05aaa6ca86b99f)) by [@gha3mi](https://github.com/gha3mi)
+
+### Others
+
+* refactor: remove unused variable 'nunit' from timer write subroutines ([f4d0246](https://github.com/gha3mi/fortime/commit/f4d0246a2639950fa69ddbeb2e441e5c15709be3)) by [@gha3mi](https://github.com/gha3mi)
+* chore: update fpm.toml metadata ([1f2b01a](https://github.com/gha3mi/fortime/commit/1f2b01a2bd42701a72161fcdb383df1221b70e1c)) by [@gha3mi](https://github.com/gha3mi)
+* Update CI ([b21287b](https://github.com/gha3mi/fortime/commit/b21287ba46953f0fed4fe5bd12d60c2fa4b0b705)) by [@gha3mi](https://github.com/gha3mi)
+* refactor: improve timer internals and API docs ([73169fd](https://github.com/gha3mi/fortime/commit/73169fdb7572d561e5629a6f86df0867bf60ea1a)) by [@gha3mi](https://github.com/gha3mi)
+* test: replace individual tests with a single check ([3d4262a](https://github.com/gha3mi/fortime/commit/3d4262a19f2ae1469b832efd84d69deda0460aa6)) by [@gha3mi](https://github.com/gha3mi)
+* chore: update copyright year ([fe04a0f](https://github.com/gha3mi/fortime/commit/fe04a0fbc3ee7c3f431733e72423628764b9d1a1)) by [@gha3mi](https://github.com/gha3mi)
+* chore: update ignore rules in fpm.toml ([c09d8d6](https://github.com/gha3mi/fortime/commit/c09d8d6ee9497e7e6fbdcca5c8cd063ac9d45585)) by [@gha3mi](https://github.com/gha3mi)
+* docs: Update README.md ([ece1601](https://github.com/gha3mi/fortime/commit/ece1601a753e3bdd9ba02ce809c29aceaaa11112)) by [@gha3mi](https://github.com/gha3mi)
+* ci: update CI-CD workflow ([caa7cda](https://github.com/gha3mi/fortime/commit/caa7cdaaf19f5c916f9207759d5cc118c7561a53)) by [@gha3mi](https://github.com/gha3mi)
+* ci: fix Ford output dir ([5d54f4c](https://github.com/gha3mi/fortime/commit/5d54f4c051ec9021c18e5c4a5b969f13667522ff)) by [@gha3mi](https://github.com/gha3mi)
+* Update README.md status table [ci skip] (#9) ([c033ec8](https://github.com/gha3mi/fortime/commit/c033ec8e43ef3d8b253eb81ecd1f6cbe578c0d17)) by [@gha3mi](https://github.com/gha3mi)
+
+
+### Contributors
+- [@gha3mi](https://github.com/gha3mi)
+
+
+
+Full Changelog: [v0.8.0...v0.8.1](https://github.com/gha3mi/fortime/compare/v0.8.0...v0.8.1)
+
 ## [v0.8.0](https://github.com/gha3mi/fortime/compare/v0.7.0...v0.8.0) - 2025-08-11
 
 
