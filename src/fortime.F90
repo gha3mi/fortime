@@ -260,7 +260,7 @@ contains
 
       if (present(nloops)) then
          if (nloops <= 0) then
-            if (do_print) write(error_unit, '(A)') 'Error: nloops must be > 0'
+            if (do_print) write(error_unit, "(A)") "Error: nloops must be > 0"
             return
          end if
          value_out = value_out / real(nloops, rk)
@@ -298,7 +298,7 @@ contains
       end if
 
       if (this%clock_rate <= 0_ik) then
-         write(error_unit, '(A)') 'Error: system_clock count_rate <= 0; timer unavailable on this platform.'
+         write(error_unit, "(A)") "Error: system_clock count_rate <= 0; timer unavailable on this platform."
          this%is_started = .false.
          return
       end if
@@ -345,17 +345,17 @@ contains
       call system_clock(count=clock_end)
 
       if (.not. this%is_started) then
-         write(error_unit, '(A)') 'Error: timer_stop called before timer_start!'
+         write(error_unit, "(A)") "Error: timer_stop called before timer_start!"
          return
       end if
 
       if (this%is_paused) then
-         write(error_unit, '(A)') 'Error: timer_stop called while timer is paused!'
+         write(error_unit, "(A)") "Error: timer_stop called while timer is paused!"
          return
       end if
 
       if (this%clock_rate <= 0_ik) then
-         write(error_unit, '(A)') 'Error: system_clock count_rate <= 0; cannot compute seconds.'
+         write(error_unit, "(A)") "Error: system_clock count_rate <= 0; cannot compute seconds."
          this%is_started = .false.
          return
       end if
@@ -369,7 +369,7 @@ contains
       this%is_paused = .false.
       this%paused_ticks = 0_ik
 
-      call finalize_timing(raw_seconds, nloops, out_seconds, 'Elapsed time:', message, print, color, rfmt, ok)
+      call finalize_timing(raw_seconds, nloops, out_seconds, "Elapsed time:", message, print, color, rfmt, ok)
       if (.not. ok) return
       this%elapsed_time = out_seconds
    end subroutine timer_stop
@@ -400,12 +400,12 @@ contains
          !! Running wall-clock timer instance to pause.
 
       if (.not. this%is_started) then
-         write(error_unit, '(A)') 'Warning: timer_pause called before timer_start.'
+         write(error_unit, "(A)") "Warning: timer_pause called before timer_start."
          return
       end if
 
       if (this%is_paused) then
-         write(error_unit, '(A)') 'Warning: timer is already paused.'
+         write(error_unit, "(A)") "Warning: timer is already paused."
          return
       end if
 
@@ -429,12 +429,12 @@ contains
          !! Tick duration between `timer_pause` and this resume call.
 
       if (.not. this%is_started) then
-         write(error_unit, '(A)') 'Warning: timer_resume called before timer_start.'
+         write(error_unit, "(A)") "Warning: timer_resume called before timer_start."
          return
       end if
 
       if (.not. this%is_paused) then
-         write(error_unit, '(A)') 'Warning: timer is not paused.'
+         write(error_unit, "(A)") "Warning: timer is not paused."
          return
       end if
 
@@ -491,14 +491,14 @@ contains
       call cpu_time(cpu_end)
 
       if (.not. this%is_cpu_started) then
-         write(error_unit, '(A)') 'Error: ctimer_stop called before ctimer_start!'
+         write(error_unit, "(A)") "Error: ctimer_stop called before ctimer_start!"
          return
       end if
 
       this%is_cpu_started = .false.
       raw_seconds = cpu_end - this%cpu_start
 
-      call finalize_timing(raw_seconds, nloops, out_seconds, 'CPU time:', message, print, color, rfmt, ok)
+      call finalize_timing(raw_seconds, nloops, out_seconds, "CPU time:", message, print, color, rfmt, ok)
       if (.not. ok) return
       this%cpu_time = out_seconds
    end subroutine ctimer_stop
@@ -568,14 +568,14 @@ contains
       omp_end = real(omp_get_wtime(), rk)
 
       if (.not. this%is_omp_started) then
-         write(error_unit, '(A)') 'Error: otimer_stop called before otimer_start!'
+         write(error_unit, "(A)") "Error: otimer_stop called before otimer_start!"
          return
       end if
 
       this%is_omp_started = .false.
       raw_seconds = omp_end - this%omp_start
 
-      call finalize_timing(raw_seconds, nloops, out_seconds, 'OMP time:', message, print, color, rfmt, ok)
+      call finalize_timing(raw_seconds, nloops, out_seconds, "OMP time:", message, print, color, rfmt, ok)
       if (.not. ok) return
       this%omp_time = out_seconds
    end subroutine otimer_stop
@@ -645,14 +645,14 @@ contains
       mpi_end = mpi_wtime()
 
       if (.not. this%is_mpi_started) then
-         write(error_unit, '(A)') 'Error: mtimer_stop called before mtimer_start!'
+         write(error_unit, "(A)") "Error: mtimer_stop called before mtimer_start!"
          return
       end if
 
       this%is_mpi_started = .false.
       raw_seconds = mpi_end - this%mpi_start
 
-      call finalize_timing(raw_seconds, nloops, out_seconds, 'MPI time:', message, print, color, rfmt, ok)
+      call finalize_timing(raw_seconds, nloops, out_seconds, "MPI time:", message, print, color, rfmt, ok)
       if (.not. ok) return
       this%mpi_time = out_seconds
    end subroutine mtimer_stop
@@ -815,14 +815,14 @@ contains
       t_end = epoch_seconds_utc(v)
 
       if (.not. this%is_dtime_started) then
-         write(error_unit, '(A)') 'Error: dtimer_stop called before dtimer_start!'
+         write(error_unit, "(A)") "Error: dtimer_stop called before dtimer_start!"
          return
       end if
 
       this%is_dtime_started = .false.
       raw_seconds = t_end - this%dtime_start_utc
 
-      call finalize_timing(raw_seconds, nloops, out_seconds, 'Elapsed time:', message, print, color, rfmt, ok)
+      call finalize_timing(raw_seconds, nloops, out_seconds, "Elapsed time:", message, print, color, rfmt, ok)
       if (.not. ok) return
       this%elapsed_dtime = out_seconds
    end subroutine dtimer_stop
@@ -878,25 +878,25 @@ contains
       if (present(rfmt)) then
          rfmt_ = adjustl(trim(rfmt))
       else
-         rfmt_ = 'F16.9'
+         rfmt_ = "F16.9"
       end if
 
       if (len_trim(rfmt_) == 0) then
-         write(error_unit, '(A)') 'Error: rfmt must not be empty'
+         write(error_unit, "(A)") "Error: rfmt must not be empty"
          return
       end if
 
       if (present(color)) then
          color_ = trim(color)
       else
-         color_ = 'blue'
+         color_ = "blue"
       end if
 
-      fmt = '(A, ' // trim(rfmt_) // ', A)'
+      fmt = "(A, " // trim(rfmt_) // ", A)"
       write(output_unit, fmt, iostat=ios, iomsg=iomsg) &
-         colorize(trim(message), color_fg=color_), time, colorize(' [s]', color_fg=color_)
+         colorize(trim(message), color_fg=color_), time, colorize(" [s]", color_fg=color_)
       if (ios /= 0) then
-         write(error_unit, '(A)') 'Error writing formatted time: ' // trim(iomsg)
+         write(error_unit, "(A)") "Error writing formatted time: " // trim(iomsg)
          return
       end if
 
@@ -931,19 +931,19 @@ contains
       inquire(file=fname, exist=file_exists)
 
       if (file_exists) then
-         open(newunit=nunit, file=fname, status='old', action='write', position='append', iostat=ios, iomsg=iomsg)
+         open(newunit=nunit, file=fname, status="old", action="write", position="append", iostat=ios, iomsg=iomsg)
       else
-         open(newunit=nunit, file=fname, status='new', action='write', iostat=ios, iomsg=iomsg)
+         open(newunit=nunit, file=fname, status="new", action="write", iostat=ios, iomsg=iomsg)
       end if
 
       if (ios /= 0) then
-         write(error_unit, '(A)') 'Error opening file: ' // fname // ' : ' // trim(iomsg)
+         write(error_unit, "(A)") "Error opening file: " // fname // " : " // trim(iomsg)
          return
       end if
 
-      write(nunit, '(g0)', iostat=ios, iomsg=iomsg) time
+      write(nunit, "(g0)", iostat=ios, iomsg=iomsg) time
       if (ios /= 0) then
-         write(error_unit, '(A)') 'Error writing file: ' // fname // ' : ' // trim(iomsg)
+         write(error_unit, "(A)") "Error writing file: " // fname // " : " // trim(iomsg)
       end if
 
       close(nunit)
